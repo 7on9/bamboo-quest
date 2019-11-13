@@ -14,14 +14,12 @@ import configureStore from './store';
 import * as serviceWorker from './serviceWorker';
 
 import Join from './page/Game/Client/Join';
-import Auth from './page/Auth/Auth';
 import Home from './page/Home/Home';
 import Client from './page/Game/Client/Client';
-import Quest from './page/Quest/Quest';
 import Host from './page/Game/Host/Host';
-import DashBoard from './page/Dashboard/index'
+// import DashBoard from './page/Dashboard/Dashboard'
 import configureSocket from './store/socket/socket';
-import { User } from './page';
+import { User, Dashboard, Auth, Quest } from './page';
 
 const store = configureStore();
 export const socket = configureSocket(store.dispatch);
@@ -36,7 +34,7 @@ ReactDOM.render(
       <Route path="/quest" component={Quest} />
       <Route path="/user" component={User} />
       <Route path="/host" component={Host} />
-      <Route path="/dashboard" component={DashBoard} />
+      <Route path="/dashboard" component={Dashboard} />
 
     </Router>
   </Provider>

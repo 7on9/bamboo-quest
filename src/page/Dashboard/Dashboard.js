@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 // import './../../component/dashboard/assets/css/style.css'
 // import './../../component/dashboard/assets/css/csSkinElastic.css'
-import {Images} from './../../component/dashboard/images/index'
-export default class index extends Component {
+// import {Images} from './../../component/dashboard/images/index'
+class Dashboard extends Component {
   render() {
     return (
-        <div>
+      <div>
         <aside id="left-panel" className="left-panel">
           <nav className="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" className="main-menu collapse navbar-collapse">
@@ -132,7 +134,7 @@ export default class index extends Component {
                     <div className="dropdown-menu" aria-labelledby="message">
                       <p className="red">You have 4 Mails</p>
                       <a className="dropdown-item media" href="#">
-                        <span className="photo media-left"><img alt="avatar" src={Images.A} /></span>
+                        {/* <span className="photo media-left"><img alt="avatar" src={Images.A} /></span> */}
                         <div className="message media-body">
                           <span className="name float-left">Jonathan Smith</span>
                           <span className="time float-right">Just now</span>
@@ -140,7 +142,7 @@ export default class index extends Component {
                         </div>
                       </a>
                       <a className="dropdown-item media" href="#">
-                        <span className="photo media-left"><img alt="avatar" src={Images.B} /></span>
+                        {/* <span className="photo media-left"><img alt="avatar" src={Images.B} /></span> */}
                         <div className="message media-body">
                           <span className="name float-left">Jack Sanders</span>
                           <span className="time float-right">5 minutes ago</span>
@@ -148,7 +150,7 @@ export default class index extends Component {
                         </div>
                       </a>
                       <a className="dropdown-item media" href="#">
-                        <span className="photo media-left"><img alt="avatar" src={Images.C} /></span>
+                        {/* <span className="photo media-left"><img alt="avatar" src={Images.C} /></span> */}
                         <div className="message media-body">
                           <span className="name float-left">Cheryl Wheeler</span>
                           <span className="time float-right">10 minutes ago</span>
@@ -156,7 +158,7 @@ export default class index extends Component {
                         </div>
                       </a>
                       <a className="dropdown-item media" href="#">
-                        <span className="photo media-left"><img alt="avatar" src={Images.D} /></span>
+                        {/* <span className="photo media-left"><img alt="avatar" src={Images.D} /></span> */}
                         <div className="message media-body">
                           <span className="name float-left">Rachel Santos</span>
                           <span className="time float-right">15 minutes ago</span>
@@ -168,7 +170,7 @@ export default class index extends Component {
                 </div>
                 <div className="user-area dropdown float-right">
                   <a href="#" className="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img className="user-avatar rounded-circle" src={Images.ADMIN} alt="User Avatar" />
+                    {/* <img className="user-avatar rounded-circle" src={Images.ADMIN} alt="User Avatar" /> */}
                   </a>
                   <div className="user-menu dropdown-menu">
                     <a className="nav-link" href="#"><i className="fa fa- user" />My Profile</a>
@@ -276,29 +278,29 @@ export default class index extends Component {
                           <div className="progress-box progress-1">
                             <h4 className="por-title">Visits</h4>
                             <div className="por-txt">96,930 Users (40%)</div>
-                            <div className="progress mb-2" style={{height: '5px'}}>
-                              <div className="progress-bar bg-flat-color-1" role="progressbar" style={{width: '40%'}} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
+                            <div className="progress mb-2" style={{ height: '5px' }}>
+                              <div className="progress-bar bg-flat-color-1" role="progressbar" style={{ width: '40%' }} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
                             </div>
                           </div>
                           <div className="progress-box progress-2">
                             <h4 className="por-title">Bounce Rate</h4>
                             <div className="por-txt">3,220 Users (24%)</div>
-                            <div className="progress mb-2" style={{height: '5px'}}>
-                              <div className="progress-bar bg-flat-color-2" role="progressbar" style={{width: '24%'}} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
+                            <div className="progress mb-2" style={{ height: '5px' }}>
+                              <div className="progress-bar bg-flat-color-2" role="progressbar" style={{ width: '24%' }} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
                             </div>
                           </div>
                           <div className="progress-box progress-2">
                             <h4 className="por-title">Unique Visitors</h4>
                             <div className="por-txt">29,658 Users (60%)</div>
-                            <div className="progress mb-2" style={{height: '5px'}}>
-                              <div className="progress-bar bg-flat-color-3" role="progressbar" style={{width: '60%'}} aria-valuenow={60} aria-valuemin={0} aria-valuemax={100} />
+                            <div className="progress mb-2" style={{ height: '5px' }}>
+                              <div className="progress-bar bg-flat-color-3" role="progressbar" style={{ width: '60%' }} aria-valuenow={60} aria-valuemin={0} aria-valuemax={100} />
                             </div>
                           </div>
                           <div className="progress-box progress-2">
                             <h4 className="por-title">Targeted  Visitors</h4>
                             <div className="por-txt">99,658 Users (90%)</div>
-                            <div className="progress mb-2" style={{height: '5px'}}>
-                              <div className="progress-bar bg-flat-color-4" role="progressbar" style={{width: '90%'}} aria-valuenow={90} aria-valuemin={0} aria-valuemax={100} />
+                            <div className="progress mb-2" style={{ height: '5px' }}>
+                              <div className="progress-bar bg-flat-color-4" role="progressbar" style={{ width: '90%' }} aria-valuenow={90} aria-valuemin={0} aria-valuemax={100} />
                             </div>
                           </div>
                         </div> {/* /.card-body */}
@@ -337,7 +339,7 @@ export default class index extends Component {
                                 <td className="serial">1.</td>
                                 <td className="avatar">
                                   <div className="round-img">
-                                    <a href="#"><img className="rounded-circle" src={Images.A} alt="" /></a>
+                                    {/* <a href="#"><img className="rounded-circle" src={Images.A} alt="" /></a> */}
                                   </div>
                                 </td>
                                 <td> #5469 </td>
@@ -352,7 +354,7 @@ export default class index extends Component {
                                 <td className="serial">2.</td>
                                 <td className="avatar">
                                   <div className="round-img">
-                                    <a href="#"><img className="rounded-circle" src={Images.B}alt="" /></a>
+                                    {/* <a href="#"><img className="rounded-circle" src={Images.B} alt="" /></a> */}
                                   </div>
                                 </td>
                                 <td> #5468 </td>
@@ -367,7 +369,7 @@ export default class index extends Component {
                                 <td className="serial">3.</td>
                                 <td className="avatar">
                                   <div className="round-img">
-                                    <a href="#"><img className="rounded-circle" src={Images.C} alt="" /></a>
+                                    {/* <a href="#"><img className="rounded-circle" src={Images.C} alt="" /></a> */}
                                   </div>
                                 </td>
                                 <td> #5467 </td>
@@ -382,7 +384,7 @@ export default class index extends Component {
                                 <td className="serial">4.</td>
                                 <td className="avatar">
                                   <div className="round-img">
-                                    <a href="#"><img className="rounded-circle" src={Images.D} alt="" /></a>
+                                    {/* <a href="#"><img className="rounded-circle" src={Images.D} alt="" /></a> */}
                                   </div>
                                 </td>
                                 <td> #5466 </td>
@@ -397,7 +399,7 @@ export default class index extends Component {
                                 <td className="serial">5.</td>
                                 <td className="avatar pb-0">
                                   <div className="round-img">
-                                    <a href="#"><img className="rounded-circle" src={Images.E} alt="" /></a>
+                                    {/* <a href="#"><img className="rounded-circle" src={Images.E} alt="" /></a> */}
                                   </div>
                                 </td>
                                 <td> #5465 </td>
@@ -509,7 +511,7 @@ export default class index extends Component {
                             <li>
                               <div className="msg-received msg-container">
                                 <div className="avatar">
-                                  <img src={Images.G} alt="" />
+                                  {/* <img src={Images.G} alt="" /> */}
                                   <div className="send-time">11.11 am</div>
                                 </div>
                                 <div className="msg-box">
@@ -527,7 +529,7 @@ export default class index extends Component {
                             <li>
                               <div className="msg-sent msg-container">
                                 <div className="avatar">
-                                  <img src={Images.H} alt="" />
+                                  {/* <img src={Images.H} alt="" /> */}
                                   <div className="send-time">11.11 am</div>
                                 </div>
                                 <div className="msg-box">
@@ -666,7 +668,15 @@ export default class index extends Component {
           {/* /.site-footer */}
         </div>
       </div>
-      
+
     );
   }
 }
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+const mapDispatchToProps = {
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
