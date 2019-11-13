@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../../services/authentication';
+import { AuthenticationService } from '../../services/authentication'
 import { ERROR, USER_TYPE, EVENT } from './types'
 
 const authenAction = (type, token, email, result) => {
@@ -8,12 +8,12 @@ const authenAction = (type, token, email, result) => {
       result: result,
       token: token,
       email: email,
-    }
+    },
   }
 }
 
 export const login = (email, password) => {
-  return (dispatch) => {
+  return dispatch => {
     AuthenticationService.login(email, password)
       .then(res => res.json())
       .then(res => {
@@ -21,29 +21,29 @@ export const login = (email, password) => {
           return dispatch({
             type: USER_TYPE.AUTH.LOGIN,
             payload: {
-              ...res
-            }
-          });
+              ...res,
+            },
+          })
         } else {
-          localStorage.setItem("token", res.token);
+          localStorage.setItem('token', res.token)
           return dispatch({
             type: USER_TYPE.AUTH.LOGIN,
             payload: {
-              ...res
-            }
+              ...res,
+            },
           })
         }
       })
-      .catch((err) => {
+      .catch(err => {
         dispatch({
           type: USER_TYPE.AUTH.LOGIN,
           payload: {
             result: false,
             token: '',
-            email: ''
-          }
+            email: '',
+          },
         })
-      });
+      })
   }
 }
 
@@ -52,25 +52,25 @@ export const resetResult = () => {
     dispatch({
       type: EVENT.RESULT,
       payload: {
-        result: false
-      }
+        result: false,
+      },
     })
   }
 }
 
-export const changeStatusRunning = (status) => {
+export const changeStatusRunning = status => {
   return dispatch => {
     dispatch({
       type: EVENT.RUNNING,
       payload: {
-        running: status
-      }
+        running: status,
+      },
     })
   }
 }
 
 export const register = (email, password, name) => {
-  return (dispatch) => {
+  return dispatch => {
     AuthenticationService.register(email, password, name)
       .then(res => res.json())
       .then(res => {
@@ -79,16 +79,16 @@ export const register = (email, password, name) => {
             type: USER_TYPE.AUTH.REGISTER,
             payload: {
               running: false,
-              result: false
-            }
+              result: false,
+            },
           })
         } else {
           return dispatch({
             type: USER_TYPE.AUTH.REGISTER,
             payload: {
               running: false,
-              result: res.result
-            }
+              result: res.result,
+            },
           })
         }
       })
@@ -97,56 +97,55 @@ export const register = (email, password, name) => {
           type: USER_TYPE.AUTH.REGISTER,
           payload: {
             result: false,
-            running: false
-          }
+            running: false,
+          },
         })
-      });
+      })
   }
 }
 
 export const logout = () => {
-  return (dispatch) => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    AuthenticationService.logout()
-      .catch(() => {
-        return dispatch(authenAction(USER_TYPE.AUTH.LOGOUT, null, null, false))
-      })
+  return dispatch => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('email')
+    AuthenticationService.logout().catch(() => {
+      return dispatch(authenAction(USER_TYPE.AUTH.LOGOUT, null, null, false))
+    })
   }
 }
 
 export const verify = () => {
-  return (dispatch) => {
+  return dispatch => {
     AuthenticationService.verify()
       .then(res => res.json())
       .then(res => {
         if (!res.result) {
-          localStorage.removeItem('token');
+          localStorage.removeItem('token')
           return dispatch({
             type: USER_TYPE.AUTH.VERIFY,
             payload: {
-              ...res
-            }
+              ...res,
+            },
           })
         } else {
-          localStorage.setItem("email", res.info.email);
+          localStorage.setItem('email', res.info.email)
           return dispatch({
             type: USER_TYPE.AUTH.VERIFY,
             payload: {
-              ...res
-            }
+              ...res,
+            },
           })
         }
       })
       .catch(() => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token')
         return dispatch({
           type: USER_TYPE.AUTH.VERIFY,
           payload: {
-            result: false
-          }
+            result: false,
+          },
         })
-      });
+      })
   }
 }
 

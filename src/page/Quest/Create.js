@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as questActions from '../../store/quest/action';
+import * as questActions from '../../store/quest/action'
 
 class Create extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       file: '',
       img: null,
@@ -13,15 +13,15 @@ class Create extends Component {
         img: null,
         description: '',
         isPublic: false,
-        title: ''
-      }
-    };
+        title: '',
+      },
+    }
   }
 
   onSubmit = e => {
-    e.preventDefault();
-    this.props.changeStatusRunning(true);
-    this.props.createQuest(this.state.newQuest);
+    e.preventDefault()
+    this.props.changeStatusRunning(true)
+    this.props.createQuest(this.state.newQuest)
   }
   onType = event => {
     this.setState({
@@ -29,24 +29,24 @@ class Create extends Component {
       error: '',
       newQuest: {
         ...this.state.newQuest,
-        [event.target.name]: event.target.value
-      }
+        [event.target.name]: event.target.value,
+      },
     })
   }
 
-  onUploadImage = async (event) => {
+  onUploadImage = async event => {
     if (event.target.files[0]) {
       this.setState({
-        img: URL.createObjectURL(event.target.files[0])
+        img: URL.createObjectURL(event.target.files[0]),
       })
     }
-    let reader = new FileReader();
+    let reader = new FileReader()
     reader.onloadend = () => {
       this.setState({
         newQuest: {
           ...this.state.newQuest,
-          img: reader.result
-        }
+          img: reader.result,
+        },
       })
     }
     if (event.target.files[0]) {
@@ -58,34 +58,36 @@ class Create extends Component {
     this.setState({
       newQuest: {
         ...this.state.newQuest,
-        isPublic: !this.state.newQuest.isPublic
-      }
-    });
+        isPublic: !this.state.newQuest.isPublic,
+      },
+    })
   }
 
   renderSpinner = () => {
-    return this.props.quest.running ?
+    return this.props.quest.running ? (
       <div className="linear-activity">
         <div className="indeterminate" />
       </div>
-      : null
+    ) : null
   }
 
   componentWillMount() {
-    this.props.resetResult();
+    this.props.resetResult()
   }
   render() {
-    let { img } = this.state;
-    let { isPublic } = this.state.newQuest;
+    let { img } = this.state
+    let { isPublic } = this.state.newQuest
 
-    const { from } = this.props.location.state || { from: { pathname: "/home" } };
+    const { from } = this.props.location.state || {
+      from: { pathname: '/home' },
+    }
     if (this.props.quest.result) {
-      this.props.resetResult();
+      this.props.resetResult()
       return <Redirect to={from} />
     }
 
     return (
-      <div className='container_createQuiz' >
+      <div className="container_createQuiz">
         {/* <div className='topCreateQuiz'>
           <div className='col-12' style={{ height: '100%' }}>
             <div className='row center-div' style={{ width: '100%', height: '100%' }}>
@@ -101,72 +103,126 @@ class Create extends Component {
             </div>
           </div>
         </div> */}
-        <div className='contentCreateQuiz text-left' style={{overflowY:"scroll"}} >
-          <div className='container' style={{ height: '100%' }}>
-            <form method='post' style={{ height: '100%', width: '100%' }}>
-              <div className='col-12' style={{ height: '' }}>
-                <div className='row' style={{ height: '100%' }}>
-                  <div className='col-12 col-sm-6 col-md-6' style={{ height: '100%' }}>
-                    <div className='' style={{ width: '80%', height: '', marginTop: '30px' }}>
-                      <div className='form-group'>
+        <div
+          className="contentCreateQuiz text-left"
+          style={{ overflowY: 'scroll' }}>
+          <div className="container" style={{ height: '100%' }}>
+            <form method="post" style={{ height: '100%', width: '100%' }}>
+              <div className="col-12" style={{ height: '' }}>
+                <div className="row" style={{ height: '100%' }}>
+                  <div
+                    className="col-12 col-sm-6 col-md-6"
+                    style={{ height: '100%' }}>
+                    <div
+                      className=""
+                      style={{ width: '80%', height: '', marginTop: '30px' }}>
+                      <div className="form-group">
                         <label>Tên thử thách</label>
-                        <div className='center-div' style={{ width: '100%', height: '50px', border: '3px solid #e2e2e2' }}>
-                          <input maxLength='50' placeholder='giới hạn 50 ký tự' style={{ marginLeft: '10px', width: '100%' }} name='title' onChange={this.onType} />
+                        <div
+                          className="center-div"
+                          style={{
+                            width: '100%',
+                            height: '50px',
+                            border: '3px solid #e2e2e2',
+                          }}>
+                          <input
+                            maxLength="50"
+                            placeholder="giới hạn 50 ký tự"
+                            style={{ marginLeft: '10px', width: '100%' }}
+                            name="title"
+                            onChange={this.onType}
+                          />
                         </div>
                       </div>
-                      <div className='form-group'>
+                      <div className="form-group">
                         <label>{isPublic ? 'Công khai' : 'Bí mật'}</label>
-                        <div className='center-div' style={{ width: '100%', height: '50px' }}>
+                        <div
+                          className="center-div"
+                          style={{ width: '100%', height: '50px' }}>
                           <label className="switch">
-                            <input type="checkbox" value={this.state.statusPublic} onClick={this.togglePublic} name='isPublic' />
+                            <input
+                              type="checkbox"
+                              value={this.state.statusPublic}
+                              onClick={this.togglePublic}
+                              name="isPublic"
+                            />
                             <span className="slider round" />
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className='col-12 col-sm-6 col-md-6'   >
-                    <div className='upLoadImage'>
-                      <input type="file" style={{ background: 'none', width: '100%' }} onChange={this.onUploadImage} />
+                  <div className="col-12 col-sm-6 col-md-6">
+                    <div className="upLoadImage">
+                      <input
+                        type="file"
+                        style={{ background: 'none', width: '100%' }}
+                        onChange={this.onUploadImage}
+                      />
                       <br />
                       <div style={{ marginTop: '10px' }}>
-                        <div className='row'>
-                          <div className='col-1'></div>
-                          <div className='col-10 center-div' style={{ height: '250px', background: '#fff' }}>
-                            <img style={{ objectFit: 'contain', width: '100%', height: '100%' }} src={img ? img : '/images/img_quest_default.jpg'} />
+                        <div className="row">
+                          <div className="col-1"></div>
+                          <div
+                            className="col-10 center-div"
+                            style={{ height: '250px', background: '#fff' }}>
+                            <img
+                              style={{
+                                objectFit: 'contain',
+                                width: '100%',
+                                height: '100%',
+                              }}
+                              src={img ? img : '/images/img_quest_default.jpg'}
+                            />
                           </div>
-                          <div className='col-1'></div>
+                          <div className="col-1"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='col-12' style={{ width: '100%', height: '' }} >
-                <div className='form-group'>
+              <div className="col-12" style={{ width: '100%', height: '' }}>
+                <div className="form-group">
                   <label>Mô tả thử thách</label>
-                  <div className='center-div' style={{ width: '100%', height: '5em', border: '3px solid #e2e2e2' }}>
-                    <input type='text' maxLength='100' placeholder='giới hạn 100 ký tự' style={{ marginLeft: '10px', width: '100%' }} name='description' onChange={this.onType} />
+                  <div
+                    className="center-div"
+                    style={{
+                      width: '100%',
+                      height: '5em',
+                      border: '3px solid #e2e2e2',
+                    }}>
+                    <input
+                      type="text"
+                      maxLength="100"
+                      placeholder="giới hạn 100 ký tự"
+                      style={{ marginLeft: '10px', width: '100%' }}
+                      name="description"
+                      onChange={this.onType}
+                    />
                   </div>
                 </div>
-                <div className='col-12 text-center'>
-                  <input onClick={this.onSubmit} type='submit' style={{ cursor: 'pointer', width: '100%' }} className='btn btn-success col-6' />
-                  {
-                    this.props.quest.running ? this.renderSpinner() : null
-                  }
+                <div className="col-12 text-center">
+                  <input
+                    onClick={this.onSubmit}
+                    type="submit"
+                    style={{ cursor: 'pointer', width: '100%' }}
+                    className="btn btn-success col-6"
+                  />
+                  {this.props.quest.running ? this.renderSpinner() : null}
                 </div>
               </div>
             </form>
           </div>
         </div>
-        <div style={{marginBottom:"30px"}}/>
+        <div style={{ marginBottom: '30px' }} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  ...state
+const mapStateToProps = state => ({
+  ...state,
 })
 
 const mapDispatchToProps = {

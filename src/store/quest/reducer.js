@@ -1,64 +1,64 @@
 //reducer user
-import { QUEST_TYPES, EVENT } from "./types";
+import { QUEST_TYPES, EVENT } from './types'
 
 let initialState = {
   info: null,
   running: false,
   result: false,
-  quests: []
-};
+  quests: [],
+}
 
 export const questReducer = (state = initialState, action) => {
   switch (action.type) {
     case QUEST_TYPES.LIST:
       state = {
         ...state,
-        quests: action.payload.quests ? [...action.payload.quests] : []
+        quests: action.payload.quests ? [...action.payload.quests] : [],
       }
-      break;
+      break
     case QUEST_TYPES.CREATE:
-      let { quests } = state;
+      let { quests } = state
       if (action.payload.newQuest) {
-        quests.push(action.payload.newQuest);
+        quests.push(action.payload.newQuest)
         state = {
           ...state,
           result: action.payload.result,
-          quests: [...quests]
-        };
+          quests: [...quests],
+        }
       } else {
         state = {
           ...state,
-          ...action.payload
-        };
+          ...action.payload,
+        }
       }
-      break;
+      break
     case QUEST_TYPES.DELETE:
       let deletedArr = state.quests.map(quest => {
-        if(quest._id !== action.payload.deletedQuest._id){
-          return quest;
+        if (quest._id !== action.payload.deletedQuest._id) {
+          return quest
         }
       })
       state = {
         ...state,
-        result: "SUCCESS",
-        quests: [...deletedArr]
-      };
-      break;
+        result: 'SUCCESS',
+        quests: [...deletedArr],
+      }
+      break
     case QUEST_TYPES.SET_STATUS:
       state = {
         ...state,
-        result: action.payload.result
+        result: action.payload.result,
       }
-      break;
+      break
     case QUEST_TYPES.ADD:
     case QUEST_TYPES.GET:
       state = {
         ...state,
-        ...action.payload
+        ...action.payload,
       }
-      break;
+      break
     default:
-      break;
+      break
   }
-  return state;
+  return state
 }

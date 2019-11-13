@@ -1,13 +1,13 @@
-import {
-  Link,
-} from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 import React from 'react'
 
 export const Menu = ({ ...props }) => (
-    <div className='container-fulid menu' id="myHeader" style={{ height: "auto", }}>
-
-      {/* <nav className="navbar navbar-fixed-top navbar-light bg-light justify-content-between navbar-inverse"  >
+  <div
+    className="container-fulid menu"
+    id="myHeader"
+    style={{ height: 'auto' }}>
+    {/* <nav className="navbar navbar-fixed-top navbar-light bg-light justify-content-between navbar-inverse"  >
         <Link to="/home" className="navbar-brand"></Link>
         <div className="btn-group center-div">
           <p style={{color:"#000"}}>Home</p>
@@ -60,23 +60,50 @@ export const Menu = ({ ...props }) => (
           </div>
         </div>
       </nav> */}
-      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
-        <div className="container">
-          <p className="navbar-brand" href="#" ><img src="images/logoMau.png" style={{height:"3vw"}}/></p>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <Link to="/home" className="nav-item nav-link active"  style={{cursor:"pointer"}}> <p style={{fontWeight:"bold"}}>Trang chủ </p><span className="sr-only">(current)</span></Link>
-              <Link to="/quest/my" className="nav-item nav-link active"  style={{cursor:"pointer"}}> <p style={{fontWeight:"bold"}}>Thử thách của tôi</p><span className="sr-only">(current)</span></Link>
-              <Link to="/user/info" className="nav-item nav-link active"  style={{cursor:"pointer"}}> <p style={{fontWeight:"bold"}}>Tài khoản </p><span className="sr-only">(current)</span></Link>
-            
-            </div>
+    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
+      <div className="container">
+        <p className="navbar-brand" href="#">
+          <img src="images/logoMau.png" style={{ height: '3vw' }} />
+        </p>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link
+              to="/home"
+              className="nav-item nav-link active"
+              style={{ cursor: 'pointer' }}>
+              {' '}
+              <p style={{ fontWeight: 'bold' }}>Trang chủ </p>
+              <span className="sr-only">(current)</span>
+            </Link>
+            <Link
+              to="/quest/my"
+              className="nav-item nav-link active"
+              style={{ cursor: 'pointer' }}>
+              {' '}
+              <p style={{ fontWeight: 'bold' }}>Thử thách của tôi</p>
+              <span className="sr-only">(current)</span>
+            </Link>
+            <Link
+              to="/user/info"
+              className="nav-item nav-link active"
+              style={{ cursor: 'pointer' }}>
+              {' '}
+              <p style={{ fontWeight: 'bold' }}>Tài khoản </p>
+              <span className="sr-only">(current)</span>
+            </Link>
           </div>
         </div>
-
-      </nav>
-
-    </div>
-  )
+      </div>
+    </nav>
+  </div>
+)

@@ -1,53 +1,57 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './style.css';
+import './style.css'
 import { Redirect } from 'react-router-dom'
-import { answer } from '../../../store/socket/socket';
-import GAME_TYPES from '../../../store/socket/types';
-import { Answer } from '../../../components';
+import { answer } from '../../../store/socket/socket'
+import GAME_TYPES from '../../../store/socket/types'
+import { Answer } from '../../../components'
 
 /*Play game*/
 class Play extends Component {
   componentDidMount() {
     this.setState({
       time: (new Date().getTime() / 1000.0).toFixed(2),
-      answered: false
+      answered: false,
     })
   }
-  onAnswer = (value) => {
+  onAnswer = value => {
     if (this.state.answered) {
-      return;
+      return
     }
-    const { game } = this.props;
+    const { game } = this.props
     let ans = {
-      time: parseFloat((new Date().getTime() / 1000.0 - this.state.time).toFixed(2)),
+      time: parseFloat(
+        (new Date().getTime() / 1000.0 - this.state.time).toFixed(2)
+      ),
       idAnswer: value,
-      username: game.username
+      username: game.username,
     }
-    answer(game.idGame, game.idQuestion, ans);
+    answer(game.idGame, game.idQuestion, ans)
     this.setState({
-      answered: true
+      answered: true,
     })
   }
   render() {
-    const { game } = this.props;
+    const { game } = this.props
     if (game) {
       if (game.timeout) {
-        const { answered } = this.state;
+        const { answered } = this.state
         if (answered === false) {
           let ans = {
             time: GAME_TYPES.GAME.TIMEOUT,
             idAnswer: -1,
-            username: game.username
+            username: game.username,
           }
-          answer(game.idGame, game.idQuestion, ans);
+          answer(game.idGame, game.idQuestion, ans)
         }
-        let { from } = this.props.location.state || { from: { pathname: "/client/result" } };
+        let { from } = this.props.location.state || {
+          from: { pathname: '/client/result' },
+        }
         return <Redirect to={from} />
       }
     }
     return (
-      <div className='client-answer' >
+      <div className="client-answer">
         <div style={{ width: '100%', height: '100%', background: '' }}>
           <div style={{ width: '100%', height: '100%' }}>
             <Answer
@@ -85,12 +89,10 @@ class Play extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  ...state
+const mapStateToProps = state => ({
+  ...state,
 })
 
-const mapDispatchToProps = {
-
-}
+const mapDispatchToProps = {}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Play)

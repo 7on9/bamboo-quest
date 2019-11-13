@@ -1,39 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import * as authAction from '../../store/auth/action';
-import Info from './Info';
-import Create from './Create';
-import ChangeQuestion from './ChangeQuestion';
-import { Menu } from '../../components';
+import * as authAction from '../../store/auth/action'
+import Info from './Info'
+import Create from './Create'
+import ChangeQuestion from './ChangeQuestion'
+import { Menu } from '../../components'
 
 class Quest extends Component {
-  componentWillMount(){
-    if (localStorage.getItem("token")) {
+  componentWillMount() {
+    if (localStorage.getItem('token')) {
       if (!this.props.user.email) {
-        this.props.verify();
+        this.props.verify()
         if (this.props.user.token === null) {
           this.setState({
-            authenticated: false
+            authenticated: false,
           })
-        }else{
+        } else {
           this.setState({
-            authenticated: true
+            authenticated: true,
           })
         }
       }
     } else {
       this.setState({
-        authenticated: false
+        authenticated: false,
       })
-      console.log("tạch");
+      console.log('tạch')
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // this.props.getAllGuests();
     // this.props.getAllMeetings();
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0)
   }
   render() {
     // try {
@@ -49,9 +49,11 @@ class Quest extends Component {
     //   }
     // }
     return (
-      <div className='home'>
-        <Menu email={this.props.user.info ? this.props.user.info.email : 'email'}/>
-        <div style={{ marginTop: '70px'}}/>
+      <div className="home">
+        <Menu
+          email={this.props.user.info ? this.props.user.info.email : 'email'}
+        />
+        <div style={{ marginTop: '70px' }} />
         <Switch>
           <Route path="/quest/info/:id" component={Info} />
           <Route path="/quest/create" component={Create} />
@@ -62,12 +64,12 @@ class Quest extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  ...state
+const mapStateToProps = state => ({
+  ...state,
 })
 
 const mapDispatchToProps = {
-  verify: authAction.verify
+  verify: authAction.verify,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quest)

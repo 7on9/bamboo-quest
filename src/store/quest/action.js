@@ -1,5 +1,5 @@
-import { QuestService } from '../../services/quest';
-import { EVENT, QUEST_TYPES } from './types';
+import { QuestService } from '../../services/quest'
+import { EVENT, QUEST_TYPES } from './types'
 
 // export const QUEST_TYPES_ACTIONS = {
 //   quests,
@@ -7,28 +7,28 @@ import { EVENT, QUEST_TYPES } from './types';
 //   createQuest : createQuest
 // };
 
-export const questInfo = (quest) => {
+export const questInfo = quest => {
   return {
     type: QUEST_TYPES.GET,
     payload: {
       questInfo: quest,
       running: false,
-      result: true
-    }
+      result: true,
+    },
   }
-};
+}
 
-export const quests = (quests) => {
+export const quests = quests => {
   return {
     type: QUEST_TYPES.LIST,
     payload: {
       quests: quests,
-      running: false
-    }
+      running: false,
+    },
   }
-};
+}
 
-export const createQuest = (quest) => {
+export const createQuest = quest => {
   return dispatch => {
     QuestService.createQuest(quest)
       .then(res => res.json())
@@ -37,8 +37,8 @@ export const createQuest = (quest) => {
           type: QUEST_TYPES.CREATE,
           payload: {
             ...res,
-            running: false
-          }
+            running: false,
+          },
         })
       })
       .catch(() => {
@@ -46,14 +46,14 @@ export const createQuest = (quest) => {
           type: QUEST_TYPES.CREATE,
           payload: {
             result: false,
-            running: false
-          }
+            running: false,
+          },
         })
       })
   }
-};
+}
 
-export const addQuestion = (newQuestion) => {
+export const addQuestion = newQuestion => {
   return dispatch => {
     QuestService.addQuestion(newQuestion)
       .then(res => res.json())
@@ -62,8 +62,8 @@ export const addQuestion = (newQuestion) => {
           type: QUEST_TYPES.ADD,
           payload: {
             ...res,
-            running: false
-          }
+            running: false,
+          },
         })
       })
       .catch(() => {
@@ -71,14 +71,14 @@ export const addQuestion = (newQuestion) => {
           type: QUEST_TYPES.ADD,
           payload: {
             result: false,
-            running: false
-          }
+            running: false,
+          },
         })
       })
   }
-};
+}
 
-export const deleteQuest = (idQuest) => {
+export const deleteQuest = idQuest => {
   return dispatch => {
     QuestService.deleteQuest(idQuest)
       .then(res => res.json())
@@ -87,21 +87,21 @@ export const deleteQuest = (idQuest) => {
           type: QUEST_TYPES.DELETE,
           payload: {
             result: true,
-            deletedQuest: res.deletedQuest
-          }
+            deletedQuest: res.deletedQuest,
+          },
         })
       })
       .catch(() => {
         return dispatch({
           type: QUEST_TYPES.DELETE,
           payload: {
-            result: false
-          }
+            result: false,
+          },
         })
       })
   }
-};
-export const getInfoQuest = (idQuest) => {
+}
+export const getInfoQuest = idQuest => {
   return dispatch => {
     QuestService.getQuest(idQuest)
       .then(res => res.json())
@@ -109,20 +109,20 @@ export const getInfoQuest = (idQuest) => {
         return dispatch({
           type: QUEST_TYPES.GET,
           payload: {
-            ...res
-          }
+            ...res,
+          },
         })
       })
       .catch(() => {
         return dispatch({
           type: QUEST_TYPES.GET,
           payload: {
-            info: null
-          }
+            info: null,
+          },
         })
       })
   }
-};
+}
 
 export const getsAllQuests = () => {
   return dispatch => {
@@ -132,20 +132,20 @@ export const getsAllQuests = () => {
         return dispatch({
           type: QUEST_TYPES.LIST,
           payload: {
-            ...res
-          }
-        });
+            ...res,
+          },
+        })
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
         return dispatch({
           type: QUEST_TYPES.LIST,
           payload: {
             result: false,
-            quests: null
-          }
-        });
-      });
+            quests: null,
+          },
+        })
+      })
   }
 }
 
@@ -154,19 +154,19 @@ export const resetResult = () => {
     dispatch({
       type: EVENT.RESULT,
       payload: {
-        result: false
-      }
+        result: false,
+      },
     })
   }
 }
 
-export const changeStatusRunning = (result) => {
+export const changeStatusRunning = result => {
   return dispatch => {
     dispatch({
       type: EVENT.RUNNING,
       payload: {
-        running: result
-      }
+        running: result,
+      },
     })
   }
 }

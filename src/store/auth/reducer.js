@@ -1,12 +1,12 @@
 //reducer user
-import { USER_TYPE, EVENT } from "./types";
+import { USER_TYPE, EVENT } from './types'
 
 let initialState = {
   token: '',
   info: null,
   running: false,
-  result: false
-};
+  result: false,
+}
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,29 +16,29 @@ export const authReducer = (state = initialState, action) => {
       state = {
         ...state,
         ...action.payload,
-        running: false
-      };
-      break;
+        running: false,
+      }
+      break
     case USER_TYPE.AUTH.REGISTER:
       state = {
         ...state,
         ...action.payload,
       }
-      break;
+      break
     case EVENT.RESULT:
       state = {
         ...state,
         ...action.payload,
       }
-      break;
+      break
     case EVENT.RUNNING:
       state = {
         ...state,
         running: action.payload.running,
       }
-      break;
+      break
     default:
-      break;
+      break
   }
-  return state;
+  return state
 }

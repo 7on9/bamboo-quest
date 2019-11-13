@@ -2,7 +2,7 @@ import GAME_TYPES from './types'
 const initialState = {
   players: [],
   idQuestion: -1,
-  correct: 0
+  correct: 0,
 }
 
 export const gameReducer = (state = initialState, { type, payload }) => {
@@ -18,24 +18,24 @@ export const gameReducer = (state = initialState, { type, payload }) => {
     case GAME_TYPES.GAME.NEW_QUESTION:
       return {
         ...state,
-        ...payload
+        ...payload,
       }
     case GAME_TYPES.GAME.RESET_STATUS:
       return {
         ...state,
-        result: false
+        result: false,
       }
     case GAME_TYPES.GAME.NEW_PLAYER:
-      let { players } = state;
+      let { players } = state
       players.push(payload.player)
       return {
         ...state,
-        players
+        players,
       }
     case GAME_TYPES.GAME.NEXT_QUESTION:
       return {
         ...state,
-        idQuestion: state.idQuestion + 1
+        idQuestion: state.idQuestion + 1,
       }
 
     default:

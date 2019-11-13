@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom';
-import './style.css';
-import Welcome from './Welcome';
-import ReturnResult from './ReturnResult';
-import Play from './Play';
+import { Switch, Route } from 'react-router-dom'
+import './style.css'
+import Welcome from './Welcome'
+import ReturnResult from './ReturnResult'
+import Play from './Play'
 
 /*Play game*/
 class Client extends Component {
