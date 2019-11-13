@@ -13,13 +13,8 @@ import { Provider } from 'react-redux';
 import configureStore from './store';
 import * as serviceWorker from './serviceWorker';
 
-import Join from './page/Game/Client/Join';
-import Home from './page/Home/Home';
-import Client from './page/Game/Client/Client';
-import Host from './page/Game/Host/Host';
-// import DashBoard from './page/Dashboard/Dashboard'
 import configureSocket from './store/socket/socket';
-import { User, Dashboard, Auth, Quest } from './page';
+import { User, Dashboard, Auth, Quest, Join, Client, Host, Home } from './page';
 
 const store = configureStore();
 export const socket = configureSocket(store.dispatch);
