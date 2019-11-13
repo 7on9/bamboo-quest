@@ -30,7 +30,6 @@ ReactDOM.render(
       <Route path="/user" component={User} />
       <Route path="/host" component={Host} />
       <Route path="/dashboard" component={Dashboard} />
-
     </Router>
   </Provider>
   , document.getElementById('root')
