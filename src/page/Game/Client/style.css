@@ -1,0 +1,164 @@
+.client-answer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  font-family: 'Baloo', cursive;
+  color: #fff;
+}
+
+.client-answer .row {
+  width: 100% !important;
+}
+
+.cl-ans {
+  width: 50%;
+  height: 50%;
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+.cl-ans:hover {
+  opacity: 0.9;
+}
+
+/* client waiting  */
+.client_waiting {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  font-family: 'Baloo', cursive;
+}
+
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.lds-grid div {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #2a68c7;
+  animation: lds-grid 1.2s linear infinite;
+}
+
+.lds-grid div:nth-child(1) {
+  top: 6px;
+  left: 6px;
+  animation-delay: 0s;
+}
+
+.lds-grid div:nth-child(2) {
+  top: 6px;
+  left: 26px;
+  animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(3) {
+  top: 6px;
+  left: 45px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(4) {
+  top: 26px;
+  left: 6px;
+  animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(5) {
+  top: 26px;
+  left: 26px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(6) {
+  top: 26px;
+  left: 45px;
+  animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(7) {
+  top: 45px;
+  left: 6px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(8) {
+  top: 45px;
+  left: 26px;
+  animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(9) {
+  top: 45px;
+  left: 45px;
+  animation-delay: -1.6s;
+}
+
+@keyframes lds-grid {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.return-result {
+  font-family: 'Baloo', cursive;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #f2f2f2;
+}
+
+.welcome {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 10;
+  font-family: 'Baloo', cursive;
+  background: #169603;
+  color: #fff
+}
+
+
+@media (max-width: 575.98px) {
+  .welcome-text {
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .welcome-text {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .welcome-text {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .welcome-text {
+    font-size: 1em;
+  }
+}

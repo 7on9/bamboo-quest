@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  background: #fcfcfc;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif !important;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.home {
+  font-family: 'Baloo', cursive;
+}
+
+.t {
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+.bg-light {
+  background: #50aa53 !important;
+  color: #fff !important;
+  font-family: 'Baloo', cursive;
+
+}
+
+.editItem {
+  font-family: 'Baloo', cursive;
+
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-family: 'Baloo', cursive;
+
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 370px;
+  position: relative;
+  width: 100%;
+}
+
+.limitText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-1 {
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.12), 0 6px 7px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.action:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+a {
+  color: #000;
+}
+
+.itemList {
+  width: 100%;
+  /* height: 130px; */
+  background: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0px 10px 40px -10px rgba(0,64,128,0.2);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  border-radius: 4px;
+}
+
+.itemList:hover {
+  box-shadow: 0px 10px 40px 2px rgba(0,64,128,0.2);
+  cursor: pointer;
+}
+
+.icon-question {
+  margin-right: 10px;
+
+}
+
+div.hover-show-icon-edit {
+  opacity: 0;
+}
+
+.center {
+  height: 130px;
+  display: flex;
+  align-items: center;
+}
+
+
+.ans {
+  height: 50px;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  width: 95%;
+
+}
+
+
+.container_editUser {
+  font-family: 'Baloo', cursive;
+  background-color: #fff;
+  overflow-y: scroll;
+
+
+}
+
+.file-upload {
+  background-color: #ffffff;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #1FB264;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #15824B;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.file-upload-btn:hover {
+  background: #1AA059;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #1FB264;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+  background-color: #1FB264;
+  border: 4px dashed #ffffff;
+}
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #15824B;
+  padding: 60px 0;
+}
+
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.itemEditUser {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+  margin: 10px 0;
+  border-bottom: 1px solid #222;
+  font-size: 130%;
+}
+
+.itemEditUser input {
+  border: none;
+  outline: none;
+  background: none;
+  color: #000;
+  margin: 0 10px;
+}
+
+/* CREATE QUIZ */
+
+.container_createQuiz {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow-y: scroll;
+  font-size: 20px;
+  font-family: 'Baloo', cursive;
+
+}
+
+.topCreateQuiz {
+  width: 100%;
+  height: 8%;
+  background: #FF7051;
+}
+
+.contentCreateQuiz {
+  width: 100%;
+  height: 92%;
+  background: #fff;
+}
+
+.upLoadImage {
+  height: 100%;
+  border: 3px dotted #e2e2e2;
+  margin-top: 30px;
+  background: #f4f4f4;
+}
+
+
+/* CHECKPUBLIC */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.collection-md {
+  justify-content: center;
+  height: 300px;
+  margin-bottom: 10px;
+  border-radius: 5px
+}
+
+
+.userShowQuest {
+  font-family: 'Baloo', cursive;
+
+}
+
+.answers {
+  font-family: 'Baloo', cursive;
+
+}
+
+.show-detail-quiz {
+  margin-bottom: 30px;
+  text-align: left;
+  font-family: 'Baloo', cursive;
+
+}
+
+p {
+  font-family: 'Roboto', sans-serif !important;
+
+}
+
+.answer-edit {
+  height: 5em;
+  margin-bottom: 10px;
+  border-radius: 7px;
+  color: #fff;
+
+}
+
+.answer-edit-1 {
+  background: #CF3542
+}
+
+.answer-edit-2 {
+  background: #2A68C6
+}
+
+.answer-edit-3 {
+  background: #CFA037
+}
+
+.answer-edit-4 {
+  background: #498C2B
+}
+
+@media (max-width: 575.98px) {
+  .input-answer {
+    font-size: 0.8em
+  }
+
+  .a-answer {
+    font-size: 1em
+  }
+}
+
+.form-radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  position: relative;
+  background-color: #f1f1f1;
+  color: #fff;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 7px;
+  outline: none;
+}
+
+.form-radio-1 {
+  background-color: #CE3542;
+}
+
+.form-radio-2 {
+  background-color: #2A68C5;
+}
+
+.form-radio-3 {
+  background-color: #CEA037;
+}
+
+.form-radio-4 {
+  background-color: #498C2B;
+}
+
+.form-radio:checked::before {
+  position: absolute;
+  font: 13px/1 'Open Sans', sans-serif;
+  left: 11px;
+  top: 7px;
+  content: '\02143';
+  transform: rotate(40deg);
+}
+
+.form-radio:hover {
+  background-color: #f7f7f7;
+}
+
+.form-radio:checked {}
+
+label {
+  font: 15px/1.7 'Open Sans', sans-serif;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .input-answer {
+    font-size: 0.8em
+  }
+
+  .a-answer {
+    font-size: 1em
+  }
+
+  .hidden-mobie {
+    opacity: 0;
+    height: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .title-quiz {
+    opacity: 0 !important;
+  }
+
+  .input-answer {
+    font-size: 0.8em
+  }
+
+  .a-answer {
+    font-size: 1em
+  }
+
+  .hidden-mobie {
+    opacity: 0;
+    height: 0;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .title-quiz {
+    opacity: 0 !important;
+  }
+
+  .input-answer {
+    font-size: 0.8em
+  }
+
+  .a-answer {
+    font-size: 1em
+  }
+}
+
+@media (min-width: 1200px) {
+  .input-answer {
+    font-size: 1.6em
+  }
+
+  .icon-question {
+    font-size: 1.5em
+  }
+
+  div.itemList:hover .hover-show-icon-edit {
+    opacity: 1;
+  }
+
+}
