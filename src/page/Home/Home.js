@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import * as authAction from '../../store/auth/action'
 import * as questActions from '../../store/quest/action'
 import { Collection, Menu } from '../../components'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
   componentWillMount() {
@@ -58,437 +59,1783 @@ class Home extends Component {
     }
     return (
       <div className="home">
-        <a name="top" />
-        {/* menu*/}
-        <Menu email={info ? info.email : 'email'} />
-        <Collection />
-        {/* menu */}
-        <div className="container">
-          <div style={{ width: '100%' }}>
-            <div className="row" style={{ width: '100%', marginLeft: '0' }}>
-              <div className="col-12 mobile" style={{ marginTop: '90px' }}>
-                <div className="item-category-moblie category-b">
-                  <div className="item-category-moblie-content">
-                    <p
-                      style={{
-                        color: '#fff',
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                      }}>
-                      Toán
-                    </p>
-                  </div>
-                </div>
-                <div className="item-category-moblie category-c">
-                  <div className="item-category-moblie-content">
-                    <p
-                      style={{
-                        color: '#fff',
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                      }}>
-                      Vật lý
-                    </p>
-                  </div>
-                </div>
-                <div className="item-category-moblie category-d">
-                  <div className="item-category-moblie-content">
-                    <p
-                      style={{
-                        color: '#fff',
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                      }}>
-                      Hoá học
-                    </p>
-                  </div>
-                </div>
-                <div className="item-category-moblie category-e">
-                  <div className="item-category-moblie-content">
-                    <p
-                      style={{
-                        color: '#fff',
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                      }}>
-                      Lịch sử
-                    </p>
-                  </div>
-                </div>
-                <div className="item-category-moblie category-f">
-                  <div className="item-category-moblie-content">
-                    <p
-                      style={{
-                        color: '#fff',
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                      }}>
-                      Xã hội
-                    </p>
-                  </div>
-                </div>
-                {/* <div className="item-category-moblie category-b"></div> */}
-              </div>
-              <div
-                className="col-12 col-md-3 desktop"
-                style={{ width: '100%' }}>
-                <div className="info-category category-a">
-                  <div className="info-category-content">
-                    <div className="info-category-content-circle">
-                      <img
-                        src="/images/icon/math.png"
-                        style={{ width: '60%', height: '60%' }}
-                      />
+        <header>
+          <div className="header-area ">
+            <div id="sticky-header" className="main-header-area">
+              <div className="container-fluid p-0">
+                <div className="row align-items-center no-gutters">
+                  <div className="col-xl-2 col-lg-2">
+                    <div className="logo-img">
+                      <a href="index.html">
+                        <img src="img/logo.png" alt="" />
+                      </a>
                     </div>
                   </div>
-                  <div className="info-category-title info-category-a">
-                    <div className="btn-category">
-                      <p style={{ fontWeight: 'bold' }}>Toán</p>
+                  <div className="col-xl-7 col-lg-7">
+                    <div className="main-menu  d-none d-lg-block">
+                      <nav>
+                        <ul id="navigation">
+                          <li>
+                            <Link className="active" to="/home">
+                              Trang chủ
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/quest/my">Thử thách của tôi</Link>
+                          </li>
+                        </ul>
+                      </nav>
                     </div>
                   </div>
-                </div>
-                <div className="info-category category-b">
-                  <div className="info-category-content">
-                    <div className="info-category-content-circle">
-                      <img
-                        src="/images/icon/physical.png"
-                        style={{ width: '60%', height: '60%' }}
-                      />
+                  <div className="col-xl-3 col-lg-3 d-none d-lg-block">
+                    <div className="log_chat_area d-flex align-items-center">
+                      <a href="#test-form" className="login popup-with-form">
+                        <i className="flaticon-user" />
+                        <span>log in</span>
+                      </a>
                     </div>
                   </div>
-                  <div className="info-category-title info-category-b">
-                    <div className="btn-category">
-                      <p style={{ fontWeight: 'bold' }}>Vật lý</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="info-category category-c">
-                  <div className="info-category-content">
-                    <div className="info-category-content-circle">
-                      <img
-                        src="/images/icon/chemistry.png"
-                        style={{ width: '80%', height: '80%' }}
-                      />
-                    </div>
-                  </div>
-                  <div className="info-category-title info-category-c">
-                    <div className="btn-category">
-                      <p style={{ fontWeight: 'bold' }}>Hoá học</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="info-category category-d">
-                  <div className="info-category-content">
-                    <div className="info-category-content-circle">
-                      <img
-                        src="/images/icon/history.png"
-                        style={{ width: '70%', height: '70%' }}
-                      />
-                    </div>
-                  </div>
-                  <div className="info-category-title info-category-d">
-                    <div className="btn-category">
-                      <p style={{ fontWeight: 'bold' }}>Lịch sử</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-9">
-                <div className="row">
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig1.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig2.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig3.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig4.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-md-4"
-                    style={{ marginBottom: '35px' }}>
-                    <div className="item-game">
-                      <div className="item-game-image">
-                        <img
-                          src="./images/icon/ig.jpeg"
-                          className="item-game-image"
-                          style={{ width: '100%', height: '100%' }}
-                        />
-                      </div>
-                      <div className="item-game-content">
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '16px',
-                            color: '#383838',
-                          }}>
-                          Ai là triệu phú
-                        </p>
-                        <p
-                          style={{
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: '9px',
-                            color: '#383838',
-                          }}>
-                          {' '}
-                          12/12/2020
-                        </p>
-                      </div>
-                    </div>
+                  <div className="col-12">
+                    <div className="mobile_menu d-block d-lg-none" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* <div className='container'>
-          <div className='col-12 content' style={{ marginTop: '50px' }}>
-            <div className='col-12 collection-phone'>
-              Colection
-                <div className='col-12'>
-                <div className='row'>
-                  <div className='col-6'>
-                    <button className='btn btn-success btn-block'>MATH</button>
-                  </div>
-                  <div className='col-6'>
-                    <button className='btn btn-danger btn-block'>HISTORY</button>
+        </header>
+        {/* header-end */}
+        {/* slider_area_start */}
+        <div className="slider_area ">
+          <div
+            className="single_slider d-flex align-items-center justify-content-center"
+            style={{ background: '#98d6ad' }}>
+            <div className="container">
+              <div className="row align-items-center justify-content-center">
+                <div className="col-xl-6 col-md-6">
+                  <div className="illastrator_png">
+                    <img src="/images/home/edu_ilastration.png" alt="" />
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className=' collection-md col-12 col-sm-12 col-md-3'>
-                <Collection img='/images/home/collection_math.png' name='Toán học' />
-                <Collection img='/images/home/collection_history.png' name='Lịch sử' />
-                <Collection img='/images/home/collection_scien.png' name='Khoa học' />
-                <Collection img='/images/home/collection_scien.png' name='Tất cả' />
-              </div>
-           
-              <div className='  col-12 col-sm-12 col-md-9'>
-                <div className='row'>
-                  {
-                    quests.map(quest => {
-                      return (
-                        <div className='col-12 col-sm-6 col-md-4' key={quest._id}>
-                          <Item
-                            title={quest.title}
-                            description={quest.description}
-                            link={'/quest/info/' + quest._id}
-                            img={quest.img} />
-                        </div>
-                      )
-                    })
-                  }
-                  
+                <div className="col-xl-6 col-md-6">
+                  <div className="slider_info">
+                    <h3>
+                      BAMBOO QUEST
+                      <br />
+                      ỨNG DỤNG HỌC TẬP{' '}
+                    </h3>
+                    <a href="#" className="boxed_btn">
+                      Xem thêm
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div> */}
         </div>
-        <a onClick={() => this.top()} className="btnAdd">
-          <img
-            src="/images/icon/btnAdd.png"
-            style={{ height: '50%', width: '50%' }}
-          />
-        </a>
+        {/* slider_area_end */}
+        {/* popular_courses_start */}
+        <div className="popular_courses">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-12">
+                <div className="course_nav">
+                  <nav>
+                    <ul className="nav" id="myTab" role="tablist">
+                      <li className="nav-item">
+                        <a
+                          className="nav-link active"
+                          id="home-tab"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="home"
+                          aria-selected="true">
+                          Tất cả
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="profile-tab"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="profile"
+                          aria-selected="false">
+                          Toán học
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="contact-tab"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="contact"
+                          aria-selected="false">
+                          Vật lý
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="design-tab"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="design"
+                          aria-selected="false">
+                          Hoá học
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="Web-tab"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="design"
+                          aria-selected="false">
+                          Lịch sử
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="Web-tab1"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="design"
+                          aria-selected="false">
+                          Wordpress
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="Web-tab11"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="design"
+                          aria-selected="false">
+                          Anh văn
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="Adobe-XD-tab8"
+                          data-toggle="tab"
+                          href="#"
+                          role="tab"
+                          aria-controls="design"
+                          aria-selected="false">
+                          Xã hội
+                        </a>
+                      </li>
+                      <li className="nav-item"></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="all_courses">
+            <div className="container">
+              <div className="tab-content" id="myTabContent">
+                <div
+                  className="tab-pane fade show active"
+                  id="home"
+                  role="tabpanel"
+                  aria-labelledby="home-tab">
+                  <div className="row">
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="img/courses/1.png" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Photoshop</span>
+                          <h3>
+                            <a href="#">
+                              Mobile App design step by step <br />
+                              from beginner
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              <i className="flaticon-mark-as-favorite-star" />
+                              <span>(4.5)</span>
+                            </div>
+                            <div className="prise">
+                              <span className="offer">$89.00</span>
+                              <span className="active_prise">$49</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="img/courses/2.png" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Adobe XD</span>
+                          <h3>
+                            <a href="#">
+                              UI/UX design with Adobe XD with Anderson
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              <i className="flaticon-mark-as-favorite-star" />
+                              <span>(4.5)</span>
+                            </div>
+                            <div className="prise">
+                              <span className="offer">$89.00</span>
+                              <span className="active_prise">$49</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="img/courses/3.png" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Wordpress</span>
+                          <h3>
+                            <a href="#">
+                              Wordpress theme development <br />
+                              from scratch
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              <i className="flaticon-mark-as-favorite-star" />
+                              <span>(4.5)</span>
+                            </div>
+                            <div className="prise">
+                              <span className="offer">$89.00</span>
+                              <span className="active_prise">$49</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="img/courses/4.png" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Photoshop</span>
+                          <h3>
+                            <a href="#">
+                              Mobile App design step by step <br />
+                              from beginner
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              <i className="flaticon-mark-as-favorite-star" />
+                              <span>(4.5)</span>
+                            </div>
+                            <div className="prise">
+                              <span className="offer">$89.00</span>
+                              <span className="active_prise">$49</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <img src="img/courses/5.png" alt="" />
+                        </div>
+                        <div className="courses_info">
+                          <span>UI/UX</span>
+                          <h3>
+                            <a href="#">
+                              How to complete user research <br />
+                              and make work flow
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              <i className="flaticon-mark-as-favorite-star" />
+                              <span>(4.5)</span>
+                            </div>
+                            <div className="prise">
+                              <span className="offer">$89.00</span>
+                              <span className="active_prise">$49</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="img/courses/6.png" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Wordpress</span>
+                          <h3>
+                            <a href="#">
+                              Commitment to dedicated <br />
+                              Support
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              <i className="flaticon-mark-as-favorite-star" />
+                              <span>(4.5)</span>
+                            </div>
+                            <div className="prise">
+                              <span className="offer">$89.00</span>
+                              <span className="active_prise">$49</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-6  col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-6 ">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="Web" role="tabpanel" aria-labelledby="Web-tab">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="Web1" role="tabpanel" aria-labelledby="Web-tab1">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4  col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="Web11" role="tabpanel" aria-labelledby="Web-tab11">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="Adobe-XD8" role="tabpanel" aria-labelledby="Adobe-XD8">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4  col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+                {/* <div className="tab-pane fade" id="Adobe-XD9" role="tabpanel" aria-labelledby="Adobe-XD-tab9">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/1.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/2.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Adobe XD</span>
+                    <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/3.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Wordpress theme development <br />
+                        from scratch</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6 ">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/4.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Photoshop</span>
+                    <h3><a href="#">Mobile App design step by step <br />
+                        from beginner</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <img src="img/courses/5.png" alt="" />
+                  </div>
+                  <div className="courses_info">
+                    <span>UI/UX</span>
+                    <h3><a href="#">How to complete user research <br />
+                        and make work flow</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-6">
+                <div className="single_courses">
+                  <div className="thumb">
+                    <a href="#">
+                      <img src="img/courses/6.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="courses_info">
+                    <span>Wordpress</span>
+                    <h3><a href="#">Commitment to dedicated <br />
+                        Support</a></h3>
+                    <div className="star_prise d-flex justify-content-between">
+                      <div className="star">
+                        <i className="flaticon-mark-as-favorite-star" />
+                        <span>(4.5)</span>
+                      </div>
+                      <div className="prise">
+                        <span className="offer">$89.00</span>
+                        <span className="active_prise">
+                          $49
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-12">
+                <div className="more_courses text-center">
+                  <a href="#" className="boxed_btn_rev">More Courses</a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* popular_courses_end*/}
+        {/* testimonial_area_start */}
+        <div className="testimonial_area testimonial_bg_1 overlay">
+          <div className="testmonial_active owl-carousel">
+            <div className="single_testmoial">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="testmonial_text text-center">
+                      <div className="author_img">
+                        <img src="img/testmonial/author_img.png" alt="" />
+                      </div>
+                      <p>
+                        "Working in conjunction with humanitarian aid <br />{' '}
+                        agencies we have supported programmes to <br />
+                        alleviate. human suffering.
+                      </p>
+                      <span>- Jquileen</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="single_testmoial">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="testmonial_text text-center">
+                      <div className="author_img">
+                        <img src="img/testmonial/author_img.png" alt="" />
+                      </div>
+                      <p>
+                        "Working in conjunction with humanitarian aid <br />{' '}
+                        agencies we have supported programmes to <br />
+                        alleviate. human suffering.
+                      </p>
+                      <span>- Jquileen</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* testimonial_area_end */}
+        {/* our_courses_start */}
+        <div className="our_courses">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-12">
+                <div className="section_title text-center mb-100">
+                  <h3>Our Course Speciality</h3>
+                  <p>
+                    Your domain control panel is designed for ease-of-use and{' '}
+                    <br />
+                    allows for all aspects of your domains.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xl-3 col-md-6 col-lg-6">
+                <div className="single_course text-center">
+                  <div className="icon">
+                    <i className="flaticon-art-and-design" />
+                  </div>
+                  <h3>Premium Quality</h3>
+                  <p>
+                    Your domain control panel is designed for ease-of-use <br />{' '}
+                    and <br />
+                    allows for all aspects of
+                  </p>
+                </div>
+              </div>
+              <div className="col-xl-3 col-md-6 col-lg-6">
+                <div className="single_course text-center">
+                  <div className="icon blue">
+                    <i className="flaticon-business-and-finance" />
+                  </div>
+                  <h3>Premium Quality</h3>
+                  <p>
+                    Your domain control panel is designed for ease-of-use <br />{' '}
+                    and <br />
+                    allows for all aspects of
+                  </p>
+                </div>
+              </div>
+              <div className="col-xl-3 col-md-6 col-lg-6">
+                <div className="single_course text-center">
+                  <div className="icon">
+                    <i className="flaticon-premium" />
+                  </div>
+                  <h3>Premium Quality</h3>
+                  <p>
+                    Your domain control panel is designed for ease-of-use <br />{' '}
+                    and <br />
+                    allows for all aspects of
+                  </p>
+                </div>
+              </div>
+              <div className="col-xl-3 col-md-6 col-lg-6">
+                <div className="single_course text-center">
+                  <div className="icon gradient">
+                    <i className="flaticon-crown" />
+                  </div>
+                  <h3>Premium Quality</h3>
+                  <p>
+                    Your domain control panel is designed for ease-of-use <br />{' '}
+                    and <br />
+                    allows for all aspects of
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
