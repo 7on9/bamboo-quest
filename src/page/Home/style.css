@@ -603,6 +603,11 @@ background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
 
   }
  }
+ .background-single_slider{
+  background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+  
+ }
 
 @media (min-width: 992px) and (max-width: 1199.98px) { 
   .desktop{
