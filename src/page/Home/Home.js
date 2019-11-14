@@ -40,23 +40,21 @@ class Home extends Component {
     window.scrollTo(0, 0)
   }
   render() {
-    const { info } = this.props.user
-    const { quests } = this.props.quest
-    console.log(quests)
-    try {
-      if (this.state.authenticated === false) {
-        const { from } = this.props.location.state || {
-          from: { pathname: '/' },
-        }
-        return <Redirect to={from} />
-      }
-    } catch (error) {
-      if (this.state === null) {
-        // window.location.reload();
-        // const { from } = this.props.location.state || { from: { pathname: "/home" } };
-        // return <Redirect to={from} />
-      }
-    }
+    // const { info } = this.props.user;
+    // const { quests } = this.props.quest;
+    // console.log(quests);
+    // try {
+    //   if (this.state.authenticated === false) {
+    //     const { from } = this.props.location.state || { from: { pathname: "/" } };
+    //     return <Redirect to={from} />
+    //   }
+    // } catch (error) {
+    //   if (this.state === null) {
+    //     // window.location.reload();
+    //     // const { from } = this.props.location.state || { from: { pathname: "/home" } };
+    //     // return <Redirect to={from} />
+    //   }
+    // }
     return (
       <div className="home">
         <header>
@@ -90,8 +88,39 @@ class Home extends Component {
                   <div className="col-xl-3 col-lg-3 d-none d-lg-block">
                     <div className="log_chat_area d-flex align-items-center">
                       <a href="#test-form" className="login popup-with-form">
-                        <i className="flaticon-user" />
-                        <span>log in</span>
+                        <div className="dropdown">
+                          {/* <button  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown button
+                           </button> */}
+                          <img
+                            style={{
+                              width: '2em',
+                              height: '2em',
+                              borderRadius: '1em',
+                            }}
+                            src="/images/avatar.jpg"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          />
+                          <div
+                            className="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="dropdownMenuButton">
+                            <a className="dropdown-item" href="#">
+                              Thông tin tài khoản
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              Thay đổi mật khẩu
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              Chỉnh sửa thông tin
+                            </a>
+                            <div className="dropdown-divider"></div>
+                            <a className="dropdown-item" href="#">
+                              Đăng xuất
+                            </a>
+                          </div>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -106,9 +135,7 @@ class Home extends Component {
         {/* header-end */}
         {/* slider_area_start */}
         <div className="slider_area ">
-          <div
-            className="single_slider d-flex align-items-center justify-content-center"
-            style={{ background: '#98d6ad' }}>
+          <div className="single_slider d-flex align-items-center justify-content-center background-single_slider">
             <div className="container">
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-6 col-md-6">
@@ -257,25 +284,101 @@ class Home extends Component {
                       <div className="single_courses">
                         <div className="thumb">
                           <a href="#">
-                            <img src="img/courses/1.png" alt="" />
+                            <img src="/images/icon/ig.jpeg" alt="" />
                           </a>
                         </div>
                         <div className="courses_info">
-                          <span>Photoshop</span>
+                          <span>Tên Quiz</span>
                           <h3>
                             <a href="#">
-                              Mobile App design step by step <br />
+                              Description <br />
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              {/* <i className="flaticon-mark-as-favorite-star" /> */}
+                              <span>Quan Pham</span>
+                            </div>
+                            <div className="prise">
+                              <span className="active_prise">10/10/2010</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="/images/icon/ig1.jpeg" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Tên Quiz</span>
+                          <h3>
+                            <a href="#">Description</a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              {/* <i className="flaticon-mark-as-favorite-star" /> */}
+                              <span>Quan Pham</span>
+                            </div>
+                            <div className="prise">
+                              <span className="active_prise">10/10/2010</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="/images/icon/ig2.jpeg" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Tên Quiz</span>
+                          <h3>
+                            <a href="#">
+                              Description <br />
+                            </a>
+                          </h3>
+                          <div className="star_prise d-flex justify-content-between">
+                            <div className="star">
+                              {/* <i className="flaticon-mark-as-favorite-star" /> */}
+                              <span>Quan Pham</span>
+                            </div>
+                            <div className="prise">
+                              <span className="active_prise">10/10/2010</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                      <div className="single_courses">
+                        <div className="thumb">
+                          <a href="#">
+                            <img src="/images/icon/ig3.jpeg" alt="" />
+                          </a>
+                        </div>
+                        <div className="courses_info">
+                          <span>Tên Quiz</span>
+                          <h3>
+                            <a href="#">
+                              Description
+                              <br />
                               from beginner
                             </a>
                           </h3>
                           <div className="star_prise d-flex justify-content-between">
                             <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>(4.5)</span>
+                              {/* <i className="flaticon-mark-as-favorite-star" /> */}
+                              <span>Quan Pham</span>
                             </div>
                             <div className="prise">
-                              <span className="offer">$89.00</span>
-                              <span className="active_prise">$49</span>
+                              <span className="active_prise">10/10/2010</span>
                             </div>
                           </div>
                         </div>
@@ -284,107 +387,23 @@ class Home extends Component {
                     <div className="col-xl-4 col-lg-4 col-md-6">
                       <div className="single_courses">
                         <div className="thumb">
-                          <a href="#">
-                            <img src="img/courses/2.png" alt="" />
-                          </a>
+                          <img src="/images/icon/ig4.jpeg" alt="" />
                         </div>
                         <div className="courses_info">
-                          <span>Adobe XD</span>
+                          <span>Tên Quiz</span>
                           <h3>
                             <a href="#">
-                              UI/UX design with Adobe XD with Anderson
-                            </a>
-                          </h3>
-                          <div className="star_prise d-flex justify-content-between">
-                            <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>(4.5)</span>
-                            </div>
-                            <div className="prise">
-                              <span className="offer">$89.00</span>
-                              <span className="active_prise">$49</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6">
-                      <div className="single_courses">
-                        <div className="thumb">
-                          <a href="#">
-                            <img src="img/courses/3.png" alt="" />
-                          </a>
-                        </div>
-                        <div className="courses_info">
-                          <span>Wordpress</span>
-                          <h3>
-                            <a href="#">
-                              Wordpress theme development <br />
-                              from scratch
-                            </a>
-                          </h3>
-                          <div className="star_prise d-flex justify-content-between">
-                            <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>(4.5)</span>
-                            </div>
-                            <div className="prise">
-                              <span className="offer">$89.00</span>
-                              <span className="active_prise">$49</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6">
-                      <div className="single_courses">
-                        <div className="thumb">
-                          <a href="#">
-                            <img src="img/courses/4.png" alt="" />
-                          </a>
-                        </div>
-                        <div className="courses_info">
-                          <span>Photoshop</span>
-                          <h3>
-                            <a href="#">
-                              Mobile App design step by step <br />
-                              from beginner
-                            </a>
-                          </h3>
-                          <div className="star_prise d-flex justify-content-between">
-                            <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>(4.5)</span>
-                            </div>
-                            <div className="prise">
-                              <span className="offer">$89.00</span>
-                              <span className="active_prise">$49</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6">
-                      <div className="single_courses">
-                        <div className="thumb">
-                          <img src="img/courses/5.png" alt="" />
-                        </div>
-                        <div className="courses_info">
-                          <span>UI/UX</span>
-                          <h3>
-                            <a href="#">
-                              How to complete user research <br />
+                              Description <br />
                               and make work flow
                             </a>
                           </h3>
                           <div className="star_prise d-flex justify-content-between">
                             <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>(4.5)</span>
+                              {/* <i className="flaticon-mark-as-favorite-star" /> */}
+                              <span>Quan Pham</span>
                             </div>
                             <div className="prise">
-                              <span className="offer">$89.00</span>
-                              <span className="active_prise">$49</span>
+                              <span className="active_prise">10/10/2010</span>
                             </div>
                           </div>
                         </div>
@@ -394,25 +413,25 @@ class Home extends Component {
                       <div className="single_courses">
                         <div className="thumb">
                           <a href="#">
-                            <img src="img/courses/6.png" alt="" />
+                            <img src="/images/icon/ig.jpeg" alt="" />
                           </a>
                         </div>
                         <div className="courses_info">
-                          <span>Wordpress</span>
+                          <span>Tên Quiz</span>
                           <h3>
                             <a href="#">
-                              Commitment to dedicated <br />
+                              Description
+                              <br />
                               Support
                             </a>
                           </h3>
                           <div className="star_prise d-flex justify-content-between">
                             <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>(4.5)</span>
+                              {/* <i className="flaticon-mark-as-favorite-star" /> */}
+                              <span>Quan Pham</span>
                             </div>
                             <div className="prise">
-                              <span className="offer">$89.00</span>
-                              <span className="active_prise">$49</span>
+                              <span className="active_prise">10/10/2010</span>
                             </div>
                           </div>
                         </div>
@@ -452,7 +471,7 @@ class Home extends Component {
                 <div className="single_courses">
                   <div className="thumb">
                     <a href="#">
-                      <img src="img/courses/2.png" alt="" />
+                      <img src="/images/icon/ig.jpeg" alt="" />
                     </a>
                   </div>
                   <div className="courses_info">
@@ -614,7 +633,7 @@ class Home extends Component {
                 <div className="single_courses">
                   <div className="thumb">
                     <a href="#">
-                      <img src="img/courses/2.png" alt="" />
+                      <img src="/images/icon/ig.jpeg" alt="" />
                     </a>
                   </div>
                   <div className="courses_info">
