@@ -74,12 +74,17 @@ class Home extends Component {
                       <nav>
                         <ul id="navigation">
                           <li>
-                            <Link className="active" to="/home" style={{fontWeight:"bold"}}>
+                            <Link
+                              className="active"
+                              to="/home"
+                              style={{ fontWeight: 'bold' }}>
                               Trang chủ
                             </Link>
                           </li>
                           <li>
-                            <Link to="/quest/my" style={{fontWeight:"bold"}}>Thử thách của tôi</Link>
+                            <Link to="/quest/my" style={{ fontWeight: 'bold' }}>
+                              Thử thách của tôi
+                            </Link>
                           </li>
                         </ul>
                       </nav>
@@ -133,6 +138,7 @@ class Home extends Component {
           </div>
         </header>
         {/* header-end */}
+        
         {/* slider_area_start */}
         <div className="slider_area ">
           <div className="single_slider d-flex align-items-center justify-content-center background-single_slider">
@@ -164,6 +170,7 @@ class Home extends Component {
         <div className="popular_courses">
           <div className="container">
             <div className="row">
+              <div className="col-xl-12 category">
               <div className="col-xl-12">
                 <div className="course_nav">
                   <nav>
@@ -268,6 +275,7 @@ class Home extends Component {
                     </ul>
                   </nav>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -439,109 +447,14 @@ class Home extends Component {
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
         {/* popular_courses_end*/}
-        {/* testimonial_area_start */}
-        <div className="testimonial_area testimonial_bg_1 overlay">
-          <div className="testmonial_active owl-carousel">
-            <div className="single_testmoial">
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-12">
-                    <div className="testmonial_text text-center">
-                      <div className="author_img">
-                        <img src="img/testmonial/author_img.png" alt="" />
-                      </div>
-                      <p>
-                        "Working in conjunction with humanitarian aid <br />{' '}
-                        agencies we have supported programmes to <br />
-                        alleviate. human suffering.
-                      </p>
-                      <span>- Jquileen</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        {/* testimonial_area_end */}
+        
         {/* our_courses_start */}
-        <div className="our_courses">
-          <div className="container">
-            <div className="row">
-              <div className="col-xl-12">
-                <div className="section_title text-center mb-100">
-                  <h3>Our Course Speciality</h3>
-                  <p>
-                    Your domain control panel is designed for ease-of-use and{' '}
-                    <br />
-                    allows for all aspects of your domains.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-xl-3 col-md-6 col-lg-6">
-                <div className="single_course text-center">
-                  <div className="icon">
-                    <i className="flaticon-art-and-design" />
-                  </div>
-                  <h3>Premium Quality</h3>
-                  <p>
-                    Your domain control panel is designed for ease-of-use <br />{' '}
-                    and <br />
-                    allows for all aspects of
-                  </p>
-                </div>
-              </div>
-              <div className="col-xl-3 col-md-6 col-lg-6">
-                <div className="single_course text-center">
-                  <div className="icon blue">
-                    <i className="flaticon-business-and-finance" />
-                  </div>
-                  <h3>Premium Quality</h3>
-                  <p>
-                    Your domain control panel is designed for ease-of-use <br />{' '}
-                    and <br />
-                    allows for all aspects of
-                  </p>
-                </div>
-              </div>
-              <div className="col-xl-3 col-md-6 col-lg-6">
-                <div className="single_course text-center">
-                  <div className="icon">
-                    <i className="flaticon-premium" />
-                  </div>
-                  <h3>Premium Quality</h3>
-                  <p>
-                    Your domain control panel is designed for ease-of-use <br />{' '}
-                    and <br />
-                    allows for all aspects of
-                  </p>
-                </div>
-              </div>
-              <div className="col-xl-3 col-md-6 col-lg-6">
-                <div className="single_course text-center">
-                  <div className="icon gradient">
-                    <i className="flaticon-crown" />
-                  </div>
-                  <h3>Premium Quality</h3>
-                  <p>
-                    Your domain control panel is designed for ease-of-use <br />{' '}
-                    and <br />
-                    allows for all aspects of
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     )
   }
