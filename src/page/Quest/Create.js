@@ -172,7 +172,7 @@ class Create extends Component {
                                 width: '100%',
                                 height: '100%',
                               }}
-                              src={img ? img : '/images/img_quest_default.jpg'}
+                              src={img ? img : '/images/img_quest_default.png'}
                             />
                           </div>
                           <div className="col-1"></div>

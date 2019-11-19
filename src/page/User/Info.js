@@ -19,7 +19,7 @@ class Info extends Component {
             <h2>Ảnh đại diện</h2>
           </div>
           <img
-            src="/images/avatar.png"
+            src="/images/avatar-default.png"
             style={{ width: '100%', height: '15em', objectFit: 'cover' }}
           />
         </div>

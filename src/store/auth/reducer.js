@@ -20,11 +20,6 @@ export const authReducer = (state = initialState, action) => {
       }
       break
     case USER_TYPE.AUTH.REGISTER:
-      state = {
-        ...state,
-        ...action.payload,
-      }
-      break
     case EVENT.RESULT:
       state = {
         ...state,

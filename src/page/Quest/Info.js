@@ -44,8 +44,8 @@ class Info extends Component {
                     info
                       ? info.img
                         ? info.img
-                        : '/images/img_quest_default.jpg'
-                      : '/images/img_quest_default.jpg'
+                        : '/images/img_quest_default.png'
+                      : '/images/img_quest_default.png'
                   }
                   style={{
                     width: '100%',

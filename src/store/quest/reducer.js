@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 //reducer user
 import { QUEST_TYPES, EVENT } from './types'
 

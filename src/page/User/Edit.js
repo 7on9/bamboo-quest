@@ -56,8 +56,8 @@ class Edit extends Component {
               this.props.user.info
                 ? this.props.user.info.avatar_path
                   ? this.props.user.info.avatar_path
-                  : '/images/avatar.png'
-                : '/images/avatar.png'
+                  : '/images/avatar-default.png'
+                : '/images/avatar-default.png'
             }
             style={{ width: '100%', height: '15em', objectFit: 'cover' }}
           />

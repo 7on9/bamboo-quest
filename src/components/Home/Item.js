@@ -1,46 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Item = props => {
+/**
+ * TODO: Item quest in the home screen
+ * @param title
+ * @param description
+ * @param link
+ * @param img_path
+ */
+export const Item = ({ title, description, link, img_path }) => {
   return (
-    <div
-      className="col-12 "
-      style={{
-        position: 'relative',
-        marginBottom: '20px',
-        height: '330px',
-        background: '',
-        cursor: 'pointer',
-      }}>
-      <Link to={`${props.link}`}>
-        <div
-          className="card card-1"
-          style={{
-            background: '#fff',
-            width: '98%',
-            height: '310px',
-            textAlign: 'center',
-            borderRadius: '5px',
-          }}>
-          <img
-            src={props.img ? props.img : '/images/img_quest_default.jpg'}
-            style={{ width: '100%', height: '170px', objectFit: 'cover' }}
-          />
-          <div
-            className="text-left "
-            style={{ width: '100%', marginTop: '10px', marginLeft: '15px' }}>
-            <h6 style={{ width: '100%' }}>
-              <b className="title " style={{ color: '#000', width: '' }}>
-                {props.title}
-              </b>
-            </h6>
-            <p className="title" style={{ width: '90%', marginTop: '10px' }}>
-              {' '}
-              {props.description}
-            </p>
+    <div className="single_courses">
+      <div className="thumb">
+        <Link to={`${link}`}>
+          <img src={img_path ? img_path : '/images/img_quest_default.png'} alt={title} />
+        </Link>
+      </div>
+      <div className="courses_info">
+        <span>{title}</span>
+        <h3>
+          <Link to={`${link}`}>{description}</Link>
+        </h3>
+        <div className="star_prise d-flex justify-content-between">
+          <div className="star">
+            {/* <i className="flaticon-mark-as-favorite-star" /> */}
+            <span>Quan Pham</span>
+          </div>
+          <div className="prise">
+            <span className="active_prise">10/10/2010</span>
           </div>
         </div>
-      </Link>
-    </div>
-  )
+      </div>
+    </div>)
 }

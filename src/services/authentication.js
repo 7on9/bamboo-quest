@@ -1,21 +1,22 @@
-import { FETCH_TYPES } from './types'
-import { FETCH, MAKE_FROM_BODY } from './fetch'
+import { dataProvider } from './dataProvider'
 
 export const AuthenticationService = {
   login: (email, password) => {
-    let formBody = MAKE_FROM_BODY({ email, password })
-    return FETCH(FETCH_TYPES.POST, 'user/login', formBody)
+    return dataProvider('/user/login', {
+      method: 'POST',
+      data: { email, password },
+    })
   },
   register: (email, password, name) => {
-    let formBody = MAKE_FROM_BODY({ email, password, name })
-    return FETCH(FETCH_TYPES.POST, 'user/register', formBody)
+    return dataProvider('/user/register', {
+      method: 'POST',
+      data: { email, password, name },
+    })
   },
   logout: () => {
-    let formBody = MAKE_FROM_BODY({})
-    return FETCH(FETCH_TYPES.POST, 'user/logout', formBody)
+    return dataProvider('/user/logout', { method: 'POST' })
   },
   verify: () => {
-    let formBody = MAKE_FROM_BODY({})
-    return FETCH(FETCH_TYPES.POST, 'user/verify', formBody)
+    return dataProvider('/user/verify', { method: 'POST' })
   },
 }

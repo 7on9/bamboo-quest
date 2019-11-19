@@ -31,111 +31,102 @@ export const quests = quests => {
 export const createQuest = quest => {
   return dispatch => {
     QuestService.createQuest(quest)
-      .then(res => res.json())
-      .then(res => {
-        return dispatch({
-          type: QUEST_TYPES.CREATE,
-          payload: {
-            ...res,
-            running: false,
-          },
-        })
+      .then(res => res.data)
+      .then(res => dispatch({
+        type: QUEST_TYPES.CREATE,
+        payload: {
+          ...res,
+          running: false,
+        },
       })
-      .catch(() => {
-        return dispatch({
-          type: QUEST_TYPES.CREATE,
-          payload: {
-            result: false,
-            running: false,
-          },
-        })
+      )
+      .catch(() => dispatch({
+        type: QUEST_TYPES.CREATE,
+        payload: {
+          result: false,
+          running: false,
+        },
       })
+      )
   }
 }
 
 export const addQuestion = newQuestion => {
   return dispatch => {
     QuestService.addQuestion(newQuestion)
-      .then(res => res.json())
-      .then(res => {
-        return dispatch({
-          type: QUEST_TYPES.ADD,
-          payload: {
-            ...res,
-            running: false,
-          },
-        })
+      .then(res => res.data)
+      .then(res => dispatch({
+        type: QUEST_TYPES.ADD,
+        payload: {
+          ...res,
+          running: false,
+        },
       })
-      .catch(() => {
-        return dispatch({
-          type: QUEST_TYPES.ADD,
-          payload: {
-            result: false,
-            running: false,
-          },
-        })
+      )
+      .catch(() => dispatch({
+        type: QUEST_TYPES.ADD,
+        payload: {
+          result: false,
+          running: false,
+        },
       })
+      )
   }
 }
 
 export const deleteQuest = idQuest => {
   return dispatch => {
     QuestService.deleteQuest(idQuest)
-      .then(res => res.json())
-      .then(res => {
-        return dispatch({
-          type: QUEST_TYPES.DELETE,
-          payload: {
-            result: true,
-            deletedQuest: res.deletedQuest,
-          },
-        })
+      .then(res => res.data)
+      .then(res => dispatch({
+        type: QUEST_TYPES.DELETE,
+        payload: {
+          result: true,
+          deletedQuest: res.deletedQuest,
+        },
       })
-      .catch(() => {
-        return dispatch({
-          type: QUEST_TYPES.DELETE,
-          payload: {
-            result: false,
-          },
-        })
+      )
+      .catch(() => dispatch({
+        type: QUEST_TYPES.DELETE,
+        payload: {
+          result: false,
+        },
       })
+      )
   }
 }
 export const getInfoQuest = idQuest => {
   return dispatch => {
     QuestService.getQuest(idQuest)
-      .then(res => res.json())
-      .then(res => {
-        return dispatch({
-          type: QUEST_TYPES.GET,
-          payload: {
-            ...res,
-          },
-        })
+      .then(res => res.data)
+      .then(res => dispatch({
+        type: QUEST_TYPES.GET,
+        payload: {
+          ...res,
+        },
       })
-      .catch(() => {
-        return dispatch({
-          type: QUEST_TYPES.GET,
-          payload: {
-            info: null,
-          },
-        })
+      )
+      .catch(() => dispatch({
+        type: QUEST_TYPES.GET,
+        payload: {
+          info: null,
+        },
       })
+      )
   }
 }
 
-export const getsAllQuests = () => {
+export const getsAllQuests = limit => {
   return dispatch => {
-    QuestService.getAllQuests()
-      .then(res => res.json())
-      .then(res => {
-        return dispatch({
-          type: QUEST_TYPES.LIST,
-          payload: {
-            ...res,
-          },
-        })
+    QuestService.getAllQuests(limit)
+      .then(res => res.data)
+      .then(res => dispatch({
+        type: QUEST_TYPES.LIST,
+        payload: {
+          ...res,
+        },
       })
+      )
       .catch(err => {
         console.log(err)
         return dispatch({

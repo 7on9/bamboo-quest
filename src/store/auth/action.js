@@ -1,5 +1,5 @@
 import { AuthenticationService } from '../../services/authentication'
-import { ERROR, USER_TYPE, EVENT } from './types'
+import { USER_TYPE, EVENT } from './types'
 
 const authenAction = (type, token, email, result) => {
   return {
@@ -15,7 +15,7 @@ const authenAction = (type, token, email, result) => {
 export const login = (email, password) => {
   return dispatch => {
     AuthenticationService.login(email, password)
-      .then(res => res.json())
+      .then(res => res.data)
       .then(res => {
         if (!res.result) {
           return dispatch({
@@ -35,6 +35,7 @@ export const login = (email, password) => {
         }
       })
       .catch(err => {
+        console.log(err)
         dispatch({
           type: USER_TYPE.AUTH.LOGIN,
           payload: {
@@ -72,7 +73,7 @@ export const changeStatusRunning = status => {
 export const register = (email, password, name) => {
   return dispatch => {
     AuthenticationService.register(email, password, name)
-      .then(res => res.json())
+      .then(res => res.data)
       .then(res => {
         if (!res.result) {
           return dispatch({
@@ -117,7 +118,7 @@ export const logout = () => {
 export const verify = () => {
   return dispatch => {
     AuthenticationService.verify()
-      .then(res => res.json())
+      .then(res => res.data)
       .then(res => {
         if (!res.result) {
           localStorage.removeItem('token')

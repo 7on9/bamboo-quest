@@ -1,26 +1,16 @@
-import { FETCH_TYPES } from './types'
-import { FETCH, MAKE_FROM_BODY } from './fetch'
+import { dataProvider } from './dataProvider'
 
 export const UserService = {
-  getAllUsers: () => {
-    return FETCH(FETCH_TYPES.GET, 'user/', null)
+  getAllUsers: limit => {
+    return dataProvider('/user/', { method: 'GET', params: { limit } })
   },
   getMeetingUsers: idMeeting => {
-    return FETCH(FETCH_TYPES.GET, 'user/' + idMeeting, null)
+    return dataProvider(`/user/${idMeeting}`, { method: 'GET' })
   },
   getUser: idUser => {
-    return FETCH(FETCH_TYPES.GET, 'user/' + idUser, null)
-  },
-  register: newUser => {
-    let formBody = MAKE_FROM_BODY({
-      newUser: JSON.stringify(newUser),
-    })
-    return FETCH(FETCH_TYPES.POST, 'user/', formBody)
+    return dataProvider(`/user/${idUser}`, { method: 'GET' })
   },
   deleteUser: idUser => {
-    let formBody = MAKE_FROM_BODY({
-      idUser: idUser,
-    })
-    return FETCH(FETCH_TYPES.POST, 'user/delete', formBody)
+    return dataProvider('/user/delete', { method: 'POST', data: { idUser } })
   },
 }

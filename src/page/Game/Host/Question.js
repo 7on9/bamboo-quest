@@ -90,7 +90,7 @@ class Question extends Component {
                   game
                     ? game.questions[game.idQuestion].img
                       ? game.questions[game.idQuestion].img
-                      : '/images/img_quest_default.jpg'
+                      : '/images/img_quest_default.png'
                     : null
                 }
               />

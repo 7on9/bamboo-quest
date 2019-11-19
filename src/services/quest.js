@@ -1,38 +1,31 @@
-import { FETCH_TYPES } from './types'
-import { FETCH, MAKE_FROM_BODY } from './fetch'
+import { dataProvider } from './dataProvider'
 
 export const QuestService = {
-  getAllQuests: () => {
-    return FETCH(FETCH_TYPES.GET, 'quest/', null)
+  getAllQuests: limit => {
+    return dataProvider('/quest/', { method: 'GET', params: { limit } })
   },
   getQuestInfo: idQuest => {
-    return FETCH(FETCH_TYPES.GET, 'quest/' + idQuest, null)
+    return dataProvider(`/quest/${idQuest}`, { method: 'GET' })
   },
   getQuest: idQuest => {
-    return FETCH(FETCH_TYPES.GET, 'quest/' + idQuest, null)
+    return dataProvider(`/quest/${idQuest}`, { method: 'GET' })
   },
   createQuest: newQuest => {
-    let formBody = MAKE_FROM_BODY({
-      newQuest: JSON.stringify(newQuest),
+    return dataProvider('/quest/', {
+      method: 'POST',
+      data: { newQuest: JSON.stringify(newQuest) },
     })
-    return FETCH(FETCH_TYPES.POST, 'quest/', formBody)
   },
   addQuestion: newQuestion => {
-    let formBody = MAKE_FROM_BODY({
-      newQuestion: JSON.stringify(newQuestion),
+    return dataProvider('/quest/question', {
+      method: 'POST',
+      data: { newQuestion: JSON.stringify(newQuestion) },
     })
-    return FETCH(FETCH_TYPES.POST, 'quest/question', formBody)
   },
   startGame: idQuest => {
-    let formBody = MAKE_FROM_BODY({
-      idQuest: idQuest,
-    })
-    return FETCH(FETCH_TYPES.POST, 'quest/start', formBody)
+    return dataProvider('/quest/start', { method: 'POST', data: { idQuest } })
   },
   deleteQuest: idQuest => {
-    let formBody = MAKE_FROM_BODY({
-      idQuest: idQuest,
-    })
-    return FETCH(FETCH_TYPES.POST, 'quest/delete', formBody)
+    return dataProvider('/quest/delete', { method: 'POST', data: { idQuest } })
   },
 }

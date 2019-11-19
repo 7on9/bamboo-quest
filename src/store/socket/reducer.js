@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import GAME_TYPES from './types'
 const initialState = {
   players: [],
