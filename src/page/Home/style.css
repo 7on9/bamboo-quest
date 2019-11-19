@@ -609,6 +609,11 @@ background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
   
  }
 
+ .category{
+  overflow-x: scroll;
+  white-space: nowrap;
+  height:100px;
+ }
 @media (min-width: 992px) and (max-width: 1199.98px) { 
   .desktop{
     height: auto;
