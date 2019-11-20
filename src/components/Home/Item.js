@@ -11,12 +11,12 @@ import { Link } from 'react-router-dom'
 export const Item = ({ title, description, link, img_path }) => {
   return (
     <div className="single_courses">
-      <div className="thumb">
+      <div className="thumb" style={{background:"#fff"}}>
         <Link to={`${link}`}>
           <img src={img_path ? img_path : '/images/img_quest_default.png'} alt={title} />
         </Link>
       </div>
-      <div className="courses_info">
+      <div className="courses_info" style={{background:"#fff"}}>
         <span>{title}</span>
         <h3>
           <Link to={`${link}`}>{description}</Link>
