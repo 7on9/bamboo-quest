@@ -63,7 +63,7 @@ class Home extends Component {
                 <div className="row align-items-center no-gutters">
                   <div className="col-xl-2 col-lg-2">
                     <div className="logo-img">
-                      <Link href="index.html">
+                      <Link to="index.html">
                         <img src="img/logo.png" alt="" />
                       </Link>
                     </div>
@@ -91,7 +91,7 @@ class Home extends Component {
                   </div>
                   <div className="col-xl-3 col-lg-3 d-none d-lg-block">
                     <div className="log_chat_area d-flex align-items-center">
-                      <Link href="#test-form" className="login popup-with-form">
+                      <Link to="#test-form" className="login popup-with-form">
                         <div className="dropdown">
                           {/* <button  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown button
@@ -110,17 +110,17 @@ class Home extends Component {
                           <div
                             className="dropdown-menu dropdown-menu-right"
                             aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" href="#">
+                            <Link className="dropdown-item" to="#">
                               Thông tin tài khoản
                             </Link>
-                            <Link className="dropdown-item" href="#">
+                            <Link className="dropdown-item" to="#">
                               Thay đổi mật khẩu
                             </Link>
-                            <Link className="dropdown-item" href="#">
+                            <Link className="dropdown-item" to="#">
                               Chỉnh sửa thông tin
                             </Link>
                             <div className="dropdown-divider"></div>
-                            <Link className="dropdown-item" href="#">
+                            <Link className="dropdown-item" to="#">
                               Đăng xuất
                             </Link>
                           </div>
@@ -155,7 +155,7 @@ class Home extends Component {
                       <br />
                       ỨNG DỤNG HỌC TẬP
                     </h3>
-                    <Link href="#" className="boxed_btn">
+                    <Link to="#" className="boxed_btn">
                       Xem thêm
                     </Link>
                   </div>
@@ -170,111 +170,111 @@ class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-xl-12 category">
-              <div className="col-xl-12">
-                <div className="course_nav">
-                  <nav>
-                    <ul className="nav" id="myTab" role="tablist">
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link active"
-                          id="home-tab"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="home"
-                          aria-selected="true">
+                <div className="col-xl-12">
+                  <div className="course_nav">
+                    <nav>
+                      <ul className="nav" id="myTab" role="tablist">
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link active"
+                            id="home-tab"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="home"
+                            aria-selected="true">
                           Tất cả
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="profile-tab"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="profile"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="profile-tab"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="profile"
+                            aria-selected="false">
                           Toán học
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="contact-tab"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="contact"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="contact-tab"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="contact"
+                            aria-selected="false">
                           Vật lý
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="design-tab"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="design"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="design-tab"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="design"
+                            aria-selected="false">
                           Hoá học
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="Web-tab"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="design"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="Web-tab"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="design"
+                            aria-selected="false">
                           Lịch sử
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="Web-tab1"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="design"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="Web-tab1"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="design"
+                            aria-selected="false">
                           Wordpress
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="Web-tab11"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="design"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="Web-tab11"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="design"
+                            aria-selected="false">
                           Anh văn
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          id="Adobe-XD-tab8"
-                          data-toggle="tab"
-                          href="#"
-                          role="tab"
-                          aria-controls="design"
-                          aria-selected="false">
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            id="Adobe-XD-tab8"
+                            data-toggle="tab"
+                            to="#"
+                            role="tab"
+                            aria-controls="design"
+                            aria-selected="false">
                           Xã hội
-                        </Link>
-                      </li>
-                      <li className="nav-item"></li>
-                    </ul>
-                  </nav>
+                          </Link>
+                        </li>
+                        <li className="nav-item"></li>
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -304,14 +304,14 @@ class Home extends Component {
                     {/* <div className="col-xl-4 col-lg-4 col-md-6">
                       <div className="single_courses">
                         <div className="thumb">
-                          <Link href="#">
+                          <Link to="#">
                             <img src="/images/icon/ig1.png" alt="" />
                           </Link>
                         </div>
                         <div className="courses_info">
                           <span>Tên Quiz</span>
                           <h3>
-                            <Link href="#">Description</Link>
+                            <Link to="#">Description</Link>
                           </h3>
                           <div className="star_prise d-flex justify-content-between">
                             <div className="star">
