@@ -6,6 +6,7 @@ import * as authAction from '../../store/auth/action'
 import Edit from './Edit'
 import Info from './Info'
 import { Menu } from '../../components'
+import ListQuest from './ListQuest'
 
 class User extends Component {
   componentWillMount() {
@@ -51,6 +52,7 @@ class User extends Component {
           <Switch>
             <Route path="/user/info" component={Info} />
             <Route path="/user/edit" component={Edit} exact />
+            <Route path="/user/quest" component={ListQuest} exact />
           </Switch>
         </div>
         <div style={{ marginTop: '29px' }} />
