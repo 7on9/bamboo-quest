@@ -4,19 +4,22 @@ import { Link, Redirect, Switch, Route } from 'react-router-dom'
 export default class ListQuest extends Component {
     render() {
         return (
-            <div className='container-fulid' style={{ marginTop: "100px" }}>
+            <div className='container-fulid' >
                 <div className="row" style={{ width: '100%', margin:0 }}>
                     <div className="col-12 col-md-3" style={{marginBottom:"20px ", padding:"0 5px", marginBottom:"15px"}}>
-                        <div style={{ height: "200px", width: "100%", background: "red", borderRadius: "4px", backgroundColor: "#83BF97", padding: "10px" }}>
+                        <div className="user-info" style={{padding:"10px"}}>
                             <h4 style={{ color: "#285938" }}>Quan</h4>
                             <h4 style={{ color: "#316d44" }}>Tổng số thử thách: 2</h4>
                             <div className="btn-info-user" ><Link to="/" style={{ fontWeight: "bold", color: "#bcc6c0" }} >Thông tin</Link></div>
                             <div className="btn-info-user" ><Link to="/" style={{ fontWeight: "bold", color: "#bcc6c0" }} >Chỉnh sửa thông tin</Link></div>
 
                         </div>
+                        <Link to="/home">
+                            <img src={window.location.origin + '/images/bannerDiscover.jpg'} className="discover" style={{ borderRadius:"4px"}}/>
+                        </Link>
                     </div>
                     <div className="col-12 col-md-9" style={{marginBottom:"20px ", padding:"0 5px", margin:0}}>
-                        <div className="container-quiz">
+                        <div className="container-quiz ">
                             <div className="row" style={{ borderBottom: "2px solid  #F2F2F2",margin: "0" }}>
                                 <div className="col-6">
                                     <div style={{ marginBottom: "15px" }}>Thử thách của tôi</div>

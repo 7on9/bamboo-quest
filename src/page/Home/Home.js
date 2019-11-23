@@ -122,13 +122,13 @@ class Home extends Component {
                           <div
                             className="dropdown-menu dropdown-menu-right"
                             aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="#">
+                            <Link className="dropdown-item" to="/user/info">
                               Thông tin tài khoản
                             </Link>
                             <Link className="dropdown-item" to="#">
                               Thay đổi mật khẩu
                             </Link>
-                            <Link className="dropdown-item" to="#">
+                            <Link className="dropdown-item" to="/user/edit">
                               Chỉnh sửa thông tin
                             </Link>
                             <div className="dropdown-divider"></div>
