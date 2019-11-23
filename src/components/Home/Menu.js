@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 export const Menu = ({ ...props }) => (
+  
   <div
     className="container-fulid menu"
     id="myHeader"
