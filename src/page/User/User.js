@@ -31,20 +31,20 @@ class User extends Component {
     }
   }
   render() {
-    try {
-      if (this.state.authenticated === false) {
-        const { from } = this.props.location.state || {
-          from: { pathname: '/' },
-        }
-        return <Redirect to={from} />
-      }
-    } catch (error) {
-      if (this.state === null) {
-        // window.location.reload();
-        // const { from } = this.props.location.state || { from: { pathname: "/home" } };
-        // return <Redirect to={from} />
-      }
-    }
+    // try {
+    //   if (this.state.authenticated === false) {
+    //     const { from } = this.props.location.state || {
+    //       from: { pathname: '/' },
+    //     }
+    //     return <Redirect to={from} />
+    //   }
+    // } catch (error) {
+    //   if (this.state === null) {
+    //     // window.location.reload();
+    //     // const { from } = this.props.location.state || { from: { pathname: "/home" } };
+    //     // return <Redirect to={from} />
+    //   }
+    // }
     return (
       <div className="detail-user">
         <Menu email={localStorage.getItem('email')} />
