@@ -53,7 +53,6 @@ class Quest extends Component {
         <Menu
           email={this.props.user.info ? this.props.user.info.email : 'email'}
         />
-        <div style={{ marginTop: '70px' }} />
         <Switch>
           <Route path="/quest/info/:id" component={Info} />
           <Route path="/quest/create" component={Create} />
