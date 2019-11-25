@@ -25,7 +25,7 @@ export default class ListQuest extends Component {
                                     <div style={{ marginBottom: "15px" }}>Thử thách của tôi</div>
                                 </div>
                                 <div className="col-6">
-                                    <div className='btn-create-quiz' > Tạo thử thách mới </div>
+                                    <Link className='btn-create-quiz' to="/quest/create"> Tạo thử thách mới </Link>
                                 </div>
                             </div>
                             <div style={{margin:"20px"}}/>
