@@ -9,7 +9,14 @@
 {
     margin-right: 1em;
 }
+.user-info{
+    height: 200px !important;
+    width: 100%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px 0px;
 
+}
 .btn-info-user{
     width: 100% !important;
     height: 20% !important;
@@ -19,6 +26,16 @@
     align-items: center;
     justify-content: center;
     display: flex;
+}
+.discover{
+    box-shadow: #FFAA01 0px 2px 4px 0px;
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+.discover:hover{
+    box-shadow: #FFAA01 0px 2px 10px 0px;
+    cursor: pointer;
 }
 .btn-info-user:hover{
     cursor: pointer;
@@ -56,7 +73,7 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
 .item-myquiz{
     width: 100%;
     height: 70px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 4px 0px;
     margin-top: 15px;
     border-radius: 2px;
     cursor: pointer;
@@ -77,3 +94,12 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
     border-radius: 2px;
 
 }
+@media (max-width: 575.98px) {  .discover{width: 0;margin: 0;} }
+
+@media (min-width: 576px) and (max-width: 767.98px) {  .discover{width: 0;margin: 0;} }
+
+@media (min-width: 768px) and (max-width: 991.98px) {.user-info{margin-bottom: 20px;} }
+
+@media (min-width: 992px) and (max-width: 1199.98px) { .user-info{margin-bottom: 20px;}  }
+
+@media (min-width: 1200px) { .user-info{margin-bottom: 20px;}  }

@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 export const Menu = ({ ...props }) => (
+
   <div
     className="container-fulid menu"
     id="myHeader"
-    style={{ height: 'auto' }}>
+    style={{ height: 'auto', marginBottom:"100px" }}>
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
       <div className="container">
         <p className="navbar-brand" href="#">
-          <img src="images/logoMau.png" style={{ height: '3vw' }} />
+          <img src={window.location.origin+"/images/logoMau.png"} style={{ height: '3vw' }} />
         </p>
         <button
           className="navbar-toggler"
@@ -33,7 +34,7 @@ export const Menu = ({ ...props }) => (
               <span className="sr-only">(current)</span>
             </Link>
             <Link
-              to="/quest/my"
+              to="/user/quest"
               className="nav-item nav-link active"
               style={{ cursor: 'pointer' }}>
               {' '}

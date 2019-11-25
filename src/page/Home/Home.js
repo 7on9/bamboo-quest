@@ -7,6 +7,17 @@ import * as questActions from '../../store/quest/action'
 import { Collection, Menu, Item } from '../../components'
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      category:1
+    }
+  }
+  changeCategory=(id)=>{
+    this.setState({
+      category:id
+    })
+  }
   UNSAFE_componentWillMount() {
     this.props.getsAllQuests(25)
     if (localStorage.getItem('token')) {
@@ -54,6 +65,7 @@ class Home extends Component {
     //     // return <Redirect to={from} />
     //   }
     // }
+    console.log (this.state.category)
     return (
       <div className="home">
         <header>
@@ -63,7 +75,7 @@ class Home extends Component {
                 <div className="row align-items-center no-gutters">
                   <div className="col-xl-2 col-lg-2">
                     <div className="logo-img">
-                      <Link to="index.html">
+                      <Link to="index.html" >
                         <img src="img/logo.png" alt="" />
                       </Link>
                     </div>
@@ -81,7 +93,7 @@ class Home extends Component {
                             </Link>
                           </li>
                           <li>
-                            <Link to="/quest/my" style={{ fontWeight: 'bold' }}>
+                            <Link to="/user/quest" style={{ fontWeight: 'bold' }}>
                               Thử thách của tôi
                             </Link>
                           </li>
@@ -110,13 +122,13 @@ class Home extends Component {
                           <div
                             className="dropdown-menu dropdown-menu-right"
                             aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="#">
+                            <Link className="dropdown-item" to="/user/info">
                               Thông tin tài khoản
                             </Link>
                             <Link className="dropdown-item" to="#">
                               Thay đổi mật khẩu
                             </Link>
-                            <Link className="dropdown-item" to="#">
+                            <Link className="dropdown-item" to="/user/edit">
                               Chỉnh sửa thông tin
                             </Link>
                             <div className="dropdown-divider"></div>
@@ -155,9 +167,9 @@ class Home extends Component {
                       <br />
                       ỨNG DỤNG HỌC TẬP
                     </h3>
-                    <Link to="#" className="boxed_btn">
+                    {/* <Link to="#" className="boxed_btn">
                       Xem thêm
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>
@@ -182,94 +194,54 @@ class Home extends Component {
                             to="#"
                             role="tab"
                             aria-controls="home"
-                            aria-selected="true">
+                            aria-selected="true"
+                            onClick={()=>this.changeCategory(0)}
+                          >
+                            
                           Tất cả
                           </Link>
                         </li>
+
                         <li className="nav-item">
                           <Link
                             className="nav-link"
-                            id="profile-tab"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="profile"
-                            aria-selected="false">
-                          Toán học
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link"
-                            id="contact-tab"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="contact"
-                            aria-selected="false">
-                          Vật lý
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link"
-                            id="design-tab"
+                            id="Web-tab11a"
                             data-toggle="tab"
                             to="#"
                             role="tab"
                             aria-controls="design"
-                            aria-selected="false">
-                          Hoá học
+                            aria-selected="false"
+                            onClick={()=>this.changeCategory(1)}
+                          >
+                          HOT
                           </Link>
                         </li>
+
                         <li className="nav-item">
                           <Link
-                            className="nav-link"
-                            id="Web-tab"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="design"
-                            aria-selected="false">
-                          Lịch sử
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link"
-                            id="Web-tab1"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="design"
-                            aria-selected="false">
-                          Wordpress
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link"
+                            className="nav-link category-hover"
                             id="Web-tab11"
                             data-toggle="tab"
                             to="#"
                             role="tab"
                             aria-controls="design"
                             aria-selected="false">
-                          Anh văn
+                          Thể loại
                           </Link>
+                          <div className="content-category">
+                            <button  className="item-category"><p  onClick={()=>this.changeCategory(2)} style={{color:'#000',}}>Toán học</p></button>
+                            <br/>
+                            <button  className="item-category"><p  onClick={()=>this.changeCategory(3)} style={{color:'#000'}}>Vật lý</p></button>
+                            <br/>
+                            <button  className="item-category"><p onClick={()=>this.changeCategory(4)} style={{color:'#000'}}>Hoá học</p></button>
+                            <br/>
+                            <button  className="item-category"><p  onClick={()=>this.changeCategory(5)}style={{color:'#000'}}>Văn học</p></button>
+                            <br/>
+                            <button  className="item-category"><p onClick={()=>this.changeCategory(6)} style={{color:'#000'}}>Lịch sử</p></button>
+
+                          </div>
                         </li>
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link"
-                            id="Adobe-XD-tab8"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="design"
-                            aria-selected="false">
-                          Xã hội
-                          </Link>
-                        </li>
+                       
                         <li className="nav-item"></li>
                       </ul>
                     </nav>
