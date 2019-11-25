@@ -164,9 +164,9 @@ class Home extends Component {
                   <div className="slider_info">
                     <h3>
                       BAMBOO QUEST
-                      <br />
-                      ỨNG DỤNG HỌC TẬP
                     </h3>
+                    <h3 style={{fontSize: '-webkit-xxx-large'}}> ỨNG DỤNG HỌC TẬP</h3>
+
                     {/* <Link to="#" className="boxed_btn">
                       Xem thêm
                     </Link> */}
