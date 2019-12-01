@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import './style.css'
 // import './nav.js'
-export const Menu = ({ ...props }) => (
+export const Menu = () => (
 
   <nav className="menu">
     <div className="logoMenu">
-      <h4 className="logoMenu">BAMBOO QUEST</h4>
+      <Link to="/home" className="logoMenu">BAMBOO QUEST</Link>
     </div>
     <ul className="nav-links">
       <li><Link className="name-item-menu" to="/home">HOME</Link></li>

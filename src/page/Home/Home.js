@@ -133,7 +133,7 @@ class Home extends Component {
                             </Link>
                             <div className="dropdown-divider"></div>
                             <Link className="dropdown-item" to="#">
-                              Đăng xuất
+                            <i class="fas fa-sign-out-alt" style={{color:"#000"}}></i> Đăng xuất
                             </Link>
                           </div>
                         </div>

@@ -67,6 +67,9 @@ class Join extends Component {
           <Link className="gtHome" to="/auth">
             <div className="btn-login center-div">Đăng nhập</div>
           </Link>
+          <Link className="gtHome" to="/home">
+            <div className="btn-login center-div">Khám phá</div>
+          </Link>
         </div>
         <div id="content">
           <div id="logo">

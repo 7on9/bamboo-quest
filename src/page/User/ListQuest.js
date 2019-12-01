@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './styles.css'
 import { Link, Redirect, Switch, Route } from 'react-router-dom'
+import { CreateQuiz } from '../../components'
 export default class ListQuest extends Component {
   render() {
     return (
@@ -45,9 +46,7 @@ export default class ListQuest extends Component {
                 <div className="col-6">
                   <div style={{ marginBottom: '15px' }}>Thử thách của tôi</div>
                 </div>
-                <div className="col-6">
-                  <div className="btn-create-quiz"> Tạo thử thách mới </div>
-                </div>
+                <CreateQuiz/>
               </div>
               <div style={{ margin: '20px' }} />
               <div className="item-myquiz">
