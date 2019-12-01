@@ -136,8 +136,8 @@ class ChangeQuestion extends Component {
                       <div className="col-6">
                         <div className="form-group">
                           <b style={{ color: '#c7166d' }}>
-                            {' '}
-                            ĐIỂM TRẢ LỜI ĐÚNG{' '}
+                            
+                            ĐIỂM TRẢ LỜI ĐÚNG
                           </b>
                           <input
                             type="number"

@@ -15,7 +15,7 @@ class Dashboard extends Component {
                 <li className="active">
                   <a href="index.html">
                     <i className="menu-icon fa fa-laptop" />
-                    Dashboard{' '}
+                    Dashboard
                   </a>
                 </li>
                 <li className="menu-title">UI elements</li>
@@ -27,12 +27,10 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-cogs" />
                     Components
                   </a>
                   <ul className="sub-menu children dropdown-menu">
-                    {' '}
                     <li>
                       <i className="fa fa-puzzle-piece" />
                       <a href="ui-buttons.html">Buttons</a>
@@ -82,7 +80,6 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-table" />
                     Tables
                   </a>
@@ -104,7 +101,6 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-th" />
                     Forms
                   </a>
@@ -128,7 +124,6 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-tasks" />
                     Icons
                   </a>
@@ -145,9 +140,8 @@ class Dashboard extends Component {
                 </li>
                 <li>
                   <a href="widgets.html">
-                    {' '}
                     <i className="menu-icon ti-email" />
-                    Widgets{' '}
+                    Widgets
                   </a>
                 </li>
                 <li className="menu-item-has-children dropdown">
@@ -157,7 +151,6 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-bar-chart" />
                     Charts
                   </a>
@@ -183,7 +176,6 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-area-chart" />
                     Maps
                   </a>
@@ -207,7 +199,6 @@ class Dashboard extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    {' '}
                     <i className="menu-icon fa fa-glass" />
                     Pages
                   </a>
@@ -549,10 +540,10 @@ class Dashboard extends Component {
                               />
                             </div>
                           </div>
-                        </div>{' '}
+                        </div>
                         {/* /.card-body */}
                       </div>
-                    </div>{' '}
+                    </div>
                     {/* /.row */}
                     <div className="card-body" />
                   </div>
@@ -593,14 +584,10 @@ class Dashboard extends Component {
                                 </td>
                                 <td> #5469 </td>
                                 <td>
-                                  {' '}
-                                  <span className="name">
-                                    Louis Stanley
-                                  </span>{' '}
+                                  <span className="name">Louis Stanley</span>
                                 </td>
                                 <td>
-                                  {' '}
-                                  <span className="product">iMax</span>{' '}
+                                  <span className="product">iMax</span>
                                 </td>
                                 <td>
                                   <span className="count">231</span>
@@ -620,14 +607,10 @@ class Dashboard extends Component {
                                 </td>
                                 <td> #5468 </td>
                                 <td>
-                                  {' '}
-                                  <span className="name">
-                                    Gregory Dixon
-                                  </span>{' '}
+                                  <span className="name">Gregory Dixon</span>
                                 </td>
                                 <td>
-                                  {' '}
-                                  <span className="product">iPad</span>{' '}
+                                  <span className="product">iPad</span>
                                 </td>
                                 <td>
                                   <span className="count">250</span>
@@ -647,14 +630,10 @@ class Dashboard extends Component {
                                 </td>
                                 <td> #5467 </td>
                                 <td>
-                                  {' '}
-                                  <span className="name">
-                                    Catherine Dixon
-                                  </span>{' '}
+                                  <span className="name">Catherine Dixon</span>
                                 </td>
                                 <td>
-                                  {' '}
-                                  <span className="product">SSD</span>{' '}
+                                  <span className="product">SSD</span>
                                 </td>
                                 <td>
                                   <span className="count">250</span>
@@ -674,14 +653,10 @@ class Dashboard extends Component {
                                 </td>
                                 <td> #5466 </td>
                                 <td>
-                                  {' '}
-                                  <span className="name">Mary Silva</span>{' '}
+                                  <span className="name">Mary Silva</span>
                                 </td>
                                 <td>
-                                  {' '}
-                                  <span className="product">
-                                    Magic Mouse
-                                  </span>{' '}
+                                  <span className="product">Magic Mouse</span>
                                 </td>
                                 <td>
                                   <span className="count">250</span>
@@ -701,14 +676,10 @@ class Dashboard extends Component {
                                 </td>
                                 <td> #5465 </td>
                                 <td>
-                                  {' '}
-                                  <span className="name">
-                                    Johnny Stephens
-                                  </span>{' '}
+                                  <span className="name">Johnny Stephens</span>
                                 </td>
                                 <td>
-                                  {' '}
-                                  <span className="product">Monitor</span>{' '}
+                                  <span className="product">Monitor</span>
                                 </td>
                                 <td>
                                   <span className="count">250</span>
@@ -721,12 +692,12 @@ class Dashboard extends Component {
                               </tr>
                             </tbody>
                           </table>
-                        </div>{' '}
+                        </div>
                         {/* /.table-stats */}
                       </div>
-                    </div>{' '}
+                    </div>
                     {/* /.card */}
-                  </div>{' '}
+                  </div>
                   {/* /.col-lg-8 */}
                   <div className="col-xl-4">
                     <div className="row">
@@ -753,7 +724,7 @@ class Dashboard extends Component {
                         </div>
                       </div>
                     </div>
-                  </div>{' '}
+                  </div>
                   {/* /.col-md-4 */}
                 </div>
               </div>
@@ -827,10 +798,10 @@ class Dashboard extends Component {
                               </ul>
                             </div>
                           </div>
-                        </div>{' '}
+                        </div>
                         {/* /.todo-list */}
                       </div>
-                    </div>{' '}
+                    </div>
                     {/* /.card-body */}
                   </div>
                   {/* /.card */}
@@ -890,7 +861,7 @@ class Dashboard extends Component {
                         </div>
                         {/* /.messenger-box */}
                       </div>
-                    </div>{' '}
+                    </div>
                     {/* /.card-body */}
                   </div>
                   {/* /.card */}

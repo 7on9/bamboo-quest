@@ -136,7 +136,6 @@ export const startGame = idQuest => {
   return dispatch => {
     QuestService.startGame(idQuest)
       .then(res => res.json())
-      .catch(err => console.log(err))
       .then(res => {
         socket.emit(GAME.START, res.code, idQuest)
         return dispatch({
@@ -149,6 +148,7 @@ export const startGame = idQuest => {
           },
         })
       })
+      .catch(err => console.log(err))
   }
 }
 

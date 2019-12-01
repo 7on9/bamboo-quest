@@ -56,8 +56,8 @@ class Info extends Component {
                     ? this.props.user.info.gender === false
                       ? 'Nữ'
                       : this.props.user.info.gender === true
-                      ? 'Nam'
-                      : 'Chưa cập nhật'
+                        ? 'Nam'
+                        : 'Chưa cập nhật'
                     : null}
                 </div>
                 <div className="item-edit-user">
@@ -81,7 +81,7 @@ class Info extends Component {
                   className="col-12 btn btn-block btn-success"
                   style={{ height: '40px' }}>
                   <i className="fas fa-edit" />
-                  Chỉnh sửa{' '}
+                  Chỉnh sửa
                 </Link>
               </div>
               <div className="col-md-1 col-12"></div>

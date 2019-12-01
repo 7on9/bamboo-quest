@@ -29,7 +29,7 @@ export const Menu = ({ ...props }) => (
               to="/home"
               className="nav-item nav-link active"
               style={{ cursor: 'pointer' }}>
-              {' '}
+              
               <p style={{ fontWeight: 'bold', color: '#fff' }}>Trang chủ </p>
               <span className="sr-only">(current)</span>
             </Link>
@@ -37,7 +37,7 @@ export const Menu = ({ ...props }) => (
               to="/user/quest"
               className="nav-item nav-link active"
               style={{ cursor: 'pointer' }}>
-              {' '}
+              
               <p style={{ fontWeight: 'bold', color: '#fff' }}>
                 Thử thách của tôi
               </p>
@@ -47,7 +47,7 @@ export const Menu = ({ ...props }) => (
               to="/user/info"
               className="nav-item nav-link active"
               style={{ cursor: 'pointer' }}>
-              {' '}
+              
               <p style={{ fontWeight: 'bold', color: '#fff' }}>Tài khoản </p>
               <span className="sr-only">(current)</span>
             </Link>

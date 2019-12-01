@@ -3,8 +3,8 @@ import { BASE_API_URL } from '../common/connection'
 
 /**
  * TODO: Call api
- * @param {String} sourceUrl 
- * @param {{ method: 'GET' | 'POST', headers: Headers, filter, params, data}} option 
+ * @param {String} sourceUrl
+ * @param {{ method: 'GET' | 'POST', headers: Headers, filter, params, data}} option
  */
 export const dataProvider = async (sourceUrl, option) => {
   try {
@@ -14,7 +14,7 @@ export const dataProvider = async (sourceUrl, option) => {
       token: localStorage.getItem('token'),
     }
     const method = option.method || 'GET'
-    const options = { headers, }
+    const options = { headers }
     let filter = ''
     if (option.filter) {
       filter = `?filter=${JSON.stringify(option.filter)}`

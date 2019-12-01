@@ -10,12 +10,12 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      category:1
+      category: 1,
     }
   }
-  changeCategory=(id)=>{
+  changeCategory = id => {
     this.setState({
-      category:id
+      category: id,
     })
   }
   UNSAFE_componentWillMount() {
@@ -65,7 +65,6 @@ class Home extends Component {
     //     // return <Redirect to={from} />
     //   }
     // }
-    console.log (this.state.category)
     return (
       <div className="home">
         <header>
@@ -75,7 +74,7 @@ class Home extends Component {
                 <div className="row align-items-center no-gutters">
                   <div className="col-xl-2 col-lg-2">
                     <div className="logo-img">
-                      <Link to="index.html" >
+                      <Link to="index.html">
                         <img src="img/logo.png" alt="" />
                       </Link>
                     </div>
@@ -93,7 +92,16 @@ class Home extends Component {
                             </Link>
                           </li>
                           <li>
-                            <Link to="/user/quest" style={{ fontWeight: 'bold' }}>
+                            <Link
+                              to="/"
+                              style={{ fontWeight: 'bold' }}>
+                              Chơi ngay
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/user/quest"
+                              style={{ fontWeight: 'bold' }}>
                               Thử thách của tôi
                             </Link>
                           </li>
@@ -125,14 +133,14 @@ class Home extends Component {
                             <Link className="dropdown-item" to="/user/info">
                               Thông tin tài khoản
                             </Link>
-                            <Link className="dropdown-item" to="#">
+                            {/* <Link className="dropdown-item" to="#">
                               Thay đổi mật khẩu
-                            </Link>
+                            </Link> */}
                             <Link className="dropdown-item" to="/user/edit">
                               Chỉnh sửa thông tin
                             </Link>
-                            <div className="dropdown-divider"></div>
-                            <Link className="dropdown-item" to="#">
+                            <div className="dropdown-divider"/>
+                            <Link className="dropdown-item" to="#" onClick={() => this.props.logout()}>
                               Đăng xuất
                             </Link>
                           </div>
@@ -149,7 +157,7 @@ class Home extends Component {
           </div>
         </header>
         {/* header-end */}
-        
+
         {/* slider_area_start */}
         <div className="slider_area ">
           <div className="single_slider d-flex align-items-center justify-content-center background-single_slider">
@@ -162,14 +170,10 @@ class Home extends Component {
                 </div>
                 <div className="col-xl-6 col-md-6">
                   <div className="slider_info">
-                    <h3>
-                      BAMBOO QUEST
+                    <h3>BAMBOO QUEST</h3>
+                    <h3 style={{ fontSize: '-webkit-xxx-large' }}>
+                      ỨNG DỤNG HỌC TẬP
                     </h3>
-                    <h3 style={{fontSize: '-webkit-xxx-large'}}> ỨNG DỤNG HỌC TẬP</h3>
-
-                    {/* <Link to="#" className="boxed_btn">
-                      Xem thêm
-                    </Link> */}
                   </div>
                 </div>
               </div>
@@ -195,10 +199,8 @@ class Home extends Component {
                             role="tab"
                             aria-controls="home"
                             aria-selected="true"
-                            onClick={()=>this.changeCategory(0)}
-                          >
-                            
-                          Tất cả
+                            onClick={() => this.changeCategory(0)}>
+                            Tất cả
                           </Link>
                         </li>
 
@@ -211,9 +213,8 @@ class Home extends Component {
                             role="tab"
                             aria-controls="design"
                             aria-selected="false"
-                            onClick={()=>this.changeCategory(1)}
-                          >
-                          HOT
+                            onClick={() => this.changeCategory(1)}>
+                            HOT
                           </Link>
                         </li>
 
@@ -226,22 +227,51 @@ class Home extends Component {
                             role="tab"
                             aria-controls="design"
                             aria-selected="false">
-                          Thể loại
+                            Thể loại
                           </Link>
                           <div className="content-category">
-                            <button  className="item-category"><p  onClick={()=>this.changeCategory(2)} style={{color:'#000',}}>Toán học</p></button>
-                            <br/>
-                            <button  className="item-category"><p  onClick={()=>this.changeCategory(3)} style={{color:'#000'}}>Vật lý</p></button>
-                            <br/>
-                            <button  className="item-category"><p onClick={()=>this.changeCategory(4)} style={{color:'#000'}}>Hoá học</p></button>
-                            <br/>
-                            <button  className="item-category"><p  onClick={()=>this.changeCategory(5)}style={{color:'#000'}}>Văn học</p></button>
-                            <br/>
-                            <button  className="item-category"><p onClick={()=>this.changeCategory(6)} style={{color:'#000'}}>Lịch sử</p></button>
-
+                            <button className="item-category">
+                              <p
+                                onClick={() => this.changeCategory(2)}
+                                style={{ color: '#000' }}>
+                                Toán học
+                              </p>
+                            </button>
+                            <br />
+                            <button className="item-category">
+                              <p
+                                onClick={() => this.changeCategory(3)}
+                                style={{ color: '#000' }}>
+                                Vật lý
+                              </p>
+                            </button>
+                            <br />
+                            <button className="item-category">
+                              <p
+                                onClick={() => this.changeCategory(4)}
+                                style={{ color: '#000' }}>
+                                Hoá học
+                              </p>
+                            </button>
+                            <br />
+                            <button className="item-category">
+                              <p
+                                onClick={() => this.changeCategory(5)}
+                                style={{ color: '#000' }}>
+                                Văn học
+                              </p>
+                            </button>
+                            <br />
+                            <button className="item-category">
+                              <p
+                                onClick={() => this.changeCategory(6)}
+                                style={{ color: '#000' }}>
+                                Lịch sử
+                              </p>
+                            </button>
                           </div>
                         </li>
-                       
+
                         <li className="nav-item"></li>
                       </ul>
                     </nav>
@@ -265,6 +295,7 @@ class Home extends Component {
                         className="col-xl-4 col-lg-4 col-md-6"
                         key={quest._id}>
                         <Item
+                          id={quest._id}
                           title={quest.title}
                           description={quest.description}
                           link={`/quest/info/${quest._id}`}
@@ -272,41 +303,12 @@ class Home extends Component {
                         />
                       </div>
                     ))}
-
-                    {/* <div className="col-xl-4 col-lg-4 col-md-6">
-                      <div className="single_courses">
-                        <div className="thumb">
-                          <Link to="#">
-                            <img src="/images/icon/ig1.png" alt="" />
-                          </Link>
-                        </div>
-                        <div className="courses_info">
-                          <span>Tên Quiz</span>
-                          <h3>
-                            <Link to="#">Description</Link>
-                          </h3>
-                          <div className="star_prise d-flex justify-content-between">
-                            <div className="star">
-                              <i className="flaticon-mark-as-favorite-star" />
-                              <span>Quan Pham</span>
-                            </div>
-                            <div className="prise">
-                              <span className="active_prise">10/10/2010</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* popular_courses_end*/}
-        
-        {/* our_courses_start */}
-        
       </div>
     )
   }
@@ -319,6 +321,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   verify: authAction.verify,
   getsAllQuests: questActions.getsAllQuests,
+  logout: authAction.logout,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

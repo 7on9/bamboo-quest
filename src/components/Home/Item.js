@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { objectIdToDate } from '../../utils/date'
+import moment from 'moment'
 
 /**
  * TODO: Item quest in the home screen
@@ -8,18 +10,18 @@ import { Link } from 'react-router-dom'
  * @param link
  * @param img_path
  */
-export const Item = ({ title, description, link, img_path }) => {
+export const Item = ({ id, title, description, link, img_path }) => {
   return (
     <div className="single_courses">
-      <div className="thumb" style={{background:"#fff"}}>
-        <Link to={`${link}`}>
+      <div className="thumb" style={{background:'#fff'}}>
+        <Link to={link}>
           <img src={img_path ? img_path : '/images/img_quest_default.png'} alt={title} />
         </Link>
       </div>
-      <div className="courses_info" style={{background:"#fff"}}>
+      <div className="courses_info" style={{background:'#fff'}}>
         <span>{title}</span>
         <h3>
-          <Link to={`${link}`}>{description}</Link>
+          <Link to={link}>{description}</Link>
         </h3>
         <div className="star_prise d-flex justify-content-between">
           <div className="star">
@@ -27,7 +29,7 @@ export const Item = ({ title, description, link, img_path }) => {
             <span>Quan Pham</span>
           </div>
           <div className="prise">
-            <span className="active_prise">10/10/2010</span>
+            <span className="active_prise">{moment(objectIdToDate(id)).format('DD/MM/YYYY')}</span>
           </div>
         </div>
       </div>

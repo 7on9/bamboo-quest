@@ -71,7 +71,7 @@ class Create extends Component {
     ) : null
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.resetResult()
   }
   render() {
@@ -152,24 +152,24 @@ class Create extends Component {
                       </div>
                     </div>
                     <div className="form-group">
-                  <label>Mô tả thử thách</label>
-                  <div
-                    className="center-div"
-                    style={{
-                      width: '100%',
-                      height: '5em',
-                      border: '3px solid #e2e2e2',
-                    }}>
-                    <input
-                      type="text"
-                      maxLength="100"
-                      placeholder="giới hạn 100 ký tự"
-                      style={{ marginLeft: '10px', width: '100%' }}
-                      name="description"
-                      onChange={this.onType}
-                    />
-                  </div>
-                </div>
+                      <label>Mô tả thử thách</label>
+                      <div
+                        className="center-div"
+                        style={{
+                          width: '100%',
+                          height: '5em',
+                          border: '3px solid #e2e2e2',
+                        }}>
+                        <input
+                          type="text"
+                          maxLength="100"
+                          placeholder="giới hạn 100 ký tự"
+                          style={{ marginLeft: '10px', width: '100%' }}
+                          name="description"
+                          onChange={this.onType}
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className="col-12 col-sm-6 col-md-6">
                     <div className="upLoadImage">

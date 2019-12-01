@@ -88,7 +88,7 @@ class Ready extends Component {
             : null}
         </div>
         <div className="botShow">
-          Câu hỏi thứ {game ? game.idQuestion + 2 : null} trong{' '}
+          Câu hỏi thứ {game ? game.idQuestion + 2 : null} trong
           {game ? game.questions.length : null}
         </div>
       </div>

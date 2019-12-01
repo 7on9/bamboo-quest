@@ -87,7 +87,7 @@ class Edit extends Component {
                     style={{ width: '85%' }}
                     placeholder={
                       this.props.user.info ? this.props.user.info.name : 'Tên'
-                    }></input>
+                    }/>
                 </div>
                 <div className="item-edit-user">
                   <i className="fas fa-envelope icon" />
@@ -99,7 +99,7 @@ class Edit extends Component {
                       this.props.user.info
                         ? this.props.user.info.email
                         : 'Email'
-                    }></input>
+                    }/>
                 </div>
                 <div className="item-edit-user">
                   {/* <i className="fas fa-venus-mars"/> */}
@@ -121,7 +121,7 @@ class Edit extends Component {
                           ? this.props.user.info.organization
                           : 'Đơn vị công tác'
                         : null
-                    }></input>
+                    }/>
                   {/* {this.props.user.info ? this.props.user.info.organization ? this.props.user.info.organization : 'Chưa cập nhật' : null} */}
                 </div>
                 <div className="item-edit-user">
@@ -130,7 +130,7 @@ class Edit extends Component {
                   <input
                     style={{ width: '85%' }}
                     name="phone"
-                    placeholder="Số điện thoại"></input>
+                    placeholder="Số điện thoại"/>
                 </div>
                 <div className="item-edit-user" style={{ width: '100%' }}>
                   <i className="fas fa-lock" />
@@ -138,7 +138,7 @@ class Edit extends Component {
                     type="passwordC"
                     style={{ width: '85%' }}
                     name="password"
-                    placeholder="PASSWORD"></input>
+                    placeholder="PASSWORD"/>
                 </div>
                 <div className="col-md-1 col-12"></div>
                 <Link
@@ -146,7 +146,7 @@ class Edit extends Component {
                   className="col-12 btn btn-block btn-success"
                   style={{ height: '40px' }}>
                   <i className="fas fa-edit" />
-                  Chỉnh sửa{' '}
+                  Chỉnh sửa
                 </Link>
               </div>
             </div>
