@@ -79,7 +79,7 @@ class ChangeQuestion extends Component {
       alert('Hãy điền hết các trường')
     }
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     let param = this.props.location.pathname
     console.log(param.slice(param.lastIndexOf('/') + 1, param.length))
     this.props.getQuestInfo(
@@ -135,9 +135,7 @@ class ChangeQuestion extends Component {
                     <div className="row">
                       <div className="col-6">
                         <div className="form-group">
-                          <b style={{ color: '#c7166d' }}>
-                            ĐIỂM TRẢ LỜI ĐÚNG
-                          </b>
+                          <b style={{ color: '#c7166d' }}>ĐIỂM TRẢ LỜI ĐÚNG</b>
                           <input
                             type="number"
                             className="form-control"

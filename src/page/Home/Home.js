@@ -140,8 +140,8 @@ class Home extends Component {
                               Chỉnh sửa thông tin
                             </Link>
                             <div className="dropdown-divider"/>
-                            <Link className="dropdown-item" to="#" onClick={() => this.props.logout()}>
-                              Đăng xuất
+                            <Link className="dropdown-item" onClick={() => this.props.logout()}>
+                              <i className="fas fa-sign-out-alt" style={{color:'#000'}}></i> Đăng xuất
                             </Link>
                           </div>
                         </div>

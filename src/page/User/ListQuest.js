@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './styles.css'
-import { Link, Redirect, Switch, Route } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as authAction from '../../store/auth/action'
 import * as questActions from '../../store/quest/action'
+import { Button } from '../../components'
 
 class ListQuest extends Component {
   constructor(props) {
@@ -77,11 +78,11 @@ class ListQuest extends Component {
                   <div style={{ marginBottom: '15px' }}>Thử thách của tôi</div>
                 </div>
                 <div className="col-6">
-                  <div
-                    className="btn-create-quiz"
-                    onClick={() => this.setState({ toCreateQuest: true })}>
-                    Tạo thử thách mới
-                  </div>
+                  <Button
+                    style={{ backgroundColor: 'red' }}
+                    onClick={() => this.setState({ toCreateQuest: true })}
+                    title="Tạo thử thách mới"
+                  />
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
@@ -202,7 +203,7 @@ class ListQuest extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   ...state,
 })
 
@@ -213,4 +214,3 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListQuest)
-
