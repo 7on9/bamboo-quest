@@ -188,7 +188,7 @@ class Home extends Component {
               <div className="col-xl-12 category">
                 <div className="col-xl-12">
                   <div className="course_nav">
-                    <nav>
+                    {/* <nav>
                       <ul className="nav" id="myTab" role="tablist">
                         <li className="nav-item">
                           <Link
@@ -274,7 +274,7 @@ class Home extends Component {
 
                         <li className="nav-item"></li>
                       </ul>
-                    </nav>
+                    </nav> */}
                   </div>
                 </div>
               </div>
