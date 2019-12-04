@@ -11,40 +11,20 @@ import ListQuest from './ListQuest'
 class User extends Component {
   componentWillMount() {
     if (localStorage.getItem('token')) {
-      if (!this.props.user.email) {
-        this.props.verify()
-        if (this.props.user.token === null) {
-          this.setState({
-            authenticated: false,
-          })
-        } else {
-          this.setState({
-            authenticated: true,
-          })
-        }
-      }
-    } else {
-      this.setState({
-        authenticated: false,
-      })
-      console.log('tạch')
+      this.props.verify()
+      // this.props.getInfo()
+    }
+    else {
+      let { from } = this.props.location.state || { from: { pathname: "/home" } }
+      return <Redirect to={from} />
     }
   }
   render() {
-    // try {
-    //   if (this.state.authenticated === false) {
-    //     const { from } = this.props.location.state || {
-    //       from: { pathname: '/' },
-    //     }
-    //     return <Redirect to={from} />
-    //   }
-    // } catch (error) {
-    //   if (this.state === null) {
-    //     // window.location.reload();
-    //     // const { from } = this.props.location.state || { from: { pathname: "/home" } };
-    //     // return <Redirect to={from} />
-    //   }
-    // }
+    if (!this.props.user.token) {
+      let { from } = this.props.location.state || { from: { pathname: "/home" } }
+      return <Redirect to={from} />
+    }
+    console.log (this.props.user)
     return (
       <div className="detail-user">
         <Menu email={localStorage.getItem('email')} />
@@ -67,6 +47,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   verify: authAction.verify,
+  login: authAction.login,
+  // getInfo: authAction.getInfo,
+  logout: authAction.logout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)

@@ -52,7 +52,8 @@ class Home extends Component {
   render() {
     // const { info } = this.props.user;
     const { quests } = this.props.quest
-    console.log(quests)
+    const { token } = this.props.user
+    console.log(token)
     // try {
     //   if (this.state.authenticated === false) {
     //     const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -111,41 +112,46 @@ class Home extends Component {
                   </div>
                   <div className="col-xl-3 col-lg-3 d-none d-lg-block">
                     <div className="log_chat_area d-flex align-items-center">
-                      <Link to="#test-form" className="login popup-with-form">
-                        <div className="dropdown">
-                          {/* <button  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {
+                        token?(
+                          <Link to="#test-form" className="login popup-with-form">
+                            <div className="dropdown">
+                              {/* <button  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown button
                            </button> */}
-                          <img
-                            style={{
-                              width: '2em',
-                              height: '2em',
-                              borderRadius: '1em',
-                            }}
-                            src="/images/avatar-default.png"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          />
-                          <div
-                            className="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="/user/info">
+                              <img
+                                style={{
+                                  width: '2em',
+                                  height: '2em',
+                                  borderRadius: '1em',
+                                }}
+                                src="/images/avatar-default.png"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              />
+                              <div
+                                className="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="dropdownMenuButton">
+                                <Link className="dropdown-item" to="/user/info">
                               Thông tin tài khoản
-                            </Link>
-                            {/* <Link className="dropdown-item" to="#">
+                                </Link>
+                                {/* <Link className="dropdown-item" to="#">
                               Thay đổi mật khẩu
                             </Link> */}
-                            <Link className="dropdown-item" to="/user/edit">
+                                <Link className="dropdown-item" to="/user/edit">
                               Chỉnh sửa thông tin
-                            </Link>
-                            <div className="dropdown-divider"/>
-                            <Link className="dropdown-item" onClick={() => this.props.logout()}>
-                              <i className="fas fa-sign-out-alt" style={{color:'#000'}}></i> Đăng xuất
-                            </Link>
-                          </div>
-                        </div>
-                      </Link>
+                                </Link>
+                                <div className="dropdown-divider"/>
+                                <Link className="dropdown-item" onClick={() => this.props.logout()}>
+                                  <i className="fas fa-sign-out-alt" style={{color:'#000'}}></i> Đăng xuất
+                                </Link>
+                              </div>
+                            </div>
+                          </Link>
+                        ):null
+                      }
+                      
                     </div>
                   </div>
                   <div className="col-12">
