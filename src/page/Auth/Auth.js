@@ -204,9 +204,25 @@ class Auth extends Component {
       </form>)
   }
 
+  UNSAFE_componentWillMount() {
+    if (localStorage.getItem('token')) {
+      this.props.verify()
+      // this.props.getInfo()
+    }
+    else {
+      let { from } = this.props.location.state || { from: { pathname: "/user/quest" } }
+      return <Redirect to={from} />
+    }
+  }
   render() {
     const { login, submited } = this.state;
-    const { result, running } = this.props.user;
+    const { result, running, token } = this.props.user;
+    if (token)
+    {
+      let { from } = this.props.location.state || { from: { pathname: "/user/quest" } };
+      return <Redirect to={from} />
+    }
+
     if (submited && !running) {
       console.log(running, result, login);
       
@@ -267,7 +283,8 @@ const mapDispatchToProps = {
   changeStatusRunning: authAction.changeStatusRunning,
   resetResult: authAction.resetResult,
   register: authAction.register,
-  login: authAction.login
+  login: authAction.login,
+  verify:authAction.verify
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth)

@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as authAction from '../../store/auth/action'
 import * as questActions from '../../store/quest/action'
-import { Button } from '../../components'
+import { Button, Cardlist } from '../../components'
 
 class ListQuest extends Component {
   constructor(props) {
@@ -79,70 +79,17 @@ class ListQuest extends Component {
                 </div>
                 <div className="col-6">
                   <Button
-                    style={{ backgroundColor: 'red' }}
+                    style={{ backgroundColor: '#267ee2' }}
                     onClick={() => this.setState({ toCreateQuest: true })}
                     title="Tạo thử thách mới"
                   />
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              <div className="item-myquiz">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img style={{ width: '100%', height: '100%' }} />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>5</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-myquiz">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img
-                      src="https://9mobi.vn/cf/images/2015/03/nkk/anh-dep-1.jpg"
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>10</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-myquiz">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img src="" style={{ width: '100%', height: '100%' }} />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>7</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
+              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
+              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
+              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
+              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
             </div>
             <div className="container-quiz">
               <div
@@ -153,48 +100,14 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              <div className="item-myquiz">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img
-                      src="https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png"
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>10</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-myquiz">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img
-                      src="https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png"
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>10</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
+              {
+                quests.map((item)=>{
+                  return(
+                    <Cardlist id={item._id} title={item.title} question={item.questions} />
+                  )
+                })
+              }
+
             </div>
           </div>
         </div>
