@@ -6,7 +6,7 @@ import { objectIdToDate } from '../../utils/date'
 export default function UserQuestItem({ id, title, link, img_path }) {
   
   return (
-    <div className="item-myquiz">
+    <div className="item-my-quest">
       <Link
         to={link}
         className="row"
