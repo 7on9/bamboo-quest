@@ -111,15 +111,12 @@ class Create extends Component {
               <div className="col-12" style={{ height: '' }}>
                 <div className="row" style={{ height: '100%' }}>
                   <div
-                    className="col-12 col-sm-6 col-md-6"
-                    style={{ height: '100%' }}>
-                    <div
-                      className=""
-                      style={{ width: '80%', height: '', marginTop: '30px' }}>
-                      <div className="form-group">
+                    className="col-12 col-sm-12 col-md-12"
+                    style={{ height: '100%'}}>
+                       <div className="form-group justify-content-center align-items-center" >
                         <label>Tên thử thách</label>
                         <div
-                          className="center-div"
+                          className={styles.title}
                           style={{
                             width: '100%',
                             height: '50px',
@@ -131,14 +128,21 @@ class Create extends Component {
                             style={{ marginLeft: '10px', width: '100%' }}
                             name="title"
                             onChange={this.onType}
+                            style={{ width: '100%'}}
                           />
                         </div>
                       </div>
+                      </div>
+                      <div
+                    className="col-12 col-sm-12 col-md-12"
+                    style={{ height: '100%',flexDirection: 'row'}}>
+                      <div className='row '>
+                      <div className="col-3 row justify-content-center align-items-center">
                       <div className="form-group">
                         <label>{isPublic ? 'Công khai' : 'Bí mật'}</label>
                         <div
                           className="center-div"
-                          style={{ width: '100%', height: '50px' }}>
+                          >
                           <label className="switch">
                             <input
                               type="checkbox"
@@ -150,29 +154,9 @@ class Create extends Component {
                           </label>
                         </div>
                       </div>
-                    </div>
-                    <div className="form-group">
-                      <label>Mô tả thử thách</label>
-                      <div
-                        className="center-div"
-                        style={{
-                          width: '100%',
-                          height: '5em',
-                          border: '3px solid #e2e2e2',
-                        }}>
-                        <input
-                          type="text"
-                          maxLength="100"
-                          placeholder="giới hạn 100 ký tự"
-                          style={{ marginLeft: '10px', width: '100%' }}
-                          name="description"
-                          onChange={this.onType}
-                        />
                       </div>
-                    </div>
-                  </div>
-                  <div className="col-12 col-sm-6 col-md-6">
-                    <div className="upLoadImage">
+                      <div className="col-6">
+                      <div className="upLoadImage">
                       <input
                         type="file"
                         style={{ background: 'none', width: '100%' }}
@@ -198,6 +182,33 @@ class Create extends Component {
                         </div>
                       </div>
                     </div>
+                    </div>
+                    <div className="col-3"></div>
+                      </div>
+                     
+                      
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-12">
+                  <div className="form-group">
+                      <label>Mô tả thử thách</label>
+                      <div
+                        className="center-div"
+                        style={{
+                          width: '100%',
+                          height: '5em',
+                          border: '3px solid #e2e2e2',
+                        }}>
+                        <input
+                          type="text"
+                          maxLength="100"
+                          placeholder="giới hạn 100 ký tự"
+                          style={{ marginLeft: '10px', width: '100%' }}
+                          name="description"
+                          onChange={this.onType}
+                        />
+                      </div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -208,7 +219,8 @@ class Create extends Component {
                     onClick={this.onSubmit}
                     type="submit"
                     style={{ cursor: 'pointer', width: '100%' }}
-                    className="btn btn-success col-6"
+                    className="btn btn-success col-6 shadow p-3 mb-5 rounded"
+                    
                   />
                   {this.props.quest.running ? this.renderSpinner() : null}
                 </div>
@@ -221,7 +233,9 @@ class Create extends Component {
     )
   }
 }
-
+const styles = {
+ 
+}
 const mapStateToProps = state => ({
   ...state,
 })

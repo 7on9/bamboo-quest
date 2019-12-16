@@ -245,11 +245,10 @@ body {
 {
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: #ccc;
   overflow-y: scroll;
   font-size: 20px;
   font-family: 'Baloo', cursive;
-
 }
 
 .topcreateQuiz
@@ -496,3 +495,4 @@ p
     font-size: 1.6em
   }
  }
+/* create */

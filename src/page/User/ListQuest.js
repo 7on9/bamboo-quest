@@ -79,81 +79,17 @@ class ListQuest extends Component {
                 </div>
                 <div className="col-6">
                   <Button
-<<<<<<< Updated upstream
                     style={{ backgroundColor: '#267ee2' }}
-=======
-                    // style={{ backgroundColor: 'red' }}
->>>>>>> Stashed changes
                     onClick={() => this.setState({ toCreateQuest: true })}
                     title="Tạo thử thách mới"
                   />
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-<<<<<<< Updated upstream
               <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
               <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
               <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
               <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
-=======
-              <div className="item-my-quest">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img style={{ width: '100%', height: '100%' }} />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>5</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-my-quest">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img
-                      src="https://9mobi.vn/cf/images/2015/03/nkk/anh-dep-1.jpg"
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>10</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-my-quest">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img src="" style={{ width: '100%', height: '100%' }} />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>7</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
->>>>>>> Stashed changes
             </div>
             <div className="container-quiz">
               <div
@@ -164,7 +100,6 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-<<<<<<< Updated upstream
               {
                 quests.map((item)=>{
                   return(
@@ -173,50 +108,6 @@ class ListQuest extends Component {
                 })
               }
 
-=======
-              <div className="item-my-quest">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img
-                      src="https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png"
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>10</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-my-quest">
-                <div
-                  className="row"
-                  style={{ margin: 0, width: '100%', height: '100%' }}>
-                  <div
-                    className="col-4 col-md-2"
-                    style={{ padding: 0, height: '100%', background: 'red' }}>
-                    <img
-                      src="https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png"
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                    <div className="count-quest">
-                      <h5 style={{ color: '#fff' }}>10</h5>
-                    </div>
-                  </div>
-                  <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-                    <h4 style={{ color: '#5e5e5e' }}>Ai là triệu phú</h4>
-                    <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
-                  </div>
-                </div>
-              </div>
->>>>>>> Stashed changes
             </div>
           </div>
         </div>
