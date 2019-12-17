@@ -68,9 +68,10 @@ export const Question = props => {
                     background: '#fff',
                     marginTop: '2px',
                     padding: '10px',
-                    justifyContent:'center'
+                    alignItems:'center'
+                    , display:'flex'
                   }}>
-                   <div style={{width:'30px', height:'30px', background, float:'left',alignItems:'center', display:'flex', justifyContent:'center', marginRight:"30px"}}><h4 style={{color:"#fff"}}>{ans}</h4></div> {item.content}
+                  <div style={{width:'30px', height:'30px', background, float:'left',alignItems:'center', display:'flex', justifyContent:'center', marginRight:'20px'}}><h4 style={{color:'#fff'}}>{ans}</h4></div> {item.content}
                 </li>
               )
             })}
