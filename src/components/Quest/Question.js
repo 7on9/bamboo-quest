@@ -48,6 +48,12 @@ export const Question = props => {
           {props.question.duration}
         </div>
 
+        {/* <div className="col-md-1 hover-show-icon-edit center">
+          <i
+            className="fas fa-pen-square icon-question"
+            style={{ color: '#dea79d' }}
+          />
+        </div> */}
         {props.i === props.show ? (
           <ul style={{ width: '100%' }}>
             {props.question.ans.map((item,key) => {
@@ -70,12 +76,6 @@ export const Question = props => {
             })}
           </ul>
         ) : null}
-        <div className="col-md-1 hover-show-icon-edit center">
-          <i
-            className="fas fa-pen-square icon-question"
-            style={{ color: '#dea79d' }}
-          />
-        </div>
         {/* <div className='col-12 col-sm-2 col-md-2 center'>
           <a href="" className="action"><i class="fas fa-pencil-alt" style={{ color: '#46168f', marginRight: '20px' }}/></a>
           <a href="" className="action"><i class="far fa-trash-alt" style={{ color: '#e0a700' }}/></a>
