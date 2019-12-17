@@ -5,7 +5,14 @@ export const Question = props => {
   return (
     <div
       className="col-12 col-sm-12 col-md-12 itemList"
-      style={{ cursor: 'pointer' }}>
+      style={{ cursor: 'pointer' }}
+      onClick={() => {
+        if (props.i === props.show) {
+          props.showAns(-1)
+        } else {
+          props.showAns(props.i)
+        }
+      }}>
       <div className="row">
         <div
           className="col-1 col-sm-1 col-md-1 center"
@@ -40,6 +47,29 @@ export const Question = props => {
           />
           {props.question.duration}
         </div>
+
+        {props.i === props.show ? (
+          <ul style={{ width: '100%' }}>
+            {props.question.ans.map((item,key) => {
+              var background = key===0?'#e21b3c':key===1?'#1368ce':key===2?'#ffa602':key===3?'#26890c':'red'
+              var ans = key===0?'A':key===1?'B':key===2?'C':key===3?'D':'E'
+
+              return (
+                <li
+                  style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    background: '#fff',
+                    marginTop: '2px',
+                    padding: '10px',
+                    justifyContent:'center'
+                  }}>
+                   <div style={{width:'30px', height:'30px', background, float:'left',alignItems:'center', display:'flex', justifyContent:'center', marginRight:"30px"}}><h4 style={{color:"#fff"}}>{ans}</h4></div> {item.content}
+                </li>
+              )
+            })}
+          </ul>
+        ) : null}
         <div className="col-md-1 hover-show-icon-edit center">
           <i
             className="fas fa-pen-square icon-question"

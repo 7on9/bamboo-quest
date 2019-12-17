@@ -325,7 +325,7 @@ class ChangeQuestion extends Component {
                 type="radio"
                 name="correct-answer"
                 defaultValue={1}
-                id="radio-one"
+                id="radio-two"
                 className="form-radio form-radio-2"
                 checked={correct_id == 1}
                 onClick={e =>
@@ -337,14 +337,14 @@ class ChangeQuestion extends Component {
                   })
                 }
               />
-              <label htmlFor="radio-one" style={{ marginRight: '10px' }}>
+              <label htmlFor="radio-two" style={{ marginRight: '10px' }}>
                 B
               </label>
               <input
                 type="radio"
                 name="correct-answer"
                 defaultValue={2}
-                id="radio-one"
+                id="radio-three"
                 className="form-radio form-radio-3"
                 checked={correct_id == 2}
                 onClick={e =>
@@ -356,14 +356,14 @@ class ChangeQuestion extends Component {
                   })
                 }
               />
-              <label htmlFor="radio-one" style={{ marginRight: '10px' }}>
+              <label htmlFor="radio-three" style={{ marginRight: '10px' }}>
                 C
               </label>
               <input
                 type="radio"
                 name="correct-answer"
                 defaultValue={3}
-                id="radio-one"
+                id="radio-four"
                 className="form-radio form-radio-4"
                 checked={correct_id == 3}
                 onClick={e =>
@@ -375,7 +375,7 @@ class ChangeQuestion extends Component {
                   })
                 }
               />
-              <label htmlFor="radio-one" style={{ marginRight: '10px' }}>
+              <label htmlFor="radio-four" style={{ marginRight: '10px' }}>
                 D
               </label>
             </div>

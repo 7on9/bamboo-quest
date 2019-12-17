@@ -6,6 +6,16 @@ import { startGame, resetResult } from '../../store/socket/socket'
 import { Question } from '../../components'
 
 class Info extends Component {
+  state = {
+    isClick: true,
+    data: [],
+    show:-1
+  }
+
+  showAns=(id)=>{
+    this.setState({show:id})
+    console.log (this.state.show)
+  }
   componentWillMount() {
     let param = this.props.location.pathname
     console.log(param.slice(param.lastIndexOf('/') + 1, param.length))
@@ -13,14 +23,15 @@ class Info extends Component {
       param.slice(param.lastIndexOf('/') + 1, param.length)
     )
   }
-
+  toggle = () => {
+    this.setState ({isClick: !this.state.isClick})
+  }
   startGame = e => {
     e.preventDefault()
     this.props.startGame(this.props.quest.info._id)
   }
   render() {
     const { info } = this.props.quest
-    console.log(this.props)
 
     const { from } = this.props.location.state || {
       from: { pathname: '/host' },
@@ -84,9 +95,16 @@ class Info extends Component {
                 {/*------- name -----------*/}
                 {/*------ listQues -----------*/}
                 <div className="row">
-                  {questions.map(question => (
-                    <Question key={question._id} question={question} />
+                  {questions.map((question, i) => (
+                    
+                      <Question  key={question._id} question={question} showAns={(id)=>this.showAns(id)} i={i} show={this.state.show} isClicked={()=>this.toggle()} />
+                    
                   ))}
+
+                  {/* {questions.map(question =>
+                      <li key={question._id}>{question.ans}</li>
+                  )} */}
+                  {/* <p>{this.state.data}</p> */}
                   {/* <Question question={info ? info.questions[0] : null} />
                   <Question question={info ? info.questions[1] : null} />
                   <Question question={info ? info.questions[2] : null} />
