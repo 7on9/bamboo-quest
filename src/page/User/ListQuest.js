@@ -86,10 +86,10 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
-              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
-              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
-              <Cardlist id="123" title="Ai là triệu phú" question={[]}/>
+              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
+              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
+              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
+              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
             </div>
             <div className="container-quiz">
               <div
@@ -100,14 +100,16 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              {
-                quests.map((item)=>{
-                  return(
-                    <Cardlist id={item._id} title={item.title} question={item.questions} />
-                  )
-                })
-              }
-
+              {quests.map(item => {
+                return (
+                  <Cardlist
+                    key={item._id}
+                    id={item._id}
+                    title={item.title}
+                    question={item.questions}
+                  />
+                )
+              })}
             </div>
           </div>
         </div>

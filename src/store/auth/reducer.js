@@ -5,6 +5,7 @@ let initialState = {
   token: '',
   info: null,
   running: false,
+  authenticated: false,
   result: false,
 }
 
@@ -16,6 +17,7 @@ export const authReducer = (state = initialState, action) => {
       state = {
         ...state,
         ...action.payload,
+        authenticated: true,
         running: false,
       }
       break

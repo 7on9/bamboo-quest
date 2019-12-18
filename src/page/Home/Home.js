@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as authAction from '../../store/auth/action'
 import * as questActions from '../../store/quest/action'
 import { Collection, Menu, Item } from '../../components'
+import Authentication from '../Auth/Authentication'
 
 class Home extends Component {
   constructor(props) {
@@ -53,7 +54,6 @@ class Home extends Component {
     // const { info } = this.props.user;
     const { quests } = this.props.quest
     const { token } = this.props.user
-    console.log(token)
     // try {
     //   if (this.state.authenticated === false) {
     //     const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -66,6 +66,8 @@ class Home extends Component {
     //     // return <Redirect to={from} />
     //   }
     // }
+    console.log(this.props)
+    
     return (
       <div className="home">
         <header>
@@ -93,9 +95,7 @@ class Home extends Component {
                             </Link>
                           </li>
                           <li>
-                            <Link
-                              to="/"
-                              style={{ fontWeight: 'bold' }}>
+                            <Link to="/" style={{ fontWeight: 'bold' }}>
                               Chơi ngay
                             </Link>
                           </li>
@@ -112,46 +112,48 @@ class Home extends Component {
                   </div>
                   <div className="col-xl-3 col-lg-3 d-none d-lg-block">
                     <div className="log_chat_area d-flex align-items-center">
-                      {
-                        token?(
-                          <Link to="#test-form" className="login popup-with-form">
-                            <div className="dropdown">
-                              {/* <button  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {token ? (
+                        <Link to="#test-form" className="login popup-with-form">
+                          <div className="dropdown">
+                            {/* <button  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown button
                            </button> */}
-                              <img
-                                style={{
-                                  width: '2em',
-                                  height: '2em',
-                                  borderRadius: '1em',
-                                }}
-                                src="/images/avatar-default.png"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              />
-                              <div
-                                className="dropdown-menu dropdown-menu-right"
-                                aria-labelledby="dropdownMenuButton">
-                                <Link className="dropdown-item" to="/user/info">
-                              Thông tin tài khoản
-                                </Link>
-                                {/* <Link className="dropdown-item" to="#">
+                            <img
+                              style={{
+                                width: '2em',
+                                height: '2em',
+                                borderRadius: '1em',
+                              }}
+                              src="/images/avatar-default.png"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            />
+                            <div
+                              className="dropdown-menu dropdown-menu-right"
+                              aria-labelledby="dropdownMenuButton">
+                              <Link className="dropdown-item" to="/user/info">
+                                Thông tin tài khoản
+                              </Link>
+                              {/* <Link className="dropdown-item" to="#">
                               Thay đổi mật khẩu
                             </Link> */}
-                                <Link className="dropdown-item" to="/user/edit">
-                              Chỉnh sửa thông tin
-                                </Link>
-                                <div className="dropdown-divider"/>
-                                <Link className="dropdown-item" onClick={() => this.props.logout()}>
-                                  <i className="fas fa-sign-out-alt" style={{color:'#000'}}></i> Đăng xuất
-                                </Link>
-                              </div>
+                              <Link className="dropdown-item" to="/user/edit">
+                                Chỉnh sửa thông tin
+                              </Link>
+                              <div className="dropdown-divider" />
+                              <Link
+                                className="dropdown-item"
+                                onClick={() => this.props.logout()}>
+                                <i
+                                  className="fas fa-sign-out-alt"
+                                  style={{ color: '#000' }}/>
+                                Đăng xuất
+                              </Link>
                             </div>
-                          </Link>
-                        ):null
-                      }
-                      
+                          </div>
+                        </Link>
+                      ) : null}
                     </div>
                   </div>
                   <div className="col-12">

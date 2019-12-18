@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Switch, Redirect } from 'react-router-dom';
-import * as authAction from '../../store/auth/action';
-import css from './style.css';
-import { ERROR } from '../../store/auth/types';
+import { Link, Switch, Redirect } from 'react-router-dom'
+import * as authAction from '../../store/auth/action'
+import './style.css'
+import { ERROR } from '../../store/auth/types'
 
 class Auth extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      login: true
+      login: true,
     }
   }
 
@@ -17,49 +17,55 @@ class Auth extends Component {
     this.setState({
       submit: false,
       error: '',
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
-    
   }
 
   onSubmit = () => {
-    let { email, password, login, reTypePassword, name } = this.state;
-    console.log(email, password, login, reTypePassword, name);
-    
-    if ((email && password && login) || (email && password && reTypePassword && name && !login)) {
-      this.props.changeStatusRunning(true);
+    let { email, password, login, reTypePassword, name } = this.state
+    console.log(email, password, login, reTypePassword, name)
+
+    if (
+      (email && password && login) ||
+      (email && password && reTypePassword && name && !login)
+    ) {
+      this.props.changeStatusRunning(true)
       if (this.state.login) {
-        this.props.login(this.state.email, this.state.password);
+        this.props.login(this.state.email, this.state.password)
       } else {
-        this.props.register(this.state.email, this.state.password, this.state.name);
+        this.props.register(
+          this.state.email,
+          this.state.password,
+          this.state.name
+        )
       }
-      setTimeout(() =>{
+      setTimeout(() => {
         this.setState({
-          submited: true
+          submited: true,
         })
-      },1000);
+      }, 1000)
     } else {
       this.setState({
-        error: 'Hãy điền đủ các trường'
+        error: 'Hãy điền đủ các trường',
       })
     }
   }
 
   renderSpinner = () => {
-    return this.props.user.running ?
+    return this.props.user.running ? (
       <div className="linear-activity">
-        <div className="indeterminate"/>
+        <div className="indeterminate" />
       </div>
-      : null
+    ) : null
   }
 
   renderLogin = () => {
     return (
       <form className="login100-form validate-form">
-        <span className="login100-form-title">
-          Đăng nhập
-        </span>
-        <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+        <span className="login100-form-title">Đăng nhập</span>
+        <div
+          className="wrap-input100 validate-input"
+          data-validate="Valid email is required: ex@abc.xyz">
           <input
             className="input100"
             type="text"
@@ -72,7 +78,9 @@ class Auth extends Component {
             <i className="fa fa-envelope" aria-hidden="true" />
           </span>
         </div>
-        <div className="wrap-input100 validate-input" data-validate="Password is required">
+        <div
+          className="wrap-input100 validate-input"
+          data-validate="Password is required">
           <input
             className="input100"
             type="password"
@@ -88,32 +96,32 @@ class Auth extends Component {
         <div className="container-login100-form-btn">
           <button
             className="login100-form-btn"
-            onClick={(e) => {
-              e.preventDefault();
-              this.onSubmit();
+            onClick={e => {
+              e.preventDefault()
+              this.onSubmit()
             }}>
             Đăng nhập
           </button>
         </div>
-        {
-          this.state.error ?
-            <div className='error'>
-              {this.state.error}
-            </div> :
-            null
-        }
-        {
-          this.renderSpinner()
-        }
+        {this.state.error ? (
+          <div className="error">{this.state.error}</div>
+        ) : null}
+        {this.renderSpinner()}
         <div className="text-center p-t-12">
           <a className="txt2" href="#">
             Quên mật khẩu?
           </a>
         </div>
         <div className="text-center p-t-136">
-          <Link to='#' style={{ cursor: 'pointer' }} className="txt2 change_state" onClick={() => this.setState({ login: !this.state.login, error: '' })}>
+          <Link
+            to="#"
+            style={{ cursor: 'pointer' }}
+            className="txt2 change_state"
+            onClick={() =>
+              this.setState({ login: !this.state.login, error: '' })
+            }>
             Đăng ký
-          <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true" />
+            <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true" />
           </Link>
         </div>
       </form>
@@ -122,11 +130,11 @@ class Auth extends Component {
 
   renderRegister = () => {
     return (
-      <form className="login100-form validate-form" >
-        <span className="login100-form-title">
-          ĐĂNG KÝ
-      </span>
-        <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+      <form className="login100-form validate-form">
+        <span className="login100-form-title">ĐĂNG KÝ</span>
+        <div
+          className="wrap-input100 validate-input"
+          data-validate="Valid email is required: ex@abc.xyz">
           <input
             className="input100"
             type="text"
@@ -139,7 +147,9 @@ class Auth extends Component {
             <i className="fa fa-envelope" aria-hidden="true" />
           </span>
         </div>
-        <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+        <div
+          className="wrap-input100 validate-input"
+          data-validate="Valid email is required: ex@abc.xyz">
           <input
             className="input100"
             type="text"
@@ -149,28 +159,34 @@ class Auth extends Component {
           />
           <span className="focus-input100" />
           <span className="symbol-input100">
-            <i className="fa fa-user" aria-hidden="true"/>
+            <i className="fa fa-user" aria-hidden="true" />
           </span>
         </div>
-        <div className="wrap-input100 validate-input" data-validate="Password is required">
+        <div
+          className="wrap-input100 validate-input"
+          data-validate="Password is required">
           <input
             className="input100"
             type="password"
             name="password"
             placeholder="Mật khẩu"
-            onChange={this.onType} />
+            onChange={this.onType}
+          />
           <span className="focus-input100" />
           <span className="symbol-input100">
             <i className="fa fa-lock" aria-hidden="true" />
           </span>
         </div>
-        <div className="wrap-input100 validate-input" data-validate="Password is required">
+        <div
+          className="wrap-input100 validate-input"
+          data-validate="Password is required">
           <input
             className="input100"
             type="password"
             name="reTypePassword"
             placeholder="Nhập lại mật khẩu"
-            onChange={this.onType} />
+            onChange={this.onType}
+          />
           <span className="focus-input100" />
           <span className="symbol-input100">
             <i className="fa fa-lock" aria-hidden="true" />
@@ -179,78 +195,85 @@ class Auth extends Component {
 
         <div className="container-login100-form-btn">
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              this.onSubmit();
+            onClick={e => {
+              e.preventDefault()
+              this.onSubmit()
             }}
-            className="login100-form-btn">Đăng ký </button>
+            className="login100-form-btn">
+            Đăng ký{' '}
+          </button>
         </div>
-        {
-          this.state.error ?
-            <div className='error'>
-              {this.state.error}
-            </div> :
-            null
-        }
-        {
-          this.renderSpinner()
-        }
+        {this.state.error ? (
+          <div className="error">{this.state.error}</div>
+        ) : null}
+        {this.renderSpinner()}
         <div className="text-center p-t-136">
-          <Link to='#' style={{ cursor: 'pointer' }} className="txt2 change_state" onClick={() => this.setState({ login: !this.state.login, error: '' })}>
+          <Link
+            to="#"
+            style={{ cursor: 'pointer' }}
+            className="txt2 change_state"
+            onClick={() =>
+              this.setState({ login: !this.state.login, error: '' })
+            }>
             <i className="fa fa-long-arrow-left m-r-5" aria-hidden="true" />
             Đăng nhập
           </Link>
         </div>
-      </form>)
+      </form>
+    )
   }
 
   UNSAFE_componentWillMount() {
     if (localStorage.getItem('token')) {
       this.props.verify()
       // this.props.getInfo()
-    }
-    else {
-      let { from } = this.props.location.state || { from: { pathname: "/user/quest" } }
+    } else {
+      let { from } = this.props.location.state || {
+        from: { pathname: '/user/quest' },
+      }
       return <Redirect to={from} />
     }
   }
   render() {
-    const { login, submited } = this.state;
-    const { result, running, token } = this.props.user;
-    if (token)
-    {
-      let { from } = this.props.location.state || { from: { pathname: "/user/quest" } };
+    const { login, submited } = this.state
+    const { result, running, token } = this.props.user
+    if (token) {
+      let { from } = this.props.location.state || {
+        from: { pathname: '/user/quest' },
+      }
       return <Redirect to={from} />
     }
 
     if (submited && !running) {
-      console.log(running, result, login);
-      
+      console.log(running, result, login)
+
       if (result && !login) {
         alert('Tạo tài khoản thành công! Hãy đăng nhập vào hệ thống!')
         this.setState({
           login: true,
-          submited: false
-        });
-        this.props.resetResult();
+          submited: false,
+        })
+        this.props.resetResult()
       } else {
         if (!result && !login) {
           this.setState({
-            error: "Email đã tồn tại!",
-            submited: false
-          });
-          this.props.resetResult();
+            error: 'Email đã tồn tại!',
+            submited: false,
+          })
+          this.props.resetResult()
         } else {
           if (!running && result && login) {
-            this.props.resetResult();
-            let { from } = this.props.location.state || { from: { pathname: "/home" } };
+            this.props.resetResult()
+            let { from } = this.props.location.state || {
+              from: { pathname: '/home' },
+            }
             return <Redirect to={from} />
-          }else{
+          } else {
             this.setState({
               submited: false,
-              error: "Sai tên đăng nhập hoặc mật khẩu"
+              error: 'Sai tên đăng nhập hoặc mật khẩu',
             })
-            this.props.resetResult();
+            this.props.resetResult()
           }
         }
       }
@@ -262,11 +285,7 @@ class Auth extends Component {
             <div className="login100-pic js-tilt" data-tilt>
               <img src="/images/auth.png" alt="auth" />
             </div>
-            {
-              login ?
-                this.renderLogin() :
-                this.renderRegister()
-            }
+            {login ? this.renderLogin() : this.renderRegister()}
           </div>
         </div>
       </div>
@@ -274,9 +293,8 @@ class Auth extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  ...state
+const mapStateToProps = state => ({
+  ...state,
 })
 
 const mapDispatchToProps = {
@@ -284,7 +302,7 @@ const mapDispatchToProps = {
   resetResult: authAction.resetResult,
   register: authAction.register,
   login: authAction.login,
-  verify:authAction.verify
+  verify: authAction.verify,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth)
