@@ -32,21 +32,23 @@ export const createQuest = quest => {
   return dispatch => {
     QuestService.createQuest(quest)
       .then(res => res.data)
-      .then(res => dispatch({
-        type: QUEST_TYPES.CREATE,
-        payload: {
-          ...res,
-          running: false,
-        },
-      })
+      .then(res =>
+        dispatch({
+          type: QUEST_TYPES.CREATE,
+          payload: {
+            ...res,
+            running: false,
+          },
+        })
       )
-      .catch(() => dispatch({
-        type: QUEST_TYPES.CREATE,
-        payload: {
-          result: false,
-          running: false,
-        },
-      })
+      .catch(() =>
+        dispatch({
+          type: QUEST_TYPES.CREATE,
+          payload: {
+            result: false,
+            running: false,
+          },
+        })
       )
   }
 }
@@ -55,21 +57,23 @@ export const addQuestion = newQuestion => {
   return dispatch => {
     QuestService.addQuestion(newQuestion)
       .then(res => res.data)
-      .then(res => dispatch({
-        type: QUEST_TYPES.ADD,
-        payload: {
-          ...res,
-          running: false,
-        },
-      })
+      .then(res =>
+        dispatch({
+          type: QUEST_TYPES.ADD,
+          payload: {
+            ...res,
+            running: false,
+          },
+        })
       )
-      .catch(() => dispatch({
-        type: QUEST_TYPES.ADD,
-        payload: {
-          result: false,
-          running: false,
-        },
-      })
+      .catch(() =>
+        dispatch({
+          type: QUEST_TYPES.ADD,
+          payload: {
+            result: false,
+            running: false,
+          },
+        })
       )
   }
 }
@@ -78,20 +82,22 @@ export const deleteQuest = idQuest => {
   return dispatch => {
     QuestService.deleteQuest(idQuest)
       .then(res => res.data)
-      .then(res => dispatch({
-        type: QUEST_TYPES.DELETE,
-        payload: {
-          result: true,
-          deletedQuest: res.deletedQuest,
-        },
-      })
+      .then(res =>
+        dispatch({
+          type: QUEST_TYPES.DELETE,
+          payload: {
+            result: true,
+            deletedQuest: res.deletedQuest,
+          },
+        })
       )
-      .catch(() => dispatch({
-        type: QUEST_TYPES.DELETE,
-        payload: {
-          result: false,
-        },
-      })
+      .catch(() =>
+        dispatch({
+          type: QUEST_TYPES.DELETE,
+          payload: {
+            result: false,
+          },
+        })
       )
   }
 }
@@ -99,20 +105,47 @@ export const getInfoQuest = idQuest => {
   return dispatch => {
     QuestService.getQuest(idQuest)
       .then(res => res.data)
-      .then(res => dispatch({
-        type: QUEST_TYPES.GET,
-        payload: {
-          ...res,
-        },
-      })
+      .then(res =>
+        dispatch({
+          type: QUEST_TYPES.GET,
+          payload: {
+            ...res,
+          },
+        })
       )
-      .catch(() => dispatch({
-        type: QUEST_TYPES.GET,
-        payload: {
-          info: null,
-        },
-      })
+      .catch(() =>
+        dispatch({
+          type: QUEST_TYPES.GET,
+          payload: {
+            info: null,
+          },
+        })
       )
+  }
+}
+
+export const getMyQuests = () => {
+  return dispatch => {
+    QuestService.getMyQuests()
+      .then(res => res.data)
+      .then(res =>
+        dispatch({
+          type: QUEST_TYPES.MY_QUESTS,
+          payload: {
+            ...res,
+          },
+        })
+      )
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          type: QUEST_TYPES.MY_QUESTS,
+          payload: {
+            result: false,
+            myQuests: [],
+          },
+        })
+      })
   }
 }
 
@@ -120,12 +153,13 @@ export const getsAllQuests = limit => {
   return dispatch => {
     QuestService.getAllQuests(limit)
       .then(res => res.data)
-      .then(res => dispatch({
-        type: QUEST_TYPES.LIST,
-        payload: {
-          ...res,
-        },
-      })
+      .then(res =>
+        dispatch({
+          type: QUEST_TYPES.LIST,
+          payload: {
+            ...res,
+          },
+        })
       )
       .catch(err => {
         console.log(err)

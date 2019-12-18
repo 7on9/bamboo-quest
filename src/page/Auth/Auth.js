@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, Switch, Redirect } from 'react-router-dom'
 import * as authAction from '../../store/auth/action'
 import './style.css'
 import { ERROR } from '../../store/auth/types'
+import { APP_CONSTANTS } from '../../common/constants'
 
 class Auth extends Component {
   constructor(props) {
@@ -224,7 +226,7 @@ class Auth extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem(APP_CONSTANTS.WEB_TOKEN)) {
       this.props.verify()
       // this.props.getInfo()
     } else {

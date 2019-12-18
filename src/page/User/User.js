@@ -7,27 +7,16 @@ import Edit from './Edit'
 import Info from './Info'
 import { Menu } from '../../components'
 import ListQuest from './ListQuest'
+import { Authentication } from '../Auth/Authentication'
+import { APP_CONSTANTS } from '../../common/constants'
 
 class User extends Component {
-  componentWillMount() {
-    if (localStorage.getItem('token')) {
-      this.props.verify()
-      // this.props.getInfo()
-    }
-    else {
-      let { from } = this.props.location.state || { from: { pathname: "/home" } }
-      return <Redirect to={from} />
-    }
-  }
   render() {
-    if (!this.props.user.token) {
-      let { from } = this.props.location.state || { from: { pathname: "/home" } }
-      return <Redirect to={from} />
-    }
     console.log (this.props.user)
     return (
       <div className="detail-user">
-        <Menu email={localStorage.getItem('email')} />
+        {/* <Authentication /> */}
+        <Menu email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)} />
         <div className="container" style={{ marginTop: 50 }}>
           <Switch>
             <Route path="/user/info" component={Info} />

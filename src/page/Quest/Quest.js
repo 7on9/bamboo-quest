@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import * as authAction from '../../store/auth/action'
 import Info from './Info'
 import Create from './Create'
 import ChangeQuestion from './ChangeQuestion'
 import { Menu } from '../../components'
+import { APP_CONSTANTS } from '../../common/constants'
 
 class Quest extends Component {
-  componentWillMount() {
-    if (localStorage.getItem('token')) {
+  UNSAFE_componentWillMount() {
+    if (localStorage.getItem(APP_CONSTANTS.WEB_TOKEN)) {
       if (!this.props.user.email) {
         this.props.verify()
         if (this.props.user.token === null) {

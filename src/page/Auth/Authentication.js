@@ -4,9 +4,15 @@ import * as authAction from '../../store/auth/action'
 import { Redirect } from 'react-router-dom'
 
 export class Authentication extends Component {
+
+  verifyAccount = async () => {
+    await this.props.verify()
+  }
   render() {
-    return !this.props.authenticated ? (
-      <Redirect to={{ pathname: '/auth' }} />) : this.children
+    if(!this.props.authenticated) {
+      this.verifyAccount()
+    }
+    return <Redirect to={{ pathname: '/auth' }} />
   }
 }
 

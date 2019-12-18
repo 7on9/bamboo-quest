@@ -2,6 +2,7 @@ import io from 'socket.io-client'
 import GAME_TYPES from './types'
 import { BASE_API_URL } from '../../common/connection'
 import { QuestService } from '../../services/quest'
+import { APP_CONSTANTS } from '../../common/constants'
 
 const socket = io(BASE_API_URL)
 
@@ -121,7 +122,7 @@ const configureSocket = dispatch => {
 }
 
 export const joinGame = (code, username) => {
-  socket.emit(GAME.JOIN, code, username, localStorage.getItem('token'))
+  socket.emit(GAME.JOIN, code, username, localStorage.getItem(APP_CONSTANTS.WEB_TOKEN))
 }
 
 export const endGame = idGame => {

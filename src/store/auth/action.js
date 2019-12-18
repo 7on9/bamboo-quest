@@ -1,5 +1,6 @@
 import { AuthenticationService } from '../../services/authentication'
 import { USER_TYPE, EVENT } from './types'
+import { APP_CONSTANTS } from '../../common/constants'
 
 const authenAction = (type, token, email, result) => {
   return {
@@ -25,7 +26,7 @@ export const login = (email, password) => {
             },
           })
         } else {
-          localStorage.setItem('token', res.token)
+          localStorage.setItem(APP_CONSTANTS.WEB_TOKEN, res.token)
           return dispatch({
             type: USER_TYPE.AUTH.LOGIN,
             payload: {
@@ -107,8 +108,8 @@ export const register = (email, password, name) => {
 
 export const logout = () => {
   return dispatch => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('email')
+    localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN)
+    localStorage.removeItem(APP_CONSTANTS.WEB_EMAIL)
     AuthenticationService.logout().catch(() => {
       return dispatch(authenAction(USER_TYPE.AUTH.LOGOUT, null, null, false))
     })
@@ -121,25 +122,20 @@ export const verify = () => {
       .then(res => res.data)
       .then(res => {
         if (!res.result) {
-          localStorage.removeItem('token')
-          return dispatch({
-            type: USER_TYPE.AUTH.VERIFY,
-            payload: {
-              ...res,
-            },
-          })
+          localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN) 
         } else {
-          localStorage.setItem('email', res.info.email)
-          return dispatch({
-            type: USER_TYPE.AUTH.VERIFY,
-            payload: {
-              ...res,
-            },
-          })
+          localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info.email)
+          localStorage.setItem(APP_CONSTANTS.WEB_EMAIL, res.info.email)
         }
+        return dispatch({
+          type: USER_TYPE.AUTH.VERIFY,
+          payload: {
+            ...res,
+          },
+        })
       })
       .catch(() => {
-        localStorage.removeItem('token')
+        localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN)
         return dispatch({
           type: USER_TYPE.AUTH.VERIFY,
           payload: {

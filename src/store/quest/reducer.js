@@ -53,6 +53,7 @@ export const questReducer = (state = initialState, action) => {
       break
     case QUEST_TYPES.ADD:
     case QUEST_TYPES.GET:
+    case QUEST_TYPES.MY_QUESTS:
       state = {
         ...state,
         ...action.payload,

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import './style.css'
 import { connect } from 'react-redux'
@@ -202,7 +203,7 @@ class ChangeQuestion extends Component {
               className="answers"
               style={{ padding: '0 2em', marginBottom: '20px' }}>
               <div className="row">
-                <div className=" col-12 col-sm-6 col-md-6">
+                <div className="col-12 col-sm-6 col-md-6">
                   <div
                     className="col-12  answer-edit answer-edit-1 center-div"
                     style={{ width: '100%' }}>

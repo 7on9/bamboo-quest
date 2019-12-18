@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { BASE_API_URL } from '../common/connection'
+import { APP_CONSTANTS } from '../common/constants'
 
 /**
  * TODO: Call api
@@ -11,7 +12,7 @@ export const dataProvider = async (sourceUrl, option) => {
     option = option || {}
     const headers = {
       'content-type': 'application/json; charset=utf-8',
-      token: localStorage.getItem('token'),
+      token: localStorage.getItem(APP_CONSTANTS.WEB_TOKEN),
     }
     const method = option.method || 'GET'
     const options = { headers }

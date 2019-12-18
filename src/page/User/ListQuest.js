@@ -13,26 +13,31 @@ class ListQuest extends Component {
       toCreateQuest: false,
     }
   }
+  componentDidMount() {
+    this.props.getMyQuests()
+  }
 
   render() {
-    try {
-      if (this.state.authenticated === false) {
-        const { from } = this.props.location.state || {
-          from: { pathname: '/' },
-        }
-        return <Redirect to={from} />
-      }
-    } catch (error) {
-      if (this.state === null) {
-        window.location.reload()
-        const { from } = this.props.location.state || {
-          from: { pathname: '/home' },
-        }
-        return <Redirect to={from} />
-      }
-    }
-    const { quests } = this.props.quest
-    console.log(quests)
+    // try {
+    //   if (this.state.authenticated === false) {
+    //     const { from } = this.props.location.state || {
+    //       from: { pathname: '/' },
+    //     }
+    //     return <Redirect to={from} />
+    //   }
+    // } catch (error) {
+    //   if (this.state === null) {
+    //     window.location.reload()
+    //     const { from } = this.props.location.state || {
+    //       from: { pathname: '/home' },
+    //     }
+    //     return <Redirect to={from} />
+    //   }
+    // }
+    const { user, quest } = this.props
+    const { quests, myQuests } = quest
+
+    console.log(quest)
     return this.state.toCreateQuest ? (
       <Redirect to={'/quest/create'} />
     ) : (
@@ -46,8 +51,12 @@ class ListQuest extends Component {
               marginBottom: '15px',
             }}>
             <div className="user-info" style={{ padding: '10px' }}>
-              <h4 style={{ color: '#285938' }}>Quan</h4>
-              <h4 style={{ color: '#316d44' }}>Tổng số thử thách: 2</h4>
+              <h4 style={{ color: '#285938' }}>
+                {user && user.info ? user.info.name : ''}
+              </h4>
+              <h4 style={{ color: '#316d44' }}>
+                Tổng số thử thách: {myQuests ? myQuests.length : 0}
+              </h4>
               <div className="btn-info-user">
                 <Link to="/" style={{ fontWeight: 'bold', color: '#bcc6c0' }}>
                   Thông tin
@@ -61,7 +70,7 @@ class ListQuest extends Component {
             </div>
             <Link to="/home">
               <img
-                src={window.location.origin + '/images/bannerDiscover.jpg'}
+                src="/images/bannerDiscover.jpg"
                 className="discover"
                 style={{ borderRadius: '4px' }}
               />
@@ -86,10 +95,19 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
-              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
-              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
-              <Cardlist id="123" title="Ai là triệu phú" question={[]} />
+              {myQuests
+                ? myQuests.map(item => {
+                  return (
+                    <Cardlist
+                      key={item._id}
+                      id={item._id}
+                      title={item.title}
+                      question={item.questions}
+                      img_path={item.img || item.img_path}
+                    />
+                  )
+                })
+                : null}
             </div>
             <div className="container-quiz">
               <div
@@ -100,16 +118,17 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              {quests.map(item => {
+              {quest ? quests.map(item => {
                 return (
                   <Cardlist
                     key={item._id}
                     id={item._id}
                     title={item.title}
                     question={item.questions}
+                    img_path={item.img || item.img_path}
                   />
                 )
-              })}
+              }) : null}
             </div>
           </div>
         </div>
@@ -119,10 +138,12 @@ class ListQuest extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state,
+  user: state.user,
+  quest: state.quest,
 })
 
 const mapDispatchToProps = {
+  getMyQuests: questActions.getMyQuests,
   verify: authAction.verify,
   getsAllQuests: questActions.getsAllQuests,
   logout: authAction.logout,

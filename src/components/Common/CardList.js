@@ -19,7 +19,7 @@ export const Cardlist = ({ id, title,question, img_path }) => {
             className="col-4 col-md-2"
             style={{ padding: 0, height: '100%', background: 'red' }}>
             <img
-              src="https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png"
+              src={ img_path ? img_path : 'https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png' }
               style={{ width: '100%', height: '100%' }}
             />
             <div className="count-quest">

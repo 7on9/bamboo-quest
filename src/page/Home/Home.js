@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import './style.css'
 import { Redirect, Link } from 'react-router-dom'
@@ -6,6 +7,7 @@ import * as authAction from '../../store/auth/action'
 import * as questActions from '../../store/quest/action'
 import { Collection, Menu, Item } from '../../components'
 import Authentication from '../Auth/Authentication'
+import { APP_CONSTANTS } from '../../common/constants'
 
 class Home extends Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class Home extends Component {
   }
   UNSAFE_componentWillMount() {
     this.props.getsAllQuests(25)
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem(APP_CONSTANTS.WEB_TOKEN)) {
       if (!this.props.user.email) {
         this.props.verify()
         if (this.props.user.token === null) {
