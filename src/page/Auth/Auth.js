@@ -201,7 +201,7 @@ class Auth extends Component {
               this.onSubmit()
             }}
             className="login100-form-btn">
-            Đăng ký{' '}
+            Đăng ký
           </button>
         </div>
         {this.state.error ? (

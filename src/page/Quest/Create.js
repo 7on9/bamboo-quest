@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -18,7 +19,7 @@ class Create extends Component {
     }
   }
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault()
     this.props.changeStatusRunning(true)
     this.props.createQuest(this.state.newQuest)
@@ -63,13 +64,11 @@ class Create extends Component {
     })
   }
 
-  renderSpinner = () => {
-    return this.props.quest.running ? (
-      <div className="linear-activity">
-        <div className="indeterminate" />
-      </div>
-    ) : null
-  }
+  renderSpinner = () => (
+    <div className="linear-activity">
+      <div className="indeterminate" />
+    </div>
+  )
 
   UNSAFE_componentWillMount() {
     this.props.resetResult()
@@ -78,31 +77,18 @@ class Create extends Component {
     let { img_path } = this.state
     let { isPublic } = this.state.newQuest
 
+    console.log(this.props.quest)
+    
     // const { from } = this.props.location.state || {
     //   from: { pathname: '/home' },
     // }
-    // if (this.props.quest.result) {
-    //   this.props.resetResult()
-    //   return <Redirect to={from} />
-    // }
+    if (this.props.quest.result) {
+      this.props.resetResult()
+      return <Redirect to={'/user/quest/'} />
+    }
 
     return (
       <div className="container_createQuiz">
-        {/* <div className='topCreateQuiz'>
-          <div className='col-12' style={{ height: '100%' }}>
-            <div className='row center-div' style={{ width: '100%', height: '100%' }}>
-              <div className='col-2 center-div' style={{ width: '100%', height: '100%' }}>
-                <Link to='/home'> <h3 style={{ color: '#fff' }}><i className="fas fa-times" /></h3></Link>
-              </div>
-              <div className='col-10 col-md-8 center-div' style={{ width: '100%', height: '100%', justifyContent: 'center' }}>
-                <h1 style={{ color: '#fff', fontSize: 'x-large' }}>Tạo thử thách</h1>
-              </div>
-              <div className='col-3 center-div' style={{ width: '100%', height: '100%', justifyContent: 'center' }}>
-                <div ></div>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div
           className="contentCreateQuiz text-left"
           style={{ overflowY: 'scroll' }}>
@@ -112,84 +98,83 @@ class Create extends Component {
                 <div className="row" style={{ height: '100%' }}>
                   <div
                     className="col-12 col-sm-12 col-md-12"
-                    style={{ height: '100%'}}>
-                       <div className="form-group justify-content-center align-items-center" >
-                        <label>Tên thử thách</label>
-                        <div
-                          className={styles.title}
-                          style={{
-                            width: '100%',
-                            height: '50px',
-                            border: '3px solid #e2e2e2',
-                          }}>
-                          <input
-                            maxLength="50"
-                            placeholder="giới hạn 50 ký tự"
-                            style={{ marginLeft: '10px', width: '100%' }}
-                            name="title"
-                            onChange={this.onType}
-                            style={{ width: '100%'}}
-                          />
-                        </div>
-                      </div>
-                      </div>
+                    style={{ height: '100%' }}>
+                    <div className="form-group justify-content-center align-items-center">
+                      <label>Tên thử thách</label>
                       <div
-                    className="col-12 col-sm-12 col-md-12"
-                    style={{ height: '100%',flexDirection: 'row'}}>
-                      <div className='row '>
-                      <div className="col-3 row justify-content-center align-items-center">
-                      <div className="form-group">
-                        <label>{isPublic ? 'Công khai' : 'Bí mật'}</label>
-                        <div
-                          className="center-div"
-                          >
-                          <label className="switch">
-                            <input
-                              type="checkbox"
-                              value={this.state.statusPublic}
-                              onClick={this.togglePublic}
-                              name="isPublic"
-                            />
-                            <span className="slider round" />
-                          </label>
-                        </div>
+                        className={styles.title}
+                        style={{
+                          width: '100%',
+                          height: '50px',
+                          border: '3px solid #e2e2e2',
+                        }}>
+                        <input
+                          maxLength="50"
+                          placeholder="giới hạn 50 ký tự"
+                          style={{ marginLeft: '10px', width: '100%' }}
+                          name="title"
+                          onChange={this.onType}
+                        />
                       </div>
+                    </div>
+                  </div>
+                  <div
+                    className="col-12 col-sm-12 col-md-12"
+                    style={{ height: '100%', flexDirection: 'row' }}>
+                    <div className="row ">
+                      <div className="col-3 row justify-content-center align-items-center">
+                        <div className="form-group">
+                          <label>{isPublic ? 'Công khai' : 'Bí mật'}</label>
+                          <div className="center-div">
+                            <label className="switch">
+                              <input
+                                type="checkbox"
+                                value={this.state.statusPublic}
+                                onClick={this.togglePublic}
+                                name="isPublic"
+                              />
+                              <span className="slider round" />
+                            </label>
+                          </div>
+                        </div>
                       </div>
                       <div className="col-6">
-                      <div className="upLoadImage">
-                      <input
-                        type="file"
-                        style={{ background: 'none', width: '100%' }}
-                        onChange={this.onUploadImage}
-                      />
-                      <br />
-                      <div style={{ marginTop: '10px' }}>
-                        <div className="row">
-                          <div className="col-1"></div>
-                          <div
-                            className="col-10 center-div"
-                            style={{ height: '250px', background: '#fff' }}>
-                            <img
-                              style={{
-                                objectFit: 'contain',
-                                width: '100%',
-                                height: '100%',
-                              }}
-                              src={img_path ? img_path : '/images/img_quest_default.png'}
-                            />
+                        <div className="upLoadImage">
+                          <input
+                            type="file"
+                            style={{ background: 'none', width: '100%' }}
+                            onChange={this.onUploadImage}
+                          />
+                          <br />
+                          <div style={{ marginTop: '10px' }}>
+                            <div className="row">
+                              <div className="col-1"></div>
+                              <div
+                                className="col-10 center-div"
+                                style={{ height: '250px', background: '#fff' }}>
+                                <img
+                                  style={{
+                                    objectFit: 'contain',
+                                    width: '100%',
+                                    height: '100%',
+                                  }}
+                                  src={
+                                    img_path
+                                      ? img_path
+                                      : '/images/img_quest_default.png'
+                                  }
+                                />
+                              </div>
+                              <div className="col-1"></div>
+                            </div>
                           </div>
-                          <div className="col-1"></div>
                         </div>
                       </div>
+                      <div className="col-3"></div>
                     </div>
-                    </div>
-                    <div className="col-3"></div>
-                      </div>
-                     
-                      
                   </div>
                   <div className="col-12 col-sm-12 col-md-12">
-                  <div className="form-group">
+                    <div className="form-group">
                       <label>Mô tả thử thách</label>
                       <div
                         className="center-div"
@@ -208,21 +193,21 @@ class Create extends Component {
                         />
                       </div>
                     </div>
-                    
                   </div>
                 </div>
               </div>
               <div className="col-12" style={{ width: '100%', height: '' }}>
-
                 <div className="col-12 text-center">
-                  <input
-                    onClick={this.onSubmit}
-                    type="submit"
-                    style={{ cursor: 'pointer', width: '100%' }}
-                    className="btn btn-success col-6 shadow p-3 mb-5 rounded"
-                    
-                  />
-                  {this.props.quest.running ? this.renderSpinner() : null}
+                  {this.props.quest.running ? (
+                    this.renderSpinner()
+                  ) : (
+                    <input
+                      onClick={this.onSubmit}
+                      type="submit"
+                      style={{ cursor: 'pointer', width: '100%' }}
+                      className="btn btn-success col-6 shadow p-3 mb-5 rounded"
+                    />
+                  )}
                 </div>
               </div>
             </form>
@@ -233,9 +218,7 @@ class Create extends Component {
     )
   }
 }
-const styles = {
- 
-}
+const styles = {}
 const mapStateToProps = state => ({
   ...state,
 })

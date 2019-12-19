@@ -68,8 +68,6 @@ class Home extends Component {
     //     // return <Redirect to={from} />
     //   }
     // }
-    console.log(this.props)
-    
     return (
       <div className="home">
         <header>
@@ -149,7 +147,8 @@ class Home extends Component {
                                 onClick={() => this.props.logout()}>
                                 <i
                                   className="fas fa-sign-out-alt"
-                                  style={{ color: '#000' }}/>
+                                  style={{ color: '#000' }}
+                                />
                                 Đăng xuất
                               </Link>
                             </div>
@@ -306,6 +305,7 @@ class Home extends Component {
                         key={quest._id}>
                         <Item
                           id={quest._id}
+                          questionLength={quest.questions.length}
                           title={quest.title}
                           description={quest.description}
                           link={`/quest/info/${quest._id}`}

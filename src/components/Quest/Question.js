@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import './style.css'
 
@@ -56,12 +57,31 @@ export const Question = props => {
         </div> */}
         {props.i === props.show ? (
           <ul style={{ width: '100%' }}>
-            {props.question.ans.map((item,key) => {
-              var background = key===0?'#e21b3c':key===1?'#1368ce':key===2?'#ffa602':key===3?'#26890c':'red'
-              var ans = key===0?'A':key===1?'B':key===2?'C':key===3?'D':'E'
+            {props.question.ans.map((item, key) => {
+              var background =
+                key === 0
+                  ? '#e21b3c'
+                  : key === 1
+                    ? '#1368ce'
+                    : key === 2
+                      ? '#ffa602'
+                      : key === 3
+                        ? '#26890c'
+                        : 'red'
+              var ans =
+                key === 0
+                  ? 'A'
+                  : key === 1
+                    ? 'B'
+                    : key === 2
+                      ? 'C'
+                      : key === 3
+                        ? 'D'
+                        : 'E'
 
               return (
                 <li
+                  key={key}
                   style={{
                     width: '100%',
                     textAlign: 'left',
@@ -69,10 +89,23 @@ export const Question = props => {
                     marginTop: '2px',
                     borderTop: '3px solid #F2F2F2',
                     padding: '10px',
-                    alignItems:'center'
-                    , display:'flex'
+                    alignItems: 'center',
+                    display: 'flex',
                   }}>
-                  <div style={{width:'30px', height:'30px', background, float:'left',alignItems:'center', display:'flex', justifyContent:'center', marginRight:'20px'}}><h4 style={{color:'#fff'}}>{ans}</h4></div> {item.content}
+                  <div
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      background,
+                      float: 'left',
+                      alignItems: 'center',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      marginRight: '20px',
+                    }}>
+                    <h4 style={{ color: '#fff' }}>{ans}</h4>
+                  </div>
+                  {item.content}
                 </li>
               )
             })}
