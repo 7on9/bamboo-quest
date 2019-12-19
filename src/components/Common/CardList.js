@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
+import { objectIdToDate } from '../../utils/date'
 
 /**
  * TODO: Item quest in the home screen
@@ -20,7 +22,7 @@ export const Cardlist = ({ id, title,question, img_path }) => {
             style={{ padding: 0, height: '100%', background: 'red' }}>
             <img
               src={ img_path ? img_path : 'https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png' }
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             <div className="count-quest">
               <h5 style={{ color: '#fff' }}>{question?question.length:0}</h5>
@@ -28,7 +30,7 @@ export const Cardlist = ({ id, title,question, img_path }) => {
           </div>
           <div className="col-8 col-md-10" style={{ padding: '10px' }}>
             <h4 style={{ color: '#5e5e5e' }}>{title}</h4>
-            <p style={{ fontSize: '10px' }}>Tạo ngày: 11/11/11</p>
+            <p style={{ fontSize: '10px' }}>Tạo ngày: {moment(objectIdToDate(id)).format('DD/MM/YYYY')}</p>
           </div>
         </div>
       </div>

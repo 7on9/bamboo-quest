@@ -8,9 +8,9 @@ class Create extends Component {
     super(props)
     this.state = {
       file: '',
-      img: null,
+      img_path: null,
       newQuest: {
-        img: null,
+        img_path: null,
         description: '',
         isPublic: false,
         title: '',
@@ -37,7 +37,7 @@ class Create extends Component {
   onUploadImage = async event => {
     if (event.target.files[0]) {
       this.setState({
-        img: URL.createObjectURL(event.target.files[0]),
+        img_path: URL.createObjectURL(event.target.files[0]),
       })
     }
     let reader = new FileReader()
@@ -45,7 +45,7 @@ class Create extends Component {
       this.setState({
         newQuest: {
           ...this.state.newQuest,
-          img: reader.result,
+          img_path: reader.result,
         },
       })
     }
@@ -75,7 +75,7 @@ class Create extends Component {
     this.props.resetResult()
   }
   render() {
-    let { img } = this.state
+    let { img_path } = this.state
     let { isPublic } = this.state.newQuest
 
     // const { from } = this.props.location.state || {
@@ -175,7 +175,7 @@ class Create extends Component {
                                 width: '100%',
                                 height: '100%',
                               }}
-                              src={img ? img : '/images/img_quest_default.png'}
+                              src={img_path ? img_path : '/images/img_quest_default.png'}
                             />
                           </div>
                           <div className="col-1"></div>

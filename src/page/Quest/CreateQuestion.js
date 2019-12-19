@@ -32,7 +32,7 @@ class CreateQuestion extends Component {
   onUploadImage = async event => {
     if (event.target.files[0]) {
       this.setState({
-        img: URL.createObjectURL(event.target.files[0]),
+        img_path: URL.createObjectURL(event.target.files[0]),
       })
     }
     let reader = new FileReader()
@@ -40,7 +40,7 @@ class CreateQuestion extends Component {
       this.setState({
         newQuestion: {
           ...this.state.newQuestion,
-          img: reader.result,
+          img_path: reader.result,
         },
       })
     }
@@ -88,7 +88,7 @@ class CreateQuestion extends Component {
     )
   }
   render() {
-    const { img, toInfo } = this.state
+    const { img_path, toInfo } = this.state
     let { correct_id } = this.state.newQuestion
     let param = this.props.location.pathname
     const { from } = this.props.location.state || {
@@ -186,7 +186,7 @@ class CreateQuestion extends Component {
                               width: '100%',
                               height: '100%',
                             }}
-                            src={img ? img : '/images/img_quest_default.png'}
+                            src={img_path ? img_path : '/images/img_quest_default.png'}
                           />
                         </div>
                         <div className="col-1"></div>

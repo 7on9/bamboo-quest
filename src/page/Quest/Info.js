@@ -54,8 +54,8 @@ class Info extends Component {
                   <img                         
                     src={
                       info
-                        ? info.img
-                          ? info.img
+                        ? info.img_path
+                          ? info.img_path
                           : '/images/img_quest_default.png'
                         : '/images/img_quest_default.png'
                     } style={{width:'100%', height:'130px', objectFit:'cover'}}/>
@@ -100,8 +100,8 @@ class Info extends Component {
                       <img
                         src={
                           info
-                            ? info.img
-                              ? info.img
+                            ? info.img_path
+                              ? info.img_path
                               : '/images/img_quest_default.png'
                             : '/images/img_quest_default.png'
                         }

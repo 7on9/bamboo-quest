@@ -7,13 +7,13 @@ class Edit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      img: '',
+      img_path: '',
     }
   }
   onUploadImage = async event => {
     if (event.target.files[0]) {
       this.setState({
-        img: URL.createObjectURL(event.target.files[0]),
+        img_path: URL.createObjectURL(event.target.files[0]),
       })
     }
     let reader = new FileReader()
@@ -21,7 +21,7 @@ class Edit extends Component {
       this.setState({
         newQuest: {
           ...this.state.newQuest,
-          img: reader.result,
+          img_path: reader.result,
         },
       })
     }
