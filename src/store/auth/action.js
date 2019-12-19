@@ -121,12 +121,10 @@ export const verify = () => {
     AuthenticationService.verify()
       .then(res => res.data)
       .then(res => {
-        if (!res.result) {
-          localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN) 
-        } else {
-          localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info)
-          localStorage.setItem(APP_CONSTANTS.WEB_EMAIL, res.info.email)
-        }
+        console.log(res)
+        localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info)
+        localStorage.setItem(APP_CONSTANTS.WEB_EMAIL, res.info.email)
+        localStorage.setItem (APP_CONSTANTS.WEB_TOKEN, res.token)
         return dispatch({
           type: USER_TYPE.AUTH.VERIFY,
           payload: {
@@ -135,7 +133,9 @@ export const verify = () => {
         })
       })
       .catch(() => {
+        localStorage.removeItem(APP_CONSTANTS.WEB_USER_INFO)
         localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN)
+        localStorage.removeItem(APP_CONSTANTS.WEB_EMAIL)
         return dispatch({
           type: USER_TYPE.AUTH.VERIFY,
           payload: {

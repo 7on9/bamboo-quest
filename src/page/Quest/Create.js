@@ -78,13 +78,13 @@ class Create extends Component {
     let { img } = this.state
     let { isPublic } = this.state.newQuest
 
-    const { from } = this.props.location.state || {
-      from: { pathname: '/home' },
-    }
-    if (this.props.quest.result) {
-      this.props.resetResult()
-      return <Redirect to={from} />
-    }
+    // const { from } = this.props.location.state || {
+    //   from: { pathname: '/home' },
+    // }
+    // if (this.props.quest.result) {
+    //   this.props.resetResult()
+    //   return <Redirect to={from} />
+    // }
 
     return (
       <div className="container_createQuiz">

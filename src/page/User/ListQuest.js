@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import './styles.css'
 import { Link, Redirect } from 'react-router-dom'
@@ -14,7 +15,15 @@ class ListQuest extends Component {
     }
   }
   componentDidMount() {
+    console.log(this.props)
     this.props.getMyQuests()
+    if (
+      !this.props.quest ||
+      !this.props.quest.quests ||
+      !this.props.quest.quests.length
+    ) {
+      this.props.getsAllQuests(3)
+    }
   }
 
   render() {
@@ -116,17 +125,19 @@ class ListQuest extends Component {
                 </div>
               </div>
               <div style={{ margin: '20px' }} />
-              {quest ? quests.map(item => {
-                return (
-                  <Cardlist
-                    key={item._id}
-                    id={item._id}
-                    title={item.title}
-                    question={item.questions}
-                    img_path={item.img || item.img_path}
-                  />
-                )
-              }) : null}
+              {quests
+                ? quests.map(item => {
+                  return (
+                    <Cardlist
+                      key={item._id}
+                      id={item._id}
+                      title={item.title}
+                      question={item.questions}
+                      img_path={item.img || item.img_path}
+                    />
+                  )
+                })
+                : null}
             </div>
           </div>
         </div>

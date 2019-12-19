@@ -88,8 +88,8 @@ class Question extends Component {
                 style={{ width: '75%', height: '90%', textAlign: 'center' }}
                 src={
                   game
-                    ? game.questions[game.idQuestion].img
-                      ? game.questions[game.idQuestion].img
+                    ? game.questions[game.idQuestion].img_path
+                      ? game.questions[game.idQuestion].img_path
                       : '/images/img_quest_default.png'
                     : null
                 }
