@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import * as questActions from '../../store/quest/action'
 import { startGame, resetResult } from '../../store/socket/socket'
 import { Question } from '../../components'
-
+import './style.css'
 class Info extends Component {
   state = {
     isClick: true,
@@ -49,8 +49,46 @@ class Info extends Component {
         <div className="container-fulid">
           <div style={{ padding: '0 1em' }}>
             <div className="row">
-              <div className="show-detail-quiz col-12 col-sm-4 col-md-4">
-                <img
+              <div className="col-12 col-sm-4 col-md-4" >
+                <div className='info-game'>
+                  <div className='row' style={{width:'100%',padding:'10px', margin:0}}>
+                    <div className='col-7' style={{padding:0, margin:0}}>
+                      <h4
+                        style={{
+                          margin: '10px 0',
+                          textAlign:'left'
+                        }}>
+                        {info ? info.title : 'Tên thử thách'}
+                      </h4>
+                      <p style={{ margin: '10px 0', textAlign:'left' }}>
+                        {info ? info.description : 'Miêu tả thử thách'}
+                      </p>
+                    </div>
+                    <div className='col-5'>
+                      <img
+                        src={
+                          info
+                            ? info.img
+                              ? info.img
+                              : '/images/img_quest_default.png'
+                            : '/images/img_quest_default.png'
+                        }
+                        style={{
+                          width: '100%',
+                          // height: '15em',
+                          // objectFit: 'contain',
+                          marginTop:'10px',
+                          marginBottom: '10px',
+                        }}
+                      />
+                    </div>
+
+                  </div>
+                  <div onClick={this.startGame} style={{width:'100%',padding:'3px',paddingLeft:'10px',cursor:'pointer', background:'#e2e2e2', borderTop:'1px solid #c4c4c4', justifyItems:'left', display:'flex'}}>
+                    <p style={{textAlign:'left', color:'#17a51e'}}>Bắt đầu</p>
+                  </div>
+                </div>
+                {/* <img
                   src={
                     info
                       ? info.img
@@ -83,7 +121,7 @@ class Info extends Component {
                   className="btn btn-success"
                   style={{ width: '100%', margin: '10px 0' }}>
                   Tạo trò chơi
-                </Link>
+                </Link> */}
               </div>
               <div
                 className="col-12 col-sm-8 col-md-8"
@@ -97,7 +135,7 @@ class Info extends Component {
                 <div className="row">
                   {questions.map((question, i) => (
                     
-                      <Question  key={question._id} question={question} showAns={(id)=>this.showAns(id)} i={i} show={this.state.show} isClicked={()=>this.toggle()} />
+                    <Question  key={question._id} question={question} showAns={(id)=>this.showAns(id)} i={i} show={this.state.show} isClicked={()=>this.toggle()} />
                     
                   ))}
 
