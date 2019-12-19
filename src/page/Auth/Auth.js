@@ -25,8 +25,7 @@ class Auth extends Component {
 
   onSubmit = () => {
     let { email, password, login, reTypePassword, name } = this.state
-    console.log(email, password, login, reTypePassword, name)
-
+    // console.log(email, password, login, reTypePassword, name)
     if (
       (email && password && login) ||
       (email && password && reTypePassword && name && !login)
@@ -238,7 +237,12 @@ class Auth extends Component {
   }
   render() {
     const { login, submited } = this.state
-    const { result, running, token } = this.props.user
+    const { result, running, token, authenticated } = this.props.user
+
+    if (this.props.authenticated) {
+      return <Redirect to={{ from: { pathname: '/home' } }} />
+    }
+
     if (token) {
       let { from } = this.props.location.state || {
         from: { pathname: '/user/quest' },

@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import * as authAction from '../../store/auth/action'
 import Info from './Info'
 import Create from './Create'
-import ChangeQuestion from './ChangeQuestion'
+import CreateQuestion from './CreateQuestion'
 import { Menu } from '../../components'
 import { APP_CONSTANTS } from '../../common/constants'
 
@@ -57,7 +57,7 @@ class Quest extends Component {
         <Switch>
           <Route path="/quest/info/:id" component={Info} />
           <Route path="/quest/create" component={Create} />
-          <Route path="/quest/add" component={ChangeQuestion} />
+          <Route path="/quest/add" component={CreateQuestion} />
         </Switch>
       </div>
     )

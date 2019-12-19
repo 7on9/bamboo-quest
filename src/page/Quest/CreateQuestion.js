@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import * as questActions from '../../store/quest/action'
 
-class ChangeQuestion extends Component {
+class CreateQuestion extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -411,4 +411,4 @@ const mapDispatchToProps = {
   getQuestInfo: questActions.getInfoQuest,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeQuestion)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateQuestion)

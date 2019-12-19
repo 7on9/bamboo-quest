@@ -124,7 +124,7 @@ export const verify = () => {
         if (!res.result) {
           localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN) 
         } else {
-          localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info.email)
+          localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info)
           localStorage.setItem(APP_CONSTANTS.WEB_EMAIL, res.info.email)
         }
         return dispatch({

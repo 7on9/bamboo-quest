@@ -9,12 +9,12 @@ class Info extends Component {
   state = {
     isClick: true,
     data: [],
-    show:-1
+    show: -1,
   }
 
-  showAns=(id)=>{
-    this.setState({show:id})
-    console.log (this.state.show)
+  showAns = id => {
+    this.setState({ show: id })
+    console.log(this.state.show)
   }
   componentWillMount() {
     let param = this.props.location.pathname
@@ -24,7 +24,7 @@ class Info extends Component {
     )
   }
   toggle = () => {
-    this.setState ({isClick: !this.state.isClick})
+    this.setState({ isClick: !this.state.isClick })
   }
   startGame = e => {
     e.preventDefault()
@@ -137,6 +137,14 @@ class Info extends Component {
                     
                     <Question  key={question._id} question={question} showAns={(id)=>this.showAns(id)} i={i} show={this.state.show} isClicked={()=>this.toggle()} />
                     
+                    // <Question
+                    //   key={question._id}
+                    //   question={question}
+                    //   showAns={id => this.showAns(id)}
+                    //   i={i}
+                    //   show={this.state.show}
+                    //   isClicked={() => this.toggle()}
+                    // />
                   ))}
 
                   {/* {questions.map(question =>
