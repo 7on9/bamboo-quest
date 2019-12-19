@@ -54,14 +54,15 @@ class Info extends Component {
                   <div className='row' style={{width:'100%',padding:'10px', margin:0}}>
                     <div className='col-7' style={{padding:0, margin:0}}>
                       <h4
+                        className='limitText'
                         style={{
                           margin: '10px 0',
                           textAlign:'left'
                         }}>
                         {info ? info.title : 'Tên thử thách'}
                       </h4>
-                      <p style={{ margin: '10px 0', textAlign:'left' }}>
-                        {info ? info.description : 'Miêu tả thử thách'}
+                      <p className='limitText'  style={{ margin: '10px 0', textAlign:'left' }}>
+                        {info ? info.description : 'Mô tả thử thách'}
                       </p>
                     </div>
                     <div className='col-5'>
