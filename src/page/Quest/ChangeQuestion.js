@@ -119,6 +119,7 @@ class ChangeQuestion extends Component {
                       aria-describedby="emailHelp"
                       placeholder="Câu hỏi"
                       onChange={this.onType}
+                      style={{height:'4em'}}
                     />
                   </div>
                   <div className="form-group">

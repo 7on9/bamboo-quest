@@ -266,7 +266,7 @@ body {
 
 .upLoadImage
 {
-  height: 100%;
+  /* height: 100%; */
   border: 3px dotted #e2e2e2;
   margin-top: 30px;
   background: #f4f4f4;
@@ -366,7 +366,7 @@ p
 }
 .answer-edit
 {
-  height: 5em;
+  height: 3em;
   margin-bottom: 10px;
   border-radius: 7px;
   color:#fff;
