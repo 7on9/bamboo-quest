@@ -29,7 +29,7 @@ export const Item = ({ id, title, description, link, img_path }) => {
             <span>Quan Pham</span>
           </div>
           <div className="prise">
-            {/* <span className="active_prise">{moment(objectIdToDate(id)).format('DD/MM/YYYY')}</span> */}
+            <span className="active_prise">{moment(objectIdToDate(id)).format('DD/MM/YYYY')}</span>
           </div>
         </div>
       </div>

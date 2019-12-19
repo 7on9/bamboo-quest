@@ -49,8 +49,39 @@ class Info extends Component {
         <div className="container-fulid">
           <div style={{ padding: '0 1em' }}>
             <div className="row">
-              <div className="col-12 col-sm-4 col-md-4" >
-                <div className='info-game'>
+              <div className="col-12 col-sm-4 col-md-3" >
+                <div className='user-info' style={{width:'100%', marginBottom:'20px', borderRadius:'3px' }}>
+                  <img                         
+                    src={
+                      info
+                        ? info.img
+                          ? info.img
+                          : '/images/img_quest_default.png'
+                        : '/images/img_quest_default.png'
+                    } style={{width:'100%', height:'130px', objectFit:'cover'}}/>
+                  <div style={{width:'100%', padding:'10px', background:'#fff'}}>
+                    {/* <h4>{user && user.info ? user.info.name : ''}</h4> */}
+                    <h4
+                      className='limitText'
+                      style={{
+                        margin: '10px 0',
+                        textAlign:'left'
+                      }}>
+                      {info ? info.title : 'Tên thử thách'}
+                    </h4>
+                    <p className='limitText'  style={{ margin: '10px 0', textAlign:'left' }}>
+                      {info ? info.description : 'Mô tả thử thách'}
+                    </p>
+
+                    <div className="btn-info-user" onClick={this.startGame} >
+                      <Link   style={{ fontWeight: 'bold', color: '#fff' }}>
+                        Chơi ngay
+                      </Link>
+                    </div>
+                    {/* <div className="btn-info-user" style={{width:'100%', height:'35px',marginTop:'10px', background:'#17a51e', display:'flex',justifyContent:'center', alignItems:'center'}}><Link style={{}}><p style={{color:'#efefef'}}>Thông tin</p></Link></div> */}
+                  </div>
+                </div>
+                {/* <div className='info-game'>
                   <div className='row' style={{width:'100%',padding:'10px', margin:0}}>
                     <div className='col-7' style={{padding:0, margin:0}}>
                       <h4
@@ -88,7 +119,7 @@ class Info extends Component {
                   <div onClick={this.startGame} style={{width:'100%',padding:'3px',paddingLeft:'10px',cursor:'pointer', background:'#e2e2e2', borderTop:'1px solid #c4c4c4', justifyItems:'left', display:'flex'}}>
                     <p style={{textAlign:'left', color:'#17a51e'}}>Bắt đầu</p>
                   </div>
-                </div>
+                </div> */}
                 {/* <img
                   src={
                     info
@@ -125,7 +156,7 @@ class Info extends Component {
                 </Link> */}
               </div>
               <div
-                className="col-12 col-sm-8 col-md-8"
+                className="col-12 col-sm-8 col-md-9"
                 style={{ marginBottom: '30px' }}>
                 <h3 style={{ marginBottom: '10px', textAlign: 'left' }}>
                   Các câu hỏi của thử thách
