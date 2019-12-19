@@ -67,6 +67,7 @@ export const Question = props => {
                     textAlign: 'left',
                     background: '#fff',
                     marginTop: '2px',
+                    borderTop: '3px solid #F2F2F2',
                     padding: '10px',
                     alignItems:'center'
                     , display:'flex'
