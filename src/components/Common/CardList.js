@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { objectIdToDate } from '../../utils/date'
-
+import {Icon} from './../../res/icon/index'
 /**
  * TODO: Item quest in the home screen
  * @param title
@@ -28,9 +28,19 @@ export const Cardlist = ({ id, title,question, img_path }) => {
               <h5 style={{ color: '#fff' }}>{question?question.length:0}</h5>
             </div>
           </div>
-          <div className="col-8 col-md-10" style={{ padding: '10px' }}>
-            <h4 style={{ color: '#5e5e5e' }}>{title}</h4>
-            <p style={{ fontSize: '10px' }}>Tạo ngày: {moment(objectIdToDate(id)).format('DD/MM/YYYY')}</p>
+          <div className="col-8 col-md-10" style={{ padding: '0', margin:'0', height:'100%'}}>
+            <div className='row' style={{width:'100%',padding: '0', margin:'0', height:'100%'}}>
+              <div className='col-11'>
+                <h4 style={{ color: '#5e5e5e' }}>{title}</h4>
+                <p style={{ fontSize: '10px' }}>Tạo ngày: {moment(objectIdToDate(id)).format('DD/MM/YYYY')}</p>
+              </div>
+              <div className='col-1' style={{display:'flex', alignItems:'right', background:'red', height:'100%'}}>
+                {/* <div style={{width:'28px', height:'28px', background:'red', display:'flex', alignItems:'center', justifyItems:'center', borderRadius:'3px'}}> */}
+                  <img src={Icon.REMOVE} style={{width:'24px', height:'24px', textAlign:'right'}} />
+                {/* </div> */}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
