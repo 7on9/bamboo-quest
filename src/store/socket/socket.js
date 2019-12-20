@@ -1,10 +1,10 @@
 import io from 'socket.io-client'
 import GAME_TYPES from './types'
-import { BASE_API_URL } from '../../common/connection'
+import { SOCKET_URL } from '../../common/connection'
 import { QuestService } from '../../services/quest'
 import { APP_CONSTANTS } from '../../common/constants'
 
-const socket = io(BASE_API_URL)
+const socket = io(SOCKET_URL)
 
 const GAME = GAME_TYPES.GAME
 const STATUS = GAME_TYPES.STATUS
