@@ -20,7 +20,7 @@ export const ScoreBoardItem = ({ id, player }) => {
             className="fas fa-stopwatch icon-question"
             style={{ color: '#f5ce67' }}
           />
-          {player.time}
+          {player.time ? player.time.toFixed(2) : 0}
         </div>
       </div>
     </div>

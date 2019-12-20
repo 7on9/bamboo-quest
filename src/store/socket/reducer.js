@@ -4,6 +4,8 @@ const initialState = {
   players: [],
   idQuestion: -1,
   correct: 0,
+  endGame: true,
+  inGame: false,
 }
 
 export const gameReducer = (state = initialState, { type, payload }) => {
@@ -11,7 +13,6 @@ export const gameReducer = (state = initialState, { type, payload }) => {
     case GAME_TYPES.GAME.START:
     case GAME_TYPES.GAME.TIMEOUT:
     case GAME_TYPES.GAME.JOIN:
-    case GAME_TYPES.GAME.END:
     case GAME_TYPES.GAME.CORRECT_ANSWER:
     case GAME_TYPES.GAME.BEGIN:
     case GAME_TYPES.GAME.ANSWER:
@@ -26,6 +27,15 @@ export const gameReducer = (state = initialState, { type, payload }) => {
         ...state,
         result: false,
       }
+    case GAME_TYPES.GAME.END: 
+      return {
+        ...state,
+        ...payload,
+        idQuestion: -1,
+        correct: 0,
+        endGame: true,
+        inGame: false,
+      }
     case GAME_TYPES.GAME.NEW_PLAYER:
       let { players } = state
       players.push(payload.player)
@@ -38,7 +48,6 @@ export const gameReducer = (state = initialState, { type, payload }) => {
         ...state,
         idQuestion: state.idQuestion + 1,
       }
-
     default:
       return state
   }

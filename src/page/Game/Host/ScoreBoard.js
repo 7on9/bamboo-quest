@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { ScoreBoardItem } from '../../../components/Quest/ScoreBoardItem'
+import { endGame } from '../../../store/socket/socket'
 
 class ScoreBoard extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ScoreBoard extends Component {
   }
   render() {
     const { game } = this.props
-    let players = game ? (game.players ? [...game.players] : []) : []
+    let players = game && game.players ? [...game.players] : []
     players.sort((pA, pB) => pB.score - pA.score || pA.time - pB.time)
     if (this.state.toReady) {
       let { from } = this.props.location.state || {
@@ -27,6 +28,10 @@ class ScoreBoard extends Component {
         <div
           className="topScoreBoard center-div"
           style={{ justifyContent: 'center' }}>
+          {game && game.endGame
+            ? 'TRÒ CHƠI KẾT THÚC!'
+            : 'HÃY CHUẨN BỊ CHO CÂU HỎI TIẾP THEO!'}
+          <br />
           Bảng xếp hạng
         </div>
         <div className="btScoreBoard bg-auto-change-color">
@@ -57,7 +62,6 @@ class ScoreBoard extends Component {
               </button>
             </div>
           </div>
-
           <div
             className="end"
             style={{ width: '100%', height: '15%', background: '#red' }}>

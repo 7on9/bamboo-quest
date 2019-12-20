@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -11,7 +12,6 @@ class Result extends Component {
   }
   render() {
     const { game } = this.props
-
     if (this.state.toRanking) {
       let { from } = this.props.location.state || {
         from: { pathname: '/host/ranking' },
@@ -30,10 +30,8 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#d03542' }}>
               <i
                 className={`${
-                  game
-                    ? game.questions[game.idQuestion].correct_id == 0
-                      ? 'check_show'
-                      : ''
+                  game && game.questions[game.idQuestion].correct_id == 0
+                    ? 'check_show'
                     : ''
                 } fas fa-check`}
                 style={{ opacity: '0', fontSize: '1px' }}
@@ -50,10 +48,8 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#2a68c7' }}>
               <i
                 className={`${
-                  game
-                    ? game.questions[game.idQuestion].correct_id == 1
-                      ? 'check_show'
-                      : ''
+                  game && game.questions[game.idQuestion].correct_id == 1
+                    ? 'check_show'
                     : ''
                 } fas fa-check`}
                 style={{ opacity: '0', fontSize: '1px' }}
@@ -70,10 +66,8 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#d0a036' }}>
               <i
                 className={`${
-                  game
-                    ? game.questions[game.idQuestion].correct_id == 2
-                      ? 'check_show'
-                      : ''
+                  game && game.questions[game.idQuestion].correct_id == 2
+                    ? 'check_show'
                     : ''
                 } fas fa-check`}
                 style={{ opacity: '0', fontSize: '1px' }}
@@ -90,10 +84,8 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#498c2b' }}>
               <i
                 className={`${
-                  game
-                    ? game.questions[game.idQuestion].correct_id == 3
-                      ? 'check_show'
-                      : ''
+                  game && game.questions[game.idQuestion].correct_id == 3
+                    ? 'check_show'
                     : ''
                 } fas fa-check`}
                 style={{ opacity: '0', fontSize: '1px' }}

@@ -43,6 +43,8 @@ const configureSocket = dispatch => {
         type: GAME.JOIN,
         payload: {
           code: '',
+          inGame: true,
+          endGame: false,
           result: false,
           running: false,
         },
@@ -110,11 +112,12 @@ const configureSocket = dispatch => {
     })
   })
 
-  socket.on(GAME.END, () => {
+  socket.on(GAME.END, scoreBoard => {
+    console.log(scoreBoard)
     return dispatch({
       type: GAME.END,
       payload: {
-        endGame: true,
+        players: scoreBoard
       },
     })
   })
@@ -133,6 +136,10 @@ export const joinGame = (code, username) => {
 
 export const endGame = idGame => {
   socket.emit(GAME.END, idGame)
+  return dispatch => dispatch({
+    type: GAME.END,
+    payload: {}
+  })
 }
 
 export const timeout = idGame => {

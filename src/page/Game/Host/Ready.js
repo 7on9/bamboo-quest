@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -22,7 +23,7 @@ class Ready extends Component {
       return
     }
     if (this.props.game.idQuestion + 1 == this.props.game.questions.length) {
-      endGame(this.props.game.idGame)
+      this.props.endGame(this.props.game.idGame)
       this.setState({
         toHome: true,
       })
@@ -55,7 +56,7 @@ class Ready extends Component {
     }
     if (this.state.toHome) {
       let { from } = this.props.location.state || {
-        from: { pathname: '/home' },
+        from: { pathname: '/host/ranking' },
       }
       return <Redirect to={from} />
     }
@@ -73,7 +74,7 @@ class Ready extends Component {
         <div
           className="topShow"
           style={{ backgroundColor: 'green', color: '#fff' }}>
-          Hãy sẵn sàng cho câu hỏi tiếp theo
+          Hãy sẵn sàng trả lời
         </div>
         <div className="progress" style={{ width: '100%', height: '5%' }}>
           <div
@@ -83,13 +84,13 @@ class Ready extends Component {
           />
         </div>
         <div className="midShow">
-          {game && game.idQuestion < game.questions.length - 1
+          {game && game.questions && game.idQuestion < game.questions.length - 1
             ? game.questions[game.idQuestion + 1].quiz
             : null}
         </div>
         <div className="botShow">
-          Câu hỏi thứ {game ? game.idQuestion + 2 : null} trong
-          {game ? game.questions.length : null}
+          Câu hỏi thứ {game ? game.idQuestion + 2 : null} trong{' '}
+          {game && game.questions ? game.questions.length : null}
         </div>
       </div>
     )
@@ -102,6 +103,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   nextQuestion: nextQuestion,
+  endGame: endGame,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ready)

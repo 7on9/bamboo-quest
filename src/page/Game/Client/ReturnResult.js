@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './style.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -20,7 +21,7 @@ class ReturnResult extends Component {
       }
       if (game.endGame) {
         let { from } = this.props.location.state || {
-          from: { pathname: '/home' },
+          from: { pathname: '/host/ranking' },
         }
         return <Redirect to={from} />
       }
