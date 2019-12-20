@@ -11,6 +11,7 @@ class Info extends Component {
     isClick: true,
     data: [],
     show: -1,
+    gameStarted: false
   }
 
   showAns = id => {
@@ -29,7 +30,13 @@ class Info extends Component {
   }
   startGame = e => {
     e.preventDefault()
+    this.props.resetResult()
     this.props.startGame(this.props.quest.info._id)
+    if (this.props.quest.result) {
+      this.setState({
+        gameStarted: true
+      })
+    }
   }
   render() {
     const { info } = this.props.quest
@@ -42,6 +49,11 @@ class Info extends Component {
       return <Redirect to={from} />
     }
 
+    if (this.state.gameStarted) {
+      return <Redirect to={'/host'} />
+    }
+    console.log(this.props)
+    
     let questions = this.props.quest.info ? this.props.quest.info.questions : []
     const infoUser = this.props.user.info
     const isOwnner = info && infoUser ? info._id_author == infoUser._id : false

@@ -96,7 +96,7 @@ class Entry extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state,
+  game: state.game
 })
 
 const mapDispatchToProps = {}

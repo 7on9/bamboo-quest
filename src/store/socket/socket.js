@@ -27,6 +27,7 @@ const configureSocket = dispatch => {
   })
 
   socket.on(GAME.JOIN, (status, username, idGame) => {
+    console.log(status, username, idGame)
     if (status) {
       return dispatch({
         type: GAME.JOIN,
@@ -122,7 +123,12 @@ const configureSocket = dispatch => {
 }
 
 export const joinGame = (code, username) => {
-  socket.emit(GAME.JOIN, code, username, localStorage.getItem(APP_CONSTANTS.WEB_TOKEN))
+  socket.emit(
+    GAME.JOIN,
+    code,
+    username,
+    localStorage.getItem(APP_CONSTANTS.WEB_TOKEN)
+  )
 }
 
 export const endGame = idGame => {
@@ -136,7 +142,7 @@ export const timeout = idGame => {
 export const startGame = idQuest => {
   return dispatch => {
     QuestService.startGame(idQuest)
-      .then(res => res.json())
+      .then(res => res.data)
       .then(res => {
         socket.emit(GAME.START, res.code, idQuest)
         return dispatch({
