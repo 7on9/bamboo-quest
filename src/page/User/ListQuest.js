@@ -59,16 +59,29 @@ class ListQuest extends Component {
               padding: '0 5px',
               marginBottom: '15px',
             }}>
-            <div className='user-info' style={{width:'100%', marginBottom:'20px', borderRadius:'3px' }}>
-              <img src='/images/avatar-default.png' style={{width:'100%', height:'130px', objectFit:'cover'}}/>
-              <div style={{width:'100%', padding:'10px', background:'#fff'}}>
+            <div
+              className="user-info"
+              style={{
+                width: '100%',
+                marginBottom: '20px',
+                borderRadius: '3px',
+              }}>
+              <img
+                src="/images/avatar-default.png"
+                style={{ width: '100%', height: '130px', objectFit: 'cover' }}
+                alt="avatar"
+              />
+              <div
+                style={{ width: '100%', padding: '10px', background: '#fff' }}>
                 <h4>{user && user.info ? user.info.name : ''}</h4>
                 <p style={{ color: '#000' }}>
                   Tổng số thử thách: {myQuests ? myQuests.length : 0}
                 </p>
                 <div className="btn-info-user">
-                  <Link to="/user/info"style={{ fontWeight: 'bold', color: '#fff' }}>
-                  Thông tin
+                  <Link
+                    to="/user/info"
+                    style={{ fontWeight: 'bold', color: '#fff' }}>
+                    Thông tin
                   </Link>
                 </div>
                 {/* <div className="btn-info-user" style={{width:'100%', height:'35px',marginTop:'10px', background:'#17a51e', display:'flex',justifyContent:'center', alignItems:'center'}}><Link style={{}}><p style={{color:'#efefef'}}>Thông tin</p></Link></div> */}
@@ -80,6 +93,7 @@ class ListQuest extends Component {
                 src="/images/bannerDiscover.jpg"
                 className="discover"
                 style={{ borderRadius: '4px' }}
+                alt="cover"
               />
             </Link>
           </div>

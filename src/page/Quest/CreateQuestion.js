@@ -186,6 +186,7 @@ class CreateQuestion extends Component {
                               width: '100%',
                               height: '100%',
                             }}
+                            alt="img_question"
                             src={img_path ? img_path : '/images/img_quest_default.png'}
                           />
                         </div>

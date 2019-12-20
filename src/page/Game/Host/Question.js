@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -85,6 +86,7 @@ class Question extends Component {
                 justifyContent: 'center',
               }}>
               <img
+                alt="img_question"
                 style={{ width: '75%', height: '90%', textAlign: 'center' }}
                 src={
                   game

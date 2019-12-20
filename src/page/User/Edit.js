@@ -53,12 +53,11 @@ class Edit extends Component {
           />
           <img
             src={
-              this.props.user.info
+              this.props.user.info && this.props.user.info.avatar_path
                 ? this.props.user.info.avatar_path
-                  ? this.props.user.info.avatar_path
-                  : '/images/avatar-default.png'
                 : '/images/avatar-default.png'
             }
+            alt="avatar"
             style={{ width: '100%', height: '15em', objectFit: 'cover' }}
           />
         </div>
