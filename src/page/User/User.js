@@ -16,7 +16,7 @@ class User extends Component {
     return (
       <div className="detail-user">
         {/* <Authentication /> */}
-        <Menu email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)} />
+        <Menu email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)} logout={this.props.logout} a="aas" />
         <div className="container" style={{ marginTop: 50 }}>
           <Switch>
             <Route path="/user/info" component={Info} />
