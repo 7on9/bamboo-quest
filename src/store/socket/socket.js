@@ -117,7 +117,8 @@ const configureSocket = dispatch => {
     return dispatch({
       type: GAME.END,
       payload: {
-        players: scoreBoard
+        players: scoreBoard,
+        username: '',
       },
     })
   })

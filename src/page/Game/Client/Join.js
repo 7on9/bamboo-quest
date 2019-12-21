@@ -41,13 +41,11 @@ class Join extends Component {
 
   render() {
     const { game } = this.props
-    if (game) {
-      if (game.username) {
-        let { from } = this.props.location.state || {
-          from: { pathname: '/client/welcome' },
-        }
-        return <Redirect to={from} />
+    if (game && game.username) {
+      let { from } = this.props.location.state || {
+        from: { pathname: '/client/welcome' },
       }
+      return <Redirect to={from} />
     }
     return (
       <div
