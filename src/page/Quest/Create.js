@@ -13,7 +13,7 @@ class Create extends Component {
       newQuest: {
         img_path: null,
         description: '',
-        isPublic: false,
+        is_public: false,
         title: '',
       },
     }
@@ -59,7 +59,7 @@ class Create extends Component {
     this.setState({
       newQuest: {
         ...this.state.newQuest,
-        isPublic: !this.state.newQuest.isPublic,
+        is_public: !this.state.newQuest.is_public,
       },
     })
   }
@@ -75,7 +75,7 @@ class Create extends Component {
   }
   render() {
     let { img_path } = this.state
-    let { isPublic } = this.state.newQuest
+    let { is_public } = this.state.newQuest
 
     console.log(this.props.quest)
     
@@ -124,14 +124,14 @@ class Create extends Component {
                     <div className="row ">
                       <div className="col-3 row justify-content-center align-items-center">
                         <div className="form-group">
-                          <label>{isPublic ? 'Công khai' : 'Bí mật'}</label>
+                          <label>{is_public ? 'Công khai' : 'Bí mật'}</label>
                           <div className="center-div">
                             <label className="switch">
                               <input
                                 type="checkbox"
                                 value={this.state.statusPublic}
                                 onClick={this.togglePublic}
-                                name="isPublic"
+                                name="is_public"
                               />
                               <span className="slider round" />
                             </label>

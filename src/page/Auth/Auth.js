@@ -6,6 +6,7 @@ import * as authAction from '../../store/auth/action'
 import './style.css'
 import { ERROR } from '../../store/auth/types'
 import { APP_CONSTANTS } from '../../common/constants'
+import Helmet from 'react-helmet'
 
 class Auth extends Component {
   constructor(props) {
@@ -286,6 +287,10 @@ class Auth extends Component {
     }
     return (
       <div className="limiter">
+        <Helmet>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
         <div className="container-login100">
           <div className="wrap-login100">
             <div className="login100-pic js-tilt" data-tilt>

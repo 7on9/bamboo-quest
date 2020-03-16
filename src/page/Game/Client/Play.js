@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { answer } from '../../../store/socket/socket'
 import GAME_TYPES from '../../../store/socket/types'
 import { Answer } from '../../../components'
+import Helmet from 'react-helmet'
 
 /*Play game*/
 class Play extends Component {
@@ -52,6 +53,10 @@ class Play extends Component {
     }
     return (
       <div className="client-answer">
+        <Helmet>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
         <div style={{ width: '100%', height: '100%', background: '' }}>
           <div style={{ width: '100%', height: '100%' }}>
             <Answer

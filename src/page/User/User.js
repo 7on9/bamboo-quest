@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './styles.css'
-import { Link, Redirect, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import * as authAction from '../../store/auth/action'
 import Edit from './Edit'
 import Info from './Info'
 import { Menu } from '../../components'
 import ListQuest from './ListQuest'
-import { Authentication } from '../Auth/Authentication'
 import { APP_CONSTANTS } from '../../common/constants'
+import Helmet from 'react-helmet'
 
 class User extends Component {
   render() {
     console.log (this.props)
     return (
       <div className="detail-user">
+
         {/* <Authentication /> */}
-        <Menu email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)} logout={this.props.logout} a="aas" />
+        <Helmet>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
+        <Menu email={localStorage(APP_CONSTANTS.WEB_EMAIL)} logout={this.props.logout} a="aas" />
         <div className="container" style={{ marginTop: 50 }}>
           <Switch>
             <Route path="/user/info" component={Info} />

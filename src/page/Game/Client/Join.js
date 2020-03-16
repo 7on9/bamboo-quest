@@ -4,6 +4,7 @@ import Sound from 'react-sound'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { joinGame } from '../../../store/socket/socket'
+import Helmet from 'react-helmet'
 
 class Join extends Component {
   constructor(props) {
@@ -51,6 +52,10 @@ class Join extends Component {
       <div
         className="c"
         style={{ background: '#black', width: '100%', height: '100%' }}>
+        <Helmet>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
         <Sound
           url={'/music/music.ogg'}
           loop={true}

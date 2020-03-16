@@ -7,6 +7,7 @@ import Create from './Create'
 import CreateQuestion from './CreateQuestion'
 import { Menu } from '../../components'
 import { APP_CONSTANTS } from '../../common/constants'
+import Helmet from 'react-helmet'
 
 class Quest extends Component {
   UNSAFE_componentWillMount() {
@@ -51,9 +52,14 @@ class Quest extends Component {
     // }
     return (
       <div className="home">
+        <Helmet>
+        <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+        <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
         <Menu
           email={this.props.user.info ? this.props.user.info.email : 'email'}
         />
+
         <Switch>
           <Route path="/quest/info/:id" component={Info} />
           <Route path="/quest/create" component={Create} />

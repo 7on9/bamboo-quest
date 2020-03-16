@@ -3,6 +3,7 @@ import './style.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 class ReturnResult extends Component {
   constructor(props) {
@@ -30,6 +31,10 @@ class ReturnResult extends Component {
       <div
         className="return-result center-div"
         style={{ justifyContent: 'center' }}>
+        <Helmet>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
         {this.props.game.correct == -1 ? (
           <div style={{ color: '#ad1d1d' }}>
             <i

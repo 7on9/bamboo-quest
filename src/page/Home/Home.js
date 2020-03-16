@@ -8,6 +8,7 @@ import * as questActions from '../../store/quest/action'
 import { Collection, Menu, Item } from '../../components'
 import Authentication from '../Auth/Authentication'
 import { APP_CONSTANTS } from '../../common/constants'
+import Helmet from 'react-helmet'
 
 class Home extends Component {
   constructor(props) {
@@ -70,6 +71,11 @@ class Home extends Component {
     // }
     return (
       <div className="home">
+        <Helmet>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+          <link rel="stylesheet" href="/comon/css/style.css"/>
+        </Helmet>
         <header>
           <div className="header-area ">
             <div id="sticky-header" className="main-header-area">

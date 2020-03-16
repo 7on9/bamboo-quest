@@ -7,6 +7,7 @@ import Ready from './Ready'
 import Question from './Question'
 import Result from './Result'
 import ScoreBoard from './ScoreBoard'
+import Helmet from 'react-helmet'
 
 class Host extends Component {
   constructor(props) {
@@ -20,6 +21,10 @@ class Host extends Component {
   render() {
     return (
       <div className="a">
+        <Helmet>
+        <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
+        <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+        </Helmet>
         <Sound
           url={'/music/music.ogg'}
           loop={true}
