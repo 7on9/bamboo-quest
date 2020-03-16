@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Slidebar extends Component {
   render() {
@@ -15,9 +16,9 @@ export default class Slidebar extends Component {
         <hr className="sidebar-divider my-0" />
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <a className="nav-link" href="index.html">
+          <Link className="nav-link" to="/dashboard/index">
             <i className="fas fa-fw fa-tachometer-alt" />
-            <span>Dashboard</span></a>
+            <span>Dashboard</span></Link>
         </li>
         {/* Heading */}
 
@@ -29,9 +30,9 @@ export default class Slidebar extends Component {
         </div>
         {/* Nav Item - Tables */}
         <li className="nav-item">
-          <a className="nav-link" href="tables.html">
+          <Link className="nav-link" to="/dashboard/table">
             <i className="fas fa-fw fa-table" />
-            <span>Tables</span></a>
+            <span>Tables</span></Link>
         </li>
       </ul>
     )
