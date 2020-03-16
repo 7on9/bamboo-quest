@@ -9,7 +9,7 @@ export default function Dashboard() {
   return (
     <Fullscreen>
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path="/dashboard/index" component={Home} />
         <Route path="/dashboard/table" component={Table} />
       </Switch>
     </Fullscreen>
