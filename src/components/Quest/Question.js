@@ -34,14 +34,14 @@ export const Question = props => {
           />
           {props.question.correct_point}
         </div>
-        <div className="col-2 col-sm-2 col-md-2 center ">
+        <div className="col-2 col-sm-2 col-md-2 center timer">
           <i
             className="fas fa-times-circle icon-question"
             style={{ color: '#cf3542' }}
           />
           {props.question.incorrect_point}
         </div>
-        <div className="col-3 col-sm-2 col-md-2 center">
+        <div className="col-3 col-sm-2 col-md-2 center timer" >
           <i
             className="fas fa-stopwatch icon-question"
             style={{ color: '#f5ce67' }}

@@ -464,6 +464,29 @@ label {
   -moz-osx-font-smoothing: grayscale;
   cursor: pointer;
 }
+@media (max-width: 575.98px) { 
+  .title-quiz {
+    opacity: 0 !important;
+  }
+
+  .input-answer {
+    font-size: 0.8em
+  }
+
+  .a-answer {
+    font-size: 1em
+  }
+
+  .hidden-mobie {
+    opacity: 0;
+    height: 0;
+  }
+  .timer{
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+  }
+ }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
   .input-answer {
@@ -477,6 +500,11 @@ label {
   .hidden-mobie {
     opacity: 0;
     height: 0;
+  }
+  .timer{
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
   }
 }
 
