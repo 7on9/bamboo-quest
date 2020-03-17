@@ -10,7 +10,6 @@ export default function Dashboard() {
     <Fullscreen>
       <Switch>
         <Route exact path="/dashboard" component={Home} />
-        <Route exact path="/dashboard/index" component={Home} />
         <Route path="/dashboard/table" component={Table} />
       </Switch>
     </Fullscreen>

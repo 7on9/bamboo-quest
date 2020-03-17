@@ -73,6 +73,15 @@ body {
   outline: 0 !important;
 }
 
+.fa-eye {
+  cursor: pointer;
+}
+
+.fa-eye:hover{
+  color: #1cc88a;
+  cursor: pointer;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;

@@ -16,7 +16,7 @@ export default class Slidebar extends Component {
         <hr className="sidebar-divider my-0" />
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <Link className="nav-link" to="/dashboard/index">
+          <Link className="nav-link" to="/dashboard">
             <i className="fas fa-fw fa-tachometer-alt" />
             <span>Dashboard</span></Link>
         </li>
@@ -31,8 +31,8 @@ export default class Slidebar extends Component {
         {/* Nav Item - Tables */}
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard/table">
-            <i className="fas fa-fw fa-table" />
-            <span>Tables</span></Link>
+            <i className="fas fa-user" />
+            <span>User</span></Link>
         </li>
       </ul>
     )
