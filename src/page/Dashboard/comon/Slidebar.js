@@ -30,7 +30,7 @@ export default class Slidebar extends Component {
         </div>
         {/* Nav Item - Tables */}
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/table">
+          <Link className="nav-link" to="/dashboard/user">
             <i className="fas fa-user" />
             <span>User</span></Link>
         </li>
