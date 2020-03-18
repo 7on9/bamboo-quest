@@ -56,7 +56,7 @@ class Info extends Component {
     
     let questions = this.props.quest.info ? this.props.quest.info.questions : []
     const infoUser = this.props.user.info
-    const isOwnner = info && infoUser ? info._id_author == infoUser._id : false
+    const isOwnner = info && infoUser ? info._id_author===infoUser._id : false
     return (
       <div className="userShowQuest" style={{ marginTop: '50px' }}>
         <div className="container-fulid">

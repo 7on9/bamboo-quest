@@ -23,7 +23,7 @@ export const dataProvider = async (sourceUrl, option) => {
     if (option.params) {
       options.params = option.params
     }
-    if (method == 'GET') {
+    if (method==='GET') {
       return new Promise((resolve, reject) => {
         axios
           .get(`${BASE_API_URL}${sourceUrl}${filter}`, options)

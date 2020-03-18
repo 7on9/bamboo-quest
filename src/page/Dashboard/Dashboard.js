@@ -2,6 +2,7 @@ import React from 'react'
 import Fullscreen from './comon/Fullscreen'
 import Home from './Home'
 import User from './User'
+import Quest from './Quest'
 
 import { Switch, Route } from 'react-router-dom'
 import DetailUser from './DetailUser'
@@ -13,6 +14,7 @@ export default function Dashboard() {
         <Route exact path="/dashboard" component={Home} />
         <Route exact path="/dashboard/user" component={User} />
         <Route path="/dashboard/user/:id" component={DetailUser} />
+        <Route exact path="/dashboard/quest" component={Quest} />
       </Switch>
     </Fullscreen>
   )

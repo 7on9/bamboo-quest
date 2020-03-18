@@ -483,7 +483,7 @@ S2.define("almond", function(){});
 S2.define('jquery',[],function () {
   var _$ = jQuery || $;
 
-  if (_$ == null && console && console.error) {
+  if (_$===null && console && console.error) {
     console.error(
       'Select2: An instance of jQuery or a jQuery-compatible library was not ' +
       'found. Make sure that you are including jQuery before Select2 on your ' +
@@ -625,7 +625,7 @@ S2.define('select2/utils',[
     this.listeners = this.listeners || {};
 
     // Params should always come in as an array
-    if (params == null) {
+    if (params===null) {
       params = [];
     }
 
@@ -692,7 +692,7 @@ S2.define('select2/utils',[
           dataLevel[key] = {};
         }
 
-        if (k == keys.length - 1) {
+        if (k===keys.length - 1) {
           dataLevel[key] = data[originalKey];
         }
 
@@ -836,7 +836,7 @@ S2.define('select2/results',[
 
     var $options = [];
 
-    if (data.results == null || data.results.length === 0) {
+    if (data.results===null || data.results.length === 0) {
       if (this.$results.children().length === 0) {
         this.trigger('results:message', {
           message: 'noResults'
@@ -909,7 +909,7 @@ S2.define('select2/results',[
         var id = '' + item.id;
 
         if ((item.element != null && item.element.selected) ||
-            (item.element == null && $.inArray(id, selectedIds) > -1)) {
+            (item.element===null && $.inArray(id, selectedIds) > -1)) {
           $option.attr('aria-selected', 'true');
         } else {
           $option.attr('aria-selected', 'false');
@@ -953,7 +953,7 @@ S2.define('select2/results',[
       attrs['aria-disabled'] = 'true';
     }
 
-    if (data.id == null) {
+    if (data.id===null) {
       delete attrs['aria-selected'];
     }
 
@@ -1096,7 +1096,7 @@ S2.define('select2/results',[
 
       var data = $highlighted.data('data');
 
-      if ($highlighted.attr('aria-selected') == 'true') {
+      if ($highlighted.attr('aria-selected')==='true') {
         self.trigger('close', {});
       } else {
         self.trigger('select', {
@@ -1283,7 +1283,7 @@ S2.define('select2/results',[
 
     var content = template(result, container);
 
-    if (content == null) {
+    if (content===null) {
       container.style.display = 'none';
     } else if (typeof content === 'string') {
       container.innerHTML = escapeMarkup(content);
@@ -1426,7 +1426,7 @@ S2.define('select2/selection/base',[
     window.setTimeout(function () {
       // Don't trigger `blur` if the focus is still in the selection
       if (
-        (document.activeElement == self.$selection[0]) ||
+        (document.activeElement===self.$selection[0]) ||
         ($.contains(self.$selection[0], document.activeElement))
       ) {
         return;
@@ -1449,7 +1449,7 @@ S2.define('select2/selection/base',[
       $all.each(function () {
         var $this = $(this);
 
-        if (this == $select[0]) {
+        if (this===$select[0]) {
           return;
         }
 
@@ -1722,7 +1722,7 @@ S2.define('select2/selection/placeholder',[
 
   Placeholder.prototype.update = function (decorated, data) {
     var singlePlaceholder = (
-      data.length == 1 && data[0].id != this.placeholder.id
+      data.length===1 && data[0].id != this.placeholder.id
     );
     var multipleSelections = data.length > 1;
 
@@ -1751,7 +1751,7 @@ S2.define('select2/selection/allowClear',[
 
     decorated.call(this, container, $container);
 
-    if (this.placeholder == null) {
+    if (this.placeholder===null) {
       if (this.options.get('debug') && window.console && console.error) {
         console.error(
           'Select2: The `allowClear` option should be used in combination ' +
@@ -1812,7 +1812,7 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    if (evt.which == KEYS.DELETE || evt.which == KEYS.BACKSPACE) {
+    if (evt.which===KEYS.DELETE || evt.which===KEYS.BACKSPACE) {
       this._handleClear(evt);
     }
   };
@@ -1973,12 +1973,12 @@ S2.define('select2/selection/search',[
         var key = evt.which;
 
         // We can freely ignore events from modifier keys
-        if (key == KEYS.SHIFT || key == KEYS.CTRL || key == KEYS.ALT) {
+        if (key===KEYS.SHIFT || key===KEYS.CTRL || key===KEYS.ALT) {
           return;
         }
 
         // Tabbing will be handled during the `keydown` phase
-        if (key == KEYS.TAB) {
+        if (key===KEYS.TAB) {
           return;
         }
 
@@ -2004,7 +2004,7 @@ S2.define('select2/selection/search',[
   };
 
   Search.prototype.update = function (decorated, data) {
-    var searchHadFocus = this.$search[0] == document.activeElement;
+    var searchHadFocus = this.$search[0]===document.activeElement;
 
     this.$search.attr('placeholder', '');
 
@@ -3302,7 +3302,7 @@ S2.define('select2/data/select',[
       item.text = item.text.toString();
     }
 
-    if (item._resultId == null && item.id && this.container != null) {
+    if (item._resultId===null && item.id && this.container != null) {
       item._resultId = this.generateResultId(this.container, item);
     }
 
@@ -3335,7 +3335,7 @@ S2.define('select2/data/array',[
 
   ArrayAdapter.prototype.select = function (data) {
     var $option = this.$element.find('option').filter(function (i, elm) {
-      return elm.value == data.id.toString();
+      return elm.value===data.id.toString();
     });
 
     if ($option.length === 0) {
@@ -3360,7 +3360,7 @@ S2.define('select2/data/array',[
     // Filter out all items except for the one passed in the argument
     function onlyItem (item) {
       return function () {
-        return $(this).val() == item.id;
+        return $(this).val()===item.id;
       };
     }
 
@@ -3545,7 +3545,7 @@ S2.define('select2/data/tags',[
 
     this._removeOldTags();
 
-    if (params.term == null || params.page != null) {
+    if (params.term===null || params.page != null) {
       decorated.call(this, params, callback);
       return;
     }
@@ -3734,7 +3734,7 @@ S2.define('select2/data/tokenizer',[
 
       var data = createTag(partParams);
 
-      if (data == null) {
+      if (data===null) {
         i++;
         continue;
       }
@@ -3963,7 +3963,7 @@ S2.define('select2/dropdown/search',[
     });
 
     container.on('results:all', function (params) {
-      if (params.query.term == null || params.query.term === '') {
+      if (params.query.term===null || params.query.term === '') {
         var showSearch = self.showSearch(params);
 
         if (showSearch) {
@@ -4309,7 +4309,7 @@ S2.define('select2/dropdown/attachBody',[
       newDirection = 'below';
     }
 
-    if (newDirection == 'above' ||
+    if (newDirection==='above' ||
       (isCurrentlyAbove && newDirection !== 'below')) {
       css.top = container.top - parentOffset.top - dropdown.height;
     }
@@ -4428,7 +4428,7 @@ S2.define('select2/dropdown/selectOnClose',[
     // Don't re-select already selected resulte
     if (
       (data.element != null && data.element.selected) ||
-      (data.element == null && data.selected)
+      (data.element===null && data.selected)
     ) {
       return;
     }
@@ -4580,7 +4580,7 @@ S2.define('select2/defaults',[
   Defaults.prototype.apply = function (options) {
     options = $.extend(true, {}, this.defaults, options);
 
-    if (options.dataAdapter == null) {
+    if (options.dataAdapter===null) {
       if (options.ajax != null) {
         options.dataAdapter = AjaxData;
       } else if (options.data != null) {
@@ -4640,7 +4640,7 @@ S2.define('select2/defaults',[
       }
     }
 
-    if (options.resultsAdapter == null) {
+    if (options.resultsAdapter===null) {
       options.resultsAdapter = ResultsList;
 
       if (options.ajax != null) {
@@ -4665,7 +4665,7 @@ S2.define('select2/defaults',[
       }
     }
 
-    if (options.dropdownAdapter == null) {
+    if (options.dropdownAdapter===null) {
       if (options.multiple) {
         options.dropdownAdapter = Dropdown;
       } else {
@@ -4707,7 +4707,7 @@ S2.define('select2/defaults',[
       );
     }
 
-    if (options.selectionAdapter == null) {
+    if (options.selectionAdapter===null) {
       if (options.multiple) {
         options.selectionAdapter = MultipleSelection;
       } else {
@@ -4848,7 +4848,7 @@ S2.define('select2/defaults',[
           var matches = matcher(params, child);
 
           // If there wasn't a match, remove the object in the array
-          if (matches == null) {
+          if (matches===null) {
             match.children.splice(c, 1);
           }
         }
@@ -4946,15 +4946,15 @@ S2.define('select2/options',[
   Options.prototype.fromElement = function ($e) {
     var excludedData = ['select2'];
 
-    if (this.options.multiple == null) {
+    if (this.options.multiple===null) {
       this.options.multiple = $e.prop('multiple');
     }
 
-    if (this.options.disabled == null) {
+    if (this.options.disabled===null) {
       this.options.disabled = $e.prop('disabled');
     }
 
-    if (this.options.language == null) {
+    if (this.options.language===null) {
       if ($e.prop('lang')) {
         this.options.language = $e.prop('lang').toLowerCase();
       } else if ($e.closest('[lang]').prop('lang')) {
@@ -4962,7 +4962,7 @@ S2.define('select2/options',[
       }
     }
 
-    if (this.options.dir == null) {
+    if (this.options.dir===null) {
       if ($e.prop('dir')) {
         this.options.dir = $e.prop('dir');
       } else if ($e.closest('[dir]').prop('dir')) {
@@ -5005,7 +5005,7 @@ S2.define('select2/options',[
 
     // Prefer the element's `dataset` attribute if it exists
     // jQuery 1.x does not correctly handle data attributes with multiple dashes
-    if ($.fn.jquery && $.fn.jquery.substr(0, 2) == '1.' && $e[0].dataset) {
+    if ($.fn.jquery && $.fn.jquery.substr(0, 2)==='1.' && $e[0].dataset) {
       dataset = $.extend(true, {}, $e[0].dataset, $e.data());
     } else {
       dataset = $e.data();
@@ -5161,7 +5161,7 @@ S2.define('select2/core',[
   Select2.prototype._resolveWidth = function ($element, method) {
     var WIDTH = /^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;
 
-    if (method == 'resolve') {
+    if (method==='resolve') {
       var styleWidth = this._resolveWidth($element, 'style');
 
       if (styleWidth != null) {
@@ -5171,7 +5171,7 @@ S2.define('select2/core',[
       return this._resolveWidth($element, 'element');
     }
 
-    if (method == 'element') {
+    if (method==='element') {
       var elementWidth = $element.outerWidth(false);
 
       if (elementWidth <= 0) {
@@ -5181,7 +5181,7 @@ S2.define('select2/core',[
       return elementWidth + 'px';
     }
 
-    if (method == 'style') {
+    if (method==='style') {
       var style = $element.attr('style');
 
       if (typeof(style) !== 'string') {
@@ -5542,7 +5542,7 @@ S2.define('select2/core',[
       );
     }
 
-    if (args == null || args.length === 0) {
+    if (args===null || args.length === 0) {
       args = [true];
     }
 
@@ -5577,7 +5577,7 @@ S2.define('select2/core',[
       );
     }
 
-    if (args == null || args.length === 0) {
+    if (args===null || args.length === 0) {
       return this.$element.val();
     }
 
@@ -5942,7 +5942,7 @@ S2.define('select2/compat/inputData',[
       for (var d = 0; d < allData.length; d++) {
         var item = allData[d];
 
-        if (data.id == item.id) {
+        if (data.id===item.id) {
           continue;
         }
 
@@ -5990,7 +5990,7 @@ S2.define('select2/compat/matcher',[
     function wrappedMatcher (params, data) {
       var match = $.extend(true, {}, data);
 
-      if (params.term == null || $.trim(params.term) === '') {
+      if (params.term===null || $.trim(params.term) === '') {
         return match;
       }
 
@@ -6378,7 +6378,7 @@ S2.define('jquery.select2',[
   './select2/core',
   './select2/defaults'
 ], function ($, _, Select2, Defaults) {
-  if ($.fn.select2 == null) {
+  if ($.fn.select2===null) {
     // All methods that should return the element
     var thisMethods = ['open', 'close', 'destroy'];
 
@@ -6400,7 +6400,7 @@ S2.define('jquery.select2',[
         this.each(function () {
           var instance = $(this).data('select2');
 
-          if (instance == null && window.console && console.error) {
+          if (instance===null && window.console && console.error) {
             console.error(
               'The select2(\'' + options + '\') method was called on an ' +
               'element that is not using Select2.'
@@ -6422,7 +6422,7 @@ S2.define('jquery.select2',[
     };
   }
 
-  if ($.fn.select2.defaults == null) {
+  if ($.fn.select2.defaults===null) {
     $.fn.select2.defaults = Defaults;
   }
 

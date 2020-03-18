@@ -27,7 +27,7 @@ const when = promises => {
             results.push(errOrValue)
           }
           count++
-          if (count == promises.length) {
+          if (count===promises.length) {
             resolve({
               errors,
               results,

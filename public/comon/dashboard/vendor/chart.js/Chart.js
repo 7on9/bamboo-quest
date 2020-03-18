@@ -79,13 +79,13 @@ function rgb2hsl(rgb) {
       delta = max - min,
       h, s, l;
 
-  if (max == min)
+  if (max===min)
     h = 0;
-  else if (r == max)
+  else if (r===max)
     h = (g - b) / delta;
-  else if (g == max)
+  else if (g===max)
     h = 2 + (b - r) / delta;
-  else if (b == max)
+  else if (b===max)
     h = 4 + (r - g)/ delta;
 
   h = Math.min(h * 60, 360);
@@ -95,7 +95,7 @@ function rgb2hsl(rgb) {
 
   l = (min + max) / 2;
 
-  if (max == min)
+  if (max===min)
     s = 0;
   else if (l <= 0.5)
     s = delta / (max + min);
@@ -114,18 +114,18 @@ function rgb2hsv(rgb) {
       delta = max - min,
       h, s, v;
 
-  if (max == 0)
+  if (max===0)
     s = 0;
   else
     s = (delta/max * 1000)/10;
 
-  if (max == min)
+  if (max===min)
     h = 0;
-  else if (r == max)
+  else if (r===max)
     h = (g - b) / delta;
-  else if (g == max)
+  else if (g===max)
     h = 2 + (b - r) / delta;
-  else if (b == max)
+  else if (b===max)
     h = 4 + (r - g) / delta;
 
   h = Math.min(h * 60, 360);
@@ -215,7 +215,7 @@ function hsl2rgb(hsl) {
       l = hsl[2] / 100,
       t1, t2, t3, rgb, val;
 
-  if (s == 0) {
+  if (s===0) {
     val = l * 255;
     return [val, val, val];
   }
@@ -720,7 +720,7 @@ for (var func in conversions) {
   convert[func + "Raw"] =  (function(func) {
     // accept array or plain args
     return function(arg) {
-      if (typeof arg == "number")
+      if (typeof arg==="number")
         arg = Array.prototype.slice.call(arguments);
       return conversions[func](arg);
     }
@@ -735,11 +735,11 @@ for (var func in conversions) {
 
   convert[from][to] = convert[func] = (function(func) { 
     return function(arg) {
-      if (typeof arg == "number")
+      if (typeof arg==="number")
         arg = Array.prototype.slice.call(arguments);
       
       var val = conversions[func](arg);
-      if (typeof val == "string" || val === undefined)
+      if (typeof val==="string" || val === undefined)
         return val; // keyword
 
       for (var i = 0; i < val.length; i++)
@@ -764,7 +764,7 @@ Converter.prototype.routeSpace = function(space, args) {
       return this.getValues(space);
    }
    // color.rgb(10, 10, 10)
-   if (typeof values == "number") {
+   if (typeof values==="number") {
       values = Array.prototype.slice.call(args);        
    }
 
@@ -1022,7 +1022,7 @@ function getRgba(string) {
       a = parseFloat(match[4]);
    }
    else if (match = string.match(keyword)) {
-      if (match[1] == "transparent") {
+      if (match[1]==="transparent") {
          return [0, 0, 0, 0];
       }
       rgb = colorName[match[1]];
@@ -6033,7 +6033,7 @@ var core_interaction = {
 
 		/**
 		 * @function Chart.Interaction.modes.x-axis
-		 * @deprecated since version 2.4.0. Use index mode and intersect == true
+		 * @deprecated since version 2.4.0. Use index mode and intersect===true
 		 * @todo remove at version 3
 		 * @private
 		 */
@@ -12973,9 +12973,9 @@ var defaultConfig$4 = {
 
 	adapters: {},
 	time: {
-		parser: false, // false == a pattern string from https://momentjs.com/docs/#/parsing/string-format/ or a custom callback that converts its argument to a moment
-		format: false, // DEPRECATED false == date objects, moment object, callback or a pattern string from https://momentjs.com/docs/#/parsing/string-format/
-		unit: false, // false == automatic or override with week, month, year, etc.
+		parser: false, // false===a pattern string from https://momentjs.com/docs/#/parsing/string-format/ or a custom callback that converts its argument to a moment
+		format: false, // DEPRECATED false===date objects, moment object, callback or a pattern string from https://momentjs.com/docs/#/parsing/string-format/
+		unit: false, // false===automatic or override with week, month, year, etc.
 		round: false, // none, or override with week, month, year, etc.
 		displayFormat: false, // DEPRECATED
 		isoWeekday: false, // override week start day - see https://momentjs.com/docs/#/get-set/iso-weekday/

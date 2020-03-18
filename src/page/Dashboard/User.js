@@ -27,9 +27,9 @@ export default class Table extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <ItemTableUser/>
-                  <ItemTableUser/>
-                  <ItemTableUser/>
+                  <ItemTableUser id={1} username={'Pham Hong Quan'} email={'phq@gmail.com'} createAt={'15/05/2020'} countJoin={1} countQuestCreated={1}/>
+                  <ItemTableUser id={1} username={'Pham Hong Quan'} email={'phq@gmail.com'} createAt={'15/05/2020'} countJoin={1} countQuestCreated={1}/>
+                  <ItemTableUser id={1} username={'Pham Hong Quan'} email={'phq@gmail.com'} createAt={'15/05/2020'} countJoin={1} countQuestCreated={1}/>
                 </tbody>
               </table>
             </div>

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Popup from "reactjs-popup";
-
 
 export default class DetailUser extends Component {
   constructor(props){
@@ -36,9 +34,6 @@ export default class DetailUser extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Popup trigger={<button> Trigger</button>} position="right center">
-          <div>Popup content here !!</div>
-        </Popup>
         <h1 className="h3 mb-2 text-gray-800">Chi tiết người dùng</h1>
         <div className="shadow mb-4">
           <div className="card-header py-3">
@@ -72,7 +67,7 @@ export default class DetailUser extends Component {
               this.state.statusEdit?(<button type="button" className="btn btn-success" style={{marginRight:'10px'}} onClick={()=>this.handleSave()}>LƯU</button>)
                 :(<button type="button" className="btn btn-primary" style={{marginRight:'10px'}} onClick={()=>this.handleEdit()}>CHỈNH SỬA</button>)
             }
-            <button type="button" className="btn btn-danger">XOÁ</button>
+            <button type="button" className="btn btn-danger">XOÁ TÀI KHOẢN</button>
             
           </div>
         </div>

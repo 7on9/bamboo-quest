@@ -45,7 +45,7 @@
             });
             $this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
                 $this.$calendarObj.fullCalendar('removeEvents', function (ev) {
-                    return (ev._id == calEvent._id);
+                    return (ev._id===calEvent._id);
                 });
                 $this.$modal.modal('hide');
             });

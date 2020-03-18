@@ -52,7 +52,6 @@ export default class Fullscreen extends Component {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     )

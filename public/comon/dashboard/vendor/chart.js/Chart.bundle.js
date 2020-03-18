@@ -77,13 +77,13 @@ function rgb2hsl(rgb) {
       delta = max - min,
       h, s, l;
 
-  if (max == min)
+  if (max===min)
     h = 0;
-  else if (r == max)
+  else if (r===max)
     h = (g - b) / delta;
-  else if (g == max)
+  else if (g===max)
     h = 2 + (b - r) / delta;
-  else if (b == max)
+  else if (b===max)
     h = 4 + (r - g)/ delta;
 
   h = Math.min(h * 60, 360);
@@ -93,7 +93,7 @@ function rgb2hsl(rgb) {
 
   l = (min + max) / 2;
 
-  if (max == min)
+  if (max===min)
     s = 0;
   else if (l <= 0.5)
     s = delta / (max + min);
@@ -112,18 +112,18 @@ function rgb2hsv(rgb) {
       delta = max - min,
       h, s, v;
 
-  if (max == 0)
+  if (max===0)
     s = 0;
   else
     s = (delta/max * 1000)/10;
 
-  if (max == min)
+  if (max===min)
     h = 0;
-  else if (r == max)
+  else if (r===max)
     h = (g - b) / delta;
-  else if (g == max)
+  else if (g===max)
     h = 2 + (b - r) / delta;
-  else if (b == max)
+  else if (b===max)
     h = 4 + (r - g) / delta;
 
   h = Math.min(h * 60, 360);
@@ -213,7 +213,7 @@ function hsl2rgb(hsl) {
       l = hsl[2] / 100,
       t1, t2, t3, rgb, val;
 
-  if (s == 0) {
+  if (s===0) {
     val = l * 255;
     return [val, val, val];
   }
@@ -718,7 +718,7 @@ for (var func in conversions) {
   convert[func + "Raw"] =  (function(func) {
     // accept array or plain args
     return function(arg) {
-      if (typeof arg == "number")
+      if (typeof arg==="number")
         arg = Array.prototype.slice.call(arguments);
       return conversions[func](arg);
     }
@@ -733,11 +733,11 @@ for (var func in conversions) {
 
   convert[from][to] = convert[func] = (function(func) { 
     return function(arg) {
-      if (typeof arg == "number")
+      if (typeof arg==="number")
         arg = Array.prototype.slice.call(arguments);
       
       var val = conversions[func](arg);
-      if (typeof val == "string" || val === undefined)
+      if (typeof val==="string" || val === undefined)
         return val; // keyword
 
       for (var i = 0; i < val.length; i++)
@@ -762,7 +762,7 @@ Converter.prototype.routeSpace = function(space, args) {
       return this.getValues(space);
    }
    // color.rgb(10, 10, 10)
-   if (typeof values == "number") {
+   if (typeof values==="number") {
       values = Array.prototype.slice.call(args);        
    }
 
@@ -1020,7 +1020,7 @@ function getRgba(string) {
       a = parseFloat(match[4]);
    }
    else if (match = string.match(keyword)) {
-      if (match[1] == "transparent") {
+      if (match[1]==="transparent") {
          return [0, 0, 0, 0];
       }
       rgb = colorName[match[1]];
@@ -6031,7 +6031,7 @@ var core_interaction = {
 
 		/**
 		 * @function Chart.Interaction.modes.x-axis
-		 * @deprecated since version 2.4.0. Use index mode and intersect == true
+		 * @deprecated since version 2.4.0. Use index mode and intersect===true
 		 * @todo remove at version 3
 		 * @private
 		 */
@@ -12981,9 +12981,9 @@ var defaultConfig$4 = {
 
 	adapters: {},
 	time: {
-		parser: false, // false == a pattern string from https://momentjs.com/docs/#/parsing/string-format/ or a custom callback that converts its argument to a moment
-		format: false, // DEPRECATED false == date objects, moment object, callback or a pattern string from https://momentjs.com/docs/#/parsing/string-format/
-		unit: false, // false == automatic or override with week, month, year, etc.
+		parser: false, // false===a pattern string from https://momentjs.com/docs/#/parsing/string-format/ or a custom callback that converts its argument to a moment
+		format: false, // DEPRECATED false===date objects, moment object, callback or a pattern string from https://momentjs.com/docs/#/parsing/string-format/
+		unit: false, // false===automatic or override with week, month, year, etc.
 		round: false, // none, or override with week, month, year, etc.
 		displayFormat: false, // DEPRECATED
 		isoWeekday: false, // override week start day - see https://momentjs.com/docs/#/get-set/iso-weekday/
@@ -13432,7 +13432,7 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function getParsingFlags(m) {
-        if (m._pf == null) {
+        if (m._pf===null) {
             m._pf = defaultParsingFlags();
         }
         return m._pf;
@@ -13457,7 +13457,7 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function isValid(m) {
-        if (m._isValid == null) {
+        if (m._isValid===null) {
             var flags = getParsingFlags(m);
             var parsedParts = some.call(flags.parsedDateParts, function (i) {
                 return i != null;
@@ -13480,7 +13480,7 @@ var moment = createCommonjsModule(function (module, exports) {
                     flags.bigHour === undefined;
             }
 
-            if (Object.isFrozen == null || !Object.isFrozen(m)) {
+            if (Object.isFrozen===null || !Object.isFrozen(m)) {
                 m._isValid = isNowValid;
             }
             else {
@@ -14611,12 +14611,12 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function getSetWeek (input) {
         var week = this.localeData().week(this);
-        return input == null ? week : this.add((input - week) * 7, 'd');
+        return input===null ? week : this.add((input - week) * 7, 'd');
     }
 
     function getSetISOWeek (input) {
         var week = weekOfYear(this, 1, 4).week;
-        return input == null ? week : this.add((input - week) * 7, 'd');
+        return input===null ? week : this.add((input - week) * 7, 'd');
     }
 
     // FORMATTING
@@ -14853,7 +14853,7 @@ var moment = createCommonjsModule(function (module, exports) {
             return input != null ? this : NaN;
         }
         var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
-        return input == null ? weekday : this.add(input - weekday, 'd');
+        return input===null ? weekday : this.add(input - weekday, 'd');
     }
 
     function getSetISODayOfWeek (input) {
@@ -15380,7 +15380,7 @@ var moment = createCommonjsModule(function (module, exports) {
         currentDate = currentDateArray(config);
 
         //compute day of the year from weeks and weekdays
-        if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
+        if (config._w && config._a[DATE]===null && config._a[MONTH]===null) {
             dayOfYearFromWeekInfo(config);
         }
 
@@ -15402,13 +15402,13 @@ var moment = createCommonjsModule(function (module, exports) {
         // * if day of month is given, default month and year
         // * if month is given, default only year
         // * if year is given, don't default anything
-        for (i = 0; i < 3 && config._a[i] == null; ++i) {
+        for (i = 0; i < 3 && config._a[i]===null; ++i) {
             config._a[i] = input[i] = currentDate[i];
         }
 
         // Zero out whatever was not defaulted, including time
         for (; i < 7; i++) {
-            config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
+            config._a[i] = input[i] = (config._a[i]===null) ? (i === 2 ? 1 : 0) : config._a[i];
         }
 
         // Check for 24:00:00.000
@@ -15550,7 +15550,7 @@ var moment = createCommonjsModule(function (module, exports) {
                     break;
                 }
             }
-            if (dateFormat == null) {
+            if (dateFormat===null) {
                 config._isValid = false;
                 return;
             }
@@ -15562,7 +15562,7 @@ var moment = createCommonjsModule(function (module, exports) {
                         break;
                     }
                 }
-                if (timeFormat == null) {
+                if (timeFormat===null) {
                     config._isValid = false;
                     return;
                 }
@@ -15800,7 +15800,7 @@ var moment = createCommonjsModule(function (module, exports) {
     function meridiemFixWrap (locale, hour, meridiem) {
         var isPm;
 
-        if (meridiem == null) {
+        if (meridiem===null) {
             // nothing to do
             return hour;
         }
@@ -15858,7 +15858,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
             getParsingFlags(tempConfig).score = currentScore;
 
-            if (scoreToBeat == null || currentScore < scoreToBeat) {
+            if (scoreToBeat===null || currentScore < scoreToBeat) {
                 scoreToBeat = currentScore;
                 bestMoment = tempConfig;
             }
@@ -16042,7 +16042,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function isDurationValid(m) {
         for (var key in m) {
-            if (!(indexOf.call(ordering, key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
+            if (!(indexOf.call(ordering, key) !== -1 && (m[key]===null || !isNaN(m[key])))) {
                 return false;
             }
         }
@@ -16205,7 +16205,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // Keeping the time actually adds/subtracts (one hour)
     // from the actual represented time. That is why we call updateOffset
     // a second time. In case it wants us to change the offset again
-    // _changeInProgress == true case, then we have to adjust, because
+    // _changeInProgress===true case, then we have to adjust, because
     // there is no such time in the given timezone.
     function getSetOffset (input, keepLocalTime, keepMinutes) {
         var offset = this._offset || 0,
@@ -16389,7 +16389,7 @@ var moment = createCommonjsModule(function (module, exports) {
                 m : parseIso(match[7], sign),
                 s : parseIso(match[8], sign)
             };
-        } else if (duration == null) {// checks for null or undefined
+        } else if (duration===null) {// checks for null or undefined
             duration = {};
         } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
             diffRes = momentsDifference(createLocal(duration.from), createLocal(duration.to));
@@ -16480,7 +16480,7 @@ var moment = createCommonjsModule(function (module, exports) {
             return;
         }
 
-        updateOffset = updateOffset == null ? true : updateOffset;
+        updateOffset = updateOffset===null ? true : updateOffset;
 
         if (months) {
             setMonth(mom, get(mom, 'Month') + months * isAdding);
@@ -17018,7 +17018,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function getSetWeekYearHelper(input, week, weekday, dow, doy) {
         var weeksTarget;
-        if (input == null) {
+        if (input===null) {
             return weekOfYear(this, dow, doy).year;
         } else {
             weeksTarget = weeksInYear(input, dow, doy);
@@ -17061,7 +17061,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // MOMENTS
 
     function getSetQuarter (input) {
-        return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
+        return input===null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
     }
 
     // FORMATTING
@@ -17120,7 +17120,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function getSetDayOfYear (input) {
         var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
-        return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
+        return input===null ? dayOfYear : this.add((input - dayOfYear), 'd');
     }
 
     // FORMATTING
