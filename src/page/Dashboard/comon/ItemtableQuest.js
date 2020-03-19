@@ -10,7 +10,7 @@ export default class ItemTableUser extends Component {
         <td>{this.props.created}</td>
         <td>{this.props.creator}</td>
         <td>{this.props.countQuestion}</td>
-        <td> <Link to={'/dashboard/user/'+this.props.id}><i className="far fa-eye"></i></Link> </td>
+        <td> <Link to={'/dashboard/quest/'+this.props.id}><i className="far fa-eye"></i></Link> </td>
       </tr>
     )
   }
