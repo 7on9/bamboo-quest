@@ -42,7 +42,6 @@ class Home extends Component {
       this.setState({
         authenticated: false,
       })
-      console.log('tạch')
     }
   }
 

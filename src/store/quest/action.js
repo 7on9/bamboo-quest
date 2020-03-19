@@ -137,7 +137,6 @@ export const getMyQuests = () => {
         })
       )
       .catch(err => {
-        console.log(err)
         return dispatch({
           type: QUEST_TYPES.MY_QUESTS,
           payload: {
@@ -162,7 +161,6 @@ export const getsAllQuests = limit => {
         })
       )
       .catch(err => {
-        console.log(err)
         return dispatch({
           type: QUEST_TYPES.LIST,
           payload: {

@@ -12,11 +12,8 @@ import Helmet from 'react-helmet'
 
 class User extends Component {
   render() {
-    console.log (this.props)
     return (
       <div className="detail-user">
-
-        {/* <Authentication /> */}
         <Helmet>
           <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
           <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>

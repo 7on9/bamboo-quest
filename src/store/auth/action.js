@@ -36,7 +36,6 @@ export const login = (email, password) => {
         }
       })
       .catch(err => {
-        console.log(err)
         dispatch({
           type: USER_TYPE.AUTH.LOGIN,
           payload: {
@@ -121,7 +120,6 @@ export const verify = () => {
     AuthenticationService.verify()
       .then(res => res.data)
       .then(res => {
-        console.log(res)
         localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info)
         localStorage.setItem(APP_CONSTANTS.WEB_EMAIL, res.info.email)
         localStorage.setItem (APP_CONSTANTS.WEB_TOKEN, res.token)

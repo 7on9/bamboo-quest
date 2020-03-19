@@ -26,7 +26,6 @@ class CreateQuestion extends Component {
         [event.target.name]: event.target.value,
       },
     })
-    console.log(this.state)
   }
 
   onUploadImage = async event => {
@@ -82,7 +81,6 @@ class CreateQuestion extends Component {
   }
   UNSAFE_componentWillMount() {
     let param = this.props.location.pathname
-    console.log(param.slice(param.lastIndexOf('/') + 1, param.length))
     this.props.getQuestInfo(
       param.slice(param.lastIndexOf('/') + 1, param.length)
     )

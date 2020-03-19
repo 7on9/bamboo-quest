@@ -31,7 +31,6 @@ export const dataProvider = async (sourceUrl, option) => {
             resolve(response)
           })
           .catch(err => {
-            console.log('Error:', err)
             if (err.response) {
               reject(err.response)
             } else {
@@ -49,7 +48,6 @@ export const dataProvider = async (sourceUrl, option) => {
             resolve(response)
           })
           .catch(err => {
-            console.log('Error:', err)
             if (err.response) {
               reject(err.response)
             } else {
@@ -59,6 +57,5 @@ export const dataProvider = async (sourceUrl, option) => {
       })
     }
   } catch (err) {
-    console.log('Error:', err)
   }
 }

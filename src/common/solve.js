@@ -44,10 +44,5 @@ async function run() {
   }
 
   let res = await when(promises)
-  console.log(res)
-
-  //     .then(res => console.log(res))
-  //     .catch(err => console.log(err))
-  // }
 }
 run()
