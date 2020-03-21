@@ -81,7 +81,6 @@ class ListQuest extends Component {
                     Thông tin
                   </Link>
                 </div>
-                {/* <div className="btn-info-user" style={{width:'100%', height:'35px',marginTop:'10px', background:'#17a51e', display:'flex',justifyContent:'center', alignItems:'center'}}><Link style={{}}><p style={{color:'#efefef'}}>Thông tin</p></Link></div> */}
               </div>
             </div>
 
