@@ -17,6 +17,8 @@ class Create extends Component {
         title: '',
       },
     }
+    this.props.resetResult()
+    this.props.changeStatusRunning(false)
   }
 
   onSubmit = async e => {

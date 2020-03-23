@@ -57,5 +57,7 @@ export const dataProvider = async (sourceUrl, option) => {
       })
     }
   } catch (err) {
+    console.log(err)
+    return null
   }
 }

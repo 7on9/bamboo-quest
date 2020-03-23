@@ -83,5 +83,4 @@ bower_components
 # dotenv environment variables file
 .env
 
-# yarn.lock
-# package.json
+yarn.lock
