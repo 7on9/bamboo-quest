@@ -6,7 +6,6 @@ import './style.css'
 import { Icon } from './../../res/icon/index'
 export const Menu = props => (
   <nav className="menu">
-    {console.log(props)}
     <div className="logoMenu">
       <Link to="/home" className="logoMenu">
         BAMBOO QUEST

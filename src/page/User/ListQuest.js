@@ -15,7 +15,6 @@ class ListQuest extends Component {
     }
   }
   componentDidMount() {
-    console.log(this.props)
     this.props.getMyQuests()
     if (
       !this.props.quest ||
@@ -45,8 +44,6 @@ class ListQuest extends Component {
     // }
     const { user, quest } = this.props
     const { quests, myQuests } = quest
-
-    console.log(user)
     return this.state.toCreateQuest ? (
       <Redirect to={'/quest/create'} />
     ) : (
@@ -84,7 +81,6 @@ class ListQuest extends Component {
                     Thông tin
                   </Link>
                 </div>
-                {/* <div className="btn-info-user" style={{width:'100%', height:'35px',marginTop:'10px', background:'#17a51e', display:'flex',justifyContent:'center', alignItems:'center'}}><Link style={{}}><p style={{color:'#efefef'}}>Thông tin</p></Link></div> */}
               </div>
             </div>
 

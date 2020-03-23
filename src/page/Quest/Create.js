@@ -17,6 +17,8 @@ class Create extends Component {
         title: '',
       },
     }
+    this.props.resetResult()
+    this.props.changeStatusRunning(false)
   }
 
   onSubmit = async e => {
@@ -76,12 +78,6 @@ class Create extends Component {
   render() {
     let { img_path } = this.state
     let { is_public } = this.state.newQuest
-
-    console.log(this.props.quest)
-    
-    // const { from } = this.props.location.state || {
-    //   from: { pathname: '/home' },
-    // }
     if (this.props.quest.result) {
       this.props.resetResult()
       return <Redirect to={'/user/quest/'} />

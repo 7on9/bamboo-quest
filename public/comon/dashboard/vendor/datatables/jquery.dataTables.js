@@ -513,7 +513,7 @@
 			if ( src !== undefined ) {
 				var type = src.nodeName ? src.nodeName.toLowerCase() : '';
 		
-				return col !== undefined || type == 'td' || type == 'th' ?
+				return col !== undefined || type==='td' || type==='th' ?
 					api.cell( src, col ).data() :
 					api.row( src ).data() || null;
 			}
@@ -583,10 +583,10 @@
 			var api = this.api( true );
 			var nodeName = node.nodeName.toUpperCase();
 		
-			if ( nodeName == 'TR' ) {
+			if ( nodeName==='TR' ) {
 				return api.row( node ).index();
 			}
-			else if ( nodeName == 'TD' || nodeName == 'TH' ) {
+			else if ( nodeName==='TD' || nodeName==='TH' ) {
 				var cell = api.cell( node ).index();
 		
 				return [
@@ -910,9 +910,9 @@
 			
 				/* Base check on table node */
 				if (
-					s.nTable == this ||
-					(s.nTHead && s.nTHead.parentNode == this) ||
-					(s.nTFoot && s.nTFoot.parentNode == this)
+					s.nTable===this ||
+					(s.nTHead && s.nTHead.parentNode===this) ||
+					(s.nTFoot && s.nTFoot.parentNode===this)
 				) {
 					var bRetrieve = oInit.bRetrieve !== undefined ? oInit.bRetrieve : defaults.bRetrieve;
 					var bDestroy = oInit.bDestroy !== undefined ? oInit.bDestroy : defaults.bDestroy;
@@ -938,7 +938,7 @@
 				 * instance by simply deleting it. This is under the assumption that the table has been
 				 * destroyed by other methods. Anyone using non-id selectors will need to do this manually
 				 */
-				if ( s.sTableId == this.id )
+				if ( s.sTableId===this.id )
 				{
 					allSettings.splice( i, 1 );
 					break;
@@ -1273,7 +1273,7 @@
 						_fnAddData( oSettings, oInit.aaData[ i ] );
 					}
 				}
-				else if ( oSettings.bDeferLoading || _fnDataSource( oSettings ) == 'dom' ) {
+				else if ( oSettings.bDeferLoading || _fnDataSource( oSettings )==='dom' ) {
 					/* Grab the data from the page - only do this when deferred loading or no Ajax
 					 * source since there is no point in reading the DOM data if we are then going
 					 * to replace it with Ajax data
@@ -2353,7 +2353,7 @@
 						/* Class name matching on TH element */
 						for ( k=0, kLen=columns.length ; k<kLen ; k++ )
 						{
-							if ( aTargets[j] == "_all" ||
+							if ( aTargets[j]==="_all" ||
 							     $(columns[k].nTh).hasClass( aTargets[j] ) )
 							{
 								fn( k, def );
@@ -2522,7 +2522,7 @@
 			return cellData.call( rowData );
 		}
 	
-		if ( cellData === null && type == 'display' ) {
+		if ( cellData === null && type==='display' ) {
 			return '';
 		}
 		return cellData;
@@ -2851,7 +2851,7 @@
 	
 		for ( var i=0, iLen=a.length ; i<iLen ; i++ )
 		{
-			if ( a[i] == iTarget )
+			if ( a[i]===iTarget )
 			{
 				iTargetIndex = i;
 			}
@@ -3028,7 +3028,7 @@
 			while ( td ) {
 				name = td.nodeName.toUpperCase();
 	
-				if ( name == "TD" || name == "TH" ) {
+				if ( name==="TD" || name==="TH" ) {
 					cellProcess( td );
 					tds.push( td );
 				}
@@ -3346,7 +3346,7 @@
 	
 					/* Expand the cell to cover as many rows as needed */
 					while ( aoLocal[i+iRowspan] !== undefined &&
-					        aoLocal[i][j].cell == aoLocal[i+iRowspan][j].cell )
+					        aoLocal[i][j].cell===aoLocal[i+iRowspan][j].cell )
 					{
 						aApplied[i+iRowspan][j] = 1;
 						iRowspan++;
@@ -3354,7 +3354,7 @@
 	
 					/* Expand the cell to cover as many columns as needed */
 					while ( aoLocal[i][j+iColspan] !== undefined &&
-					        aoLocal[i][j].cell == aoLocal[i][j+iColspan].cell )
+					        aoLocal[i][j].cell===aoLocal[i][j+iColspan].cell )
 					{
 						/* Must update the applied array over the rows for the columns */
 						for ( k=0 ; k<iRowspan ; k++ )
@@ -3397,7 +3397,7 @@
 		var iOpenRows = oSettings.aoOpenRows.length;
 		var oLang = oSettings.oLanguage;
 		var iInitDisplayStart = oSettings.iInitDisplayStart;
-		var bServerSide = _fnDataSource( oSettings ) == 'ssp';
+		var bServerSide = _fnDataSource( oSettings )==='ssp';
 		var aiDisplay = oSettings.aiDisplay;
 	
 		oSettings.bDrawing = true;
@@ -3474,7 +3474,7 @@
 		{
 			/* Table is empty - create a row with an empty message in it */
 			var sZero = oLang.sZeroRecords;
-			if ( oSettings.iDraw == 1 &&  _fnDataSource( oSettings ) == 'ajax' )
+			if ( oSettings.iDraw===1 &&  _fnDataSource( oSettings )==='ajax' )
 			{
 				sZero = oLang.sLoadingRecords;
 			}
@@ -3583,14 +3583,14 @@
 			featureNode = null;
 			cOption = aDom[i];
 	
-			if ( cOption == '<' )
+			if ( cOption==='<' )
 			{
 				/* New container div */
 				nNewNode = $('<div/>')[0];
 	
 				/* Check to see if we should append an id and/or a class name to the container */
 				cNext = aDom[i+1];
-				if ( cNext == "'" || cNext == '"' )
+				if ( cNext==="'" || cNext==='"' )
 				{
 					sAttr = "";
 					j = 2;
@@ -3601,11 +3601,11 @@
 					}
 	
 					/* Replace jQuery UI constants @todo depreciated */
-					if ( sAttr == "H" )
+					if ( sAttr==="H" )
 					{
 						sAttr = classes.sJUIHeader;
 					}
-					else if ( sAttr == "F" )
+					else if ( sAttr==="F" )
 					{
 						sAttr = classes.sJUIFooter;
 					}
@@ -3619,7 +3619,7 @@
 						nNewNode.id = aSplit[0].substr(1, aSplit[0].length-1);
 						nNewNode.className = aSplit[1];
 					}
-					else if ( sAttr.charAt(0) == "#" )
+					else if ( sAttr.charAt(0)==="#" )
 					{
 						nNewNode.id = sAttr.substr(1, sAttr.length-1);
 					}
@@ -3634,38 +3634,38 @@
 				insert.append( nNewNode );
 				insert = $(nNewNode);
 			}
-			else if ( cOption == '>' )
+			else if ( cOption==='>' )
 			{
 				/* End container div */
 				insert = insert.parent();
 			}
 			// @todo Move options into their own plugins?
-			else if ( cOption == 'l' && features.bPaginate && features.bLengthChange )
+			else if ( cOption==='l' && features.bPaginate && features.bLengthChange )
 			{
 				/* Length */
 				featureNode = _fnFeatureHtmlLength( oSettings );
 			}
-			else if ( cOption == 'f' && features.bFilter )
+			else if ( cOption==='f' && features.bFilter )
 			{
 				/* Filter */
 				featureNode = _fnFeatureHtmlFilter( oSettings );
 			}
-			else if ( cOption == 'r' && features.bProcessing )
+			else if ( cOption==='r' && features.bProcessing )
 			{
 				/* pRocessing */
 				featureNode = _fnFeatureHtmlProcessing( oSettings );
 			}
-			else if ( cOption == 't' )
+			else if ( cOption==='t' )
 			{
 				/* Table */
 				featureNode = _fnFeatureHtmlTable( oSettings );
 			}
-			else if ( cOption ==  'i' && features.bInfo )
+			else if ( cOption=== 'i' && features.bInfo )
 			{
 				/* Info */
 				featureNode = _fnFeatureHtmlInfo( oSettings );
 			}
-			else if ( cOption == 'p' && features.bPaginate )
+			else if ( cOption==='p' && features.bPaginate )
 			{
 				/* Pagination */
 				featureNode = _fnFeatureHtmlPaginate( oSettings );
@@ -3676,7 +3676,7 @@
 				var aoFeatures = DataTable.ext.feature;
 				for ( var k=0, kLen=aoFeatures.length ; k<kLen ; k++ )
 				{
-					if ( cOption == aoFeatures[k].cFeature )
+					if ( cOption===aoFeatures[k].cFeature )
 					{
 						featureNode = aoFeatures[k].fnInit( oSettings );
 						break;
@@ -3745,8 +3745,8 @@
 			/* For every cell in the row... */
 			nCell = nTr.firstChild;
 			while ( nCell ) {
-				if ( nCell.nodeName.toUpperCase() == "TD" ||
-				     nCell.nodeName.toUpperCase() == "TH" )
+				if ( nCell.nodeName.toUpperCase()==="TD" ||
+				     nCell.nodeName.toUpperCase()==="TH" )
 				{
 					/* Get the col and rowspan attributes from the DOM and sanitise them */
 					iColspan = nCell.getAttribute('colspan') * 1;
@@ -3900,7 +3900,7 @@
 				var ret = _fnCallbackFire( oSettings, null, 'xhr', [oSettings, null, oSettings.jqXHR] );
 	
 				if ( $.inArray( true, ret ) === -1 ) {
-					if ( error == "parsererror" ) {
+					if ( error==="parsererror" ) {
 						_fnLog( oSettings, 0, 'Invalid JSON response', 1 );
 					}
 					else if ( xhr.readyState === 4 ) {
@@ -4228,7 +4228,7 @@
 			)
 			.on( 'keypress.DT', function(e) {
 				/* Prevent form submission */
-				if ( e.keyCode == 13 ) {
+				if ( e.keyCode===13 ) {
 					return false;
 				}
 			} )
@@ -4735,7 +4735,7 @@
 		var dataSrc = _fnDataSource( settings );
 		if ( dataSrc != 'ssp' || deferLoading ) {
 			// if there is an ajax source load the data
-			if ( dataSrc == 'ajax' ) {
+			if ( dataSrc==='ajax' ) {
 				_fnBuildAjax( settings, [], function(json) {
 					var aData = _fnAjaxDataSrc( settings, json );
 	
@@ -4950,11 +4950,11 @@
 				start = 0;
 			}
 		}
-		else if ( action == "first" )
+		else if ( action==="first" )
 		{
 			start = 0;
 		}
-		else if ( action == "previous" )
+		else if ( action==="previous" )
 		{
 			start = len >= 0 ?
 				start - len :
@@ -4965,14 +4965,14 @@
 			  start = 0;
 			}
 		}
-		else if ( action == "next" )
+		else if ( action==="next" )
 		{
 			if ( start + len < records )
 			{
 				start += len;
 			}
 		}
-		else if ( action == "last" )
+		else if ( action==="last" )
 		{
 			start = Math.floor( (records-1) / len) * len;
 		}
@@ -5305,7 +5305,7 @@
 			// - which is shouldn't. When there is a scrollbar we need to take this
 			// into account.
 			if ( ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight ||
-				divBody.css('overflow-y') == "scroll")
+				divBody.css('overflow-y')==="scroll")
 			) {
 				tableStyle.width = _fnStringToCss( table.outerWidth() - barWidth);
 			}
@@ -5393,13 +5393,13 @@
 		{
 			// The min width depends upon if we have a vertical scrollbar visible or not */
 			correction = ((divBodyEl.scrollHeight > divBodyEl.offsetHeight ||
-				divBody.css('overflow-y') == "scroll")) ?
+				divBody.css('overflow-y')==="scroll")) ?
 					sanityWidth+barWidth :
 					sanityWidth;
 	
 			// IE6/7 are a law unto themselves...
 			if ( ie67 && (divBodyEl.scrollHeight >
-				divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")
+				divBodyEl.offsetHeight || divBody.css('overflow-y')==="scroll")
 			) {
 				tableStyle.width = _fnStringToCss( correction-barWidth );
 			}
@@ -5443,7 +5443,7 @@
 	
 		// Figure out if there are scrollbar present - if so then we need a the header and footer to
 		// provide a bit more space to allow "overflow" scrolling (i.e. past the scrollbar)
-		var bScrolling = table.height() > divBodyEl.clientHeight || divBody.css('overflow-y') == "scroll";
+		var bScrolling = table.height() > divBodyEl.clientHeight || divBody.css('overflow-y')==="scroll";
 		var padding = 'padding' + (browser.bScrollbarLeft ? 'Left' : 'Right' );
 		divHeaderInnerStyle[ padding ] = bScrolling ? barWidth+"px" : "0px";
 	
@@ -5556,8 +5556,8 @@
 		 * nor scrolling used
 		 */
 		if ( ie67 || ! userInputs && ! scrollX && ! scrollY &&
-		     columnCount == _fnVisbleColumns( oSettings ) &&
-		     columnCount == headerCells.length
+		     columnCount===_fnVisbleColumns( oSettings ) &&
+		     columnCount===headerCells.length
 		) {
 			for ( i=0 ; i<columnCount ; i++ ) {
 				var colIdx = _fnVisibleToColumnIndex( oSettings, i );
@@ -5829,7 +5829,7 @@
 			return '0px';
 		}
 	
-		if ( typeof s == 'number' ) {
+		if ( typeof s==='number' ) {
 			return s < 0 ?
 				'0px' :
 				s+'px';
@@ -6064,7 +6064,7 @@
 	
 			/* In ARIA only the first sorting column can be marked as sorting - no multi-sort option */
 			if ( col.bSortable ) {
-				if ( aSort.length > 0 && aSort[0].col == i ) {
+				if ( aSort.length > 0 && aSort[0].col===i ) {
 					th.setAttribute('aria-sort', aSort[0].dir=="asc" ? "ascending" : "descending" );
 					nextSort = asSorting[ aSort[0].index+1 ] || asSorting[0];
 				}
@@ -6147,7 +6147,7 @@
 				sorting[sorting.length-1]._idx = 0;
 			}
 		}
-		else if ( sorting.length && sorting[0][0] == colIdx ) {
+		else if ( sorting.length && sorting[0][0]===colIdx ) {
 			// Single column - already sorting on this column, modify the sort
 			nextSortIdx = next( sorting[0] );
 	
@@ -6166,7 +6166,7 @@
 		_fnReDraw( settings );
 	
 		// callback used for async user interaction
-		if ( typeof callback == 'function' ) {
+		if ( typeof callback==='function' ) {
 			callback( settings );
 		}
 	}
@@ -6470,18 +6470,17 @@
 				_fnCallbackFire( settings, null, 'error', [ settings, tn, msg ] );
 			}
 	
-			if ( type == 'alert' ) {
+			if ( type==='alert' ) {
 				alert( msg );
 			}
-			else if ( type == 'throw' ) {
+			else if ( type==='throw' ) {
 				throw new Error(msg);
 			}
-			else if ( typeof type == 'function' ) {
+			else if ( typeof type==='function' ) {
 				type( settings, tn, msg );
 			}
 		}
 		else if ( window.console && console.log ) {
-			console.log( msg );
 		}
 	}
 	
@@ -7564,7 +7563,7 @@
 			} );
 		}
 	
-		if ( _fnDataSource( settings ) == 'ssp' ) {
+		if ( _fnDataSource( settings )==='ssp' ) {
 			_fnReDraw( settings, holdPosition );
 		}
 		else {
@@ -7798,7 +7797,7 @@
 			order  = opts.order,   // applied, current, index (original - compatibility with 1.9)
 			page   = opts.page;    // all, current
 	
-		if ( _fnDataSource( settings ) == 'ssp' ) {
+		if ( _fnDataSource( settings )==='ssp' ) {
 			// In server-side processing mode, most options are irrelevant since
 			// rows not shown don't exist and the index order is the applied order
 			// Removed is a special case - for consistency just return an empty
@@ -7807,7 +7806,7 @@
 				[] :
 				_range( 0, displayMaster.length );
 		}
-		else if ( page == 'current' ) {
+		else if ( page==='current' ) {
 			// Current page implies that order=current and fitler=applied, since it is
 			// fairly senseless otherwise, regardless of what order and search actually
 			// are
@@ -7815,14 +7814,14 @@
 				a.push( displayFiltered[i] );
 			}
 		}
-		else if ( order == 'current' || order == 'applied' ) {
-			if ( search == 'none') {
+		else if ( order==='current' || order==='applied' ) {
+			if ( search==='none') {
 				a = displayMaster.slice();
 			}
-			else if ( search == 'applied' ) {
+			else if ( search==='applied' ) {
 				a = displayFiltered.slice();
 			}
-			else if ( search == 'removed' ) {
+			else if ( search==='removed' ) {
 				// O(n+m) solution by creating a hash map
 				var displayFilteredMap = {};
 	
@@ -7837,16 +7836,16 @@
 				} );
 			}
 		}
-		else if ( order == 'index' || order == 'original' ) {
+		else if ( order==='index' || order==='original' ) {
 			for ( i=0, ien=settings.aoData.length ; i<ien ; i++ ) {
-				if ( search == 'none' ) {
+				if ( search==='none' ) {
 					a.push( i );
 				}
 				else { // applied | removed
 					tmp = $.inArray( i, displayFiltered );
 	
-					if ((tmp === -1 && search == 'removed') ||
-						(tmp >= 0   && search == 'applied') )
+					if ((tmp === -1 && search==='removed') ||
+						(tmp >= 0   && search==='applied') )
 					{
 						a.push( i );
 					}
@@ -10657,7 +10656,7 @@
 		 *      $('#example').dataTable( {
 		 *        "createdRow": function( row, data, dataIndex ) {
 		 *          // Bold the grade for all 'A' grade browsers
-		 *          if ( data[4] == "A" )
+		 *          if ( data[4]==="A" )
 		 *          {
 		 *            $('td:eq(4)', row).html( '<b>A</b>' );
 		 *          }
@@ -10852,7 +10851,7 @@
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "preDrawCallback": function( settings ) {
-		 *          if ( $('#test').val() == 1 ) {
+		 *          if ( $('#test').val()===1 ) {
 		 *            return false;
 		 *          }
 		 *        }
@@ -10881,7 +10880,7 @@
 		 *      $('#example').dataTable( {
 		 *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
 		 *          // Bold the grade for all 'A' grade browsers
-		 *          if ( data[4] == "A" ) {
+		 *          if ( data[4]==="A" ) {
 		 *            $('td:eq(4)', row).html( '<b>A</b>' );
 		 *          }
 		 *        }
@@ -12270,7 +12269,7 @@
 		 *        "columnDefs": [ {
 		 *          "targets": [3],
 		 *          "createdCell": function (td, cellData, rowData, row, col) {
-		 *            if ( cellData == "1.7" ) {
+		 *            if ( cellData==="1.7" ) {
 		 *              $(td).css('color', 'blue')
 		 *            }
 		 *          }
@@ -13731,7 +13730,7 @@
 		 */
 		"fnRecordsTotal": function ()
 		{
-			return _fnDataSource( this ) == 'ssp' ?
+			return _fnDataSource( this )==='ssp' ?
 				this._iRecordsTotal * 1 :
 				this.aiDisplayMaster.length;
 		},
@@ -13742,7 +13741,7 @@
 		 */
 		"fnRecordsDisplay": function ()
 		{
-			return _fnDataSource( this ) == 'ssp' ?
+			return _fnDataSource( this )==='ssp' ?
 				this._iRecordsDisplay * 1 :
 				this.aiDisplay.length;
 		},
@@ -13980,15 +13979,15 @@
 		 *      function( settings, data, dataIndex ) {
 		 *        var min = document.getElementById('min').value * 1;
 		 *        var max = document.getElementById('max').value * 1;
-		 *        var version = data[3] == "-" ? 0 : data[3]*1;
+		 *        var version = data[3]==="-" ? 0 : data[3]*1;
 		 *
-		 *        if ( min == "" && max == "" ) {
+		 *        if ( min==="" && max==="" ) {
 		 *          return true;
 		 *        }
-		 *        else if ( min == "" && version < max ) {
+		 *        else if ( min==="" && version < max ) {
 		 *          return true;
 		 *        }
-		 *        else if ( min < version && "" == max ) {
+		 *        else if ( min < version && ""===max ) {
 		 *          return true;
 		 *        }
 		 *        else if ( min < version && version < max ) {
@@ -14204,7 +14203,7 @@
 			 *        }
 			 *
 			 *        // Check prefixed by currency
-			 *        if ( data.charAt(0) == '$' || data.charAt(0) == '&pound;' ) {
+			 *        if ( data.charAt(0)==='$' || data.charAt(0)==='&pound;' ) {
 			 *          return 'currency';
 			 *        }
 			 *        return null;
@@ -14845,8 +14844,8 @@
 							classes.sSortAsc +' '+
 							classes.sSortDesc
 						)
-						.addClass( columns[ colIdx ] == 'asc' ?
-							classes.sSortAsc : columns[ colIdx ] == 'desc' ?
+						.addClass( columns[ colIdx ]==='asc' ?
+							classes.sSortAsc : columns[ colIdx ]==='desc' ?
 								classes.sSortDesc :
 								column.sSortingClass
 						);
@@ -14872,8 +14871,8 @@
 	
 					cell
 						.removeClass( classes.sSortAsc +" "+classes.sSortDesc )
-						.addClass( columns[ colIdx ] == 'asc' ?
-							classes.sSortAsc : columns[ colIdx ] == 'desc' ?
+						.addClass( columns[ colIdx ]==='asc' ?
+							classes.sSortAsc : columns[ colIdx ]==='desc' ?
 								classes.sSortDesc :
 								column.sSortingClass
 						);
@@ -14887,8 +14886,8 @@
 							classes.sSortJUIAscAllowed +" "+
 							classes.sSortJUIDescAllowed
 						)
-						.addClass( columns[ colIdx ] == 'asc' ?
-							classes.sSortJUIAsc : columns[ colIdx ] == 'desc' ?
+						.addClass( columns[ colIdx ]==='asc' ?
+							classes.sSortJUIAsc : columns[ colIdx ]==='desc' ?
 								classes.sSortJUIDesc :
 								column.sSortingClassJUI
 						);

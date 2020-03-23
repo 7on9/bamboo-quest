@@ -30,7 +30,7 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#d03542' }}>
               <i
                 className={`${
-                  game && game.questions[game.idQuestion].correct_id == 0
+                  game && game.questions[game.idQuestion].correct_id===0
                     ? 'check_show'
                     : ''
                 } fas fa-check`}
@@ -48,7 +48,7 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#2a68c7' }}>
               <i
                 className={`${
-                  game && game.questions[game.idQuestion].correct_id == 1
+                  game && game.questions[game.idQuestion].correct_id===1
                     ? 'check_show'
                     : ''
                 } fas fa-check`}
@@ -66,7 +66,7 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#d0a036' }}>
               <i
                 className={`${
-                  game && game.questions[game.idQuestion].correct_id == 2
+                  game && game.questions[game.idQuestion].correct_id===2
                     ? 'check_show'
                     : ''
                 } fas fa-check`}
@@ -84,7 +84,7 @@ class Result extends Component {
               style={{ fontSize: '200%', color: '#498c2b' }}>
               <i
                 className={`${
-                  game && game.questions[game.idQuestion].correct_id == 3
+                  game && game.questions[game.idQuestion].correct_id===3
                     ? 'check_show'
                     : ''
                 } fas fa-check`}

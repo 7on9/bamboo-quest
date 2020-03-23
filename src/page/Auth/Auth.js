@@ -26,7 +26,6 @@ class Auth extends Component {
 
   onSubmit = () => {
     let { email, password, login, reTypePassword, name } = this.state
-    // console.log(email, password, login, reTypePassword, name)
     if (
       (email && password && login) ||
       (email && password && reTypePassword && name && !login)
@@ -252,7 +251,6 @@ class Auth extends Component {
     }
 
     if (submited && !running) {
-      console.log(running, result, login)
 
       if (result && !login) {
         alert('Tạo tài khoản thành công! Hãy đăng nhập vào hệ thống!')

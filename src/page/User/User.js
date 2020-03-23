@@ -12,16 +12,13 @@ import Helmet from 'react-helmet'
 
 class User extends Component {
   render() {
-    console.log (this.props)
     return (
       <div className="detail-user">
-
-        {/* <Authentication /> */}
         <Helmet>
           <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
           <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
         </Helmet>
-        {/* <Menu email={localStorage(APP_CONSTANTS.WEB_EMAIL)} logout={this.props.logout} a="aas" /> */}
+        <Menu email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)} logout={this.props.logout} a="aas" />
         <div className="container" style={{ marginTop: 50 }}>
           <Switch>
             <Route path="/user/info" component={Info} />

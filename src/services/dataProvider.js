@@ -23,7 +23,7 @@ export const dataProvider = async (sourceUrl, option) => {
     if (option.params) {
       options.params = option.params
     }
-    if (method == 'GET') {
+    if (method==='GET') {
       return new Promise((resolve, reject) => {
         axios
           .get(`${BASE_API_URL}${sourceUrl}${filter}`, options)
@@ -31,7 +31,6 @@ export const dataProvider = async (sourceUrl, option) => {
             resolve(response)
           })
           .catch(err => {
-            console.log('Error:', err)
             if (err.response) {
               reject(err.response)
             } else {
@@ -49,7 +48,6 @@ export const dataProvider = async (sourceUrl, option) => {
             resolve(response)
           })
           .catch(err => {
-            console.log('Error:', err)
             if (err.response) {
               reject(err.response)
             } else {
@@ -59,6 +57,7 @@ export const dataProvider = async (sourceUrl, option) => {
       })
     }
   } catch (err) {
-    console.log('Error:', err)
+    console.log(err)
+    return null
   }
 }

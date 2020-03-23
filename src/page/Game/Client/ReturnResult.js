@@ -35,7 +35,7 @@ class ReturnResult extends Component {
           <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
           <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
         </Helmet>
-        {this.props.game.correct == -1 ? (
+        {this.props.game.correct===-1 ? (
           <div style={{ color: '#ad1d1d' }}>
             <i
               className="fas fa-sad-tear"
@@ -43,7 +43,7 @@ class ReturnResult extends Component {
             />
             <h4 style={{ fontSize: '5vw' }}>Sai rồi</h4>
           </div>
-        ) : this.props.game.correct == 1 ? (
+        ) : this.props.game.correct===1 ? (
           <div style={{ color: '#138402' }}>
             <i
               className="fas fa-laugh"

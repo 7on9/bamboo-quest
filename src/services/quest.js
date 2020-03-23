@@ -2,7 +2,7 @@ import { dataProvider } from './dataProvider'
 
 export const QuestService = {
   getMyQuests: () => {
-    return dataProvider('/quest/myQuests', { method: 'GET' })
+    return dataProvider('/quest/my-quests', { method: 'GET' })
   },
   getAllQuests: limit => {
     return dataProvider('/quest/', { method: 'GET', params: { limit } })

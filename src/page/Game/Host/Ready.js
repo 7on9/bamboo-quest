@@ -22,7 +22,7 @@ class Ready extends Component {
       })
       return
     }
-    if (this.props.game.idQuestion + 1 == this.props.game.questions.length) {
+    if (this.props.game.idQuestion + 1===this.props.game.questions.length) {
       this.props.endGame(this.props.game.idGame)
       this.setState({
         toHome: true,

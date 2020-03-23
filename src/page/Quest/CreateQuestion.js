@@ -26,7 +26,6 @@ class CreateQuestion extends Component {
         [event.target.name]: event.target.value,
       },
     })
-    console.log(this.state)
   }
 
   onUploadImage = async event => {
@@ -65,7 +64,7 @@ class CreateQuestion extends Component {
           const { info } = this.props.quest
           const infoUser = this.props.user.info
           const isOwnner =
-            info && infoUser ? info._id_author == infoUser._id : false
+            info && infoUser ? info._id_author===infoUser._id : false
           if (!isOwnner) {
             alert('Bạn không có quyền thay đổi câu hỏi!')
           } else {
@@ -82,7 +81,6 @@ class CreateQuestion extends Component {
   }
   UNSAFE_componentWillMount() {
     let param = this.props.location.pathname
-    console.log(param.slice(param.lastIndexOf('/') + 1, param.length))
     this.props.getQuestInfo(
       param.slice(param.lastIndexOf('/') + 1, param.length)
     )
@@ -311,7 +309,7 @@ class CreateQuestion extends Component {
                 defaultValue={0}
                 id="radio-one"
                 className="form-radio form-radio-1"
-                checked={correct_id == 0}
+                checked={correct_id===0}
                 onClick={e =>
                   this.setState({
                     newQuestion: {
@@ -330,7 +328,7 @@ class CreateQuestion extends Component {
                 defaultValue={1}
                 id="radio-two"
                 className="form-radio form-radio-2"
-                checked={correct_id == 1}
+                checked={correct_id===1}
                 onClick={e =>
                   this.setState({
                     newQuestion: {
@@ -349,7 +347,7 @@ class CreateQuestion extends Component {
                 defaultValue={2}
                 id="radio-three"
                 className="form-radio form-radio-3"
-                checked={correct_id == 2}
+                checked={correct_id===2}
                 onClick={e =>
                   this.setState({
                     newQuestion: {
@@ -368,7 +366,7 @@ class CreateQuestion extends Component {
                 defaultValue={3}
                 id="radio-four"
                 className="form-radio form-radio-4"
-                checked={correct_id == 3}
+                checked={correct_id===3}
                 onClick={e =>
                   this.setState({
                     newQuestion: {

@@ -28,7 +28,6 @@ class Quest extends Component {
       this.setState({
         authenticated: false,
       })
-      console.log('tạch')
     }
   }
 
