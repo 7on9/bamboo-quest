@@ -5,7 +5,7 @@ import { APP_CONSTANTS } from '../../common/constants'
 const authenAction = (type, token, email, result) => {
   return {
     type,
-    payload: { result, token, email, },
+    payload: { result, token, email },
   }
 }
 
@@ -15,11 +15,13 @@ export const login = (email, password) => {
       let res = await AuthenticationService.login(email, password)
       res = res.data
       localStorage.setItem(APP_CONSTANTS.WEB_TOKEN, res.token)
+      console.log(res)
       return dispatch({
         type: USER_TYPE.AUTH.LOGIN,
-        payload: { 
+        payload: {
           result: true,
-          user: res.user
+          user: res.user,
+          authenticated: true,
         },
       })
     } catch (error) {
@@ -30,6 +32,7 @@ export const login = (email, password) => {
           user: null,
           token: null,
           email: null,
+          authenticated: false,
         },
       })
     }
@@ -104,7 +107,8 @@ export const verify = () => {
         type: USER_TYPE.AUTH.VERIFY,
         payload: {
           info: res.info,
-          token: res.token
+          token: res.token,
+          authenticated: true,
         },
       })
     } catch (error) {
@@ -115,6 +119,7 @@ export const verify = () => {
         type: USER_TYPE.AUTH.VERIFY,
         payload: {
           result: false,
+          authenticated: false,
         },
       })
     }

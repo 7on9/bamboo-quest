@@ -14,24 +14,21 @@ function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={props =>
-        localStorage.getItem(APP_CONSTANTS.WEB_TOKEN) &&
-        logging.authenticated ? (
-          <Component {...props} />
-        ) : //   (
-        //     <Redirect to={{ path: '/auth', state: { from: props.location } }} />
-        //   )
-        logging.running ? (
-          <Redirect
-            to={{ pathname: '/auth', state: { from: props.location } }}
-          />
-        ) : logging.token === '' ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/auth', state: { from: props.location } }}
-          />
-        )
+      render={
+        props =>
+          localStorage.getItem(APP_CONSTANTS.WEB_TOKEN) &&
+          logging.authenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={{ path: '/auth', state: { from: props.location } }} />
+          )
+        // logging.running ? (
+        //   <Redirect to={{ path: '/auth', state: { from: props.location } }} />
+        // ) : !logging.token === '' ? (
+        //   <Component {...props} />
+        // ) : (
+        //   <Redirect to={{ path: '/auth', state: { from: props.location } }} />
+        // )
       }
     />
   )

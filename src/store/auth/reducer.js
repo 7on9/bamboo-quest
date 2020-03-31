@@ -12,12 +12,19 @@ let initialState = {
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_TYPE.AUTH.LOGIN:
-    case USER_TYPE.AUTH.LOGOUT:
     case USER_TYPE.AUTH.VERIFY:
       state = {
         ...state,
         ...action.payload,
-        authenticated: true,
+        authenticated: action.payload.authenticated,
+        running: false,
+      }
+      break
+    case USER_TYPE.AUTH.LOGOUT:
+      state = {
+        ...state,
+        ...action.payload,
+        authenticated: false,
         running: false,
       }
       break
