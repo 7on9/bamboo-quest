@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import './style.css'
-import {  Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as authAction from '../../store/auth/action'
 import * as questActions from '../../store/quest/action'
-import {  Item } from '../../components'
+import { Item } from '../../components'
 import { APP_CONSTANTS } from '../../common/constants'
 import Helmet from 'react-helmet'
 
@@ -14,7 +14,7 @@ class Home extends Component {
     super(props)
     this.state = {
       category: 1,
-      nav: false
+      nav: false,
     }
   }
   changeCategory = id => {
@@ -50,10 +50,10 @@ class Home extends Component {
     window.scrollTo(0, 0)
     window.addEventListener('resize', this.resize)
   }
-  getWidth = ()=>{
-    if (window.innerWidth > 990){
+  getWidth = () => {
+    if (window.innerWidth > 990) {
       this.setState({
-        nav:false
+        nav: false,
       })
     }
   }
@@ -82,9 +82,9 @@ class Home extends Component {
     return (
       <div className="home">
         <Helmet>
-          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
-          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
-          <link rel="stylesheet" href="/comon/css/style.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css" />
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css" />
+          <link rel="stylesheet" href="/comon/css/style.css" />
         </Helmet>
         <header>
           <div className="header-area ">
@@ -100,23 +100,43 @@ class Home extends Component {
                   </div>
                   <div className="col-xl-7 col-lg-7">
                     <div className="main-menu d-lg-block ">
-                      <nav className={this.state.nav ? "navbar navbar-expand-lg navbar-light bg-light" :"navbar navbar-expand-lg navbar-light "  }>
-                        <button onClick={()=> this.setState({nav: !this.state.nav})} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                      <nav
+                        className={
+                          this.state.nav
+                            ? 'navbar navbar-expand-lg navbar-light bg-light'
+                            : 'navbar navbar-expand-lg navbar-light '
+                        }>
+                        <button
+                          onClick={() =>
+                            this.setState({ nav: !this.state.nav })
+                          }
+                          className="navbar-toggler"
+                          type="button"
+                          data-toggle="collapse"
+                          data-target="#navigation"
+                          aria-controls="navigation"
+                          aria-expanded="false"
+                          aria-label="Toggle navigation">
                           <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="collapse navbar-collapse"  id="navigation" >
+                        <div
+                          className="collapse navbar-collapse"
+                          id="navigation">
                           <ul className=" navbar-nav mr-auto mt-2 mt-lg-0">
                             <li>
                               <Link
                                 className="active nav-item"
                                 to="/home"
                                 style={{ fontWeight: 'bold' }}>
-                              Trang chủ
+                                Trang chủ
                               </Link>
                             </li>
                             <li>
-                              <Link to="/" style={{ fontWeight: 'bold' }} className="nav-item">
-                              Chơi ngay
+                              <Link
+                                to="/"
+                                style={{ fontWeight: 'bold' }}
+                                className="nav-item">
+                                Chơi ngay
                               </Link>
                             </li>
                             <li>
@@ -124,19 +144,19 @@ class Home extends Component {
                                 className="nav-item"
                                 to="/user/quest"
                                 style={{ fontWeight: 'bold' }}>
-                              Thử thách của tôi
+                                Thử thách của tôi
                               </Link>
                             </li>
-                          </ul></div>
+                          </ul>
+                        </div>
                       </nav>
                     </div>
                   </div>
-                  {/* <div className="col-xl-3 col-lg-3 d-none d-lg-block">
+                  <div className="col-xl-3 col-lg-3 d-none d-lg-block">
                     <div className="log_chat_area d-flex align-items-center">
                       {token ? (
                         <Link to="#test-form" className="login popup-with-form">
                           <div className="dropdown">
-                            
                             <img
                               style={{
                                 width: '2em',
@@ -154,7 +174,7 @@ class Home extends Component {
                               <Link className="dropdown-item" to="/user/info">
                                 Thông tin tài khoản
                               </Link>
-                             
+
                               <Link className="dropdown-item" to="/user/edit">
                                 Chỉnh sửa thông tin
                               </Link>
@@ -173,7 +193,7 @@ class Home extends Component {
                         </Link>
                       ) : null}
                     </div>
-                  </div> */}
+                  </div>
                   <div className="col-12">
                     <div className="mobile_menu d-block d-lg-none" />
                   </div>

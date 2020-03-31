@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-
+import PrivateRoute from './utils/privateRoute'
 //router
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -24,7 +24,7 @@ ReactDOM.render(
       <Route path="/home" component={Home} />
       <Route path="/client" component={Client} />
       <Route path="/quest" component={Quest} />
-      <Route path="/user" component={User} />
+      <PrivateRoute path="/user" component={User} />
       <Route path="/host" component={Host} />
       <Route path="/dashboard" component={Dashboard} />
     </Router>

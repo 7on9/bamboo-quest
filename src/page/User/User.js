@@ -15,10 +15,14 @@ class User extends Component {
     return (
       <div className="detail-user">
         <Helmet>
-          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
-          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css" />
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css" />
         </Helmet>
-        <Menu email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)} logout={this.props.logout} a="aas" />
+        <Menu
+          email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)}
+          logout={this.props.logout}
+          a="aas"
+        />
         <div className="container" style={{ marginTop: 50 }}>
           <Switch>
             <Route path="/user/info" component={Info} />
@@ -40,7 +44,7 @@ const mapDispatchToProps = {
   verify: authAction.verify,
   login: authAction.login,
   // getInfo: authAction.getInfo,
-  logout: authAction.logout
+  logout: authAction.logout,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)
