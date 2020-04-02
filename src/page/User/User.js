@@ -43,6 +43,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   verify: authAction.verify,
   login: authAction.login,
+  changeStatusRunning: authAction.changeStatusRunning,
   // getInfo: authAction.getInfo,
   logout: authAction.logout,
 }
