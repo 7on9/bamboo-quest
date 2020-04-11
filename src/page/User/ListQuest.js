@@ -74,13 +74,12 @@ class ListQuest extends Component {
                 <p style={{ color: '#000' }}>
                   Tổng số thử thách: {myQuests ? myQuests.length : 0}
                 </p>
-                <div className="btn-info-user">
-                  <Link
-                    to="/user/info"
-                    style={{ fontWeight: 'bold', color: '#fff' }}>
-                    Thông tin
-                  </Link>
-                </div>
+
+                <Link
+                  to="/user/info"
+                  style={{ fontWeight: 'bold', color: '#fff' }}>
+                  <div className="btn-info-user"> Thông tin</div>
+                </Link>
               </div>
             </div>
 
@@ -113,17 +112,17 @@ class ListQuest extends Component {
               </div>
               <div style={{ margin: '20px' }} />
               {myQuests
-                ? myQuests.map(item => {
-                  return (
-                    <Cardlist
-                      key={item._id}
-                      id={item._id}
-                      title={item.title}
-                      question={item.questions}
-                      img_path={item.img || item.img_path}
-                    />
-                  )
-                })
+                ? myQuests.map((item) => {
+                    return (
+                      <Cardlist
+                        key={item._id}
+                        id={item._id}
+                        title={item.title}
+                        question={item.questions}
+                        img_path={item.img || item.img_path}
+                      />
+                    )
+                  })
                 : null}
             </div>
             <div className="container-quiz">
@@ -136,17 +135,17 @@ class ListQuest extends Component {
               </div>
               <div style={{ margin: '20px' }} />
               {quests
-                ? quests.map(item => {
-                  return (
-                    <Cardlist
-                      key={item._id}
-                      id={item._id}
-                      title={item.title}
-                      question={item.questions}
-                      img_path={item.img || item.img_path}
-                    />
-                  )
-                })
+                ? quests.map((item) => {
+                    return (
+                      <Cardlist
+                        key={item._id}
+                        id={item._id}
+                        title={item.title}
+                        question={item.questions}
+                        img_path={item.img || item.img_path}
+                      />
+                    )
+                  })
                 : null}
             </div>
           </div>
@@ -156,7 +155,7 @@ class ListQuest extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   quest: state.quest,
 })

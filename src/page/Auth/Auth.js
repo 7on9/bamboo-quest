@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Switch, Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import * as authAction from '../../store/auth/action'
 import './style.css'
-import { ERROR } from '../../store/auth/types'
 import { APP_CONSTANTS } from '../../common/constants'
 import Helmet from 'react-helmet'
 
@@ -109,9 +108,9 @@ class Auth extends Component {
         ) : null}
         {this.renderSpinner()}
         <div className="text-center p-t-12">
-          <a className="txt2" href="#">
+          <Link className="txt2">
             Quên mật khẩu?
-          </a>
+          </Link>
         </div>
         <div className="text-center p-t-136">
           <Link
@@ -237,7 +236,7 @@ class Auth extends Component {
   }
   render() {
     const { login, submited } = this.state
-    const { result, running, token, authenticated } = this.props.user
+    const { result, running, token } = this.props.user
 
     if (this.props.authenticated) {
       return <Redirect to={{ from: { pathname: '/home' } }} />

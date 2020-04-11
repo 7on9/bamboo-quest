@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import PrivateRoute from './utils/privateRoute'
+import PrivateRoute from './common/privateRoute'
 //router
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 

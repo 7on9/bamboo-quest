@@ -17,7 +17,7 @@ class Home extends Component {
       nav: false,
     }
   }
-  changeCategory = id => {
+  changeCategory = (id) => {
     this.setState({
       category: id,
     })
@@ -44,12 +44,7 @@ class Home extends Component {
       })
     }
   }
-
-  UNSAFE_componentDidMount() {
-    // this.props.getAllMeetings();
-    window.scrollTo(0, 0)
-    window.addEventListener('resize', this.resize)
-  }
+  resize = () => this.forceUpdate(this.getWidth())
   getWidth = () => {
     if (window.innerWidth > 990) {
       this.setState({
@@ -57,10 +52,11 @@ class Home extends Component {
       })
     }
   }
-  resize = () => this.forceUpdate(this.getWidth())
   UNSAFE_componentDidMount() {
+    window.scrollTo(0, 0)
     window.addEventListener('resize', this.resize)
   }
+
   top() {
     window.scrollTo(0, 0)
   }
@@ -91,13 +87,7 @@ class Home extends Component {
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
                 <div className="row align-items-center no-gutters">
-                  <div className="col-xl-2 col-lg-2">
-                    <div className="logo-img">
-                      <Link to="index.html">
-                        <img src="img/logo.png" alt="" />
-                      </Link>
-                    </div>
-                  </div>
+                  <div className="col-xl-2 col-lg-2"></div>
                   <div className="col-xl-7 col-lg-7">
                     <div className="main-menu d-lg-block ">
                       <nav
@@ -167,6 +157,7 @@ class Home extends Component {
                               data-toggle="dropdown"
                               aria-haspopup="true"
                               aria-expanded="false"
+                              alt=""
                             />
                             <div
                               className="dropdown-menu dropdown-menu-right"
@@ -336,7 +327,7 @@ class Home extends Component {
                   aria-labelledby="home-tab">
                   <div className="row">
                     {/* List quest */}
-                    {quests.map(quest => (
+                    {quests.map((quest) => (
                       <div
                         className="col-xl-4 col-lg-4 col-md-6"
                         key={quest._id}>
@@ -361,7 +352,7 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state,
 })
 

@@ -34,7 +34,7 @@ export const questReducer = (state = initialState, action) => {
       }
       break
     case QUEST_TYPES.DELETE:
-      let deletedArr = state.quests.map(quest => {
+      let deletedArr = state.quests.forEach(quest => {
         if (quest._id !== action.payload.deletedQuest._id) {
           return quest
         }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const CountDown = props => {
   return (
@@ -22,15 +23,16 @@ export const CountDown = props => {
         <img
           style={{ width: '75%', height: '90%', textAlign: 'center' }}
           src=""
+          alt=""
         />
       </div>
       <div
         className="col-12 col-sm-2 col-md-2 pC"
         style={{ textAlign: 'center', width: '100%' }}>
         <div className="col-12">
-          <a href="#" className="btn btn-primary">
+          <Link className="btn btn-primary">
             Bỏ qua
-          </a>
+          </Link>
         </div>
         <div className="col-12" style={{}}>
           {props.time}

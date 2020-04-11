@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as questActions from '../../store/quest/action'
 
@@ -159,6 +159,7 @@ class Create extends Component {
                                       ? img_path
                                       : '/images/img_quest_default.png'
                                   }
+                                  alt=""
                                 />
                               </div>
                               <div className="col-1"></div>

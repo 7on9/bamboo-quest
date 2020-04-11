@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { ScoreBoardItem } from '../../../components/Quest/ScoreBoardItem'
-import { endGame } from '../../../store/socket/socket'
 
 class ScoreBoard extends Component {
   constructor(props) {

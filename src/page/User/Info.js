@@ -21,6 +21,7 @@ class Info extends Component {
           <img
             src="/images/avatar-default.png"
             style={{ width: '100%', height: '15em', objectFit: 'cover' }}
+            alt=""
           />
         </div>
         <div className="col-12 col-sm-8 col-md-8">

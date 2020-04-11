@@ -29,7 +29,7 @@ export const Menu = props => (
       </li>
       <li>
         <Link className="name-item-menu" to="/" onClick={() => props.logout()}>
-          <img style={{ width: '12px', height: '12px' }} src={Icon.LOGOUT} />
+          <img style={{ width: '12px', height: '12px' }} src={Icon.LOGOUT} alt="menu"/>
         </Link>
       </li>
     </ul>

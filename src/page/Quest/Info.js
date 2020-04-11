@@ -81,6 +81,7 @@ class Info extends Component {
                       height: '20rem',
                       objectFit: 'cover',
                     }}
+                    alt=""
                   />
                   <div
                     style={{

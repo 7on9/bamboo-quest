@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { timeout } from '../../../store/socket/socket'
 
 class Question extends Component {
@@ -106,9 +106,9 @@ class Question extends Component {
                 marginTop: '20px',
               }}>
               <div className="col-12">
-                <a href="#" className="btn btn-primary">
+                <Link className="btn btn-primary">
                   Bỏ qua
-                </a>
+                </Link>
               </div>
               {/* <div className='col-12' style={{ marginTop: '30px', fontSize: '50px' }}>0</div>
               <div className='col-12' style={{ marginTop: '30px', fontSize: '25px' }}>Đã trả lời</div> */}
