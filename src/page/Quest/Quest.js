@@ -31,7 +31,7 @@ class Quest extends Component {
     }
   }
 
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     // this.props.getAllGuests();
     // this.props.getAllMeetings();
     window.scrollTo(0, 0)

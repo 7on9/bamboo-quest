@@ -15,7 +15,7 @@ class Ready extends Component {
     }
   }
 
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     if (!this.props.game.idGame) {
       this.setState({
         toHome: true,

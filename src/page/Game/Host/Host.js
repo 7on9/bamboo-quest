@@ -16,7 +16,7 @@ class Host extends Component {
       playSound: Sound.status.STOPED,
     }
   }
-  componentDidMount() {}
+  UNSAFE_componentDidMount() {}
 
   render() {
     return (

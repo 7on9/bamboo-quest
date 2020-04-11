@@ -14,7 +14,7 @@ class ListQuest extends Component {
       toCreateQuest: false,
     }
   }
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     this.props.getMyQuests()
     if (
       !this.props.quest ||

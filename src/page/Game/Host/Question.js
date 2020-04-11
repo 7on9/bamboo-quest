@@ -13,7 +13,7 @@ class Question extends Component {
       toResult: false,
     }
   }
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     if (this.props.game.idGame) {
       this.setState({
         time: this.props.game.questions[this.props.game.idQuestion].duration,

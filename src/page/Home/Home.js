@@ -45,7 +45,7 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     // this.props.getAllMeetings();
     window.scrollTo(0, 0)
     window.addEventListener('resize', this.resize)
@@ -58,7 +58,7 @@ class Home extends Component {
     }
   }
   resize = () => this.forceUpdate(this.getWidth())
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     window.addEventListener('resize', this.resize)
   }
   top() {
