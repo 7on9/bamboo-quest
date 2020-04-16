@@ -22,3 +22,17 @@ export const registerSchema = Yup.object().shape({
     .oneOf([Yup.ref('password'), null], 'Mật khẩu chưa khớp')
     .required('Thiếu password ở đây nè !'),
 })
+export const infoSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Hãy nhập đúng định dạng')
+    .required('Bạn quên nhập email nè !'),
+  name: Yup.string().required('Bạn quên nhập tên nè !'),
+  password: Yup.string()
+    .min(2, 'Quá ngắn rồi !')
+    .max(50, 'Dài dòng quá !')
+    .required('Thiếu password ở đây nè !'),
+  organization: Yup.string().required('Bạn quên nhập nơi công tác nè !'),
+  phone: Yup.string()
+    .required('Bạn quên nhập số điện thoại nè !')
+    .length(10, 'Số điện thoại phải đủ 10 số'),
+})
