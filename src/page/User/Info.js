@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 class Info extends Component {
   render() {
     return (
-      <div className="row center-div">
+      <div className="row">
         <div className="container emp-profile">
           <form method="post">
-            <div className="row">
+            <div className="col-12 row">
               <div className="col-md-4">
                 <div className="profile-img">
                   <img
@@ -20,15 +20,25 @@ class Info extends Component {
                   </div> */}
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-8">
                 <div className="profile-head profile-header">
-                  <h5>
-                    {this.props.user.info ? this.props.user.info.name : 'Tên'}
-                  </h5>
-                  <p className="proile-rating"></p>
-                  <br />
-                  <br />
-                  <br />
+                  <div className="row">
+                    <div className="col">
+                      <h5>
+                        {this.props.user.info
+                          ? this.props.user.info.name
+                          : 'Tên'}
+                      </h5>
+                    </div>
+                    <div className="d-flex justify-content-end col">
+                      <Link
+                        to="/user/edit"
+                        className="edit-profile btn btn-success">
+                        <i class="fa fa-pencil-square fa-lg p-r-5" />
+                        Chỉnh sửa
+                      </Link>
+                    </div>
+                  </div>
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item">
                       <a
@@ -43,97 +53,86 @@ class Info extends Component {
                       </a>
                     </li>
                   </ul>
-                </div>
-              </div>
-              <div className="col-md-2 profile-header">
-                <Link to="/user/edit" className="edit-profile btn btn-success">
-                  <i class="fa fa-pencil-square fa-lg p-r-5" />
-                  Chỉnh sửa
-                </Link>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <div class="profile-work"></div>
-              </div>
-              <div className="col-md-8">
-                <div className="tab-content profile-tab" id="myTabContent">
-                  <div
-                    className="tab-pane fade show active"
-                    id="home"
-                    role="tabpanel"
-                    aria-labelledby="home-tab">
-                    <div className="row">
-                      <div className="col-md-6">
-                        <i className="fas fa-user icon" />
-                        <label>Name</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>
-                          {this.props.user.info
-                            ? this.props.user.info.name
-                            : 'Tên'}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <i className="fas fa-envelope icon" />
-                        <label>Email</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>
-                          {this.props.user.info
-                            ? this.props.user.info.email
-                            : 'Email'}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <i className="fas fa-phone icon" />
-                        <label>Phone</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>
-                          {this.props.user.info
-                            ? this.props.user.info.phone
-                              ? this.props.user.info.phone
-                              : 'Chưa cập nhật'
-                            : null}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <i className="fas fa-building icon" />
-                        <label>Organization</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>
-                          {this.props.user.info
-                            ? this.props.user.info.organization
-                              ? this.props.user.info.organization
-                              : 'Chưa cập nhật'
-                            : null}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <i className="fas fa-venus-mars icon" />
-                        <label>Gender</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>
-                          {this.props.user.info
-                            ? this.props.user.info.gender === false
-                              ? 'Nữ'
-                              : this.props.user.info.gender === true
-                              ? 'Nam'
-                              : 'Chưa cập nhật'
-                            : null}
-                        </p>
+                  <div className="col-md-8">
+                    <div className="tab-content profile-tab" id="myTabContent">
+                      <div
+                        className="tab-pane fade show active"
+                        id="home"
+                        role="tabpanel"
+                        aria-labelledby="home-tab">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <i className="fas fa-user icon" />
+                            <label>Name</label>
+                          </div>
+                          <div className="col-md-6">
+                            <p>
+                              {this.props.user.info
+                                ? this.props.user.info.name
+                                : 'Tên'}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <i className="fas fa-envelope icon" />
+                            <label>Email</label>
+                          </div>
+                          <div className="col-md-6">
+                            <p>
+                              {this.props.user.info
+                                ? this.props.user.info.email
+                                : 'Email'}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <i className="fas fa-phone icon" />
+                            <label>Phone</label>
+                          </div>
+                          <div className="col-md-6">
+                            <p>
+                              {this.props.user.info
+                                ? this.props.user.info.phone
+                                  ? this.props.user.info.phone
+                                  : 'Chưa cập nhật'
+                                : null}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <i className="fas fa-building icon" />
+                            <label>Organization</label>
+                          </div>
+                          <div className="col-md-6">
+                            <p>
+                              {this.props.user.info
+                                ? this.props.user.info.organization
+                                  ? this.props.user.info.organization
+                                  : 'Chưa cập nhật'
+                                : null}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <i className="fas fa-venus-mars icon" />
+                            <label>Gender</label>
+                          </div>
+                          <div className="col-md-6">
+                            <p>
+                              {this.props.user.info
+                                ? this.props.user.info.gender === false
+                                  ? 'Nữ'
+                                  : this.props.user.info.gender === true
+                                  ? 'Nam'
+                                  : 'Chưa cập nhật'
+                                : null}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

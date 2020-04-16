@@ -192,7 +192,7 @@
 }
 .profile-head .nav-tabs .nav-link.active {
   border: none;
-  border-bottom: 2px solid #0062cc;
+  border-bottom: 2px solid #17a51e;
 }
 .profile-work {
   padding: 14%;
@@ -218,7 +218,7 @@
 }
 .profile-tab p {
   font-weight: 600;
-  color: #0062cc;
+  color: #17a51e;
 }
 #user-profile .profile-header {
   position: relative;
@@ -251,4 +251,37 @@
 .form-control {
   border-radius: 1rem;
   border-color: #17a51e;
+}
+input.form-control:focus {
+  border: 1px solid blueviolet !important;
+}
+.form-check-input {
+  margin-left: 0 !important;
+}
+input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #17a51e;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
 }

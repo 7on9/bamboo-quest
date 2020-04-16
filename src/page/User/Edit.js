@@ -13,8 +13,16 @@ const MyRadio = ({ label, ...props }) => {
           ? 'custom-control custom-radio was-validated'
           : 'custom-control custom-radio'
       }>
-      <input id={label} {...field} {...props} type="radio" required />
-      <label for={label} className="custom-control-label">
+      <input
+        id={label}
+        {...field}
+        {...props}
+        type="radio"
+        required
+        className="form-check-input"
+        style={{ backgroundColor: '#17a51e', color: '#17a51e' }}
+      />
+      <label for={label} className="form-check-label" htmlFor="inlineRadio1">
         {label}
       </label>
       {meta.touched && meta.error ? (
