@@ -114,7 +114,7 @@ class Edit extends Component {
                           : '',
                         phone: '',
                         password: '',
-                        gender: true,
+                        gender: '',
                       }}
                       enableReinitialize
                       validationSchema={infoSchema}
@@ -222,8 +222,9 @@ class Edit extends Component {
                             <MyRadio
                               name="gender"
                               value={true}
+                              onClick={() => this.setState({ gender: true })}
                               onChange={handleChange}
-                              checked={values.gender ? values.gender : null}
+                              checked={this.state.gender}
                               label="Nữ"
                               touched={touched.gender}
                               message={errors.gender}
@@ -231,7 +232,8 @@ class Edit extends Component {
                             <MyRadio
                               name="gender"
                               value={false}
-                              checked={!values.gender ? !values.gender : null}
+                              onClick={() => this.setState({ gender: false })}
+                              checked={!this.state.gender}
                               onChange={handleChange}
                               label="Nam"
                               message={errors.gender}
