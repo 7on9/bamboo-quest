@@ -281,6 +281,7 @@ class Create extends Component {
     )
   }
 }
+const styles = {}
 const mapStateToProps = (state) => ({
   ...state,
 })
