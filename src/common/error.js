@@ -36,3 +36,11 @@ export const infoSchema = Yup.object().shape({
     .required('Bạn quên nhập số điện thoại nè !')
     .length(10, 'Số điện thoại phải đủ 10 số'),
 })
+export const questSchema = Yup.object().shape({
+  title: Yup.string()
+    .required('Bạn quên nhập tên thử thách nè !')
+    .min(2, 'Quá ngắn rồi !'),
+  description: Yup.string()
+    .required('Bạn quên nhập mô tả nè !')
+    .min(2, 'Quá ngắn rồi !'),
+})
