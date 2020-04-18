@@ -1,44 +1,21 @@
 //reducer user
-import { USER_TYPE, EVENT } from './types'
+import { ADMIN_TYPE, EVENT } from './types'
 
 let initialState = {
-  token: '',
-  info: null,
+  page: [],
   running: false,
-  authenticated: false,
   result: false,
 }
 
-export const authReducer = (state = initialState, action) => {
+export const adminReducer = (state = initialState, action) => {
   switch (action.type) {
-    case USER_TYPE.AUTH.LOGIN:
-    case USER_TYPE.AUTH.VERIFY:
-      state = {
-        ...state,
-        ...action.payload,
-        authenticated: action.payload.authenticated,
-        running: false,
-      }
-      break
-    case USER_TYPE.AUTH.LOGOUT:
-      state = {
-        ...state,
-        ...action.payload,
-        authenticated: false,
-        running: false,
-      }
-      break
-    case USER_TYPE.AUTH.REGISTER:
-    case EVENT.RESULT:
-      state = {
-        ...state,
-        ...action.payload,
-      }
-      break
+    case ADMIN_TYPE.ADD:
+    case ADMIN_TYPE.GET:
+    case ADMIN_TYPE.DELETE:
     case EVENT.RUNNING:
       state = {
         ...state,
-        running: action.payload.running,
+        ...action.payload,
       }
       break
     default:

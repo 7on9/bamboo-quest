@@ -1,7 +1,7 @@
 import { dataProvider } from './dataProvider'
 
 export const AdminService = {
-  getAllUsers: (limit, skip, method) => {
+  getUsers: (method, skip, limit) => {
     return dataProvider(`/admin/analytic/user/${method}`, {
       method: 'GET',
       params: { limit, skip },
