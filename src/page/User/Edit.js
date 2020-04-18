@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './styles.css'
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
-import { infoSchema } from '../../common/validation'
+import { infoSchema } from '../../common/error'
 
 const MyRadio = ({ label, ...props }) => {
   const [field, meta] = useField(props)
@@ -184,7 +184,6 @@ class Edit extends Component {
                                 placeholder="Password"
                                 onChange={handleChange}
                                 value={values.password}
-                                disabled={true}
                               />
                               <ErrorMessage
                                 name="password"
