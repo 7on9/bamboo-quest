@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as questActions from '../../store/quest/action'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { questSchema } from '../../common/error'
 
 class Create extends Component {
   constructor(props) {
@@ -21,12 +23,11 @@ class Create extends Component {
     this.props.changeStatusRunning(false)
   }
 
-  onSubmit = async e => {
-    e.preventDefault()
+  onSubmit = async (e) => {
     this.props.changeStatusRunning(true)
     this.props.createQuest(this.state.newQuest)
   }
-  onType = event => {
+  onType = (event) => {
     this.setState({
       submit: false,
       error: '',
@@ -37,7 +38,7 @@ class Create extends Component {
     })
   }
 
-  onUploadImage = async event => {
+  onUploadImage = async (event) => {
     if (event.target.files[0]) {
       this.setState({
         img_path: URL.createObjectURL(event.target.files[0]),
@@ -85,129 +86,194 @@ class Create extends Component {
 
     return (
       <div className="container_createQuiz">
-        <div
-          className="contentCreateQuiz text-left"
-          style={{ overflowY: 'scroll' }}>
+        <div className="contentCreateQuiz text-left">
           <div className="container" style={{ height: '100%' }}>
-            <form method="post" style={{ height: '100%', width: '100%' }}>
-              <div className="col-12" style={{ height: '' }}>
-                <div className="row" style={{ height: '100%' }}>
-                  <div
-                    className="col-12 col-sm-12 col-md-12"
-                    style={{ height: '100%' }}>
-                    <div className="form-group justify-content-center align-items-center">
-                      <label>Tên thử thách</label>
+            <Formik
+              initialValues={{
+                description: '',
+                title: '',
+              }}
+              enableReinitialize
+              validationSchema={questSchema}
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                if (values.title && values.description) {
+                  console.log(values)
+                  this.onSubmit()
+                }
+                setSubmitting(true)
+                setTimeout(() => {
+                  resetForm()
+                  setSubmitting(false)
+                }, 1000)
+              }}>
+              {({
+                values,
+                errors,
+                touched,
+                handleSubmit,
+                handleChange,
+                isSubmitting,
+              }) => (
+                <Form
+                  method="post"
+                  style={{ height: '100%', width: '100%' }}
+                  onSubmit={handleSubmit}>
+                  <div className="col-12">
+                    <div className="row" style={{ height: '100%' }}>
                       <div
-                        className={styles.title}
-                        style={{
-                          width: '100%',
-                          height: '50px',
-                          border: '3px solid #e2e2e2',
-                        }}>
-                        <input
-                          maxLength="50"
-                          placeholder="giới hạn 50 ký tự"
-                          style={{ marginLeft: '10px', width: '100%' }}
-                          name="title"
-                          onChange={this.onType}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="col-12 col-sm-12 col-md-12"
-                    style={{ height: '100%', flexDirection: 'row' }}>
-                    <div className="row ">
-                      <div className="col-3 row justify-content-center align-items-center">
-                        <div className="form-group">
-                          <label>{is_public ? 'Công khai' : 'Bí mật'}</label>
-                          <div className="center-div">
-                            <label className="switch">
-                              <input
-                                type="checkbox"
-                                value={this.state.statusPublic}
-                                onClick={this.togglePublic}
-                                name="is_public"
-                              />
-                              <span className="slider round" />
-                            </label>
+                        className="col-12 col-sm-12 col-md-12"
+                        style={{ height: '100%' }}>
+                        <div className="form-group ">
+                          <label>Tên thử thách</label>
+                          <div
+                            className={
+                              touched.title && errors.title
+                                ? 'col center-div is-invalid form-control'
+                                : 'col center-div'
+                            }
+                            style={{
+                              width: '100%',
+                              height: '50px',
+                              border: '3px solid #e2e2e2',
+                              borderRadius: '10px',
+                              boxShadow: '1px 2px #888888',
+                            }}>
+                            <Field
+                              maxLength="50"
+                              placeholder="giới hạn 50 ký tự"
+                              style={{ marginLeft: '10px', width: '100%' }}
+                              name="title"
+                              onChange={handleChange}
+                              value={values.title}
+                            />
                           </div>
+                          <ErrorMessage
+                            name="title"
+                            className="invalid-feedback p-l-20"
+                            component="div"
+                          />
                         </div>
                       </div>
-                      <div className="col-6">
-                        <div className="upLoadImage">
-                          <input
-                            type="file"
-                            style={{ background: 'none', width: '100%' }}
-                            onChange={this.onUploadImage}
-                          />
-                          <br />
-                          <div style={{ marginTop: '10px' }}>
-                            <div className="row">
-                              <div className="col-1"></div>
-                              <div
-                                className="col-10 center-div"
-                                style={{ height: '250px', background: '#fff' }}>
-                                <img
-                                  style={{
-                                    objectFit: 'contain',
-                                    width: '100%',
-                                    height: '100%',
-                                  }}
-                                  src={
-                                    img_path
-                                      ? img_path
-                                      : '/images/img_quest_default.png'
-                                  }
-                                  alt=""
-                                />
+                      <div
+                        className="col-12 col-sm-12 col-md-12"
+                        style={{ height: '100%', flexDirection: 'row' }}>
+                        <div className="row ">
+                          <div className="col-3 row justify-content-center align-items-center">
+                            <div className="form-group">
+                              <label>
+                                {is_public ? 'Công khai' : 'Bí mật'}
+                              </label>
+                              <div className="center-div">
+                                <label className="switch">
+                                  <input
+                                    type="checkbox"
+                                    value={this.state.statusPublic}
+                                    onClick={this.togglePublic}
+                                    name="is_public"
+                                  />
+                                  <span className="slider round" />
+                                </label>
                               </div>
-                              <div className="col-1"></div>
                             </div>
                           </div>
+                          <div className="col-6">
+                            <div className="upLoadImage">
+                              <br />
+                              <div style={{ marginTop: '10px' }}>
+                                <div className="row">
+                                  <div className="col-1"></div>
+                                  <div
+                                    className="col-10 center-div"
+                                    style={{
+                                      height: '250px',
+                                      background: '#fff',
+                                    }}>
+                                    <img
+                                      style={{
+                                        objectFit: 'contain',
+                                        width: '100%',
+                                        height: '100%',
+                                      }}
+                                      src={
+                                        img_path
+                                          ? img_path
+                                          : '/images/img_quest_default.png'
+                                      }
+                                      alt=""
+                                    />
+                                  </div>
+                                  <div className="col-1"></div>
+                                </div>
+                              </div>
+                              <div className="text-center">
+                                <input
+                                  type="file"
+                                  id="files"
+                                  onChange={this.onUploadImage}
+                                />
+                                <label
+                                  for="files"
+                                  className="label-input file file-upload-btn">
+                                  Choose a Photo
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-3"></div>
                         </div>
                       </div>
-                      <div className="col-3"></div>
-                    </div>
-                  </div>
-                  <div className="col-12 col-sm-12 col-md-12">
-                    <div className="form-group">
-                      <label>Mô tả thử thách</label>
-                      <div
-                        className="center-div"
-                        style={{
-                          width: '100%',
-                          height: '5em',
-                          border: '3px solid #e2e2e2',
-                        }}>
-                        <input
-                          type="text"
-                          maxLength="100"
-                          placeholder="giới hạn 100 ký tự"
-                          style={{ marginLeft: '10px', width: '100%' }}
-                          name="description"
-                          onChange={this.onType}
-                        />
+                      <div className="col-12 col-sm-12 col-md-12">
+                        <div className="form-group">
+                          <label>Mô tả thử thách</label>
+                          <div
+                            className={
+                              touched.description && errors.description
+                                ? 'col center-div is-invalid form-control'
+                                : 'col center-div'
+                            }
+                            style={{
+                              width: '100%',
+                              height: '5em',
+                              border: '3px solid #e2e2e2',
+                              borderRadius: '10px',
+                              boxShadow: '1px 2px #888888',
+                            }}>
+                            <Field
+                              type="text"
+                              maxLength="100"
+                              placeholder="giới hạn 100 ký tự"
+                              style={{ marginLeft: '10px', width: '100%' }}
+                              name="description"
+                              onChange={handleChange}
+                              value={values.description}
+                            />
+                          </div>
+                          <ErrorMessage
+                            name="description"
+                            className="invalid-feedback p-l-20"
+                            component="div"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="col-12" style={{ width: '100%', height: '' }}>
-                <div className="col-12 text-center">
-                  {this.props.quest.running ? (
-                    this.renderSpinner()
-                  ) : (
-                    <input
-                      onClick={this.onSubmit}
-                      type="submit"
-                      style={{ cursor: 'pointer', width: '100%' }}
-                      className="btn btn-success col-6 shadow p-3 mb-5 rounded"
-                    />
-                  )}
-                </div>
-              </div>
-            </form>
+                  <div className="col-12" style={{ width: '100%', height: '' }}>
+                    <div className="col-12 text-center">
+                      {this.props.quest.running ? (
+                        this.renderSpinner()
+                      ) : (
+                        <input
+                          type="submit"
+                          style={{ cursor: 'pointer', width: '100%' }}
+                          className="btn btn-success col-6 shadow p-3 mb-5 rounded"
+                          disabled={isSubmitting}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
         <div style={{ marginBottom: '30px' }} />
@@ -216,7 +282,7 @@ class Create extends Component {
   }
 }
 const styles = {}
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state,
 })
 

@@ -6,6 +6,8 @@ import * as authAction from '../../store/auth/action'
 import './style.css'
 import { APP_CONSTANTS } from '../../common/constants'
 import Helmet from 'react-helmet'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { loginSchema, registerSchema } from '../../common/error'
 
 class Auth extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class Auth extends Component {
     }
   }
 
-  onType = event => {
+  onType = (event) => {
     this.setState({
       submit: false,
       error: '',
@@ -61,165 +63,298 @@ class Auth extends Component {
 
   renderLogin = () => {
     return (
-      <form className="login100-form validate-form">
-        <span className="login100-form-title">Đăng nhập</span>
-        <div
-          className="wrap-input100 validate-input"
-          data-validate="Valid email is required: ex@abc.xyz">
-          <input
-            className="input100"
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={this.onType}
-          />
-          <span className="focus-input100" />
-          <span className="symbol-input100">
-            <i className="fa fa-envelope" aria-hidden="true" />
-          </span>
-        </div>
-        <div
-          className="wrap-input100 validate-input"
-          data-validate="Password is required">
-          <input
-            className="input100"
-            type="password"
-            name="password"
-            placeholder="Mật khẩu"
-            onChange={this.onType}
-          />
-          <span className="focus-input100" />
-          <span className="symbol-input100">
-            <i className="fa fa-lock" aria-hidden="true" />
-          </span>
-        </div>
-        <div className="container-login100-form-btn">
-          <button
-            className="login100-form-btn"
-            onClick={e => {
-              e.preventDefault()
-              this.onSubmit()
-            }}>
-            Đăng nhập
-          </button>
-        </div>
-        {this.state.error ? (
-          <div className="error">{this.state.error}</div>
-        ) : null}
-        {this.renderSpinner()}
-        <div className="text-center p-t-12">
-          <Link className="txt2">
-            Quên mật khẩu?
-          </Link>
-        </div>
-        <div className="text-center p-t-136">
-          <Link
-            to="#"
-            style={{ cursor: 'pointer' }}
-            className="txt2 change_state"
-            onClick={() =>
-              this.setState({ login: !this.state.login, error: '' })
-            }>
-            Đăng ký
-            <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true" />
-          </Link>
-        </div>
-      </form>
+      <Formik
+        initialValues={{
+          email: '',
+          name: '',
+        }}
+        validationSchema={loginSchema}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          if (values.email && values.password) {
+            this.props.changeStatusRunning(true)
+            if (this.state.login) {
+              this.props.login(values.email, values.password)
+            }
+          }
+          setSubmitting(true)
+          setTimeout(() => {
+            resetForm()
+            setSubmitting(false)
+            this.setState({ isLoading: true })
+          }, 1200)
+        }}>
+        {({
+          errors,
+          touched,
+          handleChange,
+          handleSubmit,
+          values,
+          isSubmitting,
+        }) => (
+          <Form className="login100-form validate-form" onSubmit={handleSubmit}>
+            <span className="login100-form-title">Đăng nhập</span>
+            {this.props.user.result && !!this.props.user.token ? null : this
+                .state.isLoading ? (
+              <div className="alert alert-danger" role="alert">
+                Sai email hoặc password
+              </div>
+            ) : null}
+            <div
+              className={
+                touched.email && errors.email
+                  ? 'wrap-input100 validate-input is-invalid form-control'
+                  : 'wrap-input100 validate-input'
+              }
+              data-validate="Valid email is required: ex@abc.xyz">
+              <Field
+                as="input"
+                className="input100"
+                type="text"
+                name="email"
+                placeholder="Email"
+                value={values.email}
+                onChange={handleChange}
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-envelope" aria-hidden="true" />
+              </span>
+            </div>
+            <ErrorMessage
+              name="email"
+              className="invalid-feedback"
+              component="div"
+            />
+            <div
+              className={
+                touched.password && errors.password
+                  ? 'wrap-input100 validate-input is-invalid form-control'
+                  : 'wrap-input100 validate-input'
+              }
+              data-validate="Password is required">
+              <Field
+                as="input"
+                className="input100"
+                type="password"
+                name="password"
+                placeholder="Mật khẩu"
+                value={values.password}
+                autocomplete="on"
+                onChange={handleChange}
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-lock" aria-hidden="true" />
+              </span>
+            </div>
+            <ErrorMessage
+              name="password"
+              className="invalid-feedback"
+              component="div"
+            />
+            <div className="container-login100-form-btn">
+              <button
+                className="login100-form-btn"
+                type="submit"
+                disabled={isSubmitting}>
+                Đăng nhập
+              </button>
+            </div>
+            {/* {this.state.error ? (
+              <div className="error">{this.state.error}</div>
+            ) : null} */}
+            {this.renderSpinner()}
+            <div className="text-center p-t-12">
+              <Link className="txt2">Quên mật khẩu?</Link>
+            </div>
+            <div className="text-center p-t-136">
+              <Link
+                to="#"
+                style={{ cursor: 'pointer' }}
+                className="txt2 change_state"
+                onClick={() =>
+                  this.setState({ login: !this.state.login, error: '' })
+                }>
+                Đăng ký
+                <i
+                  className="fa fa-long-arrow-right m-l-5"
+                  aria-hidden="true"
+                />
+              </Link>
+            </div>
+          </Form>
+        )}
+      </Formik>
     )
   }
 
   renderRegister = () => {
     return (
-      <form className="login100-form validate-form">
-        <span className="login100-form-title">ĐĂNG KÝ</span>
-        <div
-          className="wrap-input100 validate-input"
-          data-validate="Valid email is required: ex@abc.xyz">
-          <input
-            className="input100"
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={this.onType}
-          />
-          <span className="focus-input100" />
-          <span className="symbol-input100">
-            <i className="fa fa-envelope" aria-hidden="true" />
-          </span>
-        </div>
-        <div
-          className="wrap-input100 validate-input"
-          data-validate="Valid email is required: ex@abc.xyz">
-          <input
-            className="input100"
-            type="text"
-            name="name"
-            placeholder="Họ và tên"
-            onChange={this.onType}
-          />
-          <span className="focus-input100" />
-          <span className="symbol-input100">
-            <i className="fa fa-user" aria-hidden="true" />
-          </span>
-        </div>
-        <div
-          className="wrap-input100 validate-input"
-          data-validate="Password is required">
-          <input
-            className="input100"
-            type="password"
-            name="password"
-            placeholder="Mật khẩu"
-            onChange={this.onType}
-          />
-          <span className="focus-input100" />
-          <span className="symbol-input100">
-            <i className="fa fa-lock" aria-hidden="true" />
-          </span>
-        </div>
-        <div
-          className="wrap-input100 validate-input"
-          data-validate="Password is required">
-          <input
-            className="input100"
-            type="password"
-            name="reTypePassword"
-            placeholder="Nhập lại mật khẩu"
-            onChange={this.onType}
-          />
-          <span className="focus-input100" />
-          <span className="symbol-input100">
-            <i className="fa fa-lock" aria-hidden="true" />
-          </span>
-        </div>
-
-        <div className="container-login100-form-btn">
-          <button
-            onClick={e => {
-              e.preventDefault()
-              this.onSubmit()
-            }}
-            className="login100-form-btn">
-            Đăng ký
-          </button>
-        </div>
-        {this.state.error ? (
-          <div className="error">{this.state.error}</div>
-        ) : null}
-        {this.renderSpinner()}
-        <div className="text-center p-t-136">
-          <Link
-            to="#"
-            style={{ cursor: 'pointer' }}
-            className="txt2 change_state"
-            onClick={() =>
-              this.setState({ login: !this.state.login, error: '' })
-            }>
-            <i className="fa fa-long-arrow-left m-r-5" aria-hidden="true" />
-            Đăng nhập
-          </Link>
-        </div>
-      </form>
+      <Formik
+        initialValues={{
+          email: '',
+          name: '',
+          password: '',
+          reTypePassword: '',
+        }}
+        enableReinitialize
+        validationSchema={registerSchema}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          if (
+            values.email &&
+            values.password &&
+            values.reTypePassword &&
+            values.name
+          ) {
+            this.props.changeStatusRunning(true)
+            if (!this.state.login) {
+              this.props.register(values.email, values.password, values.name)
+              console.log(values)
+            }
+          }
+          setSubmitting(true)
+          setTimeout(() => {
+            resetForm()
+            setSubmitting(false)
+          }, 1200)
+        }}>
+        {({
+          errors,
+          touched,
+          handleChange,
+          handleSubmit,
+          values,
+          isSubmitting,
+        }) => (
+          <Form className="login100-form validate-form" onSubmit={handleSubmit}>
+            <span className="login100-form-title">ĐĂNG KÝ</span>
+            <div
+              className={
+                touched.email && errors.email
+                  ? 'wrap-input100 validate-input is-invalid form-control'
+                  : 'wrap-input100 validate-input'
+              }
+              data-validate="Valid email is required: ex@abc.xyz">
+              <Field
+                className="input100"
+                type="text"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={values.email}
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-envelope" aria-hidden="true" />
+              </span>
+            </div>
+            <ErrorMessage
+              name="email"
+              className="invalid-feedback"
+              component="div"
+            />
+            <div
+              className={
+                touched.name && errors.name
+                  ? 'wrap-input100 validate-input is-invalid form-control'
+                  : 'wrap-input100 validate-input'
+              }
+              data-validate="Valid email is required: ex@abc.xyz">
+              <Field
+                className="input100"
+                type="text"
+                name="name"
+                placeholder="Họ và tên"
+                onChange={handleChange}
+                value={values.name}
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-user" aria-hidden="true" />
+              </span>
+            </div>
+            <ErrorMessage
+              name="name"
+              className="invalid-feedback"
+              component="div"
+            />
+            <div
+              className={
+                touched.password && errors.password
+                  ? 'wrap-input100 validate-input is-invalid form-control'
+                  : 'wrap-input100 validate-input'
+              }
+              data-validate="Password is required">
+              <Field
+                className="input100"
+                type="password"
+                name="password"
+                placeholder="Mật khẩu"
+                onChange={handleChange}
+                value={values.password}
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-lock" aria-hidden="true" />
+              </span>
+            </div>
+            <ErrorMessage
+              name="password"
+              className="invalid-feedback"
+              component="div"
+            />
+            <div
+              className={
+                touched.reTypePassword && errors.reTypePassword
+                  ? 'wrap-input100 validate-input is-invalid form-control'
+                  : 'wrap-input100 validate-input'
+              }
+              data-validate="Password is required">
+              <Field
+                className="input100"
+                type="password"
+                name="reTypePassword"
+                placeholder="Nhập lại mật khẩu"
+                onChange={handleChange}
+                value={values.reTypePassword}
+              />
+              <span className="focus-input100" />
+              <span className="symbol-input100">
+                <i className="fa fa-lock" aria-hidden="true" />
+              </span>
+            </div>
+            <ErrorMessage
+              name="reTypePassword"
+              className="invalid-feedback"
+              component="div"
+            />
+            <div className="container-login100-form-btn">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="login100-form-btn">
+                Đăng ký
+              </button>
+            </div>
+            {/* {this.state.error ? (
+              <div className="error">{this.state.error}</div>
+            ) : null} */}
+            {this.renderSpinner()}
+            <div className="text-center p-t-136">
+              <Link
+                to="#"
+                style={{ cursor: 'pointer' }}
+                className="txt2 change_state"
+                onClick={() =>
+                  this.setState({ login: !this.state.login, error: '' })
+                }>
+                <i className="fa fa-long-arrow-left m-r-5" aria-hidden="true" />
+                Đăng nhập
+              </Link>
+            </div>
+          </Form>
+        )}
+      </Formik>
     )
   }
 
@@ -250,7 +385,6 @@ class Auth extends Component {
     }
 
     if (submited && !running) {
-
       if (result && !login) {
         alert('Tạo tài khoản thành công! Hãy đăng nhập vào hệ thống!')
         this.setState({
@@ -285,8 +419,8 @@ class Auth extends Component {
     return (
       <div className="limiter">
         <Helmet>
-          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
-          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css" />
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css" />
         </Helmet>
         <div className="container-login100">
           <div className="wrap-login100">
@@ -301,7 +435,7 @@ class Auth extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state,
 })
 
