@@ -6,9 +6,9 @@ export const getAllUsers = (page) => {
     try {
       resetResult()
       // changeStatusRunning(false)
-      let count = await AdminService.getUsers('count')
-      count = count.data.count
       page=(page-1) * 5
+      let count = await AdminService.getUsers('count',page, 5)
+      count = count.data.count
       let find = await AdminService.getUsers('find', page, 5)
       find = find.data
       return dispatch({
