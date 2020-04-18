@@ -2,9 +2,11 @@
 import { ADMIN_TYPE, EVENT } from './types'
 
 let initialState = {
-  page: [],
+  page: 1,
+  user: [],
   running: false,
   result: false,
+  count: 0
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -12,6 +14,7 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.ADD:
     case ADMIN_TYPE.GET:
     case ADMIN_TYPE.DELETE:
+    case ADMIN_TYPE.SET_PAGE:
     case EVENT.RUNNING:
       state = {
         ...state,

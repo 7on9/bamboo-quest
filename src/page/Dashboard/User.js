@@ -1,46 +1,21 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import ItemTableUser from './comon/ItemTableUser'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllUsers } from '../../store/admin/action'
+import { getAllUsers, setPage } from '../../store/admin/action'
 import Pagination from 'react-js-pagination'
 
 export default function Table() {
-  const [count, setCount] = useState(null)
-  const [user, setUser] = useState(null)
-  const [page, setPage] = useState(0)
-  //redux
   const dispatch = useDispatch()
   const redux = useSelector((state) => state.admin)
-  const handlePageChange = useCallback(
-    (pageNumber) => {
-      // console.log(`active page is ${pageNumber}`)
-      setPage(pageNumber)
-    },
-    [page]
-  )
+  const handlePageChange = (pageNumber) => {
+    dispatch(setPage(pageNumber))
+  }
   useEffect(() => {
-    if (page === 1) {
-      dispatch(getAllUsers(page - 1)).then((res) => {
-        console.log(res.payload)
-        setCount(res.payload.page.alluser.count)
-        setUser(res.payload.page.user)
-      })
-    } else if (page === 0)
-      dispatch(getAllUsers(page)).then((res) => {
-        console.log(res.payload)
-        setCount(res.payload.page.alluser.count)
-        setUser(res.payload.page.user)
-      })
-    else
-      dispatch(getAllUsers(page + 3)).then((res) => {
-        console.log(res.payload)
-        setCount(res.payload.page.alluser.count)
-        setUser(res.payload.page.user)
-      })
-  }, [page])
+    dispatch(getAllUsers(redux.page))
+  }, [redux.page])
+
   return (
     <div className="container-fluid">
-      {/* Page Heading */}
       <h1 className="h3 mb-2 text-gray-800">Danh sách người dùng</h1>
       {/* DataTales Example */}
       <div className="shadow mb-4">
@@ -68,9 +43,9 @@ export default function Table() {
                 </tr>
               </thead>
 
-              {count && user ? (
+              {redux.user.length > 0 ? (
                 <tbody>
-                  {user.map((item, index) => (
+                  {redux.user.map((item, index) => (
                     <ItemTableUser
                       id={index + 1}
                       username={item.name}
@@ -90,9 +65,9 @@ export default function Table() {
                 hideDisabled
                 itemClass="page-item"
                 linkClass="page-link"
-                activePage={page}
+                activePage={redux.page}
                 itemsCountPerPage={1}
-                totalItemsCount={count / 5}
+                totalItemsCount={redux.count / 5}
                 pageRangeDisplayed={3}
                 onChange={handlePageChange}
               />

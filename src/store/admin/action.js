@@ -1,25 +1,26 @@
 import { AdminService } from '../../services/admin'
 import { EVENT, ADMIN_TYPE } from './types'
 
-export const getAllUsers = (skip) => {
+export const getAllUsers = (page) => {
   return async (dispatch) => {
     try {
       resetResult()
       // changeStatusRunning(false)
       let count = await AdminService.getUsers('count')
-      count = count.data
-      let find = await AdminService.getUsers('find', skip, 5)
+      count = count.data.count
+      page=(page-1) * 5
+      let find = await AdminService.getUsers('find', page, 5)
       find = find.data
       return dispatch({
         type: ADMIN_TYPE.GET,
-        payload: { page: { user: find, alluser: count } },
+        payload: { user: find, count },
       })
     } catch (error) {
       return dispatch({
         type: ADMIN_TYPE.GET,
         payload: {
           result: false,
-          page: null,
+          user: [],
         },
       })
     }
@@ -32,6 +33,17 @@ export const resetResult = () => {
       type: EVENT.RESULT,
       payload: {
         result: false,
+      },
+    })
+  }
+}
+
+export const setPage = (page) => {
+  return (dispatch) => {
+    dispatch({
+      type: ADMIN_TYPE.SET_PAGE,
+      payload: {
+        page
       },
     })
   }
