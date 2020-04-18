@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import * as questActions from '../../store/quest/action'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { questSchema } from '../../common/error'
-
 class Create extends Component {
   constructor(props) {
     super(props)

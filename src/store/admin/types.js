@@ -2,7 +2,9 @@ export const ADMIN_TYPE = {
   DELETE: 'ADMIN/DELETE',
   GET: 'ADMIN/GET_USER',
   UPDATE: 'ADMIN/UPDATE',
-  SET_PAGE: 'ADMIN/SET_PAGE'
+  SET_PAGE: 'ADMIN/SET_PAGE',
+  ITEM: 'ADMIN/ITEM'
+
 }
 
 export const ERROR = {

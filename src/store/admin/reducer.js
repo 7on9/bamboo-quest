@@ -6,7 +6,8 @@ let initialState = {
   user: [],
   running: false,
   result: false,
-  count: 0
+  count: 0,
+  item: 0
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -15,6 +16,7 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.GET:
     case ADMIN_TYPE.DELETE:
     case ADMIN_TYPE.SET_PAGE:
+    case ADMIN_TYPE.ITEM:
     case EVENT.RUNNING:
       state = {
         ...state,

@@ -1,18 +1,22 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import ItemTableUser from './comon/ItemTableUser'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllUsers, setPage } from '../../store/admin/action'
+import { getAllUsers, setPage, setItem } from '../../store/admin/action'
 import Pagination from 'react-js-pagination'
-
+import { timestampConverter } from '../../utils/date'
 export default function Table() {
   const dispatch = useDispatch()
   const redux = useSelector((state) => state.admin)
-  const handlePageChange = (pageNumber) => {
-    dispatch(setPage(pageNumber))
-  }
   useEffect(() => {
     dispatch(getAllUsers(redux.page))
   }, [redux.page])
+  const handlePageChange = (pageNumber) => {
+    dispatch(setPage(pageNumber))
+  }
+  const handleSetItem = (item, index) => {
+    item = (redux.page - 1) * 5 + index
+    dispatch(setItem(item))
+  }
 
   return (
     <div className="container-fluid">
@@ -33,6 +37,7 @@ export default function Table() {
               cellSpacing={0}>
               <thead>
                 <tr>
+                  <th>STT</th>
                   <th>ID</th>
                   <th>Username</th>
                   <th>Email</th>
@@ -47,12 +52,14 @@ export default function Table() {
                 <tbody>
                   {redux.user.map((item, index) => (
                     <ItemTableUser
-                      id={index + 1}
+                      stt={index + 1}
+                      id={item._id}
                       username={item.name}
                       email={item.email}
-                      createAt={'15/05/2020'}
+                      createAt={timestampConverter(item.last_update)}
                       countJoin={1}
-                      countQuestCreated={1}
+                      countQuestCreated={item.game_history.length}
+                      handleSetItem={() => handleSetItem(item, index)}
                     />
                   ))}
                 </tbody>

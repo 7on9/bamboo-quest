@@ -5,7 +5,6 @@ export const getAllUsers = (page) => {
   return async (dispatch) => {
     try {
       resetResult()
-      // changeStatusRunning(false)
       page=(page-1) * 5
       let count = await AdminService.getUsers('count',page, 5)
       count = count.data.count
@@ -44,6 +43,17 @@ export const setPage = (page) => {
       type: ADMIN_TYPE.SET_PAGE,
       payload: {
         page
+      },
+    })
+  }
+}
+
+export const setItem = (item) => {
+  return (dispatch) => {
+    dispatch({
+      type: ADMIN_TYPE.ITEM,
+      payload: {
+        item
       },
     })
   }
