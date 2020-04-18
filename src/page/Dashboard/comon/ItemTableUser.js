@@ -13,7 +13,7 @@ export default class ItemTableUser extends Component {
         <td>{this.props.countQuestCreated}</td>
         <td>
           <Link
-            to={'/dashboard/user/' + this.props.id}
+            to={'/dashboard/detailuser'}
             onClick={(item) => this.props.handleSetItem(item)}>
             <i className="fas fa-info-circle"></i>
           </Link>{' '}

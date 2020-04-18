@@ -14,8 +14,8 @@ export default function Dashboard() {
     <Fullscreen>
       <Switch>
         <Route exact path="/dashboard" component={Home} />
-        <Route exact path="/dashboard/user" component={User} />
-        <Route path="/dashboard/user/:id" component={DetailUser} />
+        <Route path="/dashboard/user" component={User} />
+        <Route path="/dashboard/detailuser" component={DetailUser} />
         <Route exact path="/dashboard/quest" component={Quest} />
         <Route path="/dashboard/quest/:id" component={DetailQuest} />
       </Switch>
