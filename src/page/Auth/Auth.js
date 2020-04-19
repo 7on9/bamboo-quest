@@ -7,7 +7,7 @@ import './style.css'
 import { APP_CONSTANTS } from '../../common/constants'
 import Helmet from 'react-helmet'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { loginSchema, registerSchema } from '../../common/error'
+import { loginSchema, registerSchema } from '../../common/validation'
 
 class Auth extends Component {
   constructor(props) {

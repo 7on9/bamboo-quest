@@ -84,6 +84,29 @@ export const register = (email, password, name) => {
   }
 }
 
+export const update = (avatar_path, dob, name, phone, gender, organization) => {
+  return async dispatch => {
+    try {
+      await AuthenticationService.update(avatar_path, dob, name, phone, gender, organization)
+      dispatch({
+        type: USER_TYPE.UPDATE,
+        payload: {
+          running: false,
+          result: true,
+        },
+      })
+    } catch (error) {
+      dispatch({
+        type: USER_TYPE.UPDATE,
+        payload: {
+          running: false,
+          result: false,
+        },
+      })
+    }
+  }
+}
+
 export const logout = () => {
   return dispatch => {
     localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN)
@@ -99,8 +122,6 @@ export const verify = () => {
     try {
       let res = await AuthenticationService.verify()
       res = res.data
-      // console.log(res.info)
-      // localStorage.setItem(APP_CONSTANTS.WEB_USER_INFO, res.info)
       localStorage.setItem(APP_CONSTANTS.WEB_EMAIL, res.info.email)
       localStorage.setItem(APP_CONSTANTS.WEB_TOKEN, res.token)
       dispatch({
