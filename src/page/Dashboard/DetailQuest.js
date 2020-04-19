@@ -9,7 +9,7 @@ export default React.memo(function DetailQuest() {
   const data = redux.quest[redux.item]
   useEffect(() => {
     settitle(data.title)
-  }, [redux.quest, data.title])
+  }, [redux])
   const handleEdit = () => {
     setStatusEdit(true)
   }
@@ -31,11 +31,15 @@ export default React.memo(function DetailQuest() {
           <div style={{ marginBottom: '15px' }} />
           <div className="form-group">
             <label>ID</label>
-            <input type="text" className="form-control" value="123" readOnly />
+            <input type="text" className="form-control" value={data._id} readOnly />
           </div>
           <div className="form-group">
-            <label>Ngày tạo</label>
-            <input className="form-control" value="01/01/2020" readOnly />
+            <label>Người tạo</label>
+            <input className="form-control" value={data.id_author} readOnly />
+          </div>
+          <div className="form-group">
+            <label>Số câu hỏi</label>
+            <input className="form-control" value={data.questions.length} readOnly />
           </div>
           <div className="form-group">
             <label>Tên cuộc thi</label>

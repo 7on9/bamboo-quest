@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers, setPage, setItem } from '../../store/admin/action'
 import Pagination from 'react-js-pagination'
 import { timestampConverter } from '../../utils/date'
+import {  useHistory } from "react-router-dom";
 export default function Table() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const redux = useSelector((state) => state.admin)
   useEffect(() => {
     dispatch(getAllUsers(redux.page))
@@ -13,11 +15,10 @@ export default function Table() {
   const handlePageChange = (pageNumber) => {
     dispatch(setPage(pageNumber))
   }
-  const handleSetItem = (item, index) => {
-    item = (redux.page - 1) * 5 + index
-    dispatch(setItem(item))
+  const handleSetItem = async (index) => {
+    await dispatch(setItem(index))
+    history.push('/dashboard/detailuser')
   }
-
   return (
     <div className="container-fluid">
       <h1 className="h3 mb-2 text-gray-800">Danh sách người dùng</h1>
@@ -59,7 +60,7 @@ export default function Table() {
                       createAt={timestampConverter(item.last_update)}
                       countJoin={1}
                       countQuestCreated={item.game_history.length}
-                      handleSetItem={() => handleSetItem(item, index)}
+                      handleSetItem={() => handleSetItem(index)}
                     />
                   ))}
                 </tbody>

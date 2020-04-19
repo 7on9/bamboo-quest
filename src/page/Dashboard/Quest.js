@@ -3,8 +3,10 @@ import ItemTableQuest from './comon/ItemtableQuest'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllQuests, setPage, setItem } from '../../store/admin-quest/action'
 import Pagination from 'react-js-pagination'
+import {  useHistory } from "react-router-dom";
 export default function Table() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const redux = useSelector((state) => state.adminQuest)
   useEffect(() => {
     dispatch(getAllQuests(redux.page))
@@ -12,11 +14,10 @@ export default function Table() {
   const handlePageChange = (pageNumber) => {
     dispatch(setPage(pageNumber))
   }
-  const handleSetItem = (item, index) => {
-    item = (redux.page - 1) * 5 + index
-    dispatch(setItem(item))
+  const handleSetItem = async (index) => {
+    await dispatch(setItem(index))
+    history.push('/dashboard/detaiquest')
   }
-  console.log(redux)
   return (
     <div className="container-fluid">
       {/* Page Heading */}
@@ -51,9 +52,9 @@ export default function Table() {
                     <ItemTableQuest
                       name={item.title}
                       creator={item.id_author}
-                      countQuestion={1}
+                      countQuestion={item.questions.length}
                       id={item._id}
-                      handleSetItem={() => handleSetItem(item, index)}
+                      handleSetItem={() => handleSetItem(index)}
                     />
                   ))}
                 </tbody>

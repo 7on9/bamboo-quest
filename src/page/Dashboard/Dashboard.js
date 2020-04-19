@@ -8,6 +8,7 @@ import Quest from './Quest'
 import DetailUser from './DetailUser'
 import DetailQuest from './DetailQuest'
 
+
 export default function Dashboard() {
   return (
     <Fullscreen>
@@ -16,8 +17,9 @@ export default function Dashboard() {
         <Route path="/dashboard/user" component={User} />
         <Route path="/dashboard/detailuser" component={DetailUser} />
         <Route exact path="/dashboard/quest" component={Quest} />
-        <Route path="/dashboard/quest/:id" component={DetailQuest} />
+        <Route path="/dashboard/detaiquest" component={DetailQuest} />
       </Switch>
     </Fullscreen>
   )
+  
 }
