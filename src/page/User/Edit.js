@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
-import {initFormikEdit} from './util'
+import { initFormikEdit } from './util'
 import { infoSchema } from '../../common/validation'
+import * as user from '../../store/auth/action'
 import './styles.css'
 
 const MyRadio = ({ label, ...props }) => {
@@ -59,8 +60,15 @@ class Edit extends Component {
     }
   }
 
-  handleSubmit = (values, actions) => {
-    
+  handleSubmit = (values) => {
+    this.props.update(
+      this.state.img_path,
+      9898989,
+      values.name,
+      values.phone,
+      values.gender,
+      values.organization
+    )
   }
 
   renderEdit() {
@@ -108,11 +116,10 @@ class Edit extends Component {
                 <div className="row">
                   <div className="col-md-12">
                     <Formik
-                      initialValues = {initFormikEdit(this.props.user)}
+                      initialValues={initFormikEdit(this.props.user)}
                       enableReinitialize
                       validationSchema={infoSchema}
-                      onSubmit= {this.handleSubmit}
-                      >
+                      onSubmit={this.handleSubmit}>
                       {({
                         values,
                         errors,
@@ -303,6 +310,8 @@ const mapStateToProps = (state) => ({
   ...state,
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  update: user.update,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit)

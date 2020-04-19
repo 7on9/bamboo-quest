@@ -13,6 +13,7 @@ export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_TYPE.AUTH.LOGIN:
     case USER_TYPE.AUTH.VERIFY:
+    case USER_TYPE.UPDATE:
       state = {
         ...state,
         ...action.payload,
