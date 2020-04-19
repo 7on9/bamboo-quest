@@ -26,7 +26,7 @@ ReactDOM.render(
       <Route path="/quest" component={Quest} />
       <PrivateRoute path="/user" component={User} />
       <Route path="/host" component={Host} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route strict path="/dashboard" component={Dashboard} />
     </Router>
   </Provider>,
   document.getElementById('root')

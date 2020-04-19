@@ -10,35 +10,32 @@ export default function Table() {
   const [statusEdit, setStatusEdit] = useState(false)
   const redux = useSelector((state) => state.admin)
   const data = redux.user[redux.item]
-  useEffect(async ()=>{
+  useEffect(() => {
     setEmail(data.email)
     setUsername(data.name)
-  },[redux.user])
+  }, [redux.user, data.email, data.name])
   const handleEdit = () => {
     setStatusEdit(true)
   }
 
   const handleSave = () => {
-    if (
-      email === '' ||
-      password === '' ||
-      username === ''
-    ) {
+    if (email === '' || password === '' || username === '') {
       setIsDanger(true)
     }
   }
 
   const onChange = (event) => {
-    switch(event.target.name) {
+    switch (event.target.name) {
       case 'email':
         setEmail(event.target.value)
-        break;
+        break
       case 'password':
         setPassword(event.target.value)
-        break;
+        break
       case 'username':
         setUsername(event.target.value)
-        break;
+        break
+      default:
     }
   }
 
@@ -51,11 +48,20 @@ export default function Table() {
           <div style={{ marginBottom: '15px' }} />
           <div className="form-group">
             <label>ID</label>
-            <input type="text" className="form-control" value={data._id} readOnly />
+            <input
+              type="text"
+              className="form-control"
+              value={data._id}
+              readOnly
+            />
           </div>
           <div className="form-group">
             <label>Ngày tạo</label>
-            <input className="form-control" value={timestampConverter(data.last_update)} readOnly />
+            <input
+              className="form-control"
+              value={timestampConverter(data.last_update)}
+              readOnly
+            />
           </div>
           <div className="form-group">
             <label>Tên người dùng</label>

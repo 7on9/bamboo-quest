@@ -7,4 +7,11 @@ export const AdminService = {
       params: { limit, skip },
     })
   },
+  getQuests: (method, skip, limit) => {
+    return dataProvider(`/admin/analytic/quest/${method}`, {
+      method: 'GET',
+      params: { limit, skip },
+    })
+  },
 }
+  

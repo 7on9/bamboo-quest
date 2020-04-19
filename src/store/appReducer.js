@@ -3,12 +3,14 @@ import { authReducer as user } from './auth/reducer'
 import { questReducer as quest } from './quest/reducer'
 import { gameReducer as game } from './socket/reducer'
 import { adminReducer as admin } from './admin/reducer'
+import { adminReducer as adminQuest } from './admin-quest/reducer'
 
 const rootReducer = combineReducers({
   user,
   quest,
   game,
   admin,
+  adminQuest
 })
 
 export default (state, action) => {
