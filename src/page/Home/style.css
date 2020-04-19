@@ -666,3 +666,14 @@ background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
 
   }
  }
+ img{
+   width: 100%;
+   height: auto;
+ }
+ 
+ .main-header-area{
+   background-color: #7ea6b7;
+   position: sticky;
+   top: 0;
+ }
+

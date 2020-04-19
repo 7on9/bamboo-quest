@@ -83,7 +83,7 @@ class Home extends Component {
           <link rel="stylesheet" href="/comon/css/style.css" />
         </Helmet>
         <header>
-          <div className="header-area ">
+          <div className="header-area fixed-top">
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
                 <div className="row align-items-center no-gutters">
@@ -94,7 +94,7 @@ class Home extends Component {
                         className={
                           this.state.nav
                             ? 'navbar navbar-expand-lg navbar-light bg-light'
-                            : 'navbar navbar-expand-lg navbar-light '
+                            : 'navbar navbar-expand-lg navbar-light'
                         }>
                         <button
                           onClick={() =>
@@ -115,7 +115,7 @@ class Home extends Component {
                           <ul className=" navbar-nav mr-auto mt-2 mt-lg-0">
                             <li>
                               <Link
-                                className="active nav-item"
+                                className="active nav-item btn-login"
                                 to="/home"
                                 style={{ fontWeight: 'bold' }}>
                                 Trang chủ
@@ -125,13 +125,13 @@ class Home extends Component {
                               <Link
                                 to="/"
                                 style={{ fontWeight: 'bold' }}
-                                className="nav-item">
+                                className="nav-item btn-login">
                                 Chơi ngay
                               </Link>
                             </li>
                             <li>
                               <Link
-                                className="nav-item"
+                                className="nav-item btn-login"
                                 to="/user/quest"
                                 style={{ fontWeight: 'bold' }}>
                                 Thử thách của tôi
@@ -196,7 +196,7 @@ class Home extends Component {
         {/* header-end */}
 
         {/* slider_area_start */}
-        <div className="slider_area ">
+        <div className="slider_area p-t-50">
           <div className="single_slider d-flex align-items-center justify-content-center background-single_slider">
             <div className="container">
               <div className="row align-items-center justify-content-center">
