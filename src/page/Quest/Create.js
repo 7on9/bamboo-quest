@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as questActions from '../../store/quest/action'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { questSchema } from '../../common/error'
+import { questSchema } from '../../common/validation'
 
 class Create extends Component {
   constructor(props) {
@@ -281,7 +281,6 @@ class Create extends Component {
     )
   }
 }
-const styles = {}
 const mapStateToProps = (state) => ({
   ...state,
 })

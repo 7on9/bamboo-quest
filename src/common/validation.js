@@ -29,8 +29,7 @@ export const infoSchema = Yup.object().shape({
   name: Yup.string().required('Bạn quên nhập tên nè !'),
   password: Yup.string()
     .min(2, 'Quá ngắn rồi !')
-    .max(50, 'Dài dòng quá !')
-    .required('Thiếu password ở đây nè !'),
+    .max(50, 'Dài dòng quá !'),
   organization: Yup.string().required('Bạn quên nhập nơi công tác nè !'),
   phone: Yup.string()
     .required('Bạn quên nhập số điện thoại nè !')

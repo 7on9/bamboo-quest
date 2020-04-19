@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './styles.css'
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
-import { infoSchema } from '../../common/error'
+import {initFormikEdit} from './util'
+import { infoSchema } from '../../common/validation'
+import './styles.css'
 
 const MyRadio = ({ label, ...props }) => {
   const [field, meta] = useField(props)
@@ -57,6 +58,11 @@ class Edit extends Component {
       reader.readAsDataURL(event.target.files[0])
     }
   }
+
+  handleSubmit = (values, actions) => {
+    
+  }
+
   renderEdit() {
     return (
       <div className="container emp-profile">
@@ -102,39 +108,11 @@ class Edit extends Component {
                 <div className="row">
                   <div className="col-md-12">
                     <Formik
-                      initialValues={{
-                        email: this.props.user.info
-                          ? this.props.user.info.email
-                          : 'Loading...',
-                        name: this.props.user.info
-                          ? this.props.user.info.name
-                          : 'Loading...',
-                        organization: this.props.user.info
-                          ? this.props.user.info.organization
-                          : '',
-                        phone: '',
-                        password: '',
-                        gender: '',
-                      }}
+                      initialValues = {initFormikEdit(this.props.user)}
                       enableReinitialize
                       validationSchema={infoSchema}
-                      onSubmit={(values, { setSubmitting, resetForm }) => {
-                        if (
-                          values.name &&
-                          values.email &&
-                          values.password &&
-                          values.organization &&
-                          values.phone &&
-                          values.gender
-                        ) {
-                          console.log(values)
-                        }
-                        setSubmitting(true)
-                        setTimeout(() => {
-                          resetForm()
-                          setSubmitting(false)
-                        }, 1000)
-                      }}>
+                      onSubmit= {this.handleSubmit}
+                      >
                       {({
                         values,
                         errors,
