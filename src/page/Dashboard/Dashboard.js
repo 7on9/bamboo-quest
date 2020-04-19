@@ -8,6 +8,7 @@ import Quest from './Quest'
 import DetailUser from './DetailUser'
 import DetailQuest from './DetailQuest'
 
+
 export default function Dashboard() {
   return (
     <Fullscreen>
@@ -20,4 +21,5 @@ export default function Dashboard() {
       </Switch>
     </Fullscreen>
   )
+  
 }
