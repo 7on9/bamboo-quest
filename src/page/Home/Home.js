@@ -63,18 +63,6 @@ class Home extends Component {
   render() {
     const { quests } = this.props.quest
     const { token } = this.props.user
-    // try {
-    //   if (this.state.authenticated === false) {
-    //     const { from } = this.props.location.state || { from: { pathname: "/" } };
-    //     return <Redirect to={from} />
-    //   }
-    // } catch (error) {
-    //   if (this.state === null) {
-    //     // window.location.reload();
-    //     // const { from } = this.props.location.state || { from: { pathname: "/home" } };
-    //     // return <Redirect to={from} />
-    //   }
-    // }
     return (
       <div className="home">
         <Helmet>
@@ -87,9 +75,8 @@ class Home extends Component {
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
                 <div className="row align-items-center no-gutters">
-                  <div className="col-xl-2 col-lg-2"></div>
-                  <div className="col-xl-7 col-lg-7">
-                    <div className="main-menu d-lg-block ">
+                  <div className="col-xl-12 col-lg-12">
+                    <div className="main-menu d-lg-block">
                       <nav
                         className={
                           this.state.nav
