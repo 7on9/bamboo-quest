@@ -75,104 +75,114 @@ class Home extends Component {
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
                 <div className="row align-items-center no-gutters ">
-                  <div className="flex-grow-1 w-100 d-flex justify-content-center">
-                    <div className="main-menu  ">
-                      <nav
-                        className={
-                          this.state.nav
-                            ? 'navbar navbar-expand-lg navbar-light bg-light'
-                            : 'navbar navbar-expand-lg navbar-light'
-                        }>
-                        {/* <a class="navbar-brand"></a> */}
-                        <button
-                          onClick={() =>
-                            this.setState({ nav: !this.state.nav })
-                          }
-                          className="navbar-toggler"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#navigation"
-                          aria-controls="navigation"
-                          aria-expanded="false"
-                          aria-label="Toggle navigation">
-                          <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div
-                          className="collapse navbar-collapse"
-                          id="navigation">
-                          <ul className=" navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li>
-                              <Link
-                                className="active nav-item btn-login"
-                                to="/home"
-                                style={{ fontWeight: 'bold' }}>
-                                Trang chủ
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                to="/"
-                                style={{ fontWeight: 'bold' }}
-                                className="nav-item btn-login">
-                                Chơi ngay
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                className="nav-item btn-login"
-                                to="/user/quest"
-                                style={{ fontWeight: 'bold' }}>
-                                Thử thách của tôi
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </nav>
-                    </div>
-                  </div>
-                  <div className=" d-flex justify-content-center flex-shrink-1">
-                    <div className="log_chat_area">
-                      {token ? (
-                        <Link to="#test-form" className="login popup-with-form">
-                          <div className="dropdown">
-                            <img
-                              style={{
-                                width: '2em',
-                                height: '2em',
-                                borderRadius: '1em',
-                              }}
-                              src="/images/avatar-default.png"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                              alt=""
-                            />
-                            <div
-                              className="dropdown-menu dropdown-menu-right"
-                              aria-labelledby="dropdownMenuButton">
-                              <Link className="dropdown-item" to="/user/info">
-                                Thông tin tài khoản
-                              </Link>
-
-                              <Link className="dropdown-item" to="/user/edit">
-                                Chỉnh sửa thông tin
-                              </Link>
-                              <div className="dropdown-divider" />
-                              <Link
-                                className="dropdown-item"
-                                onClick={() => this.props.logout()}>
-                                <i
-                                  className="fas fa-sign-out-alt"
-                                  style={{ color: '#000' }}
-                                />
-                                Đăng xuất
-                              </Link>
-                            </div>
+                  <div className="col-1" />
+                  <div className="col-10">
+                    <div className="flex-grow-1 w-100 d-flex justify-content-center">
+                      <div className="main-menu ">
+                        <nav
+                          className={
+                            this.state.nav
+                              ? 'navbar navbar-expand-lg navbar-light bg-light'
+                              : 'navbar navbar-expand-lg navbar-light'
+                          }>
+                          {/* <a class="navbar-brand"></a> */}
+                          <button
+                            onClick={() =>
+                              this.setState({ nav: !this.state.nav })
+                            }
+                            className="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                          </button>
+                          <div
+                            className="collapse navbar-collapse"
+                            id="navigation">
+                            <ul className=" navbar-nav mr-auto mt-2 mt-lg-0">
+                              <li>
+                                <Link
+                                  className="active nav-item btn-login"
+                                  to="/home"
+                                  style={{ fontWeight: 'bold' }}>
+                                  Trang chủ
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/"
+                                  style={{ fontWeight: 'bold' }}
+                                  className="nav-item btn-login">
+                                  Chơi ngay
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  className="nav-item btn-login"
+                                  to="/user/quest"
+                                  style={{ fontWeight: 'bold' }}>
+                                  Thử thách của tôi
+                                </Link>
+                              </li>
+                            </ul>
                           </div>
-                        </Link>
-                      ) : null}
+                        </nav>
+                      </div>
                     </div>
                   </div>
+                  <div className="col-1">
+                    <div className=" d-flex justify-content-center flex-shrink-1">
+                      <div className="log_chat_area">
+                        {token ? (
+                          <Link
+                            to="#test-form"
+                            className="login popup-with-form">
+                            <div className="dropdown">
+                              <img
+                                style={{
+                                  width: '2em',
+                                  height: '2em',
+                                  borderRadius: '1em',
+                                }}
+                                src="/images/avatar-default.png"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                alt=""
+                              />
+                              <div
+                                className="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="dropdownMenuButton">
+                                <Link className="dropdown-item" to="/user/info">
+                                  Thông tin tài khoản
+                                </Link>
+
+                                <Link className="dropdown-item" to="/user/edit">
+                                  Chỉnh sửa thông tin
+                                </Link>
+                                <div className="dropdown-divider" />
+                                <Link
+                                  className="dropdown-item"
+                                  onClick={() => this.props.logout()}>
+                                  <i
+                                    className="fas fa-sign-out-alt"
+                                    style={{ color: '#000' }}
+                                  />
+                                  Đăng xuất
+                                </Link>
+                              </div>
+                            </div>
+                          </Link>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* sd */}
+
                   <div className="col-12">
                     <div className="mobile_menu d-block d-lg-none" />
                   </div>
