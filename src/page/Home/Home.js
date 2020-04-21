@@ -74,15 +74,16 @@ class Home extends Component {
           <div className="header-area fixed-top">
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
-                <div className="row align-items-center no-gutters">
-                  <div className="col-xl-12 col-lg-12">
-                    <div className="main-menu d-lg-block">
+                <div className="row align-items-center no-gutters d-flex justify-content-around">
+                  <div className="col-xl-6 col-lg-6 flex-grow-1">
+                    <div className="main-menu  ">
                       <nav
                         className={
                           this.state.nav
                             ? 'navbar navbar-expand-lg navbar-light bg-light'
                             : 'navbar navbar-expand-lg navbar-light'
                         }>
+                        {/* <a class="navbar-brand"></a> */}
                         <button
                           onClick={() =>
                             this.setState({ nav: !this.state.nav })
