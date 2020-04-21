@@ -74,8 +74,8 @@ class Home extends Component {
           <div className="header-area fixed-top">
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
-                <div className="row align-items-center no-gutters d-flex justify-content-around">
-                  <div className="col-xl-6 col-lg-6 flex-grow-1">
+                <div className="row align-items-center no-gutters ">
+                  <div className="flex-grow-1 w-100 d-flex justify-content-center">
                     <div className="main-menu  ">
                       <nav
                         className={
@@ -130,8 +130,8 @@ class Home extends Component {
                       </nav>
                     </div>
                   </div>
-                  <div className="col-xl-3 col-lg-3 d-none d-lg-block">
-                    <div className="log_chat_area d-flex align-items-center">
+                  <div className=" d-flex justify-content-center flex-shrink-1">
+                    <div className="log_chat_area">
                       {token ? (
                         <Link to="#test-form" className="login popup-with-form">
                           <div className="dropdown">
