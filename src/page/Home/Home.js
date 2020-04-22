@@ -15,7 +15,9 @@ class Home extends Component {
     this.state = {
       category: 1,
       nav: false,
+      iconUser: false,
     }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
   }
   changeCategory = (id) => {
     this.setState({
@@ -44,19 +46,24 @@ class Home extends Component {
       })
     }
   }
-  resize = () => this.forceUpdate(this.getWidth())
-  getWidth = () => {
+  componentDidMount() {
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+
+  updateWindowDimensions() {
+    console.log(window.innerWidth)
     if (window.innerWidth > 990) {
       this.setState({
         nav: false,
+        iconUser: true,
       })
-    }
+    } else this.setState({ iconUser: false, nav: true })
   }
-  UNSAFE_componentDidMount() {
-    window.scrollTo(0, 0)
-    window.addEventListener('resize', this.resize)
-  }
-
   top() {
     window.scrollTo(0, 0)
   }
@@ -75,9 +82,14 @@ class Home extends Component {
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
                 <div className="row align-items-center no-gutters ">
-                  <div className="col-1" />
-                  <div className="col-10">
-                    <div className="flex-grow-1 w-100 d-flex justify-content-center">
+                  {this.state.nav ? <div /> : <div className="col-1" />}
+                  <div className={this.state.nav ? 'col-12' : 'col-10'}>
+                    <div
+                      className={
+                        this.state.nav
+                          ? ''
+                          : 'flex-grow-1 w-100 d-flex justify-content-center'
+                      }>
                       <div className="main-menu ">
                         <nav
                           className={
@@ -88,7 +100,7 @@ class Home extends Component {
                           {/* <a class="navbar-brand"></a> */}
                           <button
                             onClick={() =>
-                              this.setState({ nav: !this.state.nav })
+                              this.setState({ toggle: !this.state.toggle })
                             }
                             className="navbar-toggler"
                             type="button"
@@ -129,57 +141,120 @@ class Home extends Component {
                               </li>
                             </ul>
                           </div>
+                          {this.state.iconUser ? (
+                            <div />
+                          ) : !this.state.toggle ? (
+                            <div className=" d-flex align-self-center flex-shrink-1">
+                              <div className="log_chat_area">
+                                {token ? (
+                                  <Link
+                                    to="#test-form"
+                                    className="login popup-with-form">
+                                    <div className="dropdown">
+                                      <img
+                                        style={{
+                                          width: '2em',
+                                          height: '2em',
+                                          borderRadius: '1em',
+                                        }}
+                                        src="/images/avatar-default.png"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        alt=""
+                                      />
+                                      <div
+                                        className="dropdown-menu dropdown-menu-right"
+                                        aria-labelledby="dropdownMenuButton">
+                                        <Link
+                                          className="dropdown-item"
+                                          to="/user/info">
+                                          Thông tin tài khoản
+                                        </Link>
+
+                                        <Link
+                                          className="dropdown-item"
+                                          to="/user/edit">
+                                          Chỉnh sửa thông tin
+                                        </Link>
+                                        <div className="dropdown-divider" />
+                                        <Link
+                                          className="dropdown-item"
+                                          onClick={() => this.props.logout()}>
+                                          <i
+                                            className="fas fa-sign-out-alt"
+                                            style={{ color: '#000' }}
+                                          />
+                                          Đăng xuất
+                                        </Link>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                ) : null}
+                              </div>
+                            </div>
+                          ) : (
+                            <div />
+                          )}
                         </nav>
                       </div>
                     </div>
                   </div>
-                  <div className="col-1">
-                    <div className=" d-flex justify-content-center flex-shrink-1">
-                      <div className="log_chat_area">
-                        {token ? (
-                          <Link
-                            to="#test-form"
-                            className="login popup-with-form">
-                            <div className="dropdown">
-                              <img
-                                style={{
-                                  width: '2em',
-                                  height: '2em',
-                                  borderRadius: '1em',
-                                }}
-                                src="/images/avatar-default.png"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                alt=""
-                              />
-                              <div
-                                className="dropdown-menu dropdown-menu-right"
-                                aria-labelledby="dropdownMenuButton">
-                                <Link className="dropdown-item" to="/user/info">
-                                  Thông tin tài khoản
-                                </Link>
+                  {this.state.iconUser ? (
+                    <div className="col-1">
+                      <div className=" d-flex justify-content-center flex-shrink-1">
+                        <div className="log_chat_area">
+                          {token ? (
+                            <Link
+                              to="#test-form"
+                              className="login popup-with-form">
+                              <div className="dropdown">
+                                <img
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                    borderRadius: '1em',
+                                  }}
+                                  src="/images/avatar-default.png"
+                                  data-toggle="dropdown"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                  alt=""
+                                />
+                                <div
+                                  className="dropdown-menu dropdown-menu-right"
+                                  aria-labelledby="dropdownMenuButton">
+                                  <Link
+                                    className="dropdown-item"
+                                    to="/user/info">
+                                    Thông tin tài khoản
+                                  </Link>
 
-                                <Link className="dropdown-item" to="/user/edit">
-                                  Chỉnh sửa thông tin
-                                </Link>
-                                <div className="dropdown-divider" />
-                                <Link
-                                  className="dropdown-item"
-                                  onClick={() => this.props.logout()}>
-                                  <i
-                                    className="fas fa-sign-out-alt"
-                                    style={{ color: '#000' }}
-                                  />
-                                  Đăng xuất
-                                </Link>
+                                  <Link
+                                    className="dropdown-item"
+                                    to="/user/edit">
+                                    Chỉnh sửa thông tin
+                                  </Link>
+                                  <div className="dropdown-divider" />
+                                  <Link
+                                    className="dropdown-item"
+                                    onClick={() => this.props.logout()}>
+                                    <i
+                                      className="fas fa-sign-out-alt"
+                                      style={{ color: '#000' }}
+                                    />
+                                    Đăng xuất
+                                  </Link>
+                                </div>
                               </div>
-                            </div>
-                          </Link>
-                        ) : null}
+                            </Link>
+                          ) : null}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div />
+                  )}
 
                   {/* sd */}
 
