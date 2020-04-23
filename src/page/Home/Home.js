@@ -115,37 +115,25 @@ class Home extends Component {
                             className="collapse navbar-collapse"
                             id="navigation">
                             <ul className=" navbar-nav mr-auto mt-2 mt-lg-0">
-                              <li className="m-b-5">
+                              <li>
                                 <Link
-                                  className={
-                                    this.state.nav
-                                      ? 'active nav-item'
-                                      : 'active nav-item btn-login'
-                                  }
+                                  className="active nav-item btn-login"
                                   to="/home"
                                   style={{ fontWeight: 'bold' }}>
                                   Trang chủ
                                 </Link>
                               </li>
-                              <li className="m-b-5">
+                              <li>
                                 <Link
                                   to="/"
                                   style={{ fontWeight: 'bold' }}
-                                  className={
-                                    this.state.nav
-                                      ? 'nav-item'
-                                      : 'nav-item btn-login'
-                                  }>
+                                  className="nav-item btn-login">
                                   Chơi ngay
                                 </Link>
                               </li>
-                              <li className="m-b-5">
+                              <li>
                                 <Link
-                                  className={
-                                    this.state.nav
-                                      ? 'nav-item'
-                                      : 'nav-item btn-login'
-                                  }
+                                  className="nav-item btn-login"
                                   to="/user/quest"
                                   style={{ fontWeight: 'bold' }}>
                                   Thử thách của tôi
