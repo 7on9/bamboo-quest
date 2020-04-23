@@ -115,25 +115,37 @@ class Home extends Component {
                             className="collapse navbar-collapse"
                             id="navigation">
                             <ul className=" navbar-nav mr-auto mt-2 mt-lg-0">
-                              <li>
+                              <li className="m-b-5">
                                 <Link
-                                  className="active nav-item btn-login"
+                                  className={
+                                    this.state.nav
+                                      ? 'active nav-item'
+                                      : 'active nav-item btn-login'
+                                  }
                                   to="/home"
                                   style={{ fontWeight: 'bold' }}>
                                   Trang chủ
                                 </Link>
                               </li>
-                              <li>
+                              <li className="m-b-5">
                                 <Link
                                   to="/"
                                   style={{ fontWeight: 'bold' }}
-                                  className="nav-item btn-login">
+                                  className={
+                                    this.state.nav
+                                      ? 'nav-item'
+                                      : 'nav-item btn-login'
+                                  }>
                                   Chơi ngay
                                 </Link>
                               </li>
-                              <li>
+                              <li className="m-b-5">
                                 <Link
-                                  className="nav-item btn-login"
+                                  className={
+                                    this.state.nav
+                                      ? 'nav-item'
+                                      : 'nav-item btn-login'
+                                  }
                                   to="/user/quest"
                                   style={{ fontWeight: 'bold' }}>
                                   Thử thách của tôi
