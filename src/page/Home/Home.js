@@ -16,6 +16,7 @@ class Home extends Component {
       category: 1,
       nav: false,
       iconUser: false,
+      backgroundColor: false,
     }
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
   }
@@ -47,16 +48,24 @@ class Home extends Component {
     }
   }
   componentDidMount() {
+    const height = document.getElementById('header').clientHeight
+    window.addEventListener('scroll', () => this.changeColorOnScroll(height))
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
   }
 
   componentWillUnmount() {
+    window.removeEventListener('scroll', this.changeColorOnScroll)
     window.removeEventListener('resize', this.updateWindowDimensions)
   }
-
+  changeColorOnScroll(height) {
+    if (window.scrollY > height) {
+      this.setState({ backgroundColor: true })
+    } else {
+      this.setState({ backgroundColor: false })
+    }
+  }
   updateWindowDimensions() {
-    console.log(window.innerWidth)
     if (window.innerWidth > 990) {
       this.setState({
         nav: false,
@@ -81,7 +90,13 @@ class Home extends Component {
           <div className="header-area fixed-top">
             <div id="sticky-header" className="main-header-area">
               <div className="container-fluid p-0">
-                <div className="row align-items-center no-gutters ">
+                <div
+                  className="row align-items-center no-gutters "
+                  style={{
+                    backgroundColor: this.state.backgroundColor
+                      ? '#21D1C2'
+                      : '#ff000012',
+                  }}>
                   {this.state.nav ? <div /> : <div className="col-1" />}
                   <div className={this.state.nav ? 'col-12' : 'col-10'}>
                     <div
@@ -91,16 +106,14 @@ class Home extends Component {
                           : 'flex-grow-1 w-100 d-flex justify-content-center'
                       }>
                       <div className="main-menu ">
-                        <nav
-                          className={
-                            this.state.nav
-                              ? 'navbar navbar-expand-lg navbar-light bg-light'
-                              : 'navbar navbar-expand-lg navbar-light'
-                          }>
+                        <nav className="navbar navbar-expand-lg navbar-light">
                           {/* <a class="navbar-brand"></a> */}
                           <button
                             onClick={() =>
-                              this.setState({ toggle: !this.state.toggle })
+                              this.setState({
+                                toggle: !this.state.toggle,
+                                backgroundColor: true,
+                              })
                             }
                             className="navbar-toggler"
                             type="button"
@@ -281,7 +294,7 @@ class Home extends Component {
         {/* header-end */}
 
         {/* slider_area_start */}
-        <div className="slider_area p-t-50">
+        <div className="slider_area p-t-50" id="header">
           <div className="single_slider d-flex align-items-center justify-content-center background-single_slider">
             <div className="container">
               <div className="row align-items-center justify-content-center">
@@ -309,95 +322,7 @@ class Home extends Component {
             <div className="row">
               <div className="col-xl-12 category">
                 <div className="col-xl-12">
-                  <div className="course_nav">
-                    {/* <nav>
-                      <ul className="nav" id="myTab" role="tablist">
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link active"
-                            id="home-tab"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="home"
-                            aria-selected="true"
-                            onClick={() => this.changeCategory(0)}>
-                            Tất cả
-                          </Link>
-                        </li>
-
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link"
-                            id="Web-tab11a"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="design"
-                            aria-selected="false"
-                            onClick={() => this.changeCategory(1)}>
-                            HOT
-                          </Link>
-                        </li>
-
-                        <li className="nav-item">
-                          <Link
-                            className="nav-link category-hover"
-                            id="Web-tab11"
-                            data-toggle="tab"
-                            to="#"
-                            role="tab"
-                            aria-controls="design"
-                            aria-selected="false">
-                            Thể loại
-                          </Link>
-                          <div className="content-category">
-                            <button className="item-category">
-                              <p
-                                onClick={() => this.changeCategory(2)}
-                                style={{ color: '#000' }}>
-                                Toán học
-                              </p>
-                            </button>
-                            <br />
-                            <button className="item-category">
-                              <p
-                                onClick={() => this.changeCategory(3)}
-                                style={{ color: '#000' }}>
-                                Vật lý
-                              </p>
-                            </button>
-                            <br />
-                            <button className="item-category">
-                              <p
-                                onClick={() => this.changeCategory(4)}
-                                style={{ color: '#000' }}>
-                                Hoá học
-                              </p>
-                            </button>
-                            <br />
-                            <button className="item-category">
-                              <p
-                                onClick={() => this.changeCategory(5)}
-                                style={{ color: '#000' }}>
-                                Văn học
-                              </p>
-                            </button>
-                            <br />
-                            <button className="item-category">
-                              <p
-                                onClick={() => this.changeCategory(6)}
-                                style={{ color: '#000' }}>
-                                Lịch sử
-                              </p>
-                            </button>
-                          </div>
-                        </li>
-
-                        <li className="nav-item"></li>
-                      </ul>
-                    </nav> */}
-                  </div>
+                  <div className="course_nav"></div>
                 </div>
               </div>
             </div>
