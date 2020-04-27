@@ -15,7 +15,6 @@ class ListQuest extends Component {
     }
   }
   UNSAFE_componentDidMount() {
-    this.props.getMyQuests()
     if (
       !this.props.quest ||
       !this.props.quest.quests ||
@@ -23,6 +22,9 @@ class ListQuest extends Component {
     ) {
       this.props.getsAllQuests(3)
     }
+  }
+  UNSAFE_componentWillMount() {
+    this.props.getMyQuests()
   }
 
   render() {
