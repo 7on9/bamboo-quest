@@ -23,10 +23,6 @@ class Create extends Component {
     this.props.changeStatusRunning(false)
   }
 
-  onSubmit = async (e) => {
-    this.props.changeStatusRunning(true)
-    this.props.createQuest(this.state.newQuest)
-  }
   onType = (event) => {
     this.setState({
       submit: false,
@@ -72,6 +68,22 @@ class Create extends Component {
       <div className="indeterminate" />
     </div>
   )
+  onSubmit = (values, { setSubmitting, resetForm }) => {
+    if (values.title && values.description) {
+      this.props.changeStatusRunning(true)
+      this.props.createQuest({
+        title: values.title,
+        description: values.description,
+        is_public: this.state.newQuest.is_public,
+        img_path: this.state.img_path,
+      })
+    }
+    setSubmitting(true)
+    setTimeout(() => {
+      resetForm()
+      setSubmitting(false)
+    }, 1000)
+  }
 
   UNSAFE_componentWillMount() {
     this.props.resetResult()
@@ -96,15 +108,7 @@ class Create extends Component {
               enableReinitialize
               validationSchema={questSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
-                if (values.title && values.description) {
-                  console.log(values)
-                  this.onSubmit()
-                }
-                setSubmitting(true)
-                setTimeout(() => {
-                  resetForm()
-                  setSubmitting(false)
-                }, 1000)
+                this.onSubmit(values, { setSubmitting, resetForm })
               }}>
               {({
                 values,
