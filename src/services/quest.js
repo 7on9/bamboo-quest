@@ -16,13 +16,13 @@ export const QuestService = {
   createQuest: newQuest => {
     return dataProvider('/quest/', {
       method: 'POST',
-      data: { newQuest: JSON.stringify(newQuest) },
+      data: { newQuest: newQuest },
     })
   },
   addQuestion: newQuestion => {
     return dataProvider('/quest/question', {
       method: 'POST',
-      data: { newQuestion: JSON.stringify(newQuestion) },
+      data: { newQuestion: newQuestion },
     })
   },
   startGame: idQuest => {
