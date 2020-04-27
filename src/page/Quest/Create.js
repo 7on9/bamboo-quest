@@ -72,12 +72,10 @@ class Create extends Component {
     if (values.title && values.description) {
       this.props.changeStatusRunning(true)
       this.props.createQuest({
-        newQuest: {
-          title: values.title,
-          description: values.description,
-          is_public: this.state.newQuest.is_public,
-          img_path: this.state.img_path,
-        },
+        title: values.title,
+        description: values.description,
+        is_public: this.state.newQuest.is_public,
+        img_path: this.state.img_path,
       })
     }
     setSubmitting(true)
