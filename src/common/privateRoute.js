@@ -8,12 +8,12 @@ function PrivateRoute({ component: Component, ...rest }) {
   const logging = useSelector((state) => state.user)
   const dispatch = useDispatch()
   useEffect(() => {
-    if (!localStorage.getItem(APP_CONSTANTS.WEB_TOKEN))
-      dispatch(changeStatusRunning(true))
-  }, [])
-  useEffect(() => {
     dispatch(verify())
   }, [logging.authenticated])
+  useEffect(() => {
+    if (!localStorage.getItem(APP_CONSTANTS.WEB_TOKEN || logging.token))
+      dispatch(changeStatusRunning(true))
+  }, [])
   return (
     <Route
       {...rest}

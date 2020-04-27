@@ -206,19 +206,19 @@ class Edit extends Component {
                             <label>Gender</label>
                             <MyRadio
                               name="gender"
-                              value={true}
-                              onClick={() => this.setState({ gender: true })}
+                              value={false}
+                              onClick={() => this.setState({ gender: false })}
                               onChange={handleChange}
-                              checked={this.state.gender}
+                              checked={!this.state.gender}
                               label="Nữ"
                               touched={touched.gender}
                               message={errors.gender}
                             />
                             <MyRadio
                               name="gender"
-                              value={false}
-                              onClick={() => this.setState({ gender: false })}
-                              checked={!this.state.gender}
+                              value={true}
+                              onClick={() => this.setState({ gender: true })}
+                              checked={this.state.gender}
                               onChange={handleChange}
                               label="Nam"
                               message={errors.gender}
