@@ -66,21 +66,20 @@ class Auth extends Component {
       <Formik
         initialValues={{
           email: '',
-          name: '',
+          password: '',
         }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           if (values.email && values.password) {
-            this.props.changeStatusRunning(true)
-            if (this.state.login) {
-              this.props.login(values.email, values.password)
+            this.setState({ email: values.email, password: values.password })
+            if (this.state.email && this.state.password) {
+              this.onSubmit()
             }
           }
           setSubmitting(true)
           setTimeout(() => {
             resetForm()
             setSubmitting(false)
-            this.setState({ isLoading: true })
           }, 1200)
         }}>
         {({
@@ -93,10 +92,9 @@ class Auth extends Component {
         }) => (
           <Form className="login100-form validate-form" onSubmit={handleSubmit}>
             <span className="login100-form-title">Đăng nhập</span>
-            {this.props.user.result && !!this.props.user.token ? null : this
-                .state.isLoading ? (
+            {this.state.error ? (
               <div className="alert alert-danger" role="alert">
-                Sai email hoặc password
+                {this.state.error}
               </div>
             ) : null}
             <div
@@ -206,10 +204,15 @@ class Auth extends Component {
             values.reTypePassword &&
             values.name
           ) {
-            this.props.changeStatusRunning(true)
-            if (!this.state.login) {
-              this.props.register(values.email, values.password, values.name)
-              console.log(values)
+            this.setState({
+              email: values.email,
+              password: values.password,
+              reTypePassword: values.reTypePassword,
+              name: values.name,
+            })
+            let { email, password, login, reTypePassword, name } = this.state
+            if ((email, password, login, reTypePassword, name)) {
+              this.onSubmit()
             }
           }
           setSubmitting(true)
@@ -228,6 +231,11 @@ class Auth extends Component {
         }) => (
           <Form className="login100-form validate-form" onSubmit={handleSubmit}>
             <span className="login100-form-title">ĐĂNG KÝ</span>
+            {this.state.error ? (
+              <div className="alert alert-danger" role="alert">
+                {this.state.error}
+              </div>
+            ) : null}
             <div
               className={
                 touched.email && errors.email
