@@ -14,7 +14,6 @@ export const QuestService = {
     return dataProvider(`/quest/${idQuest}`, { method: 'GET' })
   },
   createQuest: (newQuest) => {
-    console.log(newQuest)
     return dataProvider('/quest', {
       method: 'POST',
       data: { newQuest: newQuest },

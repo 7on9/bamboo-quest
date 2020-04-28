@@ -114,7 +114,6 @@ a {
   transition: all 0.2s ease;
   outline: none;
   text-transform: uppercase;
-  font-weight: 700;
 }
 
 .file-upload-btn:hover {

@@ -141,7 +141,6 @@ export const getMyQuests = () => {
   return async dispatch => {
     try {
       resetResult()
-      // changeStatusRunning(false)
       let myQuests = await QuestService.getMyQuests()
       myQuests = myQuests.data
       dispatch({
