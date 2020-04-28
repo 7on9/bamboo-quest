@@ -103,12 +103,8 @@ export default function Create() {
                       value={formik.values.title}
                       className="input-title"
                     />
-                    <ErrorMessage
-                      name="title"
-                      className="invalid-feedback p-l-20"
-                      component="div"
-                    />
                   </div>
+                  <ErrorMessage name="title" className="p-l-20" />
                   <div className="col-12" style={{ marginTop: '15px' }}>
                     <div className="row">
                       <div className="col-12 col-md-2">
@@ -168,12 +164,12 @@ export default function Create() {
                       onChange={formik.handleChange}
                       value={formik.values.description}
                     />
-                    <ErrorMessage
-                      name="description"
-                      className="invalid-feedback p-l-20"
-                      component="div"
-                    />
                   </div>
+                  <ErrorMessage
+                    name="description"
+                    className="p-l-20"
+                    component="div"
+                  />
                   <div className="col-12" style={{ padding: 0 }}>
                     {quest.running ? (
                       renderSpinner()
