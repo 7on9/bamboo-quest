@@ -1,167 +1,111 @@
-/* eslint-disable react/prop-types */
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import Helmet from 'react-helmet'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import * as questActions from '../../store/quest/action'
 import { startGame, resetResult } from '../../store/socket/socket'
-import { Question } from '../../components'
-import './style.css'
-class Info extends Component {
-  state = {
-    isClick: true,
-    data: [],
-    show: -1,
-    gameStarted: false
-  }
 
-  showAns = id => {
-    this.setState({ show: id })
-  }
-  UNSAFE_componentWillMount() {
-    let param = this.props.location.pathname
-    this.props.getQuestInfo(
-      param.slice(param.lastIndexOf('/') + 1, param.length)
-    )
-  }
-  toggle = () => {
-    this.setState({ isClick: !this.state.isClick })
-  }
-  startGame = e => {
-    e.preventDefault()
-    this.props.resetResult()
-    this.props.startGame(this.props.quest.info._id)
-    if (this.props.quest.result) {
-      this.setState({
-        gameStarted: true
-      })
+export default function Info() {
+  const dispatch = useDispatch()
+  const quest = useSelector((state) => state.quest)
+  const game = useSelector((state) => state.game)
+  const [gameStarted, setGameStarted] = useState(false)
+  const history = useHistory()
+  const { id } = useParams()
+  useEffect(() => {
+    if (quest.info === null) {
+      dispatch(questActions.getInfoQuest(id))
     }
+  }, [])
+  useEffect(() => {
+    if (gameStarted) {
+      history.push('/host')
+    }
+  }, [game])
+  const startGameHandle = () => {
+    dispatch(resetResult())
+    dispatch(startGame(quest.info._id))
+    if (quest.result) {
+      setGameStarted(true)
+    }
+    return false
   }
-  render() {
-    const { info } = this.props.quest
-
-    const { from } = this.props.location.state || {
-      from: { pathname: '/host' },
-    }
-    if (this.props.game.questions) {
-      this.props.resetResult()
-      return <Redirect to={from} />
-    }
-
-    if (this.state.gameStarted) {
-      return <Redirect to={'/host'} />
-    }
-    
-    let questions = this.props.quest.info ? this.props.quest.info.questions : []
-    const infoUser = this.props.user.info
-    const isOwnner = info && infoUser ? info._id_author===infoUser._id : false
-    return (
-      <div className="userShowQuest" style={{ marginTop: '50px' }}>
-        <div className="container-fulid">
-          <div style={{ padding: '0 1em' }}>
-            <div className="row">
-              <div
-                className="col-12 col-sm-4 col-md-3"
-                style={{ borderRadius: 12 }}>
-                <div
-                  className="user-info"
-                  style={{
-                    width: '100%',
-                    marginBottom: '20px',
-                    borderRadius: 12,
-                    marginTop: 40,
-                  }}>
-                  <img
-                    src={
-                      info && info.img_path
-                        ? info.img_path
-                        : '/images/img_quest_default.png'
-                    }
-                    style={{
-                      width: '100%',
-                      height: '20rem',
-                      objectFit: 'cover',
-                    }}
-                    alt=""
-                  />
+  return (
+    <div>
+      <Helmet>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="/comon/css/info-quiz.css"
+        />
+      </Helmet>
+      {quest.info !== null && (
+        <div className="info-quiz">
+          <div className="row full">
+            <div className="col-12 col-md-3 left-component">
+              <img src={quest.info.img_path} className="image-quiz" />
+              <div style={{ padding: '10px' }}>
+                <h1 className="title__heading">{quest.info.title}</h1>
+                <p>{quest.info.like.length} yêu thích</p>
+                {quest.info.questions.length !== 0 && (
                   <div
-                    style={{
-                      width: '100%',
-                      padding: '10px',
-                      background: '#fff',
-                    }}>
-                    {/* <h4>{user && user.info ? user.info.name : ''}</h4> */}
-                    <h4
-                      className="limitText"
-                      style={{
-                        margin: '10px 0',
-                        textAlign: 'left',
-                      }}>
-                      {info ? info.title : 'Tên thử thách'}
-                    </h4>
-                    <p
-                      className="limitText"
-                      style={{ margin: '10px 0', textAlign: 'left' }}>
-                      {info ? info.description : 'Mô tả thử thách'}
-                    </p>
+                    onClick={startGameHandle}
+                    className="button-info button-play">
+                    Bắt đầu
+                  </div>
+                )}
+                <div className="button-info button-add">Thêm câu hỏi</div>
+                <div class="section-title">
+                  {quest.info.is_public
+                    ? 'Thử thách công khai'
+                    : 'Thử thách không công khai'}{' '}
+                </div>
+                <p style={{ marginTop: '10px' }}>{quest.info.description}</p>
+              </div>
+            </div>
 
-                    <div className="btn-info-user" onClick={this.startGame}>
-                      <Link style={{ fontWeight: 'bold', color: '#fff' }}>
-                        Chơi ngay
-                      </Link>
+            <div className="col-12 col-md-9 right-component">
+              <b>Câu hỏi (30)</b>
+              <div className="quest-main">
+                <div className="quest-item">
+                  <div className="question-media">
+                    <div className="question-media__text">
+                      <span className="question-media__number">Cau 1</span>
+                      <div className="question-media__text-inner-wrapper">
+                        AI laf triue phu
+                      </div>
+                    </div>
+                    <div className="question-media__image">
+                      <div className="question-media__placeholder-image">
+                        <span
+                          className="question-media__placeholder-image-icon"
+                          style={{
+                            display: 'inline-block',
+                            verticalAlign: 'middle',
+                            width: '48px',
+                            height: '48px',
+                          }}>
+                          <svg
+                            data-functional-selector="icon"
+                            viewBox="0 0 32 32"
+                            aria-labelledby="imageTitle imageDesc">
+                            <path
+                              d="M12,10 L12,8 L15,8 L15,10 L12,10 Z M10,8 L10,10 L7,10 L7,8 L10,8 Z M7,24 L7,12 L24.999,12 L24.997,24 L7,24 Z M15,20 L13,18 L10,22 L22,22 L18,16 L15,20 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z M25,6 L7,6 C5.897,6 5,6.897 5,8 L5,24 C5,25.103 5.897,26 7,26 L25,26 C26.104,26 27,25.103 27,24 L27,8 C27,6.897 26.104,6 25,6 Z M25,10 L17,10 L17,8 L25,8 L25,10 Z"
+                              style={{ fill: ' rgb(255, 255, 255)' }}></path>
+                          </svg>
+                        </span>
+                        <span class="question-media__duration">20 sec</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                className="col-12 col-sm-8 col-md-9"
-                style={{ marginBottom: '30px' }}>
-                <h3 style={{ marginBottom: '10px', textAlign: 'left' }}>
-                  Các câu hỏi của thử thách
-                </h3>
-
-                {/*------- name -----------*/}
-                {/*------ listQues -----------*/}
-                <div className="row">
-                  {questions.map((question, i) => (
-                    <Question
-                      key={question._id}
-                      question={question}
-                      showAns={id => this.showAns(id)}
-                      i={i}
-                      show={this.state.show}
-                      isClicked={() => this.toggle()}
-                    />
-                  ))}
-                  {isOwnner ? (
-                    <div
-                      className="col-12 col-sm-12 col-md-12"
-                      style={{ textAlign: 'center' }}>
-                      <Link to={'/quest/add/' + info._id}>
-                        <i
-                          className="fas fa-plus-circle"
-                          style={{ fontSize: '50px', color: 'blue' }}
-                        />
-                      </Link>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
+              <div className="quest-item"></div>
             </div>
           </div>
         </div>
-      </div>
-    )
-  }
+      )}
+    </div>
+  )
 }
-
-const mapStateToProps = state => ({
-  ...state,
-})
-
-const mapDispatchToProps = {
-  getQuestInfo: questActions.getInfoQuest,
-  startGame: startGame,
-  resetResult: resetResult,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Info)

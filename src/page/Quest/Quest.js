@@ -32,23 +32,9 @@ class Quest extends Component {
   }
 
   UNSAFE_componentDidMount() {
-    // this.props.getAllGuests();
-    // this.props.getAllMeetings();
     window.scrollTo(0, 0)
   }
   render() {
-    // try {
-    //   if(this.state.authenticated === false){
-    //     const { from } = this.props.location.state || { from: { pathname: "/" } };
-    //     return <Redirect to={from} />
-    //   }
-    // } catch (error) {
-    //   if(this.state === null){
-    //     // window.location.reload();
-    //     // const { from } = this.props.location.state || { from: { pathname: "/home" } };
-    //     // return <Redirect to={from} />
-    //   }
-    // }
     return (
       <div className="home">
         <Helmet>
