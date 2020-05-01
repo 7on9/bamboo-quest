@@ -29,7 +29,9 @@ export default function Info() {
     }
     return false
   }
-  console.log(quest)
+  const handleAddQuestions = () => {
+    history.push('/quest/add')
+  }
   return (
     <div>
       <Helmet>
@@ -54,11 +56,15 @@ export default function Info() {
                     Bắt đầu
                   </div>
                 )}
-                <div className="button-info button-add">Thêm câu hỏi</div>
+                <div
+                  className="button-info button-add"
+                  onClick={handleAddQuestions}>
+                  Thêm câu hỏi
+                </div>
                 <div class="section-title">
                   {quest.info.is_public
                     ? 'Thử thách công khai'
-                    : 'Thử thách không công khai'}{' '}
+                    : 'Thử thách không công khai'}
                 </div>
                 <p style={{ marginTop: '10px' }}>{quest.info.description}</p>
               </div>
