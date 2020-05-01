@@ -141,6 +141,7 @@ export default function Create() {
                                 type="file"
                                 id="files"
                                 onChange={onUploadImage}
+                                hidden={true}
                               />
                               <label
                                 for="files"

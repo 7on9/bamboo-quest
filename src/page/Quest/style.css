@@ -83,7 +83,6 @@ a {
 
 .ans {
   height: 50px;
-  border: 1px solid red;
   display: flex;
   align-items: center;
   width: 95%;

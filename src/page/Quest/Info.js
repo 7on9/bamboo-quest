@@ -14,9 +14,7 @@ export default function Info() {
   const history = useHistory()
   const { id } = useParams()
   useEffect(() => {
-    if (quest.info === null) {
-      dispatch(questActions.getInfoQuest(id))
-    }
+    dispatch(questActions.getInfoQuest(id))
   }, [])
   useEffect(() => {
     if (gameStarted) {
@@ -31,6 +29,7 @@ export default function Info() {
     }
     return false
   }
+  console.log(quest)
   return (
     <div>
       <Helmet>
@@ -64,45 +63,43 @@ export default function Info() {
                 <p style={{ marginTop: '10px' }}>{quest.info.description}</p>
               </div>
             </div>
-
-            <div className="col-12 col-md-9 right-component">
-              <b>Câu hỏi (30)</b>
-              <div className="quest-main">
-                <div className="quest-item">
-                  <div className="question-media">
-                    <div className="question-media__text">
-                      <span className="question-media__number">Cau 1</span>
-                      <div className="question-media__text-inner-wrapper">
-                        AI laf triue phu
+            {quest.info.questions.length === 0 ? (
+              'Bạn chưa tạo thử thách nào'
+            ) : (
+              <div className="col-12 col-md-9 right-component">
+                <b>{`Câu hỏi (${quest.info.questions.length})`}</b>
+                {quest.info.questions.map((item, i) => {
+                  return (
+                    <div className="quest-main">
+                      <div className="quest-item">
+                        <div className="question-media">
+                          <div className="question-media__text">
+                            <span className="question-media__number">
+                              Cau {i + 1}
+                            </span>
+                            <div className="question-media__text-inner-wrapper">
+                              {item.quiz}
+                            </div>
+                          </div>
+                          <div className="question-media__image">
+                            <div className="question-media__placeholder-image">
+                              <img
+                                src={item.img_path}
+                                className="image-question"
+                              />
+                              <span class="question-media__duration">
+                                {item.duration} sec
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="question-media__image">
-                      <div className="question-media__placeholder-image">
-                        <span
-                          className="question-media__placeholder-image-icon"
-                          style={{
-                            display: 'inline-block',
-                            verticalAlign: 'middle',
-                            width: '48px',
-                            height: '48px',
-                          }}>
-                          <svg
-                            data-functional-selector="icon"
-                            viewBox="0 0 32 32"
-                            aria-labelledby="imageTitle imageDesc">
-                            <path
-                              d="M12,10 L12,8 L15,8 L15,10 L12,10 Z M10,8 L10,10 L7,10 L7,8 L10,8 Z M7,24 L7,12 L24.999,12 L24.997,24 L7,24 Z M15,20 L13,18 L10,22 L22,22 L18,16 L15,20 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z M25,6 L7,6 C5.897,6 5,6.897 5,8 L5,24 C5,25.103 5.897,26 7,26 L25,26 C26.104,26 27,25.103 27,24 L27,8 C27,6.897 26.104,6 25,6 Z M25,10 L17,10 L17,8 L25,8 L25,10 Z"
-                              style={{ fill: ' rgb(255, 255, 255)' }}></path>
-                          </svg>
-                        </span>
-                        <span class="question-media__duration">20 sec</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  )
+                })}
+                <div className="quest-item"></div>
               </div>
-              <div className="quest-item"></div>
-            </div>
+            )}
           </div>
         </div>
       )}
