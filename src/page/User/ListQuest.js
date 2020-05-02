@@ -28,22 +28,6 @@ class ListQuest extends Component {
   }
 
   render() {
-    // try {
-    //   if (this.state.authenticated === false) {
-    //     const { from } = this.props.location.state || {
-    //       from: { pathname: '/' },
-    //     }
-    //     return <Redirect to={from} />
-    //   }
-    // } catch (error) {
-    //   if (this.state === null) {
-    //     window.location.reload()
-    //     const { from } = this.props.location.state || {
-    //       from: { pathname: '/home' },
-    //     }
-    //     return <Redirect to={from} />
-    //   }
-    // }
     const { user, quest } = this.props
     const { quests, myQuests } = quest
     return this.state.toCreateQuest ? (
