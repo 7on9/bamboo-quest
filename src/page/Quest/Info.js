@@ -9,6 +9,7 @@ import { startGame, resetResult } from '../../store/socket/socket'
 export default function Info() {
   const dispatch = useDispatch()
   const quest = useSelector((state) => state.quest)
+  const user = useSelector((state) => state.user)
   const game = useSelector((state) => state.game)
   const [gameStarted, setGameStarted] = useState(false)
   const history = useHistory()
@@ -32,6 +33,8 @@ export default function Info() {
   const handleAddQuestions = () => {
     history.push('/quest/add')
   }
+  console.log(quest.info)
+
   return (
     <div>
       <Helmet>
@@ -56,11 +59,14 @@ export default function Info() {
                     Bắt đầu
                   </div>
                 )}
-                <div
-                  className="button-info button-add"
-                  onClick={handleAddQuestions}>
-                  Thêm câu hỏi
-                </div>
+                {String(quest.info.id_author) === String(user.info._id) && (
+                  <div
+                    className="button-info button-add"
+                    onClick={handleAddQuestions}>
+                    Thêm câu hỏi
+                  </div>
+                )}
+
                 <div class="section-title">
                   {quest.info.is_public
                     ? 'Thử thách công khai'
