@@ -40,6 +40,9 @@ export default function Create() {
       <div className="indeterminate" />
     </div>
   )
+  useEffect(() => {
+    dispatch(questActions.changeStatusRunning(false))
+  }, [])
 
   useEffect(() => {
     if (submit) {

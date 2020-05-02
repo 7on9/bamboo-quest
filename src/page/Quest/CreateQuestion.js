@@ -6,7 +6,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { createQuestionSchema } from '../../common/validation'
 import * as questActions from '../../store/quest/action'
-import { number } from 'yup'
 
 export default React.memo(function () {
   const dispatch = useDispatch()
@@ -24,13 +23,18 @@ export default React.memo(function () {
 
   useEffect(() => {
     if (isRedirect) {
-      alert('Đã tạo thành công')
-      history.goBack()
+      if (quest.info !== null) {
+        alert('Đã tạo thành công')
+        history.goBack()
+      } else {
+        alert('Tạo không thành công, hãy kiểm tra lại')
+        setIsRedirect(false)
+      }
     }
   }, [quest])
-
   const onSubmit = (value) => {
     const ans = [value.ansA, value.ansB, value.ansC, value.ansD]
+    dispatch(questActions.changeStatusRunning(true))
     const { _id } = quest.info
     setIsRedirect(true)
     dispatch(
@@ -55,6 +59,11 @@ export default React.memo(function () {
       reader.readAsDataURL(event.target.files[0])
     }
   }
+  const renderSpinner = () => (
+    <div className="linear-activity">
+      <div className="indeterminate" />
+    </div>
+  )
   return (
     <div>
       <Helmet>
@@ -266,6 +275,7 @@ export default React.memo(function () {
                           <option value="4">D</option>
                         </Field>
                       </div>
+                      {quest.running && renderSpinner()}
                     </div>
                   </div>
                 </div>
