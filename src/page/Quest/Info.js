@@ -8,11 +8,11 @@ import { startGame, resetResult } from '../../store/socket/socket'
 
 export default function Info() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const quest = useSelector((state) => state.quest)
   const user = useSelector((state) => state.user)
   const game = useSelector((state) => state.game)
   const [gameStarted, setGameStarted] = useState(false)
-  const history = useHistory()
   const { id } = useParams()
   useEffect(() => {
     dispatch(questActions.getInfoQuest(id))

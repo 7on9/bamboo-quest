@@ -10,7 +10,7 @@ const authenAction = (type, token, email, result) => {
 }
 
 export const login = (email, password) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       let res = await AuthenticationService.login(email, password)
       res = res.data
@@ -19,7 +19,7 @@ export const login = (email, password) => {
         type: USER_TYPE.AUTH.LOGIN,
         payload: {
           result: true,
-          user: res.user,
+          info: res.info,
           authenticated: true,
         },
       })
@@ -39,7 +39,7 @@ export const login = (email, password) => {
 }
 
 export const resetResult = () => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: EVENT.RESULT,
       payload: {
@@ -49,8 +49,8 @@ export const resetResult = () => {
   }
 }
 
-export const changeStatusRunning = status => {
-  return dispatch => {
+export const changeStatusRunning = (status) => {
+  return (dispatch) => {
     dispatch({
       type: EVENT.RUNNING,
       payload: {
@@ -61,14 +61,16 @@ export const changeStatusRunning = status => {
 }
 
 export const register = (email, password, name) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      await AuthenticationService.register(email, password, name)
+      let res = await AuthenticationService.register(email, password, name)
+      console.log(res)
       dispatch({
         type: USER_TYPE.AUTH.REGISTER,
         payload: {
           running: false,
           result: true,
+          register: true,
         },
       })
     } catch (error) {
@@ -77,6 +79,7 @@ export const register = (email, password, name) => {
         payload: {
           running: false,
           result: false,
+          register: false,
         },
       })
     }
@@ -84,9 +87,16 @@ export const register = (email, password, name) => {
 }
 
 export const update = (avatar_path, dob, name, phone, gender, organization) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      await AuthenticationService.update(avatar_path, dob, name, phone, gender, organization)
+      await AuthenticationService.update(
+        avatar_path,
+        dob,
+        name,
+        phone,
+        gender,
+        organization
+      )
       dispatch({
         type: USER_TYPE.UPDATE,
         payload: {
@@ -107,17 +117,18 @@ export const update = (avatar_path, dob, name, phone, gender, organization) => {
 }
 
 export const logout = () => {
-  return dispatch => {
+  return (dispatch) => {
     localStorage.removeItem(APP_CONSTANTS.WEB_TOKEN)
     localStorage.removeItem(APP_CONSTANTS.WEB_EMAIL)
-    AuthenticationService.logout().catch(() => {
-      return dispatch(authenAction(USER_TYPE.AUTH.LOGOUT, null, null, false))
+    dispatch({
+      type: USER_TYPE.AUTH.LOGOUT,
+      payload: {},
     })
   }
 }
 
 export const verify = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       let res = await AuthenticationService.verify()
       res = res.data

@@ -7,6 +7,7 @@ let initialState = {
   running: false,
   authenticated: false,
   result: false,
+  register: false,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -27,6 +28,7 @@ export const authReducer = (state = initialState, action) => {
         ...action.payload,
         authenticated: false,
         running: false,
+        info: null,
       }
       break
     case USER_TYPE.AUTH.REGISTER:

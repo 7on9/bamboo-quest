@@ -14,12 +14,17 @@ import './styles.css'
 
 export default function User() {
   const history = useHistory()
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   React.useEffect(() => {
-    if (!user.info) {
+    if (user.info === null) {
       history.push(URL.HOME)
     }
   }, [])
+
+  const handleLogout = () => {
+    dispatch(authAction.logout())
+  }
 
   return (
     <div className="detail-user">
@@ -29,7 +34,7 @@ export default function User() {
       </Helmet>
       <Menu
         email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)}
-        // logout={this.props.logout}
+        logout={handleLogout}
       />
       <div className="container" style={{ marginTop: 50 }}>
         <Switch>
