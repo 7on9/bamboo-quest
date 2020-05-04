@@ -15,7 +15,6 @@ export const login = (email, password) => {
       let res = await AuthenticationService.login(email, password)
       res = res.data
       localStorage.setItem(APP_CONSTANTS.WEB_TOKEN, res.token)
-      console.log(res)
       return dispatch({
         type: USER_TYPE.AUTH.LOGIN,
         payload: {

@@ -9,8 +9,6 @@ export default function Table() {
   const [isDanger, setIsDanger] = useState(false)
   const [statusEdit, setStatusEdit] = useState(false)
   const redux = useSelector((state) => state.admin)
-  console.log (redux)
-  console.log (redux.user[redux.item])
   useEffect(() => {
     if (redux.user[redux.item]) {
       setEmail(redux.user[redux.item].email)

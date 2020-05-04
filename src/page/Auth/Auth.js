@@ -209,7 +209,6 @@ class Auth extends Component {
             this.props.changeStatusRunning(true)
             if (!this.state.login) {
               this.props.register(values.email, values.password, values.name)
-              console.log(values)
             }
           }
           setSubmitting(true)

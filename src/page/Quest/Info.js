@@ -33,7 +33,6 @@ export default function Info() {
   const handleAddQuestions = () => {
     history.push('/quest/add')
   }
-  console.log(quest.info)
 
   return (
     <div>
