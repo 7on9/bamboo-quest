@@ -59,6 +59,9 @@ export default React.memo(function () {
       reader.readAsDataURL(event.target.files[0])
     }
   }
+  const handleBack = () => {
+    history.goBack()
+  }
   const renderSpinner = () => (
     <div className="linear-activity">
       <div className="indeterminate" />
@@ -94,6 +97,7 @@ export default React.memo(function () {
                   </button>
                   <button
                     className="create-question"
+                    onClick={handleBack}
                     style={{
                       background: 'rgb(242, 242, 242)',
                       color: 'rgb(0, 0, 0)',
