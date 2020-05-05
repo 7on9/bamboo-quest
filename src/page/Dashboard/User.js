@@ -3,8 +3,8 @@ import ItemTableUser from './comon/ItemTableUser'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers, setPage, setItem } from '../../store/admin/action'
 import Pagination from 'react-js-pagination'
-import { timestampConverter } from '../../utils/date'
-import {  useHistory } from "react-router-dom";
+import { objectIdToDate } from '../../utils/date'
+import { useHistory } from 'react-router-dom'
 export default function Table() {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -57,7 +57,7 @@ export default function Table() {
                       id={item._id}
                       username={item.name}
                       email={item.email}
-                      createAt={timestampConverter(item.last_update)}
+                      createAt={objectIdToDate(item._id)}
                       countJoin={1}
                       countQuestCreated={item.game_history.length}
                       handleSetItem={() => handleSetItem(index)}

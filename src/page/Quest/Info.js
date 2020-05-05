@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import * as questActions from '../../store/quest/action'
-import { startGame, resetResult } from '../../store/socket/socket'
-
+import { startGame, resetResult, answer } from '../../store/socket/socket'
+import { objectIdToDate } from '../../utils/date'
 export default function Info() {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -13,6 +13,7 @@ export default function Info() {
   const user = useSelector((state) => state.user)
   const game = useSelector((state) => state.game)
   const [gameStarted, setGameStarted] = useState(false)
+  const [ansType, setAnsType] = useState(-1)
   const { id } = useParams()
   useEffect(() => {
     dispatch(questActions.getInfoQuest(id))
@@ -34,6 +35,21 @@ export default function Info() {
     history.push('/quest/add')
   }
 
+  const handleShowAns = (i) => {
+    if (i !== ansType) {
+      setAnsType(i)
+    } else {
+      setAnsType(-1)
+    }
+  }
+
+  const arrayAns = [
+    { lable: 'A', className: 'ans-a' },
+    { lable: 'B', className: 'ans-b' },
+    { lable: 'C', className: 'ans-c' },
+    { lable: 'D', className: 'ans-d' },
+  ]
+
   return (
     <div>
       <Helmet>
@@ -50,7 +66,15 @@ export default function Info() {
               <img src={quest.info.img_path} className="image-quiz" />
               <div style={{ padding: '10px' }}>
                 <h1 className="title__heading">{quest.info.title}</h1>
+                <p>{quest.info.description}</p>
                 <p>{quest.info.like.length} yêu thích</p>
+                <p>
+                  <i>Ngày tạo: {objectIdToDate(quest.info._id).toString()}</i>
+                </p>
+                <div class="section-title">
+                  Trạng thái:
+                  {quest.info.is_public ? '  công khai' : '  không công khai'}
+                </div>
                 {quest.info.questions.length !== 0 && (
                   <div
                     onClick={startGameHandle}
@@ -65,13 +89,6 @@ export default function Info() {
                     Thêm câu hỏi
                   </div>
                 )}
-
-                <div class="section-title">
-                  {quest.info.is_public
-                    ? 'Thử thách công khai'
-                    : 'Thử thách không công khai'}
-                </div>
-                <p style={{ marginTop: '10px' }}>{quest.info.description}</p>
               </div>
             </div>
             {quest.info.questions.length === 0 ? (
@@ -81,16 +98,18 @@ export default function Info() {
                 <b>{`Câu hỏi (${quest.info.questions.length})`}</b>
                 {quest.info.questions.map((item, i) => {
                   return (
-                    <div className="quest-main">
+                    <div
+                      className="quest-main"
+                      onClick={() => handleShowAns(i)}>
                       <div className="quest-item">
                         <div className="question-media">
                           <div className="question-media__text">
-                            <span className="question-media__number">
-                              Cau {i + 1}
-                            </span>
-                            <div className="question-media__text-inner-wrapper">
+                            <p className="question-media__number">
+                              Câu {i + 1}:
+                            </p>
+                            <b className="question-media__text-inner-wrapper">
                               {item.quiz}
-                            </div>
+                            </b>
                           </div>
                           <div className="question-media__image">
                             <div className="question-media__placeholder-image">
@@ -105,6 +124,26 @@ export default function Info() {
                           </div>
                         </div>
                       </div>
+                      {i === ansType && (
+                        <div className="array-ans">
+                          {item.ans.map((itemAns, i) => {
+                            return (
+                              <div>
+                                <div className="item-ans">
+                                  <div
+                                    className={`icon-ans ${arrayAns[i].className}`}>
+                                    {arrayAns[i].lable}
+                                  </div>
+                                  <div className="ans-detail">
+                                    <p>{itemAns.content}</p>
+                                  </div>
+                                </div>
+                                {i !== 3 && <div className="line" />}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
                     </div>
                   )
                 })}

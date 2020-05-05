@@ -9,7 +9,7 @@ import { Menu } from '../../components'
 import ListQuest from './ListQuest'
 import { APP_CONSTANTS } from '../../common/constants'
 import Helmet from 'react-helmet'
-import { URL } from '../../common/constant'
+import { URL } from '../../common/constants'
 import './styles.css'
 
 export default function User() {
