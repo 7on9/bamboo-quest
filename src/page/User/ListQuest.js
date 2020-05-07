@@ -14,7 +14,8 @@ class ListQuest extends Component {
       toCreateQuest: false,
     }
   }
-  UNSAFE_componentDidMount() {
+  UNSAFE_componentWillMount() {
+    this.props.getMyQuests()
     if (
       !this.props.quest ||
       !this.props.quest.quests ||
@@ -22,9 +23,6 @@ class ListQuest extends Component {
     ) {
       this.props.getsAllQuests(3)
     }
-  }
-  UNSAFE_componentWillMount() {
-    this.props.getMyQuests()
   }
 
   render() {
@@ -50,9 +48,12 @@ class ListQuest extends Component {
                 borderRadius: '3px',
               }}>
               <img
-                src="/images/avatar-default.png"
+                src={
+                  user.info && user.info.avatar_path
+                    ? user.info.avatar_path
+                    : '/images/img_quest_default.png'
+                }
                 style={{ width: '100%', height: '130px', objectFit: 'cover' }}
-                alt="avatar"
               />
               <div
                 style={{ width: '100%', padding: '10px', background: '#fff' }}>

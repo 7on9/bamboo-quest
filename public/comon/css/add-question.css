@@ -34,13 +34,14 @@
   height: 4em;
   margin-top: 20px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
-  background: rgb(255, 255, 255);
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding-left: 0;
+  color: #fff;
 }
 
 .add-question .ans {
@@ -48,13 +49,13 @@
   float: right;
   background-color: transparent !important;
   padding-left: 10px;
+  color: #fff;
 }
 
 .add-question .ans-bg {
   width: 8%;
   float: left;
   height: 100%;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -132,7 +133,7 @@
 }
 .add-question .input-title {
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 .add-question .update-btn {
   cursor: pointer;
@@ -225,6 +226,7 @@
   border-color: transparent;
   border-image: initial;
   margin-bottom: 30px;
+  padding-left: 5px;
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {

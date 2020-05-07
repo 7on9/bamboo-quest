@@ -36,6 +36,7 @@ export const authReducer = (state = initialState, action) => {
       state = {
         ...state,
         ...action.payload,
+        running: false,
       }
       break
     case EVENT.RUNNING:

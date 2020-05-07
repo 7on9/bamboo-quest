@@ -78,6 +78,7 @@ class Home extends Component {
   }
   render() {
     const { quests } = this.props.quest
+    const { info } = this.props.user
     const { token } = this.props.user
     return (
       <div className="home">
@@ -152,18 +153,20 @@ class Home extends Component {
                                   Chơi ngay
                                 </Link>
                               </li>
-                              <li className="m-b-5">
-                                <Link
-                                  className={
-                                    this.state.nav
-                                      ? 'nav-item'
-                                      : 'nav-item btn-login'
-                                  }
-                                  to="/user/quest"
-                                  style={{ fontWeight: 'bold' }}>
-                                  Thử thách của tôi
-                                </Link>
-                              </li>
+                              {token && (
+                                <li className="m-b-5">
+                                  <Link
+                                    className={
+                                      this.state.nav
+                                        ? 'nav-item'
+                                        : 'nav-item btn-login'
+                                    }
+                                    to="/user/quest"
+                                    style={{ fontWeight: 'bold' }}>
+                                    Thử thách của tôi
+                                  </Link>
+                                </li>
+                              )}
                             </ul>
                           </div>
                           {this.state.iconUser ? (
@@ -182,7 +185,11 @@ class Home extends Component {
                                           height: '2em',
                                           borderRadius: '1em',
                                         }}
-                                        src="/images/avatar-default.png"
+                                        src={
+                                          info && info.avatar_path
+                                            ? info.avatar_path
+                                            : '/images/avatar-default.png'
+                                        }
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false"

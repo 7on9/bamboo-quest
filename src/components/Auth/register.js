@@ -1,12 +1,14 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { useSelector } from 'react-redux'
 import { registerSchema } from '../../common/validation'
 import { Link } from 'react-router-dom'
 import { CONTENT_TYPE } from './comon/constant'
 
 export default function Register(props) {
+  const user = useSelector((state) => state.user)
+
   const handleSubmit = (value) => {
-    console.log('aaaa')
     props.handleRegister(value.email, value.password, value.name)
   }
   const handleChangePage = () => {
@@ -102,8 +104,11 @@ export default function Register(props) {
             component="div"
           />
           <div className="container-login100-form-btn">
-            <button type="submit" className="login100-form-btn">
-              Đăng ký
+            <button
+              type="submit"
+              className="login100-form-btn"
+              disabled={user.running}>
+              {user.running ? 'Đang đăng kí ...' : 'Đăng ký'}
             </button>
           </div>
           <div className="text-center p-t-136">

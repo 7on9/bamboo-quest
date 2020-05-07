@@ -29,9 +29,14 @@ export default React.memo(function () {
       } else {
         alert('Tạo không thành công, hãy kiểm tra lại')
         setIsRedirect(false)
+        dispatch(questActions.changeStatusRunning(false))
       }
     }
   }, [quest])
+
+  useEffect(() => {
+    dispatch(questActions.changeStatusRunning(false))
+  }, [])
   const onSubmit = (value) => {
     const ans = [value.ansA, value.ansB, value.ansC, value.ansD]
     dispatch(questActions.changeStatusRunning(true))
@@ -92,8 +97,11 @@ export default React.memo(function () {
               onSubmit={formik.handleSubmit}>
               <div className="add-question">
                 <div className="left">
-                  <button className="create-question" type="submit">
-                    Tạo câu hỏi
+                  <button
+                    className="create-question"
+                    type="submit"
+                    disabled={quest.running}>
+                    {quest.running ? 'Đang tạo ...' : 'Tạo câu hỏi'}
                   </button>
                   <button
                     className="create-question"
@@ -200,8 +208,8 @@ export default React.memo(function () {
                       </div>
                       <div className="row" style={{ margin: 0 }}>
                         <div className="col-12 col-md-6">
-                          <div className="col-12 press-ans">
-                            <div className="ans-bg ans-bg-a">
+                          <div className="col-12 press-ans ans-bg-a">
+                            <div className="ans-bg">
                               <b>A</b>
                             </div>
                             <Field
@@ -217,8 +225,8 @@ export default React.memo(function () {
                         </div>
 
                         <div className="col-12 col-md-6">
-                          <div className="col-12 press-ans ">
-                            <div className="ans-bg ans-bg-b">
+                          <div className="col-12 press-ans ans-bg-b">
+                            <div className="ans-bg ">
                               <b>B</b>
                             </div>
                             <Field
@@ -234,8 +242,8 @@ export default React.memo(function () {
                         </div>
 
                         <div className="col-12 col-md-6">
-                          <div className="col-12 press-ans">
-                            <div className="ans-bg ans-bg-c">
+                          <div className="col-12 press-ans ans-bg-c">
+                            <div className="ans-bg ">
                               <b>C</b>
                             </div>
                             <Field
@@ -251,8 +259,8 @@ export default React.memo(function () {
                         </div>
 
                         <div className="col-12 col-md-6">
-                          <div className="col-12 press-ans">
-                            <div className="ans-bg ans-bg-d">
+                          <div className="col-12 press-ans ans-bg-d">
+                            <div className="ans-bg ">
                               <b>D</b>
                             </div>
                             <Field

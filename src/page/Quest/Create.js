@@ -175,16 +175,14 @@ export default function Create() {
                     component="div"
                   />
                   <div className="col-12" style={{ padding: 0 }}>
-                    {quest.running ? (
-                      renderSpinner()
-                    ) : (
-                      <div
-                        onClick={() => handleSubmitForm(formik)}
-                        className="update-btn"
-                        disabled={formik.isSubmitting}>
-                        Tạo thử thách
-                      </div>
-                    )}
+                    <div
+                      onClick={() => handleSubmitForm(formik)}
+                      className="update-btn"
+                      disabled={quest.running}>
+                      {quest.running
+                        ? 'Đang tạo thử thách ...'
+                        : 'Tạo thử thách'}
+                    </div>
                   </div>
                 </Form>
               )

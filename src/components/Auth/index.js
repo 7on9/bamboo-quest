@@ -50,10 +50,12 @@ export default function Authentication() {
 
   const handleLogin = (email, password) => {
     dispatch(authAction.login(email, password))
+    dispatch(authAction.changeStatusRunning(true))
   }
 
   const handleRegister = (email, password, name) => {
     dispatch(authAction.register(email, password, name))
+    dispatch(authAction.changeStatusRunning(true))
     setIsSubmitRegister(true)
   }
 

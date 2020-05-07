@@ -22,6 +22,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
 }
 .create-quiz .choice-img {
   box-sizing: border-box;
@@ -72,7 +73,7 @@
 }
 .create-quiz .input-title {
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 .create-quiz .answer {
   height: 5em;
