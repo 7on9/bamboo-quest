@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 class Info extends Component {
   render() {
+    const { user } = this.props
     return (
       <div className="row">
         <div className="container emp-profile">
@@ -11,7 +12,11 @@ class Info extends Component {
               <div className="col-md-4">
                 <div className="profile-img">
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                    src={
+                      user.info && user.info.avatar_path
+                        ? user.info.avatar_path
+                        : '/images/img_quest_default.png'
+                    }
                     alt=""
                   />
                 </div>
@@ -121,9 +126,9 @@ class Info extends Component {
                             <p>
                               {this.props.user.info
                                 ? this.props.user.info.gender === false
-                                  ? 'Nữ'
-                                  : this.props.user.info.gender === true
                                   ? 'Nam'
+                                  : this.props.user.info.gender === true
+                                  ? 'Nữ'
                                   : 'Chưa cập nhật'
                                 : null}
                             </p>

@@ -86,22 +86,23 @@ export const register = (email, password, name) => {
   }
 }
 
-export const update = (avatar_path, dob, name, phone, gender, organization) => {
+export const update = (avatar_path, name, phone, gender, organization, dob) => {
   return async (dispatch) => {
     try {
-      await AuthenticationService.update(
+      const res = await AuthenticationService.update(
         avatar_path,
-        dob,
         name,
         phone,
         gender,
-        organization
+        organization,
+        dob
       )
       dispatch({
         type: USER_TYPE.UPDATE,
         payload: {
           running: false,
           result: true,
+          info: res.data,
         },
       })
     } catch (error) {

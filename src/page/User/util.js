@@ -4,12 +4,11 @@ export const initFormikEdit = (user) => {
   const organization = user.info ? user.info.organization : ''
   const phone = user.info ? user.info.phone : ''
   const gender = user.info ? user.info.gender : false
-  return ({
-      email,
-      name,
-      organization,
-      phone,
-      gender,
-      password: ''
-  })
+  return {
+    email,
+    name,
+    organization,
+    phone,
+    gender,
+  }
 }
