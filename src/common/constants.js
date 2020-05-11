@@ -13,3 +13,7 @@ export const URL = {
   },
   AUTH: '/auth',
 }
+
+export const COLOR = {
+  MAIN: '#57b846;',
+}

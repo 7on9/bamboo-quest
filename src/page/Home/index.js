@@ -1,2 +1,2 @@
-import _Home from './Home'
-export const Home =_Home
+import _Home from '../../components/Home/home'
+export const Home = _Home
