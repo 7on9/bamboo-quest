@@ -17,11 +17,10 @@ export default function User() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   React.useEffect(() => {
-    if (user.info === null && user.isVetify) {
+    if (!user.authenticated && user.isVetify) {
       history.push(URL.HOME)
     }
-  }, [])
-
+  }, [user])
   React.useEffect(() => {
     dispatch(authAction.verify())
   }, [])
