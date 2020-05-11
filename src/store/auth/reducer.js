@@ -8,6 +8,7 @@ let initialState = {
   authenticated: false,
   result: false,
   register: false,
+  isVetify: false,
 }
 
 export const authReducer = (state = initialState, action) => {

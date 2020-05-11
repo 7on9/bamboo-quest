@@ -4,13 +4,15 @@ import { questReducer as quest } from './quest/reducer'
 import { gameReducer as game } from './socket/reducer'
 import { adminReducer as admin } from './admin/reducer'
 import { adminReducer as adminQuest } from './admin-quest/reducer'
+import { categoryReducer as category } from './category/reducer'
 
 const rootReducer = combineReducers({
   user,
   quest,
   game,
   admin,
-  adminQuest
+  adminQuest,
+  category,
 })
 
 export default (state, action) => {

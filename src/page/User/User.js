@@ -17,11 +17,14 @@ export default function User() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   React.useEffect(() => {
-    if (user.info === null) {
+    if (user.info === null && user.isVetify) {
       history.push(URL.HOME)
     }
   }, [])
 
+  React.useEffect(() => {
+    dispatch(authAction.verify())
+  }, [])
   const handleLogout = () => {
     dispatch(authAction.logout())
   }

@@ -1,0 +1,13 @@
+export const CATEGORY_TYPE = {
+  GET: 'CATEGORY/GET',
+}
+
+export const ERROR = {
+  NOT_EXIST: 'ERROR/NOT_EXIST',
+  DUPLICATE: 'ERROR/DUPLICATE',
+}
+
+export const EVENT = {
+  RUNNING: 'RUNNING',
+  RESULT: 'RESET_RESULT',
+}

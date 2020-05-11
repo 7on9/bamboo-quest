@@ -63,7 +63,14 @@ export default function Info() {
         <div className="info-quiz">
           <div className="row full">
             <div className="col-12 col-md-3 left-component">
-              <img src={quest.info.img_path} className="image-quiz" />
+              <img
+                src={
+                  quest.info.img_path
+                    ? quest.info.img_path
+                    : '/images/img_quest_default.png'
+                }
+                className="image-quiz"
+              />
               <div style={{ padding: '10px' }}>
                 <h1 className="title__heading">{quest.info.title}</h1>
                 <p>{quest.info.description}</p>
