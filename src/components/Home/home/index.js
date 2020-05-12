@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
-import Animation from '../common/animation'
+import { useDispatch, useSelector } from 'react-redux'
+import * as questActions from '../../../store/quest/action'
+// import * as questActions from '../../../store//action'
+
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const Home = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    // dispatch(questActions.(id))
+  }, [])
   return (
     <div>
       <Helmet>

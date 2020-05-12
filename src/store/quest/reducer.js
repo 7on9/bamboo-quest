@@ -7,6 +7,7 @@ let initialState = {
   running: false,
   result: false,
   quests: [],
+  questPublic: [],
 }
 
 export const questReducer = (state = initialState, action) => {
@@ -15,6 +16,13 @@ export const questReducer = (state = initialState, action) => {
       state = {
         ...state,
         quests: action.payload.quests ? [...action.payload.quests] : [],
+        running: false,
+      }
+      break
+    case QUEST_TYPES.GET_QUIZ_PUBLIC:
+      state = {
+        ...state,
+        questPublic: [...state.questPublic, ...action.payload.quest],
       }
       break
     case QUEST_TYPES.CREATE:
@@ -34,7 +42,7 @@ export const questReducer = (state = initialState, action) => {
       }
       break
     case QUEST_TYPES.DELETE:
-      let deletedArr = state.quests.forEach(quest => {
+      let deletedArr = state.quests.forEach((quest) => {
         if (quest._id !== action.payload.deletedQuest._id) {
           return quest
         }

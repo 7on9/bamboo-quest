@@ -11,6 +11,7 @@ export const QUEST_TYPES = {
   END: 'END_QUEST',
   SET_STATUS: 'SET_STATUS_QUEST',
   TITLE: 'TITLE_QUEST',
+  GET_QUIZ_PUBLIC: 'QUIZ_PUBLIC',
 }
 
 export const ERROR = {

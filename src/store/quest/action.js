@@ -7,7 +7,7 @@ import { EVENT, QUEST_TYPES } from './types'
 //   createQuest : createQuest
 // };
 
-export const questInfo = quest => {
+export const questInfo = (quest) => {
   return {
     type: QUEST_TYPES.GET,
     payload: {
@@ -18,7 +18,7 @@ export const questInfo = quest => {
   }
 }
 
-export const quests = quests => {
+export const quests = (quests) => {
   return {
     type: QUEST_TYPES.LIST,
     payload: {
@@ -29,8 +29,8 @@ export const quests = quests => {
   }
 }
 
-export const createQuest = newQuest => {
-  return async dispatch => {
+export const createQuest = (newQuest) => {
+  return async (dispatch) => {
     try {
       resetResult()
       // changeStatusRunning(false)
@@ -57,8 +57,8 @@ export const createQuest = newQuest => {
   }
 }
 
-export const addQuestion = newQuestion => {
-  return async dispatch => {
+export const addQuestion = (newQuestion) => {
+  return async (dispatch) => {
     try {
       resetResult()
       // changeStatusRunning(false)
@@ -85,8 +85,8 @@ export const addQuestion = newQuestion => {
   }
 }
 
-export const deleteQuest = idQuest => {
-  return async dispatch => {
+export const deleteQuest = (idQuest) => {
+  return async (dispatch) => {
     try {
       resetResult()
       // changeStatusRunning(false)
@@ -111,13 +111,13 @@ export const deleteQuest = idQuest => {
   }
 }
 
-export const getInfoQuest = idQuest => {
-  return async dispatch => {
+export const getInfoQuest = (idQuest) => {
+  return async (dispatch) => {
     try {
       resetResult()
       // changeStatusRunning(false)
       let res = await QuestService.getQuest(idQuest)
-      res = res.data 
+      res = res.data
       dispatch({
         type: QUEST_TYPES.GET,
         payload: {
@@ -138,7 +138,7 @@ export const getInfoQuest = idQuest => {
 }
 
 export const getMyQuests = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       resetResult()
       let myQuests = await QuestService.getMyQuests()
@@ -159,8 +159,8 @@ export const getMyQuests = () => {
   }
 }
 
-export const getsAllQuests = limit => {
-  return async dispatch => {
+export const getsAllQuests = (limit) => {
+  return async (dispatch) => {
     try {
       resetResult()
       // changeStatusRunning(false)
@@ -182,8 +182,29 @@ export const getsAllQuests = limit => {
   }
 }
 
+export const getsQuestCategory = (limit, _idCategory) => {
+  return async (dispatch) => {
+    try {
+      let quest = await QuestService.getQuestCategory(limit, _idCategory)
+      quest = quest.data
+      return dispatch({
+        type: QUEST_TYPES.GET_QUIZ_PUBLIC,
+        payload: { quest },
+      })
+    } catch (error) {
+      return dispatch({
+        type: QUEST_TYPES.LIST,
+        payload: {
+          result: false,
+          quests: null,
+        },
+      })
+    }
+  }
+}
+
 export const resetResult = () => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: EVENT.RESULT,
       payload: {
@@ -193,8 +214,8 @@ export const resetResult = () => {
   }
 }
 
-export const changeStatusRunning = result => {
-  return dispatch => {
+export const changeStatusRunning = (result) => {
+  return (dispatch) => {
     dispatch({
       type: EVENT.RUNNING,
       payload: {
