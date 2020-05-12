@@ -1,42 +1,48 @@
+import React, { useEffect } from 'react'
+import Helmet from 'react-helmet'
+import Animation from './animation'
 import { Link } from 'react-router-dom'
 
-import React from 'react'
-import './style.css'
-// import './nav.js'
-import { Icon } from './../../res/icon/index'
-export const Menu = props => (
-  <nav className="menu">
-    <div className="logoMenu">
-      <Link to="/home" className="logoMenu">
-        BAMBOO QUEST
-      </Link>
+export const Menu = () => {
+  useEffect(() => {
+    Animation()
+  }, [])
+  return (
+    <div>
+      <Helmet>
+        <link rel="stylesheet" type="text/css" href="/comon/css/nav.css" />
+      </Helmet>
+      <nav className="navbar navbar-expand-lg navbar-mainbg">
+        <Link to="/home" className="navbar-brand navbar-logo">
+          BAMBOO QUEST
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i className="fas fa-bars text-white" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item ">
+              <Link to="/home" className="nav-link">
+                <i className="fas fa-tachometer-alt" />
+                Trang chủ
+              </Link>
+            </li>
+            <li className="nav-item active">
+              <Link to="/user/quest" className="nav-link">
+                <i className="fas fa-user" />
+                User
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <ul className="nav-links">
-      <li>
-        <Link className="name-item-menu" to="/home">
-          HOME
-        </Link>
-      </li>
-      <li>
-        <Link className="name-item-menu" to="/user/quest">
-          Cuộc thi của tôi
-        </Link>
-      </li>
-      <li>
-        <Link className="name-item-menu" to="/user/info">
-          Tài khoản
-        </Link>
-      </li>
-      <li>
-        <Link className="name-item-menu" to="/" onClick={() => props.logout()}>
-          <img style={{ width: '12px', height: '12px' }} src={Icon.LOGOUT} alt="menu"/>
-        </Link>
-      </li>
-    </ul>
-    <div className="burger">
-      <div className="line1"></div>
-      <div className="line2"></div>
-      <div className="line3"></div>
-    </div>
-  </nav>
-)
+  )
+}
