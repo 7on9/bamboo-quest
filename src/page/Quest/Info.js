@@ -89,7 +89,8 @@ export default function Info() {
                     Bắt đầu
                   </div>
                 )}
-                {String(quest.info.id_author) === String(user.info._id) && (
+                {String(quest.info.id_author) ===
+                  String(user.info ? user.info._id : '') && (
                   <div
                     className="button-info button-add"
                     onClick={handleAddQuestions}>
