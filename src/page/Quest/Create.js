@@ -4,8 +4,10 @@ import { useHistory } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import * as questActions from '../../store/quest/action'
+import * as categoryActions from '../../store/category/action'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { questSchema } from '../../common/validation'
+import { Multiselect } from 'multiselect-react-dropdown'
 
 export default function Create() {
   const dispatch = useDispatch()
@@ -14,8 +16,10 @@ export default function Create() {
     img_path: null,
     is_public: false,
   })
+  const [selectCategory, setSelectCategory] = useState([])
   const [submit, setSubmit] = useState(false)
   const quest = useSelector((state) => state.quest)
+  const category = useSelector((state) => state.category)
 
   const togglePublic = () => {
     setNewQuest({
@@ -42,6 +46,7 @@ export default function Create() {
   )
   useEffect(() => {
     dispatch(questActions.changeStatusRunning(false))
+    dispatch(categoryActions.getCategory())
   }, [])
 
   useEffect(() => {
@@ -56,19 +61,28 @@ export default function Create() {
   }, [quest.quest])
 
   const onSubmit = (values) => {
-    dispatch(questActions.changeStatusRunning(true))
+    var categoryArr = []
+    selectCategory.forEach((item) => {
+      categoryArr.push(item._id)
+    })
     dispatch(
       questActions.createQuest({
         title: values.title,
         description: values.description,
         is_public: newQuest.is_public,
-        img_path: newQuest.img_path,
+        img_path: newQuest.img_path?newQuest.img_path:undefined,
+        category: categoryArr,
       })
     )
   }
+
   const handleSubmitForm = async (formik) => {
     await setSubmit(true)
     formik.submitForm()
+  }
+
+  const handleSelectCategory = (selectedList) => {
+    setSelectCategory(selectedList)
   }
   return (
     <div>
@@ -158,6 +172,20 @@ export default function Create() {
                       <div className="col-12 col-md-2"></div>
                     </div>
                   </div>
+                  <div className="row" style={{ marginTop: '15px' }}>
+                    <div className="col-2"></div>
+                    <div className="col-8">
+                      <Multiselect
+                        options={category.categories ? category.categories : []} // Options to display in the dropdown
+                        displayValue="name"
+                        onSelect={handleSelectCategory}
+                        onRemove={handleSelectCategory}
+                        placeholder={'Vui lòng chọn thể loại'}
+                      />
+                    </div>
+                    <div className="col-2"></div>
+                  </div>
+
                   <div className="col-12 press-quest">
                     <Field
                       type="text"

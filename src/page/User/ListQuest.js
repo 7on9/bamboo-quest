@@ -106,7 +106,11 @@ class ListQuest extends Component {
                         id={item._id}
                         title={item.title}
                         question={item.questions}
-                        img_path={item.img || item.img_path}
+                        img_path={
+                          item.img_path
+                            ? item.img_path
+                            : '/images/img_quest_default.png'
+                        }
                       />
                     )
                   })

@@ -141,6 +141,7 @@ export const verify = () => {
           info: res.info,
           token: res.token,
           authenticated: true,
+          isVetify: true,
         },
       })
     } catch (error) {
@@ -152,6 +153,7 @@ export const verify = () => {
         payload: {
           result: false,
           authenticated: false,
+          isVetify: true,
         },
       })
     }
