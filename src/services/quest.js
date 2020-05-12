@@ -7,10 +7,14 @@ export const QuestService = {
   getAllQuests: (limit) => {
     return dataProvider('/quest/', { method: 'GET', params: { limit } })
   },
-  getQuestCategory: (limit, _idCategory) => {
-    return dataProvider('/quest/', {
+  getQuestCategory: (skip, _idCategory) => {
+    return dataProvider('/quest', {
       method: 'GET',
-      params: { limit, filter: { category: _idCategory } },
+      params: {
+        limit: 4,
+        skip: (skip - 1) * 4,
+        filter: { category: _idCategory },
+      },
     })
   },
   getQuestInfo: (idQuest) => {

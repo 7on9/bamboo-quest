@@ -182,21 +182,21 @@ export const getsAllQuests = (limit) => {
   }
 }
 
-export const getsQuestCategory = (limit, _idCategory) => {
+export const getsQuestCategory = (skip, _idCategory, index) => {
   return async (dispatch) => {
     try {
-      let quest = await QuestService.getQuestCategory(limit, _idCategory)
+      let quest = await QuestService.getQuestCategory(skip, _idCategory)
       quest = quest.data
       return dispatch({
         type: QUEST_TYPES.GET_QUIZ_PUBLIC,
-        payload: { quest },
+        payload: { quest, page: skip, index },
       })
     } catch (error) {
       return dispatch({
         type: QUEST_TYPES.LIST,
         payload: {
           result: false,
-          quests: null,
+          quest: [],
         },
       })
     }

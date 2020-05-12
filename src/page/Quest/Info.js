@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import * as questActions from '../../store/quest/action'
-import { startGame, resetResult, answer } from '../../store/socket/socket'
+import { startGame, resetResult } from '../../store/socket/socket'
 import { objectIdToDate } from '../../utils/date'
 export default function Info() {
   const dispatch = useDispatch()

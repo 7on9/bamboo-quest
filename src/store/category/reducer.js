@@ -2,7 +2,7 @@
 import { CATEGORY_TYPE, EVENT } from './types'
 
 let initialState = {
-  categories: null,
+  categories: [],
   running: false,
   result: false,
 }

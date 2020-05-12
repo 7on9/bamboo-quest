@@ -20,10 +20,32 @@ export const questReducer = (state = initialState, action) => {
       }
       break
     case QUEST_TYPES.GET_QUIZ_PUBLIC:
-      state = {
-        ...state,
-        questPublic: [...state.questPublic, ...action.payload.quest],
+      if (action.payload.index !== undefined) {
+        const arrQuestPublic = [...state.questPublic]
+        arrQuestPublic.splice(action.payload.index, 1)
+        arrQuestPublic.splice(action.payload.index, 0, {
+          quest: action.payload.quest,
+          page: action.payload.page,
+        })
+
+        state = {
+          ...state,
+          questPublic: arrQuestPublic,
+          running: false,
+        }
+      } else {
+        const arrQuestPublic = [
+          ...state.questPublic,
+          { quest: action.payload.quest, page: action.payload.page },
+        ]
+
+        state = {
+          ...state,
+          questPublic: arrQuestPublic,
+          running: false,
+        }
       }
+
       break
     case QUEST_TYPES.CREATE:
       let { quests } = state

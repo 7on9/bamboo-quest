@@ -2,14 +2,33 @@ import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import * as questActions from '../../../store/quest/action'
-// import * as questActions from '../../../store//action'
-
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+import * as categoryActions from '../../../store/category/action'
+import { Link } from 'react-router-dom'
+import { objectIdToDate } from './../../../utils/date'
 const Home = () => {
   const dispatch = useDispatch()
+  const category = useSelector((state) => state.category)
+  const quest = useSelector((state) => state.quest)
   useEffect(() => {
-    // dispatch(questActions.(id))
+    dispatch(categoryActions.getCategory())
   }, [])
+
+  useEffect(() => {
+    category.categories.map((item) => {
+      dispatch(questActions.getsQuestCategory(1, item._id))
+    })
+  }, [category])
+
+  const chanePage = (index, type) => {
+    const data = quest.questPublic[index]
+    dispatch(
+      questActions.getsQuestCategory(
+        type === 0 ? data.page - 1 : data.page + 1,
+        category.categories[index]._id,
+        index
+      )
+    )
+  }
   return (
     <div>
       <Helmet>
@@ -18,9 +37,15 @@ const Home = () => {
       <div className="home">
         <div class="layout__circle"></div>
         <div class="layout__half-circle"></div>
-        <nav className="navbar navbar-expand-lg navbar-mainbg">
+        <nav
+          className="navbar navbar-expand-lg navbar-mainbg"
+          style={{
+            position: 'fixed',
+            width: '100%',
+            zIndex: '100',
+          }}>
           <a className="navbar-brand navbar-logo" href="#">
-            Navbar
+            BAMBOO QUEST
           </a>
           <button
             className="navbar-toggler"
@@ -54,10 +79,10 @@ const Home = () => {
           </div>
         </nav>
 
-        {/* search */}
         <div
           className="container animate__animated animate__bounceIn"
-          style={{ marginTop: '50px', marginBottom: '30px' }}>
+          style={{ marginTop: '100px', marginBottom: '30px' }}>
+          {/* search */}
           <div className=" search-content "></div>
           <div className="row" style={{ marginBottom: '30px' }}>
             <div className="col-12 col-md-2" />
@@ -76,51 +101,76 @@ const Home = () => {
             <div className="col-12 col-md-2" />
           </div>
           {/* search */}
-          {/* content */}
-          <div style={{ textAlign: 'center' }}>
-            <b
-              style={{
-                color: '#e21b3c',
-                fontSize: '1em',
-                fontSize: '1.5em',
-              }}>
-              Lịch sử
-            </b>
-          </div>
-          <div className="container-card ">
-            <div className="pre-card">
-              <div className="pre-card-btn">{'<'}</div>
-            </div>
-            <div className="next-card">
-              <div className="next-card-btn">{'>'}</div>
-            </div>
-
-            {data.map((item, index) => {
-              const page = 0
-              return (
-                <div className="bamboo-card ">
-                  <div className="card-content">
-                    <div className="card-image">
-                      <img
-                        className="card-image-item"
-                        src="https://images-cdn.kahoot.it/2c816875-b3ba-4212-8c3c-107547c6a608?auto=webp&width=467"
-                      />
-                    </div>
-                    <div className="card-item-content">
-                      <p>
-                        <b>Ai là triệu phú</b>
-                        <p>description</p>
-                      </p>
-                      <p className="text-created">20/02/2020</p>
-                      <p className="user-created">Hồng Quân</p>
-                    </div>
-                  </div>
+          {quest.questPublic.map((item, index) => {
+            return (
+              <div key={index}>
+                {/* content */}
+                <div style={{ textAlign: 'center' }}>
+                  <b
+                    style={{
+                      color: '#e21b3c',
+                      fontSize: '1em',
+                      fontSize: '1.5em',
+                    }}>
+                    {category.categories[index] &&
+                      category.categories[index].description}
+                  </b>
                 </div>
-              )
-            })}
-          </div>
-          <br />
-          {/* content */}
+                <div className="container-card ">
+                  {item.page !== 1 && (
+                    <div
+                      className="pre-card"
+                      onClick={() => chanePage(index, 0)}>
+                      <div className="pre-card-btn">{'<'}</div>
+                    </div>
+                  )}
+
+                  {item.quest.length > 3 && (
+                    <div
+                      className="next-card"
+                      onClick={() => chanePage(index, 1)}>
+                      <div className="next-card-btn">{'>'}</div>
+                    </div>
+                  )}
+
+                  {item.quest.map((itemQuiz) => {
+                    return (
+                      <Link
+                        to={`/quest/info/${itemQuiz._id}`}
+                        className="bamboo-card ">
+                        <div className="card-content">
+                          <div className="card-image">
+                            <img
+                              className="card-image-item"
+                              src={
+                                itemQuiz.img_path
+                                  ? itemQuiz.img_path
+                                  : '/images/img_quest_default.png'
+                              }
+                            />
+                          </div>
+                          <div className="card-item-content">
+                            <p>
+                              <b>{itemQuiz.title && itemQuiz.title}</b>
+                              <p>
+                                {itemQuiz.description && itemQuiz.description}
+                              </p>
+                            </p>
+                            <p className="text-created">
+                              {objectIdToDate(itemQuiz._id)}
+                            </p>
+                            <p className="user-created">{itemQuiz.author}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    )
+                  })}
+                </div>
+                <br />
+                {/* content */}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>
