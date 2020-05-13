@@ -42,7 +42,6 @@ const UpdateUser = () => {
   const handleSubmit = (values) => {
     dispatch(
       User.update(
-        imgPath,
         values.name,
         values.phone,
         values.gender ? values.gender : false,
@@ -155,6 +154,7 @@ const UpdateUser = () => {
                               }
                               name="email"
                               onChange={handleChange}
+                              disabled={true}
                               value={values.email}
                             />
                             <ErrorMessage

@@ -8,6 +8,7 @@ let initialState = {
   result: false,
   quests: [],
   questPublic: [],
+  isGetQuiz: false,
 }
 
 export const questReducer = (state = initialState, action) => {
@@ -43,6 +44,7 @@ export const questReducer = (state = initialState, action) => {
           ...state,
           questPublic: arrQuestPublic,
           running: false,
+          isGetQuiz: true,
         }
       }
 

@@ -5,6 +5,8 @@ import * as questActions from '../../../store/quest/action'
 import * as categoryActions from '../../../store/category/action'
 import { Link } from 'react-router-dom'
 import { objectIdToDate } from './../../../utils/date'
+import { Menu } from '../common/menu'
+
 const Home = () => {
   const dispatch = useDispatch()
   const category = useSelector((state) => state.category)
@@ -14,9 +16,11 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    category.categories.map((item) => {
-      dispatch(questActions.getsQuestCategory(1, item._id))
-    })
+    if (!quest.isGetQuiz) {
+      category.categories.map((item) => {
+        dispatch(questActions.getsQuestCategory(1, item._id))
+      })
+    }
   }, [category])
 
   const chanePage = (index, type) => {
@@ -37,48 +41,7 @@ const Home = () => {
       <div className="home">
         <div class="layout__circle"></div>
         <div class="layout__half-circle"></div>
-        <nav
-          className="navbar navbar-expand-lg navbar-mainbg"
-          style={{
-            position: 'fixed',
-            width: '100%',
-            zIndex: '100',
-          }}>
-          <a className="navbar-brand navbar-logo" href="#">
-            BAMBOO QUEST
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <i className="fas fa-bars text-white" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
-              <div className="hori-selector">
-                {/* <div className="left" />
-                <div className="right" /> */}
-              </div>
-              <li className="nav-item active">
-                <a className="nav-link" href="javascript:void(0);">
-                  <i className="fas fa-tachometer-alt" />
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="javascript:void(0);">
-                  <i className="far fa-address-book" />
-                  User
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
+        <Menu />
         <div
           className="container animate__animated animate__bounceIn"
           style={{ marginTop: '100px', marginBottom: '30px' }}>

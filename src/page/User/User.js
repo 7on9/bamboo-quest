@@ -18,7 +18,7 @@ export default function User() {
   const user = useSelector((state) => state.user)
   React.useEffect(() => {
     if (!user.authenticated && user.isVetify) {
-      history.push(URL.HOME)
+      history.push(URL.AUTH)
     }
   }, [user])
   React.useEffect(() => {

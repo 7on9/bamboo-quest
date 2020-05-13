@@ -122,8 +122,17 @@ export default function Info() {
                           <div className="question-media__image">
                             <div className="question-media__placeholder-image">
                               <img
-                                src={item.img_path}
+                                src={
+                                  item.img_path
+                                    ? item.img_path
+                                    : '/images/img_quest_default.png'
+                                }
                                 className="image-question"
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover',
+                                }}
                               />
                               <span class="question-media__duration">
                                 {item.duration} sec
