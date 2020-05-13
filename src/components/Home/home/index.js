@@ -5,7 +5,8 @@ import * as questActions from '../../../store/quest/action'
 import * as categoryActions from '../../../store/category/action'
 import { Link } from 'react-router-dom'
 import { objectIdToDate } from './../../../utils/date'
-import { Menu } from '../common/menu'
+// import { Menu } from '../common/menu'
+import { Menu } from '../../../components'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -44,7 +45,7 @@ const Home = () => {
         <Menu />
         <div
           className="container animate__animated animate__bounceIn"
-          style={{ marginTop: '100px', marginBottom: '30px' }}>
+          style={{ marginTop: '50px', marginBottom: '40px' }}>
           {/* search */}
           <div className=" search-content "></div>
           <div className="row" style={{ marginBottom: '30px' }}>

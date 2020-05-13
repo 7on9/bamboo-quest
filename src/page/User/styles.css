@@ -92,6 +92,13 @@
   margin-bottom: 10px;
   height: 100px;
 }
+.info-user-div {
+  border-radius: 0 0 3px 3px;
+}
+
+.avatar-img {
+  border-radius: 3px 3px 0 0;
+}
 @media (max-width: 575.98px) {
   .discover {
     width: 0;

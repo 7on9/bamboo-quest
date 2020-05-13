@@ -14,6 +14,7 @@ const UpdateUser = () => {
   const [imgPath, setImgPath] = useState('')
   const [isSubmit, setIsSubmit] = useState(false)
   const [gender, setGender] = useState(user.info ? user.info.gender : false)
+
   const onUploadImage = async (event) => {
     if (event.target.files[0]) {
       setImgPath(URL.createObjectURL(event.target.files[0]))
@@ -93,7 +94,7 @@ const UpdateUser = () => {
                     ? imgPath
                     : user.info && user.info.avatar_path
                     ? user.info.avatar_path
-                    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog'
+                    : '/images/img_quest_default.png'
                 }
                 alt="avatar"
               />
@@ -167,7 +168,10 @@ const UpdateUser = () => {
                           </div>
 
                           <div className="form-group col-md-6">
-                            <i className="fas fa-lock icon" />
+                            <i
+                              className="fas fa-user"
+                              style={{ marginRight: '15px' }}
+                            />
                             <label>Tên</label>
                             <Field
                               as="input"

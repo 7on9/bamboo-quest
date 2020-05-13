@@ -17,12 +17,14 @@ export default function User() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   React.useEffect(() => {
-    if (!user.authenticated && user.isVetify) {
+    if (!user.info && !user.authenticated && user.isVetify) {
       history.push(URL.AUTH)
     }
   }, [user])
   React.useEffect(() => {
-    dispatch(authAction.verify())
+    if (!user.info) {
+      dispatch(authAction.verify())
+    }
   }, [])
   const handleLogout = () => {
     dispatch(authAction.logout())
@@ -34,10 +36,7 @@ export default function User() {
         <link rel="stylesheet" type="text/css" href="/comon/css/util.css" />
         <link rel="stylesheet" type="text/css" href="/comon/css/main.css" />
       </Helmet>
-      <Menu
-        email={localStorage.getItem(APP_CONSTANTS.WEB_EMAIL)}
-        logout={handleLogout}
-      />
+      <Menu logout={handleLogout} />
       <div className="container" style={{ marginTop: 50 }}>
         <Switch>
           <Route path={URL.USER.INFO} component={Info} />

@@ -53,10 +53,16 @@ class ListQuest extends Component {
                     ? user.info.avatar_path
                     : '/images/img_quest_default.png'
                 }
-                style={{ width: '100%', height: '130px', objectFit: 'cover' }}
+                style={{
+                  width: '100%',
+                  height: '130px',
+                  objectFit: 'cover',
+                }}
+                className="avatar-img"
               />
               <div
-                style={{ width: '100%', padding: '10px', background: '#fff' }}>
+                style={{ width: '100%', padding: '10px', background: '#fff' }}
+                className="info-user-div">
                 <h4>{user && user.info ? user.info.name : ''}</h4>
                 <p style={{ color: '#000' }}>
                   Tổng số thử thách: {myQuests ? myQuests.length : 0}

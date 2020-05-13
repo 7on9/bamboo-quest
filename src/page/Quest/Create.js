@@ -65,12 +65,13 @@ export default function Create() {
     selectCategory.forEach((item) => {
       categoryArr.push(item._id)
     })
+    dispatch(questActions.changeStatusRunning(true))
     dispatch(
       questActions.createQuest({
         title: values.title,
         description: values.description,
         is_public: newQuest.is_public,
-        img_path: newQuest.img_path?newQuest.img_path:undefined,
+        img_path: newQuest.img_path ? newQuest.img_path : undefined,
         category: categoryArr,
       })
     )

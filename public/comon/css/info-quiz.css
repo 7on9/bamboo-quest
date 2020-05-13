@@ -192,6 +192,7 @@
 .info-quiz .array-ans {
   padding: 5px 16px;
   background-color: #fff;
+  border-radius: 0 0 3ox;
 }
 
 .info-quiz .item-ans {

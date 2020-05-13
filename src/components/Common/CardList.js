@@ -27,7 +27,12 @@ export const Cardlist = ({ id, title, question, img_path }) => {
                   ? img_path
                   : 'https://ipm-cdn.kahoot.it/wp-content/uploads/2019/03/HigherEd-Plus.png'
               }
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '3px 0 0 3px',
+              }}
               alt=""
             />
             <div className="count-quest">
@@ -61,6 +66,7 @@ export const Cardlist = ({ id, title, question, img_path }) => {
                   background: 'red',
                   height: '100%',
                   opacity: 0.7,
+                  borderRadius: '0px 3px 3px 0px',
                 }}>
                 <img
                   src={Icon.REMOVE}
