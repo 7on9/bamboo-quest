@@ -40,8 +40,10 @@ const UpdateUser = () => {
   }, [user.info])
 
   const handleSubmit = (values) => {
+    console.log(values)
     dispatch(
       User.update(
+        imgPath !== '' ? imgPath : undefined,
         values.name,
         values.phone,
         values.gender ? values.gender : false,
@@ -271,7 +273,7 @@ const UpdateUser = () => {
                           type="submit"
                           className="col-12 btn btn-block btn-success"
                           style={{ height: '40px' }}
-                          disabled={isSubmitting}>
+                          disabled={user.running}>
                           <i className="fas fa-edit" />
                           {user.running ? 'Đang Load...' : 'Chỉnh sửa'}
                         </button>
