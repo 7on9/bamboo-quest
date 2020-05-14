@@ -1,5 +1,5 @@
 //reducer user
-import { USER_TYPE, EVENT } from './types'
+import { USER_TYPE, EVENT, ERROR } from './types'
 
 let initialState = {
   token: '',
@@ -44,6 +44,12 @@ export const authReducer = (state = initialState, action) => {
       state = {
         ...state,
         running: action.payload.running,
+      }
+      break
+    case ERROR.UPDATE:
+      state = {
+        ...state,
+        errorUpdate: action.payload.errorUpdate,
       }
       break
     default:

@@ -13,6 +13,7 @@ export const USER_TYPE = {
 export const ERROR = {
   NOT_EXIST: 'ERROR/NOT_EXIST',
   DUPLICATE: 'ERROR/DUPLICATE',
+  UPDATE:'ERROR/UPDATE'
 }
 
 export const EVENT = {

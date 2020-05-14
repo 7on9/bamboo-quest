@@ -1,5 +1,5 @@
 import { AuthenticationService } from '../../services/authentication'
-import { USER_TYPE, EVENT } from './types'
+import { USER_TYPE, EVENT, ERROR } from './types'
 import { APP_CONSTANTS } from '../../common/constants'
 
 const authenAction = (type, token, email, result) => {
@@ -60,6 +60,17 @@ export const changeStatusRunning = (status) => {
   }
 }
 
+export const resetErrorUpdate = () => {
+  return (dispatch) => {
+    dispatch({
+      type: ERROR.UPDATE,
+      payload: {
+        errorUpdate: undefined,
+      },
+    })
+  }
+}
+
 export const register = (email, password, name) => {
   return async (dispatch) => {
     try {
@@ -86,23 +97,17 @@ export const register = (email, password, name) => {
   }
 }
 
-export const update = (avatar_path, name, phone, gender, organization, dob) => {
+export const update = (props) => {
   return async (dispatch) => {
     try {
-      const res = await AuthenticationService.update(
-        avatar_path,
-        name,
-        phone,
-        gender,
-        organization,
-        dob
-      )
+      const res = await AuthenticationService.update(props)
       dispatch({
         type: USER_TYPE.UPDATE,
         payload: {
           running: false,
           result: true,
           info: res.data,
+          errorUpdate: false,
         },
       })
     } catch (error) {
@@ -111,6 +116,7 @@ export const update = (avatar_path, name, phone, gender, organization, dob) => {
         payload: {
           running: false,
           result: false,
+          errorUpdate: true,
         },
       })
     }

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { initFormikEdit } from './util'
-import { infoSchema } from '../../common/validation'
+import { initFormikEdit, initFormikEditPassword } from './util'
+import { infoSchema, passwordSchema } from '../../common/validation'
 import * as User from '../../store/auth/action'
 import './styles.css'
 
@@ -30,29 +30,41 @@ const UpdateUser = () => {
 
   useEffect(() => {
     if (isSubmit) {
-      if (user.info) {
+      if (!user.errorUpdate) {
         alert('Bạn đã chỉnh sửa thông tin thành công')
+        setIsSubmit(false)
+        dispatch(User.resetErrorUpdate())
         history.goBack()
       } else {
         alert('Đã xảy ra lỗi vui lòng thử lại')
+        dispatch(User.resetErrorUpdate())
         setIsSubmit(false)
       }
     }
-  }, [user.info])
+  }, [user.errorUpdate])
 
-  const handleSubmit = (values) => {
-    console.log(values)
-    dispatch(
-      User.update(
-        imgPath !== '' ? imgPath : undefined,
-        values.name,
-        values.phone,
-        values.gender ? values.gender : false,
-        values.organization
+  const handleSubmit = (values, type) => {
+    if (type === 0) {
+      dispatch(
+        User.update({
+          avatar_path: imgPath !== '' ? imgPath : undefined,
+          name: values.name,
+          phone: values.phone,
+          gender: values.gender ? values.gender : false,
+          organization: values.organization,
+        })
       )
-    )
+      setIsSubmit(true)
+    } else if (type === 1) {
+      dispatch(
+        User.update({
+          oldPassword: values.oldPassword,
+          password: values.newPassword,
+        })
+      )
+      setIsSubmit(true)
+    }
     dispatch(User.changeStatusRunning(true))
-    setIsSubmit(true)
   }
   const MyRadio = ({ label, ...props }) => {
     const [field, meta] = useField(props)
@@ -124,166 +136,264 @@ const UpdateUser = () => {
                     Thông tin tài khoản
                   </a>
                 </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    id="password-tab"
+                    data-toggle="tab"
+                    href="#password"
+                    role="tab"
+                    aria-controls="password"
+                    aria-selected="false">
+                    Password
+                  </a>
+                </li>
               </ul>
               <div className="row">
                 <div className="col-md-12">
-                  <Formik
-                    initialValues={initFormikEdit(user)}
-                    enableReinitialize
-                    validationSchema={infoSchema}
-                    onSubmit={handleSubmit}>
-                    {({
-                      values,
-                      errors,
-                      touched,
-                      handleSubmit,
-                      handleChange,
-                      isSubmitting,
-                    }) => (
-                      <Form
-                        className="tab-content profile-tab"
-                        id="myTabContent"
-                        onSubmit={handleSubmit}>
-                        <div className="form-row">
-                          <div className="form-group col-md-6">
-                            <i className="fas fa-envelope icon" />
-                            <label htmlFor="inputEmail4">Email</label>
-                            <Field
-                              type="email"
-                              className={
-                                touched.email && errors.email
-                                  ? 'is-invalid form-control'
-                                  : 'form-control'
-                              }
-                              name="email"
+                  <div className="tab-content profile-tab" id="myTabContent">
+                    <Formik
+                      initialValues={initFormikEdit(user)}
+                      enableReinitialize
+                      validationSchema={infoSchema}
+                      onSubmit={(values) => handleSubmit(values, 0)}>
+                      {({
+                        values,
+                        errors,
+                        touched,
+                        handleSubmit,
+                        handleChange,
+                        isSubmitting,
+                      }) => (
+                        <Form
+                          className="tab-pane fade show active"
+                          id="home"
+                          role="tabpanel"
+                          aria-labelledby="home-tab"
+                          onSubmit={handleSubmit}>
+                          <div className="form-row">
+                            <div className="form-group col-md-6">
+                              <i className="fas fa-envelope icon" />
+                              <label htmlFor="inputEmail4">Email</label>
+                              <Field
+                                type="email"
+                                className={
+                                  touched.email && errors.email
+                                    ? 'is-invalid form-control'
+                                    : 'form-control'
+                                }
+                                name="email"
+                                onChange={handleChange}
+                                disabled={true}
+                                value={values.email}
+                              />
+                              <ErrorMessage
+                                name="email"
+                                className="invalid-feedback"
+                                component="div"
+                              />
+                            </div>
+
+                            <div className="form-group col-md-6">
+                              <i
+                                className="fas fa-user"
+                                style={{ marginRight: '15px' }}
+                              />
+                              <label>Tên</label>
+                              <Field
+                                as="input"
+                                type="text"
+                                name="name"
+                                className={
+                                  touched.name && errors.name
+                                    ? 'is-invalid form-control'
+                                    : 'form-control'
+                                }
+                                placeholder="Tên"
+                                onChange={handleChange}
+                                value={values.name}
+                              />
+                              <ErrorMessage
+                                name="name"
+                                className="invalid-feedback"
+                                component="div"
+                              />
+                            </div>
+                          </div>
+                          <div className="form-group">
+                            <i className="fas fa-venus-mars icon" />
+                            <label>Gender</label>
+                            <MyRadio
+                              name="gender"
+                              value={true}
+                              onClick={() => setGender(true)}
                               onChange={handleChange}
-                              disabled={true}
-                              value={values.email}
+                              checked={gender}
+                              label="Nữ"
+                              touched={touched.gender}
+                              message={errors.gender}
                             />
+                            <MyRadio
+                              name="gender"
+                              value={false}
+                              onClick={() => setGender(false)}
+                              checked={!gender}
+                              onChange={handleChange}
+                              label="Nam"
+                              message={errors.gender}
+                              touched={touched.gender}
+                            />
+
                             <ErrorMessage
-                              name="email"
+                              name="gender"
                               className="invalid-feedback"
                               component="div"
                             />
                           </div>
 
-                          <div className="form-group col-md-6">
-                            <i
-                              className="fas fa-user"
-                              style={{ marginRight: '15px' }}
-                            />
-                            <label>Tên</label>
+                          <div className="form-group">
+                            <i className="fas fa-building icon" />
+                            <label>Organization</label>
                             <Field
-                              as="input"
                               type="text"
-                              name="name"
                               className={
-                                touched.name && errors.name
+                                touched.organization && errors.organization
                                   ? 'is-invalid form-control'
                                   : 'form-control'
                               }
-                              placeholder="Tên"
+                              name="organization"
+                              placeholder={
+                                user.info
+                                  ? user.info.organization
+                                    ? user.info.organization
+                                    : 'Đơn vị công tác'
+                                  : null
+                              }
                               onChange={handleChange}
-                              value={values.name}
+                              value={values.organization}
                             />
                             <ErrorMessage
-                              name="name"
+                              name="organization"
                               className="invalid-feedback"
                               component="div"
                             />
                           </div>
-                        </div>
-                        <div className="form-group">
-                          <i className="fas fa-venus-mars icon" />
-                          <label>Gender</label>
-                          <MyRadio
-                            name="gender"
-                            value={true}
-                            onClick={() => setGender(true)}
-                            onChange={handleChange}
-                            checked={gender}
-                            label="Nữ"
-                            touched={touched.gender}
-                            message={errors.gender}
-                          />
-                          <MyRadio
-                            name="gender"
-                            value={false}
-                            onClick={() => setGender(false)}
-                            checked={!gender}
-                            onChange={handleChange}
-                            label="Nam"
-                            message={errors.gender}
-                            touched={touched.gender}
-                          />
+                          <div className="form-group">
+                            <i className="fas fa-phone icon" />
+                            <label>Phone</label>
+                            <Field
+                              type="text"
+                              className={
+                                touched.phone && errors.phone
+                                  ? 'is-invalid form-control'
+                                  : 'form-control'
+                              }
+                              name="phone"
+                              maxLength="10"
+                              onChange={handleChange}
+                              value={values.phone}
+                              placeholder="Số điện thoại"
+                            />
+                            <ErrorMessage
+                              name="phone"
+                              className="invalid-feedback"
+                              component="div"
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            className="col-12 btn btn-block btn-success"
+                            style={{ height: '40px' }}
+                            disabled={user.running}>
+                            <i className="fas fa-edit" />
+                            {user.running ? 'Đang Load...' : 'Chỉnh sửa'}
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
+                    <Formik
+                      initialValues={initFormikEditPassword()}
+                      enableReinitialize
+                      validationSchema={passwordSchema}
+                      onSubmit={(values) => handleSubmit(values, 1)}>
+                      {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                      }) => (
+                        <Form
+                          className="tab-pane fade"
+                          id="password"
+                          role="tabpanel"
+                          aria-labelledby="password-tab">
+                          <div className="form-group">
+                            <i className="fas fa-lock icon" />
+                            <label>Mật khẩu hiện tại</label>
+                            <Field
+                              type="password"
+                              className={
+                                touched.oldPassword && errors.oldPassword
+                                  ? 'is-invalid form-control'
+                                  : 'form-control'
+                              }
+                              name="oldPassword"
+                              placeholder={
+                                user.info
+                                  ? user.info.oldPassword
+                                    ? user.info.oldPassword
+                                    : 'Mật khẩu'
+                                  : null
+                              }
+                              onChange={handleChange}
+                              value={values.oldPassword}
+                            />
+                            <ErrorMessage
+                              name="oldPassword"
+                              className="invalid-feedback"
+                              component="div"
+                            />
+                          </div>
 
-                          <ErrorMessage
-                            name="gender"
-                            className="invalid-feedback"
-                            component="div"
-                          />
-                        </div>
-
-                        <div className="form-group">
-                          <i className="fas fa-building icon" />
-                          <label>Organization</label>
-                          <Field
-                            type="text"
-                            className={
-                              touched.organization && errors.organization
-                                ? 'is-invalid form-control'
-                                : 'form-control'
-                            }
-                            name="organization"
-                            placeholder={
-                              user.info
-                                ? user.info.organization
-                                  ? user.info.organization
-                                  : 'Đơn vị công tác'
-                                : null
-                            }
-                            onChange={handleChange}
-                            value={values.organization}
-                          />
-                          <ErrorMessage
-                            name="organization"
-                            className="invalid-feedback"
-                            component="div"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <i className="fas fa-phone icon" />
-                          <label>Phone</label>
-                          <Field
-                            type="text"
-                            className={
-                              touched.phone && errors.phone
-                                ? 'is-invalid form-control'
-                                : 'form-control'
-                            }
-                            name="phone"
-                            maxLength="10"
-                            onChange={handleChange}
-                            value={values.phone}
-                            placeholder="Số điện thoại"
-                          />
-                          <ErrorMessage
-                            name="phone"
-                            className="invalid-feedback"
-                            component="div"
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="col-12 btn btn-block btn-success"
-                          style={{ height: '40px' }}
-                          disabled={user.running}>
-                          <i className="fas fa-edit" />
-                          {user.running ? 'Đang Load...' : 'Chỉnh sửa'}
-                        </button>
-                      </Form>
-                    )}
-                  </Formik>
+                          <div className="form-group">
+                            <i className="fas fa-lock icon" />
+                            <label>Mật khẩu mới</label>
+                            <Field
+                              type="password"
+                              className={
+                                touched.newPassword && errors.newPassword
+                                  ? 'is-invalid form-control'
+                                  : 'form-control'
+                              }
+                              name="newPassword"
+                              placeholder={
+                                user.info
+                                  ? user.info.newPassword
+                                    ? user.info.newPassword
+                                    : 'Mật khẩu'
+                                  : null
+                              }
+                              onChange={handleChange}
+                              value={values.newPassword}
+                            />
+                            <ErrorMessage
+                              name="newPassword"
+                              className="invalid-feedback"
+                              component="div"
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            className="col-12 btn btn-block btn-success"
+                            style={{ height: '40px' }}
+                            disabled={user.running}>
+                            <i className="fas fa-edit" />
+                            {user.running ? 'Đang Load...' : 'Chỉnh sửa'}
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
+                  </div>
                 </div>
               </div>
             </div>
@@ -295,285 +405,3 @@ const UpdateUser = () => {
 }
 
 export default React.memo(UpdateUser)
-// class Edit extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       img_path: '',
-//     }
-//   }
-// onUploadImage = async (event) => {
-//   if (event.target.files[0]) {
-//     this.setState({
-//       img_path: URL.createObjectURL(event.target.files[0]),
-//     })
-//   }
-//   let reader = new FileReader()
-//   reader.onloadend = () => {
-//     this.setState({
-//       newQuest: {
-//         ...this.state.newQuest,
-//         img_path: reader.result,
-//       },
-//     })
-//   }
-//   if (event.target.files[0]) {
-//     reader.readAsDataURL(event.target.files[0])
-//   }
-// }
-
-// handleSubmit = (values) => {
-//   this.props.update(
-//     this.state.img_path,
-//     9898989,
-//     values.name,
-//     values.phone,
-//     values.gender,
-//     values.organization
-//   )
-// }
-
-//   renderEdit() {
-//     return (
-// <div className="container emp-profile">
-//   <form method="post">
-//     <div className="row">
-//       <div className="col-md-4">
-//         <div className="profile-img">
-//           <img
-//             src={
-//               this.props.user.info && this.props.user.info.avatar_path
-//                 ? this.props.user.info.avatar_path
-//                 : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog'
-//             }
-//             alt="avatar"
-//           />
-//           <div className="file btn btn-lg btn-primary">
-//             Change Photo
-//             <input
-//               type="file"
-//               style={{ background: 'none', width: '100%' }}
-//               onChange={this.onUploadImage}
-//               name="file"
-//             />
-//           </div>
-//         </div>
-//       </div>
-//       <div className="col-md-8">
-//         <div className="profile-head profile-header">
-//           <ul className="nav nav-tabs" id="myTab" role="tablist">
-//             <li className="nav-item">
-//               <a
-//                 className="nav-link active"
-//                 id="home-tab"
-//                 data-toggle="tab"
-//                 href="#home"
-//                 role="tab"
-//                 aria-controls="home"
-//                 aria-selected="true">
-//                 Thông tin tài khoản
-//               </a>
-//             </li>
-//           </ul>
-//           <div className="row">
-//             <div className="col-md-12">
-//               <Formik
-//                 initialValues={initFormikEdit(this.props.user)}
-//                 enableReinitialize
-//                 validationSchema={infoSchema}
-//                 onSubmit={this.handleSubmit}>
-//                 {({
-//                   values,
-//                   errors,
-//                   touched,
-//                   handleSubmit,
-//                   handleChange,
-//                   isSubmitting,
-//                 }) => (
-//                   <Form
-//                     className="tab-content profile-tab"
-//                     id="myTabContent"
-//                     onSubmit={handleSubmit}>
-//                     <div className="form-row">
-//                       <div className="form-group col-md-6">
-//                         <i className="fas fa-envelope icon" />
-//                         <label htmlFor="inputEmail4">Email</label>
-//                         <Field
-//                           type="email"
-//                           className={
-//                             touched.email && errors.email
-//                               ? 'is-invalid form-control'
-//                               : 'form-control'
-//                           }
-//                           name="email"
-//                           onChange={handleChange}
-//                           value={values.email}
-//                         />
-//                         <ErrorMessage
-//                           name="email"
-//                           className="invalid-feedback"
-//                           component="div"
-//                         />
-//                       </div>
-
-//                       <div className="form-group col-md-6">
-//                         <i className="fas fa-lock icon" />
-//                         <label>Password</label>
-//                         <Field
-//                           as="input"
-//                           type="password"
-//                           name="password"
-//                           className={
-//                             touched.password && errors.password
-//                               ? 'is-invalid form-control'
-//                               : 'form-control'
-//                           }
-//                           placeholder="Password"
-//                           onChange={handleChange}
-//                           value={values.password}
-//                         />
-//                         <ErrorMessage
-//                           name="password"
-//                           className="invalid-feedback"
-//                           component="div"
-//                         />
-//                       </div>
-//                     </div>
-//                     <div className="form-group">
-//                       <i className="fas fa-user icon" />
-//                       <label>Tên</label>
-//                       <Field
-//                         name="name"
-//                         className={
-//                           touched.name && errors.name
-//                             ? 'is-invalid form-control'
-//                             : 'form-control'
-//                         }
-//                         placeholder={
-//                           this.props.user.info
-//                             ? this.props.user.info.name
-//                             : 'Tên'
-//                         }
-//                         value={values.name}
-//                         onChange={handleChange}
-//                       />
-//                       <ErrorMessage
-//                         name="name"
-//                         className="invalid-feedback"
-//                         component="div"
-//                       />
-//                     </div>
-//                     <div className="form-group">
-//                       <i className="fas fa-venus-mars icon" />
-//                       <label>Gender</label>
-//                       <MyRadio
-//                         name="gender"
-//                         value={true}
-//                         onClick={() => this.setState({ gender: true })}
-//                         onChange={handleChange}
-//                         checked={this.state.gender}
-//                         label="Nữ"
-//                         touched={touched.gender}
-//                         message={errors.gender}
-//                       />
-//                       <MyRadio
-//                         name="gender"
-//                         value={false}
-//                         onClick={() => this.setState({ gender: false })}
-//                         checked={!this.state.gender}
-//                         onChange={handleChange}
-//                         label="Nam"
-//                         message={errors.gender}
-//                         touched={touched.gender}
-//                       />
-
-//                       <ErrorMessage
-//                         name="gender"
-//                         className="invalid-feedback"
-//                         component="div"
-//                       />
-//                     </div>
-
-//                     <div className="form-group">
-//                       <i className="fas fa-building icon" />
-//                       <label>Organization</label>
-//                       <Field
-//                         type="text"
-//                         className={
-//                           touched.organization && errors.organization
-//                             ? 'is-invalid form-control'
-//                             : 'form-control'
-//                         }
-//                         name="organization"
-//                         placeholder={
-//                           this.props.user.info
-//                             ? this.props.user.info.organization
-//                               ? this.props.user.info.organization
-//                               : 'Đơn vị công tác'
-//                             : null
-//                         }
-//                         onChange={handleChange}
-//                         value={values.organization}
-//                       />
-//                       <ErrorMessage
-//                         name="organization"
-//                         className="invalid-feedback"
-//                         component="div"
-//                       />
-//                     </div>
-//                     <div className="form-group">
-//                       <i className="fas fa-phone icon" />
-//                       <label>Phone</label>
-//                       <Field
-//                         type="text"
-//                         className={
-//                           touched.phone && errors.phone
-//                             ? 'is-invalid form-control'
-//                             : 'form-control'
-//                         }
-//                         name="phone"
-//                         maxLength="10"
-//                         onChange={handleChange}
-//                         value={values.phone}
-//                         placeholder="Số điện thoại"
-//                       />
-//                       <ErrorMessage
-//                         name="phone"
-//                         className="invalid-feedback"
-//                         component="div"
-//                       />
-//                     </div>
-//                     <button
-//                       type="submit"
-//                       className="col-12 btn btn-block btn-success"
-//                       style={{ height: '40px' }}
-//                       disabled={isSubmitting}>
-//                       <i className="fas fa-edit" />
-//                       {isSubmitting ? 'Đang Load...' : 'Chỉnh sửa'}
-//                     </button>
-//                   </Form>
-//                 )}
-//               </Formik>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </form>
-// </div>
-//     )
-//   }
-//   render() {
-//     return <div className="row">{this.renderEdit()}</div>
-//   }
-// }
-
-// const mapStateToProps = (state) => ({
-//   ...state,
-// })
-
-// const mapDispatchToProps = {
-//   update: user.update,
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Edit)

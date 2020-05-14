@@ -24,11 +24,14 @@ export const infoSchema = Yup.object().shape({
     .email('Hãy nhập đúng định dạng')
     .required('Bạn quên nhập email nè !'),
   name: Yup.string().required('Bạn quên nhập tên nè !'),
-  password: Yup.string().min(2, 'Quá ngắn rồi !').max(50, 'Dài dòng quá !'),
   organization: Yup.string().required('Bạn quên nhập nơi công tác nè !'),
   phone: Yup.string()
     .required('Bạn quên nhập số điện thoại nè !')
     .length(10, 'Số điện thoại phải đủ 10 số'),
+})
+export const passwordSchema = Yup.object().shape({
+  oldPassword: Yup.string().min(2, 'Quá ngắn rồi !').max(50, 'Dài dòng quá !').required('Bạn quên nhập password nè !'),
+  newPassword: Yup.string().min(2, 'Quá ngắn rồi !').max(50, 'Dài dòng quá !').required('Bạn quên nhập password nè !'),
 })
 export const questSchema = Yup.object().shape({
   title: Yup.string()

@@ -13,10 +13,10 @@ export const AuthenticationService = {
       data: { email, password, name },
     })
   },
-  update: (avatar_path, name, phone, gender, organization) => {
+  update: (props) => {
     return dataProvider('/user/info', {
       method: 'POST',
-      data: { user: { avatar_path, name, phone, gender, organization } },
+      data: { user: props },
     })
   },
   logout: () => {

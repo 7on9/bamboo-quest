@@ -12,3 +12,9 @@ export const initFormikEdit = (user) => {
     gender,
   }
 }
+export const initFormikEditPassword = () => {
+  return {
+    oldPassword:'',
+    newPassword:'',
+  }
+}
