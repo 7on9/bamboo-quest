@@ -15,7 +15,8 @@ class Ready extends Component {
     }
   }
 
-  UNSAFE_componentDidMount() {
+  componentDidMount() {
+    console.log(this.props.game)
     if (!this.props.game.idGame) {
       this.setState({
         toHome: true,
@@ -48,6 +49,7 @@ class Ready extends Component {
     }, 100)
   }
   render() {
+    console.log(this.state)
     if (this.state.toQuestion) {
       let { from } = this.props.location.state || {
         from: { pathname: '/host/question' },

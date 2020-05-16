@@ -13,7 +13,8 @@ class Question extends Component {
       toResult: false,
     }
   }
-  UNSAFE_componentDidMount() {
+  componentDidMount() {
+    console.log(this.props.game)
     if (this.props.game.idGame) {
       this.setState({
         time: this.props.game.questions[this.props.game.idQuestion].duration,
@@ -43,6 +44,7 @@ class Question extends Component {
 
   render() {
     const { game } = this.props
+    console.log(game)
     if (this.state.toHome) {
       let { from } = this.props.location.state || {
         from: { pathname: '/home' },
@@ -61,7 +63,7 @@ class Question extends Component {
       <div className="container-play" style={{ height: '100%', width: '100%' }}>
         <div className="top">
           <div className="quest-play">
-            {game ? game.questions[game.idQuestion].quiz : 'Câu hỏi'}
+            {game && game.questions ? game.questions[game.idQuestion].quiz : 'Câu hỏi'}
           </div>
         </div>
         <br style={{ height: '1px' }} />
@@ -89,7 +91,7 @@ class Question extends Component {
                 alt="img_question"
                 style={{ width: '75%', height: '90%', textAlign: 'center' }}
                 src={
-                  game
+                  game && game.questions
                     ? game.questions[game.idQuestion].img_path
                       ? game.questions[game.idQuestion].img_path
                       : '/images/img_quest_default.png'
@@ -134,7 +136,7 @@ class Question extends Component {
                       A
                     </h3>
                     <h3 className="ansPlay">
-                      {game
+                      {game && game.questions
                         ? game.questions[game.idQuestion].ans[0].content
                         : 'Đáp án'}
                     </h3>
@@ -155,7 +157,7 @@ class Question extends Component {
                       B
                     </h3>
                     <h3 className="ansPlay">
-                      {game
+                      {game && game.questions
                         ? game.questions[game.idQuestion].ans[1].content
                         : 'Đáp án'}
                     </h3>
@@ -176,7 +178,7 @@ class Question extends Component {
                       C
                     </h3>
                     <h3 className="ansPlay">
-                      {game
+                      {game && game.questions
                         ? game.questions[game.idQuestion].ans[2].content
                         : 'Đáp án'}
                     </h3>
@@ -197,7 +199,7 @@ class Question extends Component {
                       D
                     </h3>
                     <h3 className="ansPlay">
-                      {game
+                      {game && game.questions
                         ? game.questions[game.idQuestion].ans[3].content
                         : 'Đáp án'}
                     </h3>

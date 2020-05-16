@@ -84,7 +84,7 @@ export default React.memo(function () {
       <Formik
         initialValues={{
           time: '10',
-          correctId: '1',
+          correctId: '0',
         }}
         enableReinitialize
         validationSchema={createQuestionSchema}
@@ -195,7 +195,7 @@ export default React.memo(function () {
                                     hidden={true}
                                   />
                                   <label
-                                    for="files"
+                                    htmlFor="files"
                                     className="label-input file upload-btn">
                                     Choose a Photo
                                   </label>
@@ -281,10 +281,10 @@ export default React.memo(function () {
                           as="select"
                           name="correctId"
                           className="correctid">
-                          <option value="1">A</option>
-                          <option value="2">B</option>
-                          <option value="3">C</option>
-                          <option value="4">D</option>
+                          <option value="0">A</option>
+                          <option value="1">B</option>
+                          <option value="2">C</option>
+                          <option value="3">D</option>
                         </Field>
                       </div>
                       {quest.running && renderSpinner()}

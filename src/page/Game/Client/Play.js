@@ -9,7 +9,7 @@ import Helmet from 'react-helmet'
 
 /*Play game*/
 class Play extends Component {
-  UNSAFE_componentDidMount() {
+  componentDidMount() {
     this.setState({
       time: (new Date().getTime() / 1000.0).toFixed(2),
       answered: false,
