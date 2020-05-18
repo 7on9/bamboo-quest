@@ -88,6 +88,10 @@
   border-radius: 0.1875rem;
   text-decoration: none;
 }
+
+.info-quiz .quest-item:hover .btn-delete-question {
+  opacity: 1;
+}
 .info-quiz .right-component {
   padding: 20px;
   height: 100%;
@@ -123,15 +127,12 @@
 }
 
 .info-quiz .question-media__text-inner-wrapper {
-  display: -webkit-box;
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
 .info-quiz .question-media__text-inner-wrapper {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex: 1 1 auto;
+  float: left;
   flex: 1 1 auto;
   width: 100%;
   font-weight: 700;
@@ -252,6 +253,10 @@
 .btn-update:hover {
   cursor: pointer;
   background-color: rgb(226, 226, 226);
+}
+.btn-delete-question {
+  display: inline-block;
+  opacity: 0;
 }
 
 @media (max-width: 575.98px) {

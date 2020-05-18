@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom'
 import * as questActions from '../../store/quest/action'
 import { startGame, resetResult } from '../../store/socket/socket'
 import { objectIdToDate } from '../../utils/date'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 export default function Info() {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -53,6 +55,23 @@ export default function Info() {
     { lable: 'C', className: 'ans-c' },
     { lable: 'D', className: 'ans-d' },
   ]
+
+  const submit = (_id) => {
+    confirmAlert({
+      title: 'Xóa câu hỏi',
+      message: 'Bạn có chắc chắn muốn xóa câu hỏi này',
+      buttons: [
+        {
+          label: 'Đồng ý',
+          onClick: () => alert(_id),
+        },
+        {
+          label: 'Không',
+          onClick: () => alert('Click No'),
+        },
+      ],
+    })
+  }
 
   return (
     <div>
@@ -127,9 +146,20 @@ export default function Info() {
                             <p className="question-media__number">
                               Câu {i + 1}:
                             </p>
-                            <b className="question-media__text-inner-wrapper">
-                              {item.quiz}
-                            </b>
+                            <div style={{ whiteSpace: 'nowrap' }}>
+                              <b
+                                className="question-media__text-inner-wrapper"
+                                style={{ display: 'inline-block' }}>
+                                {item.quiz}
+                              </b>
+                              <i
+                                onClick={() => submit(item._id)}
+                                className="fas fa-trash btn-delete-question"
+                                style={{
+                                  color: '#dc3545',
+                                  fontSize: '13px',
+                                }}></i>
+                            </div>
                           </div>
                           <div className="question-media__image">
                             <div className="question-media__placeholder-image">
@@ -165,20 +195,20 @@ export default function Info() {
                                   </div>
                                   <div className="ans-detail">
                                     <p
-                                      style={
-                                        item.correct_id === itemAns._id
-                                          ? {
-                                              float: 'left',
-                                              marginRight: '20px',
-                                            }
-                                          : {}
-                                      }>
+                                      style={{
+                                        float: 'left',
+                                        marginRight: '20px',
+                                      }}>
                                       {itemAns.content}
                                     </p>
-                                    {item.correct_id === itemAns._id && (
+                                    {item.correct_id === itemAns._id ? (
                                       <i
                                         style={{ color: '#57b846' }}
-                                        className="fas fa-check-circle"></i>
+                                        className="fas fa-check"></i>
+                                    ) : (
+                                      <i
+                                        style={{ color: '#dc3545' }}
+                                        className="fas fa-times"></i>
                                     )}
                                   </div>
                                 </div>
