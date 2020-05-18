@@ -14,6 +14,7 @@ const Home = () => {
   const quest = useSelector((state) => state.quest)
   useEffect(() => {
     dispatch(categoryActions.getCategory())
+    dispatch(questActions.resetQuiz())
   }, [])
 
   useEffect(() => {

@@ -16,6 +16,7 @@ class ListQuest extends Component {
   }
   UNSAFE_componentWillMount() {
     this.props.getMyQuests()
+    this.props.resetQuiz()
     if (
       !this.props.quest ||
       !this.props.quest.quests ||
@@ -161,6 +162,7 @@ const mapDispatchToProps = {
   getMyQuests: questActions.getMyQuests,
   verify: authAction.verify,
   getsAllQuests: questActions.getsAllQuests,
+  resetQuiz: questActions.resetQuiz,
   logout: authAction.logout,
 }
 

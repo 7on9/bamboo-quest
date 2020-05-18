@@ -86,6 +86,7 @@ export const questReducer = (state = initialState, action) => {
     case QUEST_TYPES.ADD:
     case QUEST_TYPES.GET:
     case QUEST_TYPES.MY_QUESTS:
+    case QUEST_TYPES.RESET_QUIZ:
     case EVENT.RUNNING:
       state = {
         ...state,

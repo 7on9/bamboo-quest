@@ -75,7 +75,6 @@ export const register = (email, password, name) => {
   return async (dispatch) => {
     try {
       let res = await AuthenticationService.register(email, password, name)
-      console.log(res)
       dispatch({
         type: USER_TYPE.AUTH.REGISTER,
         payload: {

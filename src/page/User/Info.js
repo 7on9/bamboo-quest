@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import * as questActions from '../../store/quest/action'
+
 class Info extends Component {
+  UNSAFE_componentWillMount() {
+    this.props.resetQuiz()
+  }
   render() {
     const { user } = this.props
     return (
@@ -151,6 +156,8 @@ const mapStateToProps = (state) => ({
   ...state,
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  resetQuiz: questActions.resetQuiz,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Info)

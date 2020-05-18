@@ -73,7 +73,6 @@ export const addQuestion = (newQuestion) => {
         },
       })
     } catch (error) {
-      console.log(error)
       dispatch({
         type: QUEST_TYPES.ADD,
         payload: {
@@ -100,7 +99,6 @@ export const deleteQuest = (idQuest) => {
         },
       })
     } catch (error) {
-      console.log(error)
       dispatch({
         type: QUEST_TYPES.DELETE,
         payload: {
@@ -213,7 +211,16 @@ export const resetResult = () => {
     })
   }
 }
-
+export const resetQuiz = () => {
+  return (dispatch) => {
+    dispatch({
+      type: QUEST_TYPES.RESET_QUIZ,
+      payload: {
+        info: null,
+      },
+    })
+  }
+}
 export const changeStatusRunning = (result) => {
   return (dispatch) => {
     dispatch({

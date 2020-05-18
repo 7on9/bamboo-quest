@@ -15,7 +15,6 @@ export default function Login(props) {
   const handleChangePage = () => {
     props.handleChangePage(CONTENT_TYPE.REGISTER)
   }
-  console.log(user.running)
   return (
     <div>
       <Formik

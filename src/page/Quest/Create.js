@@ -12,13 +12,13 @@ import { Multiselect } from 'multiselect-react-dropdown'
 export default function Create() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const quest = useSelector((state) => state.quest)
   const [newQuest, setNewQuest] = useState({
-    img_path: null,
-    is_public: false,
+    img_path: quest.info ? quest.info.img_path : null,
+    is_public: quest.info ? quest.info.is_public : false,
   })
   const [selectCategory, setSelectCategory] = useState([])
   const [submit, setSubmit] = useState(false)
-  const quest = useSelector((state) => state.quest)
   const category = useSelector((state) => state.category)
 
   const togglePublic = () => {
@@ -39,11 +39,7 @@ export default function Create() {
       reader.readAsDataURL(event.target.files[0])
     }
   }
-  const renderSpinner = () => (
-    <div className="linear-activity">
-      <div className="indeterminate" />
-    </div>
-  )
+
   useEffect(() => {
     dispatch(questActions.changeStatusRunning(false))
     dispatch(categoryActions.getCategory())
@@ -66,15 +62,19 @@ export default function Create() {
       categoryArr.push(item._id)
     })
     dispatch(questActions.changeStatusRunning(true))
-    dispatch(
-      questActions.createQuest({
-        title: values.title,
-        description: values.description,
-        is_public: newQuest.is_public,
-        img_path: newQuest.img_path ? newQuest.img_path : undefined,
-        category: categoryArr,
-      })
-    )
+    if (quest.info) {
+      //TODO
+    } else {
+      dispatch(
+        questActions.createQuest({
+          title: values.title,
+          description: values.description,
+          is_public: newQuest.is_public,
+          img_path: newQuest.img_path ? newQuest.img_path : undefined,
+          category: categoryArr,
+        })
+      )
+    }
   }
 
   const handleSubmitForm = async (formik) => {
@@ -84,6 +84,24 @@ export default function Create() {
 
   const handleSelectCategory = (selectedList) => {
     setSelectCategory(selectedList)
+  }
+
+  const selectedListCategory = () => {
+    if (quest.info) {
+      if (quest.info.category.length > 0) {
+        var arrCategory = []
+        quest.info.category.forEach((item) => {
+          const categoryItem = category.categories.find(
+            (element) => element._id === item
+          )
+          arrCategory.push(categoryItem)
+        })
+        return arrCategory
+      } else {
+        return []
+      }
+    }
+    return []
   }
   return (
     <div>
@@ -98,8 +116,8 @@ export default function Create() {
         <div className="container content">
           <Formik
             initialValues={{
-              description: '',
-              title: '',
+              description: quest.info ? quest.info.description : '',
+              title: quest.info ? quest.info.title : '',
             }}
             enableReinitialize
             validationSchema={questSchema}
@@ -182,6 +200,7 @@ export default function Create() {
                         onSelect={handleSelectCategory}
                         onRemove={handleSelectCategory}
                         placeholder={'Vui lòng chọn thể loại'}
+                        selectedValues={selectedListCategory()}
                       />
                     </div>
                     <div className="col-2"></div>
@@ -204,14 +223,23 @@ export default function Create() {
                     component="div"
                   />
                   <div className="col-12" style={{ padding: 0 }}>
-                    <div
-                      onClick={() => handleSubmitForm(formik)}
-                      className="update-btn"
-                      disabled={quest.running}>
-                      {quest.running
-                        ? 'Đang tạo thử thách ...'
-                        : 'Tạo thử thách'}
-                    </div>
+                    {quest.info ? (
+                      <div
+                        onClick={() => handleSubmitForm(formik)}
+                        className="update-btn"
+                        disabled={quest.running}>
+                        {quest.running ? 'Đang chỉnh sửa ...' : 'Chỉnh sửa'}
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() => handleSubmitForm(formik)}
+                        className="update-btn"
+                        disabled={quest.running}>
+                        {quest.running
+                          ? 'Đang tạo thử thách ...'
+                          : 'Tạo thử thách'}
+                      </div>
+                    )}
                   </div>
                 </Form>
               )

@@ -14,7 +14,6 @@ class Question extends Component {
     }
   }
   componentDidMount() {
-    console.log(this.props.game)
     if (this.props.game.idGame) {
       this.setState({
         time: this.props.game.questions[this.props.game.idQuestion].duration,
@@ -44,7 +43,6 @@ class Question extends Component {
 
   render() {
     const { game } = this.props
-    console.log(game)
     if (this.state.toHome) {
       let { from } = this.props.location.state || {
         from: { pathname: '/home' },

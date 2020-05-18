@@ -43,6 +43,10 @@ export default function Info() {
     }
   }
 
+  const handleUpdate = () => {
+    history.push('/quest/create')
+  }
+
   const arrayAns = [
     { lable: 'A', className: 'ans-a' },
     { lable: 'B', className: 'ans-b' },
@@ -63,6 +67,9 @@ export default function Info() {
         <div className="info-quiz">
           <div className="row full">
             <div className="col-12 col-md-3 left-component">
+              <div onClick={handleUpdate} className="btn-update">
+                <i className="fas fa-pen"></i>
+              </div>
               <img
                 src={
                   quest.info.img_path
@@ -72,7 +79,9 @@ export default function Info() {
                 className="image-quiz"
               />
               <div style={{ padding: '10px' }}>
-                <h1 className="title__heading">{quest.info.title}</h1>
+                <div>
+                  <h1 className="title__heading">{quest.info.title}</h1>
+                </div>
                 <p>{quest.info.description}</p>
                 <p>{quest.info.like.length} yêu thích</p>
                 <p>
@@ -91,11 +100,13 @@ export default function Info() {
                 )}
                 {String(quest.info.id_author) ===
                   String(user.info ? user.info._id : '') && (
-                  <div
-                    className="button-info button-add"
-                    onClick={handleAddQuestions}>
-                    Thêm câu hỏi
-                  </div>
+                  <>
+                    <div
+                      className="button-info button-add"
+                      onClick={handleAddQuestions}>
+                      Thêm câu hỏi
+                    </div>
+                  </>
                 )}
               </div>
             </div>
@@ -107,6 +118,7 @@ export default function Info() {
                 {quest.info.questions.map((item, i) => {
                   return (
                     <div
+                      key={`quiz${i}`}
                       className="quest-main"
                       onClick={() => handleShowAns(i)}>
                       <div className="quest-item">
@@ -152,7 +164,22 @@ export default function Info() {
                                     {arrayAns[i].lable}
                                   </div>
                                   <div className="ans-detail">
-                                    <p>{itemAns.content}</p>
+                                    <p
+                                      style={
+                                        item.correct_id === itemAns._id
+                                          ? {
+                                              float: 'left',
+                                              marginRight: '20px',
+                                            }
+                                          : {}
+                                      }>
+                                      {itemAns.content}
+                                    </p>
+                                    {item.correct_id === itemAns._id && (
+                                      <i
+                                        style={{ color: '#57b846' }}
+                                        className="fas fa-check-circle"></i>
+                                    )}
                                   </div>
                                 </div>
                                 {i !== 3 && <div className="line" />}
