@@ -34,22 +34,28 @@ export default function Collection() {
                     </div>
                   </div>
                 </div>
-
-                <div className="form-group">
-                  <label className="col-md-12">Image file</label>
-                  <div className="col-md-12">
-                    <div className="custom-file">
-                      <input
-                        type="file"
-                        name="avatar_path"
-                        id="customFile"
-                        className="custom-file-input"
-                        //   onChange={handleChange}
-                        // value={values.avatar_path}
-                      />
-                      <label className="custom-file-label" htmlFor="customFile">
-                        Choose file
-                      </label>
+                <div className="row profile-img">
+                  <div className="col-12 choice-img">
+                    <div className="full">
+                      <div className="full">
+                        <img
+                          className="img-upload"
+                          src="/images/img_quest_default.png"
+                        />
+                        <div className="text-center full">
+                          <input
+                            type="file"
+                            id="files"
+                            // onChange={onUploadImage}
+                            hidden={true}
+                          />
+                          <label
+                            for="files"
+                            className="label-input file file-upload-btn ">
+                            Choose a Photo
+                          </label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
