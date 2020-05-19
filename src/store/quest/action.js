@@ -1,12 +1,6 @@
 import { QuestService } from '../../services/quest'
 import { EVENT, QUEST_TYPES } from './types'
 
-// export const QUEST_TYPES_ACTIONS = {
-//   quests,
-//   questInfo,
-//   createQuest : createQuest
-// };
-
 export const questInfo = (quest) => {
   return {
     type: QUEST_TYPES.GET,
@@ -129,6 +123,34 @@ export const getInfoQuest = (idQuest) => {
         type: QUEST_TYPES.GET,
         payload: {
           info: null,
+          running: false,
+        },
+      })
+    }
+  }
+}
+
+export const updateInfoQuest = (newQuest) => {
+  return async (dispatch) => {
+    try {
+      resetResult()
+      let res = await QuestService.updateQuest(newQuest)
+      res = res.data
+      console.log(res)
+      dispatch({
+        type: QUEST_TYPES.GET,
+        payload: {
+          info: res,
+          running: false,
+          result: true,
+        },
+      })
+    } catch (error) {
+      dispatch({
+        type: QUEST_TYPES.GET,
+        payload: {
+          info: null,
+          running: false,
         },
       })
     }

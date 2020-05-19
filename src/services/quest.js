@@ -29,6 +29,12 @@ export const QuestService = {
       data: { newQuest: newQuest },
     })
   },
+  updateQuest: (newQuest) => {
+    return dataProvider('/quest/update', {
+      method: 'POST',
+      data: { newQuest: newQuest },
+    })
+  },
   addQuestion: (newQuestion) => {
     return dataProvider('/quest/question', {
       method: 'POST',
