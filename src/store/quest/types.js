@@ -13,6 +13,7 @@ export const QUEST_TYPES = {
   TITLE: 'TITLE_QUEST',
   GET_QUIZ_PUBLIC: 'QUIZ_PUBLIC',
   RESET_QUIZ: 'RESET_QUIZ',
+  UPDATE_QUIZ: 'UPDATE_QUIZ',
 }
 
 export const ERROR = {

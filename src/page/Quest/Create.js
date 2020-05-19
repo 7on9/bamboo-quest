@@ -56,6 +56,17 @@ export default function Create() {
     }
   }, [quest.quest])
 
+  useEffect(() => {
+    if (submit) {
+      if (quest.info) {
+        alert('Bạn đã chỉnh sửa thành công')
+        history.goBack()
+      } else {
+        alert('Chỉnh sửa không thành công, vui lòng kiểm tra!')
+      }
+    }
+  }, [quest.info])
+
   const onSubmit = (values) => {
     var categoryArr = []
     selectCategory.forEach((item) => {
@@ -63,7 +74,20 @@ export default function Create() {
     })
     dispatch(questActions.changeStatusRunning(true))
     if (quest.info) {
-      //TODO
+      dispatch(
+        questActions.updateInfoQuest({
+          _id: quest.info._id,
+          id_author: quest.info.id_author,
+          title: values.title,
+          description: values.description,
+          is_public: newQuest.is_public,
+          img_path:
+            newQuest.img_path !== quest.info.img_path
+              ? newQuest.img_path
+              : undefined,
+          category: categoryArr,
+        })
+      )
     } else {
       dispatch(
         questActions.createQuest({
