@@ -179,6 +179,28 @@ export const getMyQuests = () => {
   }
 }
 
+export const deleteQuestion = (quest) => {
+  return async (dispatch) => {
+    try {
+      resetResult()
+      let myQuest = await QuestService.deleteQuestion(quest)
+      myQuest = myQuest.data
+      dispatch({
+        type: QUEST_TYPES.DELETE_QUESTION,
+        payload: { info: myQuest },
+      })
+    } catch (error) {
+      dispatch({
+        type: QUEST_TYPES.DELETE_QUESTION,
+        payload: {
+          result: false,
+          info: null,
+        },
+      })
+    }
+  }
+}
+
 export const getsAllQuests = (limit) => {
   return async (dispatch) => {
     try {

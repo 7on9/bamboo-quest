@@ -263,16 +263,25 @@
   .info-quiz {
     overflow-y: scroll;
   }
+  .info-quiz .question-media__image {
+    width: 120px !important;
+  }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .info-quiz {
     overflow-y: scroll;
+  }
+  .info-quiz .question-media__image {
+    width: 120px !important;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .info-quiz {
     overflow-y: scroll;
+  }
+  .info-quiz .question-media__image {
+    width: 120px !important;
   }
 }
 
