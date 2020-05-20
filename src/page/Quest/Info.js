@@ -20,11 +20,13 @@ export default function Info() {
   useEffect(() => {
     dispatch(questActions.getInfoQuest(id))
   }, [])
+
   useEffect(() => {
     if (gameStarted) {
       history.push('/host')
     }
   }, [game])
+
   const startGameHandle = () => {
     dispatch(resetResult())
     dispatch(startGame(quest.info._id))
@@ -56,6 +58,15 @@ export default function Info() {
     { lable: 'D', className: 'ans-d' },
   ]
 
+  const handleDeleteQuestion = (idQuestion) => {
+    dispatch(
+      questActions.deleteQuestion({
+        _id: quest.info._id,
+        id: idQuestion - 1,
+      })
+    )
+  }
+
   const submit = (_id) => {
     confirmAlert({
       title: 'Xóa câu hỏi',
@@ -63,14 +74,20 @@ export default function Info() {
       buttons: [
         {
           label: 'Đồng ý',
-          onClick: () => alert(_id),
+          onClick: () => handleDeleteQuestion(_id),
         },
         {
           label: 'Không',
-          onClick: () => alert('Click No'),
+          onClick: () => alert('Hủy'),
         },
       ],
     })
+  }
+
+  const data = () => {
+    return quest.info.questions
+      .filter((ii) => ii.deleted === false)
+      .map((x) => x)
   }
 
   return (
@@ -129,12 +146,12 @@ export default function Info() {
                 )}
               </div>
             </div>
-            {quest.info.questions.length === 0 ? (
+            {data().length === 0 ? (
               'Bạn chưa tạo thử thách nào'
             ) : (
               <div className="col-12 col-md-9 right-component">
                 <b>{`Câu hỏi (${quest.info.questions.length})`}</b>
-                {quest.info.questions.map((item, i) => {
+                {data().map((item, i) => {
                   return (
                     <div
                       key={`quiz${i}`}
@@ -150,7 +167,7 @@ export default function Info() {
                               <b
                                 className="question-media__text-inner-wrapper"
                                 style={{ display: 'inline-block' }}>
-                                {item.quiz}
+                                {item.quiz ? item.quiz : ''}
                               </b>
                               <i
                                 onClick={() => submit(item._id)}
