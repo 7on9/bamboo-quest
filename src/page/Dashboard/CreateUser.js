@@ -1,5 +1,6 @@
 import React from 'react'
 import './comon/styles.css'
+import Dropdown from './comon/Dropdown'
 
 export default function CreateUser() {
   return (
@@ -45,9 +46,11 @@ export default function CreateUser() {
                       />
                     </div>
                   </div>
+
                   <div className="col-md-6">
                     <div className="form-group">
-                      <NavMenu />
+                      {/* <NavMenu /> */}
+                      <Dropdown />
                     </div>
                   </div>
                 </div>
