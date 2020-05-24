@@ -25,7 +25,46 @@ export const getAllUsers = (page) => {
     }
   }
 }
-
+export const getQuestDashboard = () => {
+  return async (dispatch) => {
+    try {
+      resetResult()
+      let find = await AdminService.getQuests('find', undefined, undefined)
+      find = find.data
+      return dispatch({
+        type: ADMIN_TYPE.GET,
+        payload: { questDashboard: find },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.GET,
+        payload: {
+          questDashboard: [],
+        },
+      })
+    }
+  }
+}
+export const getUserDashboard = () => {
+  return async (dispatch) => {
+    try {
+      resetResult()
+      let find = await AdminService.getUsers('find', undefined, undefined)
+      find = find.data
+      return dispatch({
+        type: ADMIN_TYPE.GET,
+        payload: { userDashboard: find },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.GET,
+        payload: {
+          userDashboard: [],
+        },
+      })
+    }
+  }
+}
 export const getCount = (collection) => {
   return async (dispatch) => {
     try {
@@ -44,18 +83,52 @@ export const getCount = (collection) => {
             payload: { countQuiz: count.data.count },
           }
           break
+        case 'game':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_GAME,
+            payload: { countGame: count.data.count },
+          }
+          break
+        case 'category':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_CATEGORY,
+            payload: { countCategory: count.data.count },
+          }
+          break
         default:
           break
       }
       return dispatch(payloadInfo)
     } catch (error) {
-      const payloadInfo =
-        collection === 'user'
-          ? {
-              type: ADMIN_TYPE.GET_COUNT_USER,
-              payload: { countUser: -2 },
-            }
-          : { type: ADMIN_TYPE.GET_COUNT_QUIZ, payload: { countQuiz: -2 } }
+      var payloadInfo = {}
+      switch (collection) {
+        case 'user':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_USER,
+            payload: { countUser: -2 },
+          }
+          break
+        case 'quest':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_QUIZ,
+            payload: { countQuiz: -2 },
+          }
+          break
+        case 'game':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_GAME,
+            payload: { countGame: -2 },
+          }
+          break
+        case 'category':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_CATEGORY,
+            payload: { countCategory: -2 },
+          }
+          break
+        default:
+          break
+      }
       return dispatch(payloadInfo)
     }
   }

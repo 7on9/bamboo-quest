@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from './comon/Card'
-import { getCount, changeStatusRunning } from './../../store/admin/action'
-
+import {
+  getCount,
+  changeStatusRunning,
+  getQuestDashboard,
+  getUserDashboard,
+} from './../../store/admin/action'
+import { objectIdToDate } from '../../utils/date'
 const Home = () => {
+  const [data, setData] = useState([])
+  const [users, setUsers] = useState([])
   const dispatch = useDispatch()
 
   const admin = useSelector((state) => state.admin)
@@ -12,10 +19,37 @@ const Home = () => {
   useEffect(() => {
     dispatch(getCount('user'))
     dispatch(getCount('quest'))
+    dispatch(getCount('game'))
+    dispatch(getCount('category'))
+    dispatch(getQuestDashboard())
+    dispatch(getUserDashboard())
     dispatch(changeStatusRunning(true))
   }, [])
-
-  console.log(admin)
+  useEffect(() => {
+    if (admin.questDashboard) {
+      setData(
+        admin.questDashboard.sort(
+          (likeMin, likeMax) => likeMax.like.length - likeMin.like.length
+        )
+      )
+    }
+  }, [admin.questDashboard])
+  useEffect(() => {
+    if (admin.userDashboard) {
+      setUsers(
+        admin.userDashboard.sort((createEarly, createLatest) => {
+          let dateLatest = new Date(
+            objectIdToDate(createLatest._id, 'yyyy/mm/dd')
+          )
+          let dateEarly = new Date(
+            objectIdToDate(createEarly._id, 'yyyy/mm/dd')
+          )
+          return dateLatest - dateEarly
+        })
+      )
+    }
+  }, [admin.userDashboard])
+  console.log(users)
   return (
     <div className="container-fluid">
       {/* Page Heading */}
@@ -36,13 +70,13 @@ const Home = () => {
         />
         <Card
           type={'info'}
-          lable="Số người dùng"
-          value={admin.running ? 'loadding' : admin.countUser}
+          lable="Số Game đã tạo"
+          value={admin.running ? 'loadding' : admin.countGame}
         />
         <Card
           type={'warning'}
-          lable="Số người dùng"
-          value={admin.running ? 'loadding' : admin.countUser}
+          lable="Số thể loại"
+          value={admin.running ? 'loadding' : admin.countCategory}
         />
       </div>
       {/* Content Row */}
@@ -53,33 +87,16 @@ const Home = () => {
             {/* Card Header - Dropdown */}
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 className="m-0 font-weight-bold text-primary">
-                Earnings Overview
+                Danh sách cuộc thi được like nhiều
               </h6>
-              <div className="dropdown no-arrow">
-                <Link
-                  className="dropdown-toggle"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                  <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" />
-                </Link>
-                <div
-                  className="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                  aria-labelledby="dropdownMenuLink">
-                  <div className="dropdown-header">Dropdown Header:</div>
-                  <Link className="dropdown-item">Action</Link>
-                  <Link className="dropdown-item">Another action</Link>
-                  <div className="dropdown-divider" />
-                  <Link className="dropdown-item">Something else here</Link>
-                </div>
-              </div>
+              {/* <div className="dropdown no-arrow">
+              </div> */}
             </div>
             {/* Card Body */}
             <div className="card-body">
-              <div className="chart-area">
-                <canvas id="myAreaChart" />
+              <div className="chart-area table-responsive h-100">
+                {/* <canvas id="myAreaChart" /> */}
+                {data ? <TableQuest props={data} /> : 'Loading...'}
               </div>
             </div>
           </div>
@@ -90,33 +107,16 @@ const Home = () => {
             {/* Card Header - Dropdown */}
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 className="m-0 font-weight-bold text-primary">
-                Revenue Sources
+                Danh sách tài khoản mới tạo
               </h6>
-              <div className="dropdown no-arrow">
-                <Link
-                  className="dropdown-toggle"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                  <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" />
-                </Link>
-                <div
-                  className="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                  aria-labelledby="dropdownMenuLink">
-                  <div className="dropdown-header">Dropdown Header:</div>
-                  <Link className="dropdown-item">Action</Link>
-                  <Link className="dropdown-item">Another action</Link>
-                  <div className="dropdown-divider" />
-                  <Link className="dropdown-item">Something else here</Link>
-                </div>
-              </div>
+              {/* <div className="dropdown no-arrow">
+              </div> */}
             </div>
             {/* Card Body */}
             <div className="card-body">
-              <div className="chart-pie pt-4 pb-2">
-                <canvas id="myPieChart" />
+              <div className="chart-pie pt-4 pb-2 table-responsive h-100">
+                {/* <canvas id="myPieChart" /> */}
+                {users ? <TableUser props={users} /> : 'Loading...'}
               </div>
               <div className="mt-4 text-center small">
                 <span className="mr-2">
@@ -319,3 +319,70 @@ const Home = () => {
 }
 
 export default React.memo(Home)
+
+function TableQuest({ props }) {
+  return (
+    <table
+      className="table table-bordered"
+      width="100%"
+      cellSpacing={0}
+      style={{ position: 'absolute', height: '100%', overflowY: 'scroll' }}>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên cuộc thi</th>
+          {/* <th>Ngày tạo</th> */}
+          <th>Tổng lượt like</th>
+          {/* <th>Số câu hỏi</th> */}
+        </tr>
+      </thead>
+      {props ? (
+        props.map((item, i) => (
+          <tbody>
+            <tr>
+              <td>{i + 1}</td>
+              <td>{item.title}</td>
+              <td>{item.like.length}</td>
+              {/* <td>{props.countQuestion}</td> */}
+            </tr>
+          </tbody>
+        ))
+      ) : (
+        <tbody />
+      )}
+    </table>
+  )
+}
+function TableUser({ props }) {
+  return (
+    <table
+      className="table table-bordered"
+      width="100%"
+      cellSpacing={0}
+      style={{ position: 'absolute', height: '100%', overflowY: 'scroll' }}>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Username</th>
+          {/* <th>Ngày tạo</th> */}
+          <th>Email</th>
+          <th>Ngày tạo</th>
+        </tr>
+      </thead>
+      {props ? (
+        props.map((item, i) => (
+          <tbody>
+            <tr>
+              <td>{i + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.email}</td>
+              <td>{objectIdToDate(item._id)}</td>
+            </tr>
+          </tbody>
+        ))
+      ) : (
+        <tbody />
+      )}
+    </table>
+  )
+}
