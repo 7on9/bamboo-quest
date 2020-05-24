@@ -13,5 +13,10 @@ export const AdminService = {
       params: { limit, skip },
     })
   },
+  getCount: (collection) => {
+    return dataProvider(`/admin/analytic/${collection}/count`, {
+      method: 'GET',
+      params: {},
+    })
+  },
 }
-  

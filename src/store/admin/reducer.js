@@ -7,7 +7,9 @@ let initialState = {
   running: false,
   result: false,
   count: 0,
-  item: 0
+  item: 0,
+  countUser: -1,
+  countQuiz: -1,
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -17,9 +19,12 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.DELETE:
     case ADMIN_TYPE.SET_PAGE:
     case ADMIN_TYPE.ITEM:
+    case ADMIN_TYPE.GET_COUNT_USER:
+    case ADMIN_TYPE.GET_COUNT_QUIZ:
     case EVENT.RUNNING:
       state = {
         ...state,
+        running: false,
         ...action.payload,
       }
       break

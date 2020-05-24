@@ -5,8 +5,8 @@ export const getAllUsers = (page) => {
   return async (dispatch) => {
     try {
       resetResult()
-      page=(page-1) * 5
-      let count = await AdminService.getUsers('count',page, 5)
+      page = (page - 1) * 5
+      let count = await AdminService.getUsers('count', page, 5)
       count = count.data.count
       let find = await AdminService.getUsers('find', page, 5)
       find = find.data
@@ -22,6 +22,41 @@ export const getAllUsers = (page) => {
           user: [],
         },
       })
+    }
+  }
+}
+
+export const getCount = (collection) => {
+  return async (dispatch) => {
+    try {
+      let count = await AdminService.getCount(collection)
+      var payloadInfo = {}
+      switch (collection) {
+        case 'user':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_USER,
+            payload: { countUser: count.data.count },
+          }
+          break
+        case 'quest':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_QUIZ,
+            payload: { countQuiz: count.data.count },
+          }
+          break
+        default:
+          break
+      }
+      return dispatch(payloadInfo)
+    } catch (error) {
+      const payloadInfo =
+        collection === 'user'
+          ? {
+              type: ADMIN_TYPE.GET_COUNT_USER,
+              payload: { countUser: -2 },
+            }
+          : { type: ADMIN_TYPE.GET_COUNT_QUIZ, payload: { countQuiz: -2 } }
+      return dispatch(payloadInfo)
     }
   }
 }
@@ -42,7 +77,7 @@ export const setPage = (page) => {
     dispatch({
       type: ADMIN_TYPE.SET_PAGE,
       payload: {
-        page
+        page,
       },
     })
   }
@@ -53,7 +88,7 @@ export const setItem = (item) => {
     dispatch({
       type: ADMIN_TYPE.ITEM,
       payload: {
-        item
+        item,
       },
     })
   }
