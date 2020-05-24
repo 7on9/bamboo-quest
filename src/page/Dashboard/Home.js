@@ -49,7 +49,6 @@ const Home = () => {
       )
     }
   }, [admin.userDashboard])
-  console.log(users)
   return (
     <div className="container-fluid">
       {/* Page Heading */}
