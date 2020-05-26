@@ -5,8 +5,8 @@ export const getAllUsers = (page) => {
   return async (dispatch) => {
     try {
       resetResult()
-      page=(page-1) * 5
-      let count = await AdminService.getUsers('count',page, 5)
+      page = (page - 1) * 5
+      let count = await AdminService.getUsers('count', page, 5)
       count = count.data.count
       let find = await AdminService.getUsers('find', page, 5)
       find = find.data
@@ -42,7 +42,7 @@ export const setPage = (page) => {
     dispatch({
       type: ADMIN_TYPE.SET_PAGE,
       payload: {
-        page
+        page,
       },
     })
   }
@@ -53,7 +53,7 @@ export const setItem = (item) => {
     dispatch({
       type: ADMIN_TYPE.ITEM,
       payload: {
-        item
+        item,
       },
     })
   }
@@ -67,5 +67,25 @@ export const changeStatusRunning = (result) => {
         running: result,
       },
     })
+  }
+}
+export const createCollection = (newCategory) => {
+  return async (dispatch) => {
+    try {
+      let myCollection = await AdminService.createCollection(newCategory)
+      myCollection = myCollection.data
+      return dispatch({
+        type: ADMIN_TYPE.CREATECOLLECTION,
+        payload: { result: true, myCollection },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.CREATECOLLECTION,
+        payload: {
+          result: false,
+          running: false,
+        },
+      })
+    }
   }
 }

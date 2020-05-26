@@ -30,8 +30,14 @@ export const infoSchema = Yup.object().shape({
     .length(10, 'Số điện thoại phải đủ 10 số'),
 })
 export const passwordSchema = Yup.object().shape({
-  oldPassword: Yup.string().min(2, 'Quá ngắn rồi !').max(50, 'Dài dòng quá !').required('Bạn quên nhập password nè !'),
-  newPassword: Yup.string().min(2, 'Quá ngắn rồi !').max(50, 'Dài dòng quá !').required('Bạn quên nhập password nè !'),
+  oldPassword: Yup.string()
+    .min(2, 'Quá ngắn rồi !')
+    .max(50, 'Dài dòng quá !')
+    .required('Bạn quên nhập password nè !'),
+  newPassword: Yup.string()
+    .min(2, 'Quá ngắn rồi !')
+    .max(50, 'Dài dòng quá !')
+    .required('Bạn quên nhập password nè !'),
 })
 export const questSchema = Yup.object().shape({
   title: Yup.string()
@@ -52,4 +58,23 @@ export const createQuestionSchema = Yup.object().shape({
   ansB: Yup.string().required('Bạn vui lòng nhập đáp án'),
   ansC: Yup.string().required('Bạn vui lòng nhập đáp án'),
   ansD: Yup.string().required('Bạn vui lòng nhập đáp án'),
+})
+export const createUserSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Hãy nhập đúng định dạng !')
+    .required('Bạn quên nhập email nè !'),
+  name: Yup.string().required('Bạn quên nhập tên nè !'),
+  img_path: Yup.string().required('Hãy chọn 1 hình ảnh bất kì !'),
+  password: Yup.string()
+    .min(2, 'Quá ngắn rồi !')
+    .max(50, 'Dài dòng quá !')
+    .required('Bạn quên nhập password nè !'),
+})
+export const createCollectionSchema = Yup.object().shape({
+  title: Yup.string().required('Bạn quên nhập tiêu đề nè !'),
+  img_path: Yup.string().required('Hãy chọn 1 hình ảnh bất kì !'),
+  description: Yup.string()
+    .min(2, 'Quá ngắn rồi !')
+    .max(50, 'Dài dòng quá !')
+    .required('Bạn quên nhập mô tả nè !'),
 })

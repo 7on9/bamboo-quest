@@ -13,5 +13,10 @@ export const AdminService = {
       params: { limit, skip },
     })
   },
+  createCollection: (newCategory) => {
+    return dataProvider(`/category`, {
+      method: 'POST',
+      data: newCategory,
+    })
+  },
 }
-  
