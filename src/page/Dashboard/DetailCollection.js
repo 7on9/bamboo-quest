@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllCollection, changeStatusRunning } from '../../store/admin/action'
 import { objectIdToDate } from '../../utils/date'
+import { Link } from 'react-router-dom'
 
 export default React.memo(function DetailCollection() {
   const dispatch = useDispatch()
@@ -11,13 +12,21 @@ export default React.memo(function DetailCollection() {
   }, [])
   return (
     <div className="container-fluid">
-      <h1 className="h3 mb-2 text-gray-800">Danh sách Collection</h1>
       <div className="shadow mb-4">
         <div className="card h-100">
-          <div className="card-header py-3">
+          <div className="card-header py-3 d-flex bd-highlight mb-3">
             <h6 className="m-0 font-weight-bold text-primary">
               Danh sách Collection
             </h6>
+            <Link
+              to="/dashboard/create-collection"
+              className="btn btn-primary ml-auto">
+              <small>Tạo Collection</small>
+              <i
+                className="fas fa-folder-plus"
+                style={{ paddingLeft: '5px' }}
+              />
+            </Link>
           </div>
           <div className="card-body">
             <div className="table-responsive">
@@ -43,26 +52,26 @@ function DetailTable({ admin }) {
       </thead>
 
       <tbody>
-        {admin && admin.allCollection
-          ? admin.allCollection.map((item) => {
-              return (
-                <tr key={item._id}>
-                  <td>
-                    <div className="img-container">
-                      <img
-                        src={item.img_path ? item.img_path : ''}
-                        alt="..."
-                        className="max-width"
-                      />
-                    </div>
-                  </td>
-                  <td className="td-name">{item.name}</td>
-                  <td className="td-number">{item.name}</td>
-                  <td className="td-number">{objectIdToDate(item._id)}</td>
-                  {/* <td className="td-number">
+        {admin && admin.allCollection ? (
+          admin.allCollection.map((item) => {
+            return (
+              <tr key={item._id}>
+                <td>
+                  <div className="img-container">
+                    <img
+                      src={item.img_path ? item.img_path : ''}
+                      alt="..."
+                      className="max-width"
+                    />
+                  </div>
+                </td>
+                <td className="td-name">{item.name}</td>
+                <td className="td-number">{item.name}</td>
+                <td className="td-number">{objectIdToDate(item._id)}</td>
+                {/* <td className="td-number">
                         <small>€</small>549
                       </td> */}
-                  {/* <td className="td-actions">
+                {/* <td className="td-actions">
                         <button
                           type="button"
                           rel="tooltip"
@@ -73,10 +82,14 @@ function DetailTable({ admin }) {
                           <i className="nc-icon nc-simple-remove" />
                         </button>
                       </td> */}
-                </tr>
-              )
-            })
-          : 'Loading ...'}
+              </tr>
+            )
+          })
+        ) : (
+          <tr>
+            <td>Loading ...</td>
+          </tr>
+        )}
       </tbody>
     </table>
   )

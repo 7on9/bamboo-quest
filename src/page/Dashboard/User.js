@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers, setPage, setItem } from '../../store/admin/action'
 import Pagination from 'react-js-pagination'
 import { objectIdToDate } from '../../utils/date'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 export default function Table() {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -24,10 +24,14 @@ export default function Table() {
       <h1 className="h3 mb-2 text-gray-800">Danh sách người dùng</h1>
       {/* DataTales Example */}
       <div className="shadow mb-4">
-        <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">
+        <div className="card-header py-3 d-flex bd-highlight mb-3">
+          <h6 className="m-0 font-weight-bold text-primary ">
             Danh sách người dùng
           </h6>
+          <Link to="/dashboard/create-user" className="btn btn-primary ml-auto">
+            <small>Tạo tài khoản</small>
+            <i className="fas fa-user-plus" style={{ paddingLeft: '5px' }} />
+          </Link>
         </div>
         <div className="card-body">
           <div className="table-responsive">

@@ -40,21 +40,9 @@ export default class Slidebar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/create-user">
-            <i className="fas fa-user-plus" />
-            <span>Create User</span>
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link className="nav-link" to="/dashboard/quest">
             <i className="fas fa-gamepad"></i>
             <span>Quest</span>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/create-collection">
-            <i className="fas fa-folder-plus"></i>
-            <span>Create Collection</span>
           </Link>
         </li>
         <li className="nav-item">
