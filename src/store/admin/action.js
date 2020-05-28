@@ -89,3 +89,23 @@ export const createCollection = (newCategory) => {
     }
   }
 }
+export const getAllCollection = () => {
+  return async (dispatch) => {
+    try {
+      let allCollection = await AdminService.getAllCollections()
+      allCollection = allCollection.data
+      return dispatch({
+        type: ADMIN_TYPE.GETCOLLECTION,
+        payload: { allCollection },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.GETCOLLECTION,
+        payload: {
+          result: false,
+          running: false,
+        },
+      })
+    }
+  }
+}

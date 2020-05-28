@@ -19,4 +19,9 @@ export const AdminService = {
       data: newCategory,
     })
   },
+  getAllCollections: () => {
+    return dataProvider(`/category`, {
+      method: 'GET',
+    })
+  },
 }

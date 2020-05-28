@@ -9,6 +9,7 @@ let initialState = {
   count: 0,
   item: 0,
   myCollection: [],
+  allCollection: [],
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -19,6 +20,7 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.SET_PAGE:
     case ADMIN_TYPE.ITEM:
     case ADMIN_TYPE.CREATECOLLECTION:
+    case ADMIN_TYPE.GETCOLLECTION:
     case EVENT.RUNNING:
       state = {
         ...state,
