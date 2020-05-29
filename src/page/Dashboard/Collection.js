@@ -1,31 +1,40 @@
 import React, { useState, useEffect } from 'react'
-import './comon/styles.css'
 import { Formik, Form, ErrorMessage, Field } from 'formik'
-import { createCollectionSchema } from '../../common/validation'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { URL } from '../../common/constants'
 import { createCollection, changeStatusRunning } from '../../store/admin/action'
+import { createCollectionSchema } from '../../common/validation'
+import './comon/styles.css'
+
 export default React.memo(function Collection() {
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const admin = useSelector((state) => state.admin)
 
   const [newImg, setNewImg] = useState({
     img_path: null,
   })
   const [submit, setSubmit] = useState(false)
+
   useEffect(() => {
     dispatch(changeStatusRunning(false))
   }, [])
+
   useEffect(() => {
     if (submit) {
       if (admin.myCollection) {
         alert('Bạn đã tạo thành công')
-        setSubmit(false)
+        history.push(URL.DASHBOARD.COLLECTION)
       } else {
         alert('Tạo không thành công, vui lòng kiểm tra!')
+        dispatch(changeStatusRunning(false))
         setSubmit(false)
       }
     }
   }, [admin.result])
+
   const onUploadImage = async (event) => {
     let reader = new FileReader()
     reader.onloadend = () => {
@@ -38,6 +47,7 @@ export default React.memo(function Collection() {
       reader.readAsDataURL(event.target.files[0])
     }
   }
+
   const onSubmit = (value) => {
     const { title, description } = value
     const newCategory = { name: title, description, ...newImg }
@@ -69,6 +79,7 @@ export default React.memo(function Collection() {
     </div>
   )
 })
+
 const FormInput = ({ onSubmit, onUploadImage, newImg, admin }) => {
   return (
     <Formik
@@ -79,7 +90,7 @@ const FormInput = ({ onSubmit, onUploadImage, newImg, admin }) => {
       }}
       enableReinitialize
       validationSchema={createCollectionSchema}
-      onSubmit={(values) => onSubmit(values)}>
+      onSubmit={onSubmit}>
       {(formik) => {
         return (
           <Form

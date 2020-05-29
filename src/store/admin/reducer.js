@@ -10,6 +10,8 @@ let initialState = {
   item: 0,
   myCollection: [],
   allCollection: [],
+  countUser: -1,
+  countQuiz: -1,
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -21,9 +23,12 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.ITEM:
     case ADMIN_TYPE.CREATECOLLECTION:
     case ADMIN_TYPE.GETCOLLECTION:
+    case ADMIN_TYPE.GET_COUNT_USER:
+    case ADMIN_TYPE.GET_COUNT_QUIZ:
     case EVENT.RUNNING:
       state = {
         ...state,
+        running: false,
         ...action.payload,
       }
       break

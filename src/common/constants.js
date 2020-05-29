@@ -12,6 +12,9 @@ export const URL = {
     QUEST: '/user/quest',
   },
   AUTH: '/auth',
+  DASHBOARD: {
+    COLLECTION: '/dashboard/collection'
+  }
 }
 
 export const COLOR = {

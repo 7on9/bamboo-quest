@@ -26,6 +26,41 @@ export const getAllUsers = (page) => {
   }
 }
 
+export const getCount = (collection) => {
+  return async (dispatch) => {
+    try {
+      let count = await AdminService.getCount(collection)
+      var payloadInfo = {}
+      switch (collection) {
+        case 'user':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_USER,
+            payload: { countUser: count.data.count },
+          }
+          break
+        case 'quest':
+          payloadInfo = {
+            type: ADMIN_TYPE.GET_COUNT_QUIZ,
+            payload: { countQuiz: count.data.count },
+          }
+          break
+        default:
+          break
+      }
+      return dispatch(payloadInfo)
+    } catch (error) {
+      const payloadInfo =
+        collection === 'user'
+          ? {
+              type: ADMIN_TYPE.GET_COUNT_USER,
+              payload: { countUser: -2 },
+            }
+          : { type: ADMIN_TYPE.GET_COUNT_QUIZ, payload: { countQuiz: -2 } }
+      return dispatch(payloadInfo)
+    }
+  }
+}
+
 export const resetResult = () => {
   return (dispatch) => {
     dispatch({
