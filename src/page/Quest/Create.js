@@ -157,7 +157,7 @@ export default function Create() {
                   <div className="col-12 press-quest">
                     <Field
                       maxLength="50"
-                      placeholder="Vui lòng nhập trên cuộc thi ( giới hạn 50 ký tự )"
+                      placeholder="Vui lòng nhập tên cuộc thi ( giới hạn 50 ký tự )"
                       name="title"
                       onChange={formik.handleChange}
                       value={formik.values.title}

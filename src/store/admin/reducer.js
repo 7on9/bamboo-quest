@@ -9,6 +9,8 @@ let initialState = {
   result: false,
   count: 0,
   item: 0,
+  myCollection: [],
+  allCollection: [],
   countUser: -1,
   countQuiz: -1,
   countGame: -1,
@@ -22,6 +24,8 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.DELETE:
     case ADMIN_TYPE.SET_PAGE:
     case ADMIN_TYPE.ITEM:
+    case ADMIN_TYPE.CREATECOLLECTION:
+    case ADMIN_TYPE.GETCOLLECTION:
     case ADMIN_TYPE.GET_COUNT_USER:
     case ADMIN_TYPE.GET_COUNT_QUIZ:
     case ADMIN_TYPE.GET_COUNT_GAME:

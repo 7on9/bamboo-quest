@@ -177,3 +177,43 @@ export const changeStatusRunning = (result) => {
     })
   }
 }
+export const createCollection = (newCategory) => {
+  return async (dispatch) => {
+    try {
+      let myCollection = await AdminService.createCollection(newCategory)
+      myCollection = myCollection.data
+      return dispatch({
+        type: ADMIN_TYPE.CREATECOLLECTION,
+        payload: { result: true, myCollection },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.CREATECOLLECTION,
+        payload: {
+          result: false,
+          running: false,
+        },
+      })
+    }
+  }
+}
+export const getAllCollection = () => {
+  return async (dispatch) => {
+    try {
+      let allCollection = await AdminService.getAllCollections()
+      allCollection = allCollection.data
+      return dispatch({
+        type: ADMIN_TYPE.GETCOLLECTION,
+        payload: { allCollection },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.GETCOLLECTION,
+        payload: {
+          result: false,
+          running: false,
+        },
+      })
+    }
+  }
+}
