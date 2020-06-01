@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 import { objectIdToDate } from '../../utils/date'
 import { Icon } from './../../res/icon/index'
 
@@ -55,7 +54,7 @@ export const Cardlist = ({ id, title, question, img_path }) => {
               <div className="col-11">
                 <h4 style={{ color: '#5e5e5e' }}>{title}</h4>
                 <p style={{ fontSize: '10px' }}>
-                  Tạo ngày: {moment(objectIdToDate(id)).format('DD/MM/YYYY')}
+                  Tạo ngày: {objectIdToDate(id)}
                 </p>
               </div>
               <div
