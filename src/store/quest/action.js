@@ -245,6 +245,21 @@ export const getsQuestCategory = (skip, _idCategory, index) => {
   }
 }
 
+export const likePublicQuest = (_idQuest) => {
+  return async (dispatch) => {
+    try {
+      await QuestService.likeQuest(_idQuest)
+    } catch (error) {
+      return dispatch({
+        type: QUEST_TYPES.LIKE_PUBLIC_QUEST,
+        payload: {
+          result: false,
+        },
+      })
+    }
+  }
+}
+
 export const resetResult = () => {
   return (dispatch) => {
     dispatch({

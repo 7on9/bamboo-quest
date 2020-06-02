@@ -3,18 +3,30 @@ import Helmet from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import * as questActions from '../../../store/quest/action'
 import * as categoryActions from '../../../store/category/action'
-import { Link } from 'react-router-dom'
+import * as authAction from '../../../store/auth/action'
+import { useHistory } from 'react-router-dom'
 import { objectIdToDate } from './../../../utils/date'
+import 'pretty-checkbox'
 // import { Menu } from '../common/menu'
 import { Menu } from '../../../components'
 
 const Home = () => {
+  const [heart, setHeart] = useState([])
   const dispatch = useDispatch()
+  const history = useHistory()
   const category = useSelector((state) => state.category)
   const quest = useSelector((state) => state.quest)
+  const user = useSelector((state) => state.user)
+
   useEffect(() => {
     dispatch(categoryActions.getCategory())
     dispatch(questActions.resetQuiz())
+  }, [])
+
+  useEffect(() => {
+    if (!user.info) {
+      dispatch(authAction.verify())
+    }
   }, [])
 
   useEffect(() => {
@@ -35,6 +47,21 @@ const Home = () => {
       )
     )
   }
+
+  const likeOrNot = (_id, status) => {
+    dispatch(questActions.likePublicQuest(_id))
+    var items = [...heart]
+    const findId = items.findIndex(
+      (item) => item.id.toString() === _id.toString()
+    )
+    if (findId !== -1) {
+      items[findId].status = !items[findId].status
+    } else {
+      items.push({ id: _id, status: !status })
+    }
+    setHeart(items)
+  }
+
   return (
     <div>
       <Helmet>
@@ -68,72 +95,141 @@ const Home = () => {
           {/* search */}
           {quest.questPublic.map((item, index) => {
             return (
-              <div key={index}>
-                {/* content */}
-                <div style={{ textAlign: 'center' }}>
-                  <b
-                    style={{
-                      color: '#e21b3c',
-                      fontSize: '1em',
-                      fontSize: '1.5em',
-                    }}>
-                    {category.categories[index] &&
-                      category.categories[index].description}
-                  </b>
-                </div>
-                <div className="container-card ">
-                  {item.page !== 1 && (
-                    <div
-                      className="pre-card"
-                      onClick={() => chanePage(index, 0)}>
-                      <div className="pre-card-btn">{'<'}</div>
+              <>
+                {item.quest.length === 0 ? (
+                  <></>
+                ) : (
+                  <div key={index}>
+                    {/* content */}
+                    <div style={{ textAlign: 'center' }}>
+                      <b
+                        style={{
+                          color: '#e21b3c',
+                          fontSize: '1em',
+                          fontSize: '1.5em',
+                        }}>
+                        {category.categories[index] &&
+                          category.categories[index].description}
+                      </b>
                     </div>
-                  )}
-
-                  {item.quest.length > 3 && (
                     <div
-                      className="next-card"
-                      onClick={() => chanePage(index, 1)}>
-                      <div className="next-card-btn">{'>'}</div>
-                    </div>
-                  )}
-
-                  {item.quest.map((itemQuiz) => {
-                    return (
-                      <Link
-                        to={`/quest/info/${itemQuiz._id}`}
-                        className="bamboo-card ">
-                        <div className="card-content">
-                          <div className="card-image">
-                            <img
-                              className="card-image-item"
-                              src={
-                                itemQuiz.img_path
-                                  ? itemQuiz.img_path
-                                  : '/images/img_quest_default.png'
-                              }
-                            />
-                          </div>
-                          <div className="card-item-content">
-                            <p>
-                              <b>{itemQuiz.title && itemQuiz.title}</b>
-                              <p>
-                                {itemQuiz.description && itemQuiz.description}
-                              </p>
-                            </p>
-                            <p className="text-created">
-                              {objectIdToDate(itemQuiz._id)}
-                            </p>
-                            <p className="user-created">{itemQuiz.author}</p>
-                          </div>
+                      className="container-card "
+                      style={{ position: 'relative' }}>
+                      {item.page !== 1 && (
+                        <div
+                          className="pre-card"
+                          onClick={() => chanePage(index, 0)}>
+                          <div className="pre-card-btn">{'<'}</div>
                         </div>
-                      </Link>
-                    )
-                  })}
-                </div>
-                <br />
-                {/* content */}
-              </div>
+                      )}
+
+                      {item.quest.length > 3 && (
+                        <div
+                          className="next-card"
+                          onClick={() => chanePage(index, 1)}>
+                          <div className="next-card-btn">{'>'}</div>
+                        </div>
+                      )}
+
+                      {item.quest.map((itemQuiz) => {
+                        var _idUser = user.info
+                          ? itemQuiz.like.find(
+                              (userId) =>
+                                userId.toString() === user.info._id.toString()
+                            )
+                          : false
+                        var heartStatus = heart.find(
+                          (questId) => questId.id === itemQuiz._id
+                        )
+
+                        return (
+                          <div className="bamboo-card ">
+                            {user.token ? (
+                              <div style={{ position: 'relative' }}>
+                                <div
+                                  class="pretty p-icon p-toggle p-plain "
+                                  style={{
+                                    position: 'absolute',
+                                    pointerEvents: 'fill',
+                                    top: 20,
+                                    right: 1,
+                                  }}>
+                                  {heartStatus ? (
+                                    <input
+                                      type="checkbox"
+                                      checked={heartStatus.status}
+                                      onClick={() => {
+                                        likeOrNot(
+                                          itemQuiz._id,
+                                          heartStatus.status
+                                        )
+                                      }}
+                                    />
+                                  ) : (
+                                    <input
+                                      type="checkbox"
+                                      checked={_idUser ? true : false}
+                                      onClick={() => {
+                                        likeOrNot(itemQuiz._id, _idUser)
+                                      }}
+                                    />
+                                  )}
+
+                                  <div class="state p-off">
+                                    <i class="icon fa fa-heart-o "></i>
+                                    <label className="state"></label>
+                                  </div>
+                                  <div class="state p-on p-danger-o">
+                                    <i class="icon fa fa-heart"></i>
+                                    <label className="state"></label>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : null}
+                            <div
+                              className="card-content"
+                              style={{
+                                pointerEvents: 'stroke',
+                              }}
+                              onClick={() =>
+                                history.push(`/quest/info/${itemQuiz._id}`)
+                              }>
+                              <div className="card-image">
+                                <img
+                                  className="card-image-item"
+                                  src={
+                                    itemQuiz.img_path
+                                      ? itemQuiz.img_path
+                                      : '/images/img_quest_default.png'
+                                  }
+                                />
+                              </div>
+                              <div className="card-item-content">
+                                <p>
+                                  <b>{itemQuiz.title && itemQuiz.title}</b>
+                                  <p>
+                                    {itemQuiz.description &&
+                                      itemQuiz.description}
+                                  </p>
+                                  <p>Lượt thích: {itemQuiz.like.length}</p>
+                                </p>
+                                <p className="text-created">
+                                  {objectIdToDate(itemQuiz._id)}
+                                </p>
+                                <p className="user-created">
+                                  {itemQuiz.author}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                    <br />
+                    {/* content */}
+                  </div>
+                )}
+              </>
             )
           })}
         </div>

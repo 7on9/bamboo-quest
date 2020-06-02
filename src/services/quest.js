@@ -23,6 +23,9 @@ export const QuestService = {
   getQuest: (idQuest) => {
     return dataProvider(`/quest/${idQuest}`, { method: 'GET' })
   },
+  likeQuest: (_id) => {
+    return dataProvider(`/quest/like`, { method: 'POST', data: { _id } })
+  },
   createQuest: (newQuest) => {
     return dataProvider('/quest', {
       method: 'POST',
