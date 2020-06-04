@@ -48,16 +48,20 @@ const Home = () => {
     )
   }
 
-  const likeOrNot = (_id, status) => {
+  const likeOrNot = (_id, status, count) => {
     dispatch(questActions.likePublicQuest(_id))
     var items = [...heart]
     const findId = items.findIndex(
       (item) => item.id.toString() === _id.toString()
     )
     if (findId !== -1) {
+      items[findId].count = items[findId].status
+        ? items[findId].count - 1
+        : items[findId].count + 1
       items[findId].status = !items[findId].status
     } else {
-      items.push({ id: _id, status: !status })
+      const countQues = status ? count - 1 : count + 1
+      items.push({ id: _id, status: !status, count: countQues })
     }
     setHeart(items)
   }
@@ -161,7 +165,8 @@ const Home = () => {
                                       onClick={() => {
                                         likeOrNot(
                                           itemQuiz._id,
-                                          heartStatus.status
+                                          heartStatus.status,
+                                          itemQuiz.like.length
                                         )
                                       }}
                                     />
@@ -170,7 +175,11 @@ const Home = () => {
                                       type="checkbox"
                                       checked={_idUser ? true : false}
                                       onClick={() => {
-                                        likeOrNot(itemQuiz._id, _idUser)
+                                        likeOrNot(
+                                          itemQuiz._id,
+                                          _idUser,
+                                          itemQuiz.like.length
+                                        )
                                       }}
                                     />
                                   )}
@@ -213,7 +222,12 @@ const Home = () => {
                                     {itemQuiz.description &&
                                       itemQuiz.description}
                                   </p>
-                                  <p>Lượt thích: {itemQuiz.like.length}</p>
+                                  <p>
+                                    Lượt thích:{' '}
+                                    {heartStatus
+                                      ? heartStatus.count
+                                      : itemQuiz.like.length}
+                                  </p>
                                 </p>
                                 <p className="text-created">
                                   {objectIdToDate(itemQuiz._id)}
