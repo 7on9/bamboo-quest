@@ -120,6 +120,13 @@ a:hover {
   text-decoration: none;
   color: black;
 }
+
+.card-item-content-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 .pre-card {
   position: absolute;
   height: 100%;
