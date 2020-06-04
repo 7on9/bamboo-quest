@@ -52,10 +52,10 @@ export default function Info() {
   }
 
   const arrayAns = [
-    { lable: 'A', className: 'ans-a' },
-    { lable: 'B', className: 'ans-b' },
-    { lable: 'C', className: 'ans-c' },
-    { lable: 'D', className: 'ans-d' },
+    { label: 'A', className: 'ans-a' },
+    { label: 'B', className: 'ans-b' },
+    { label: 'C', className: 'ans-c' },
+    { label: 'D', className: 'ans-d' },
   ]
 
   const handleDeleteQuestion = (idQuestion) => {
@@ -104,7 +104,7 @@ export default function Info() {
           <div className="row full">
             <div className="col-12 col-md-3 left-component">
               <div onClick={handleUpdate} className="btn-update">
-                <i className="fas fa-pen"></i>
+                <i className="fas fa-pen"/>
               </div>
               <img
                 src={
@@ -123,7 +123,7 @@ export default function Info() {
                 <p>
                   <i>Ngày tạo: {objectIdToDate(quest.info._id).toString()}</i>
                 </p>
-                <div class="section-title">
+                <div className="section-title">
                   Trạng thái:
                   {quest.info.is_public ? '  công khai' : '  không công khai'}
                 </div>
@@ -175,7 +175,7 @@ export default function Info() {
                                 style={{
                                   color: '#dc3545',
                                   fontSize: '13px',
-                                }}></i>
+                                }}/>
                             </div>
                           </div>
                           <div className="question-media__image">
@@ -193,7 +193,7 @@ export default function Info() {
                                   objectFit: 'cover',
                                 }}
                               />
-                              <span class="question-media__duration">
+                              <span className="question-media__duration">
                                 {item.duration} sec
                               </span>
                             </div>
@@ -202,13 +202,14 @@ export default function Info() {
                       </div>
                       {i === ansType && (
                         <div className="array-ans">
-                          {item.ans.map((itemAns, i) => {
+                          {item.ans.map((itemAns, idx) => {
+                            console.log(itemAns)
                             return (
-                              <div>
+                              <div key={idx}>
                                 <div className="item-ans">
                                   <div
-                                    className={`icon-ans ${arrayAns[i].className}`}>
-                                    {arrayAns[i].lable}
+                                    className={`icon-ans ${arrayAns[idx].className}`}>
+                                    {arrayAns[idx].label}
                                   </div>
                                   <div className="ans-detail">
                                     <p
@@ -218,14 +219,14 @@ export default function Info() {
                                       }}>
                                       {itemAns.content}
                                     </p>
-                                    {item.correct_id === itemAns._id ? (
+                                    {item.correct_id === idx ? (
                                       <i
                                         style={{ color: '#57b846' }}
-                                        className="fas fa-check"></i>
+                                        className="fas fa-check"/>
                                     ) : (
                                       <i
                                         style={{ color: '#dc3545' }}
-                                        className="fas fa-times"></i>
+                                        className="fas fa-times"/>
                                     )}
                                   </div>
                                 </div>
