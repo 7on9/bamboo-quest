@@ -68,6 +68,10 @@ class ListQuest extends Component {
                 <p style={{ color: '#000' }}>
                   Tổng số thử thách: {myQuests ? myQuests.length : 0}
                 </p>
+                <p style={{ color: '#000' }}>
+                  Tổng số game đã chơi:{' '}
+                  {user.info ? user.info.game_history.length : 0}
+                </p>
 
                 <Link
                   to="/user/info"
