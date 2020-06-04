@@ -31,7 +31,6 @@ export const gameReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         ...payload,
-        player: [],
         idQuestion: -1,
         correct: 0,
         endGame: true,

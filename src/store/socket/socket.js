@@ -156,6 +156,7 @@ export const startGame = idQuest => {
         return dispatch({
           type: GAME.START,
           payload: {
+            players: [],
             code: res.code,
             result: true,
             running: false,
