@@ -27,6 +27,7 @@ export const questReducer = (state = initialState, action) => {
         arrQuestPublic.splice(action.payload.index, 0, {
           quest: action.payload.quest,
           page: action.payload.page,
+          _idCategory: action.payload._idCategory,
         })
 
         state = {
@@ -37,7 +38,11 @@ export const questReducer = (state = initialState, action) => {
       } else {
         const arrQuestPublic = [
           ...state.questPublic,
-          { quest: action.payload.quest, page: action.payload.page },
+          {
+            quest: action.payload.quest,
+            page: action.payload.page,
+            _idCategory: action.payload._idCategory,
+          },
         ]
 
         state = {

@@ -86,6 +86,13 @@ export default React.memo(function () {
         initialValues={{
           time: '10',
           correctId: '0',
+          title: '',
+          ansA: '',
+          ansB: '',
+          ansC: '',
+          ansD: '',
+          incorrectPoint: '',
+          correctPoint: '',
         }}
         enableReinitialize
         validationSchema={createQuestionSchema}

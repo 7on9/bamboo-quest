@@ -98,6 +98,10 @@ const Home = () => {
           </div>
           {/* search */}
           {quest.questPublic.map((item, index) => {
+            const cat = category.categories.find(
+              (itemCat) =>
+                itemCat._id.toString() === item._idCategory.toString()
+            )
             return (
               <>
                 {item.quest.length === 0 ? (
@@ -112,8 +116,7 @@ const Home = () => {
                           fontSize: '1em',
                           fontSize: '1.5em',
                         }}>
-                        {category.categories[index] &&
-                          category.categories[index].description}
+                        {cat.description}
                       </b>
                     </div>
                     <div

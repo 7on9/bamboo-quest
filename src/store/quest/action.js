@@ -231,7 +231,7 @@ export const getsQuestCategory = (skip, _idCategory, index) => {
       quest = quest.data
       return dispatch({
         type: QUEST_TYPES.GET_QUIZ_PUBLIC,
-        payload: { quest, page: skip, index },
+        payload: { quest, page: skip, index, _idCategory },
       })
     } catch (error) {
       return dispatch({
