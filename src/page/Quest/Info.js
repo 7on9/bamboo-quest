@@ -104,7 +104,7 @@ export default function Info() {
           <div className="row full">
             <div className="col-12 col-md-3 left-component">
               <div onClick={handleUpdate} className="btn-update">
-                <i className="fas fa-pen"/>
+                <i className="fas fa-pen" />
               </div>
               <img
                 src={
@@ -169,13 +169,19 @@ export default function Info() {
                                 style={{ display: 'inline-block' }}>
                                 {item.quiz ? item.quiz : ''}
                               </b>
-                              <i
-                                onClick={() => submit(item._id)}
-                                className="fas fa-trash btn-delete-question"
-                                style={{
-                                  color: '#dc3545',
-                                  fontSize: '13px',
-                                }}/>
+                              {String(quest.info.id_author) ===
+                                String(user.info ? user.info._id : '') && (
+                                <>
+                                  <i
+                                    onClick={() => submit(item._id)}
+                                    className="fas fa-trash btn-delete-question"
+                                    style={{
+                                      color: '#dc3545',
+                                      fontSize: '13px',
+                                    }}
+                                  />
+                                </>
+                              )}
                             </div>
                           </div>
                           <div className="question-media__image">
@@ -222,11 +228,13 @@ export default function Info() {
                                     {item.correct_id === idx ? (
                                       <i
                                         style={{ color: '#57b846' }}
-                                        className="fas fa-check"/>
+                                        className="fas fa-check"
+                                      />
                                     ) : (
                                       <i
                                         style={{ color: '#dc3545' }}
-                                        className="fas fa-times"/>
+                                        className="fas fa-times"
+                                      />
                                     )}
                                   </div>
                                 </div>
