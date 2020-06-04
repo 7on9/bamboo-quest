@@ -221,7 +221,7 @@ const Home = () => {
                                   <b className="card-item-content-title">
                                     {itemQuiz.title && itemQuiz.title}
                                   </b>
-                                  <p>
+                                  <p className="card-item-content-description">
                                     {itemQuiz.description &&
                                       itemQuiz.description}
                                   </p>

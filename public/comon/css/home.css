@@ -127,6 +127,14 @@ a:hover {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.card-item-content-description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .pre-card {
   position: absolute;
   height: 100%;
@@ -207,9 +215,15 @@ a:hover {
   left: 10px;
 }
 .home .user-created {
+  text-align: right;
   position: absolute;
   bottom: 0;
   right: 10px;
+  width: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 @media (max-width: 575.98px) {
   .home .bamboo-card {
