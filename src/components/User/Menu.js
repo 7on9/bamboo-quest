@@ -1,14 +1,33 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as authAction from '../../store/auth/action'
+import * as adminAction from '../../store/admin/action'
 import './style.css'
 import { Icon } from '../../res/icon/index'
 export const Menu = React.memo(() => {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+  const admin = useSelector((state) => state.admin)
+
+  React.useEffect(() => {
+    dispatch(adminAction.getRole())
+  }, [])
+
   const handleLogout = () => {
     dispatch(authAction.logout())
   }
+
+  const isAdmin = React.useCallback(() => {
+    if (user.info && admin.roles.length > 0) {
+      const role = admin.roles.find((item) => item._id === user.info.role)
+      console.log(role)
+      if (role.name !== 'user') {
+        return true
+      }
+    }
+    return false
+  }, [admin])
   return (
     <nav className="menu">
       <div className="logoMenu">
@@ -34,6 +53,18 @@ export const Menu = React.memo(() => {
             Tài khoản
           </Link>
         </li>
+        {user.info ? (
+          isAdmin() && (
+            <li>
+              <Link className="name-item-menu" to="/dashboard">
+                Dashborad
+              </Link>
+            </li>
+          )
+        ) : (
+          <></>
+        )}
+
         <li>
           <Link className="name-item-menu" to="/" onClick={handleLogout}>
             <img

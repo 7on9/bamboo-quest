@@ -15,6 +15,11 @@ let initialState = {
   countQuiz: -1,
   countGame: -1,
   countCategory: -1,
+  roles: [],
+  createUser: {
+    status: false,
+    info: {},
+  },
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -30,11 +35,19 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.GET_COUNT_QUIZ:
     case ADMIN_TYPE.GET_COUNT_GAME:
     case ADMIN_TYPE.GET_COUNT_CATEGORY:
+    case ADMIN_TYPE.GET_ROLE:
+    case ADMIN_TYPE.CREATE_USER:
     case EVENT.RUNNING:
       state = {
         ...state,
         running: false,
         ...action.payload,
+      }
+      break
+    case EVENT.RUNNING:
+      state = {
+        ...state,
+        running: action.payload.running,
       }
       break
     default:

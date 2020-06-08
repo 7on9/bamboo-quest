@@ -14,7 +14,7 @@ export const AdminService = {
       params: { limit, skip },
     })
   },
-  
+
   createCollection: (newCategory) => {
     return dataProvider(`/category`, {
       method: 'POST',
@@ -32,6 +32,18 @@ export const AdminService = {
     return dataProvider(`/admin/analytic/${collection}/count`, {
       method: 'GET',
       params: {},
+    })
+  },
+  getRole: () => {
+    return dataProvider(`/admin/role`, {
+      method: 'GET',
+      params: {},
+    })
+  },
+  createUser: (email, password, name, role) => {
+    return dataProvider('/user/register', {
+      method: 'POST',
+      data: { email, password, name, role },
     })
   },
 }

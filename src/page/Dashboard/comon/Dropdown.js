@@ -1,17 +1,13 @@
 import React from 'react'
 import Select from 'react-select'
 
-const options = [
-  { label: 'Choice 1', value: 1 },
-  { label: 'Choice 2', value: 2 },
-  { label: 'Choice 3', value: 3 },
-]
-
-const DropdownExampleSimple = () => (
+const DropdownExampleSimple = ({ options, onChange, defaultValue }) => (
   <Select
     className="basic-single"
     classNamePrefix="select"
     isSearchable
+    placeholder="Vui lòng chọn role ..."
+    onChange={onChange}
     options={options}
   />
 )
