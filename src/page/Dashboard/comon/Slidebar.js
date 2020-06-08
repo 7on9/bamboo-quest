@@ -46,9 +46,9 @@ export default class Slidebar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard/collection">
+          <Link className="nav-link" to="/dashboard/category">
             <i class="fas fa-folder-open"></i>
-            <span>Collection</span>
+            <span>Category</span>
           </Link>
         </li>
       </ul>

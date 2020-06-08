@@ -16,12 +16,12 @@ export default React.memo(function DetailCollection() {
         <div className="card h-100">
           <div className="card-header py-3 d-flex bd-highlight mb-3">
             <h6 className="m-0 font-weight-bold text-primary">
-              Danh sách Collection
+              Danh sách Category
             </h6>
             <Link
-              to="/dashboard/create-collection"
+              to="/dashboard/create-category"
               className="btn btn-primary ml-auto">
-              <small>Tạo Collection</small>
+              <small>Tạo Category</small>
               <i
                 className="fas fa-folder-plus"
                 style={{ paddingLeft: '5px' }}
@@ -47,7 +47,7 @@ function DetailTable({ admin }) {
           <th>Title</th>
           <th className="align-middle">Description</th>
           <th className="align-middle">Ngày tạo</th>
-          {/* <th className="align-middle">Amount</th> */}
+          <th className="align-middle">Action</th>
         </tr>
       </thead>
 
@@ -71,17 +71,27 @@ function DetailTable({ admin }) {
                 {/* <td className="td-number">
                         <small>€</small>549
                       </td> */}
-                {/* <td className="td-actions">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          data-placement="left"
-                          title
-                          className="btn btn-neutral"
-                          data-original-title="Remove item">
-                          <i className="nc-icon nc-simple-remove" />
-                        </button>
-                      </td> */}
+                <td className="td-actions ">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    data-placement="left"
+                    title
+                    className="btn btn-neutral"
+                    data-original-title="Remove item">
+                    <i className="fas fa-info-circle"></i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    data-placement="left"
+                    title
+                    className="btn btn-neutral"
+                    style={{ color: 'red' }}
+                    data-original-title="Remove item">
+                    <i className="fas fa-trash"></i>
+                  </button>
+                </td>
               </tr>
             )
           })

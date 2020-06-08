@@ -7,9 +7,9 @@ import User from './User'
 import Quest from './Quest'
 import DetailUser from './DetailUser'
 import DetailQuest from './DetailQuest'
-import Collection from './Collection'
+import Category from './Category'
 import CreateUser from './CreateUser'
-import DetailCollection from './DetailCollection'
+import DetailCategory from './DetailCategory'
 
 export default function Dashboard() {
   return (
@@ -21,8 +21,8 @@ export default function Dashboard() {
         <Route path="/dashboard/detailuser" component={DetailUser} />
         <Route exact path="/dashboard/quest" component={Quest} />
         <Route path="/dashboard/detaiquest" component={DetailQuest} />
-        <Route path="/dashboard/create-collection" component={Collection} />
-        <Route path="/dashboard/collection" component={DetailCollection} />
+        <Route path="/dashboard/create-category" component={Category} />
+        <Route path="/dashboard/category" component={DetailCategory} />
       </Switch>
     </Fullscreen>
   )
