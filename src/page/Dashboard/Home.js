@@ -117,26 +117,13 @@ const Home = () => {
                 {/* <canvas id="myPieChart" /> */}
                 {users ? <TableUser props={users} /> : 'Loading...'}
               </div>
-              <div className="mt-4 text-center small">
-                <span className="mr-2">
-                  <i className="fas fa-circle text-primary" /> Direct
-                </span>
-                <span className="mr-2">
-                  <i className="fas fa-circle text-success" /> Social
-                </span>
-                <span className="mr-2">
-                  <i className="fas fa-circle text-info" /> Referral
-                </span>
-              </div>
             </div>
           </div>
         </div>
       </div>
       {/* Content Row */}
-      <div className="row">
-        {/* Content Column */}
+      {/* <div className="row">
         <div className="col-lg-6 mb-4">
-          {/* Project Card Example */}
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">Projects</h6>
@@ -209,7 +196,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {/* Color System */}
           <div className="row">
             <div className="col-lg-6 mb-4">
               <div className="card bg-primary text-white shadow">
@@ -262,7 +248,6 @@ const Home = () => {
           </div>
         </div>
         <div className="col-lg-6 mb-4">
-          {/* Illustrations */}
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
@@ -291,7 +276,6 @@ const Home = () => {
               </Link>
             </div>
           </div>
-          {/* Approach */}
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
@@ -312,7 +296,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -64,7 +64,6 @@ export const createUserSchema = Yup.object().shape({
     .email('Hãy nhập đúng định dạng !')
     .required('Bạn quên nhập email nè !'),
   name: Yup.string().required('Bạn quên nhập tên nè !'),
-  img_path: Yup.string().required('Hãy chọn 1 hình ảnh bất kì !'),
   password: Yup.string()
     .min(2, 'Quá ngắn rồi !')
     .max(50, 'Dài dòng quá !')

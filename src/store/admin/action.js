@@ -45,6 +45,34 @@ export const getQuestDashboard = () => {
     }
   }
 }
+
+export const createUser = (email, password, name, role) => {
+  return async (dispatch) => {
+    try {
+      let res = await AdminService.createUser(email, password, name, role)
+      dispatch({
+        type: ADMIN_TYPE.CREATE_USER,
+        payload: {
+          createUser: {
+            status: true,
+            info: res.data,
+          },
+        },
+      })
+    } catch (error) {
+      dispatch({
+        type: ADMIN_TYPE.CREATE_USER,
+        payload: {
+          createUser: {
+            status: false,
+            info: {},
+          },
+        },
+      })
+    }
+  }
+}
+
 export const getUserDashboard = () => {
   return async (dispatch) => {
     try {
@@ -167,12 +195,12 @@ export const setItem = (item) => {
   }
 }
 
-export const changeStatusRunning = (result) => {
+export const changeStatusRunning = (running) => {
   return (dispatch) => {
     dispatch({
       type: EVENT.RUNNING,
       payload: {
-        running: result,
+        running,
       },
     })
   }
@@ -211,6 +239,27 @@ export const getAllCollection = () => {
         type: ADMIN_TYPE.GETCOLLECTION,
         payload: {
           result: false,
+          running: false,
+        },
+      })
+    }
+  }
+}
+
+export const getRole = () => {
+  return async (dispatch) => {
+    try {
+      let roles = await AdminService.getRole()
+      roles = roles.data
+      return dispatch({
+        type: ADMIN_TYPE.GET_ROLE,
+        payload: { roles },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.GET_ROLE,
+        payload: {
+          roles: [],
           running: false,
         },
       })
