@@ -28,6 +28,7 @@ export const Menu = React.memo(() => {
     }
     return false
   }, [admin])
+
   return (
     <nav className="menu">
       <div className="logoMenu">
@@ -51,6 +52,11 @@ export const Menu = React.memo(() => {
         <li>
           <Link className="name-item-menu" to="/user/info">
             Tài khoản
+          </Link>
+        </li>
+        <li>
+          <Link className="name-item-menu" to="/">
+            Chơi ngay
           </Link>
         </li>
         {user.info ? (
