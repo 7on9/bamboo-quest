@@ -38,28 +38,29 @@ class ScoreBoard extends Component {
             className="ctn"
             style={{
               width: '100%',
-              height: '85%',
+              height: 'auto',
               overflowY: 'scroll',
               marginTop: '40px',
+              maxHeight: '70%',
             }}>
             <div className="container">
               {players.map((player, id) => (
                 <ScoreBoardItem id={id + 1} player={player} key={id} />
               ))}
             </div>
-            <div className="col-12 ">
-              <button
-                className="start"
-                style={{
-                  marginTop: '20px',
-                  width: '30%',
-                  height: '50px',
-                  backgroundColor: '#9e69c8',
-                }}
-                onClick={() => this.setState({ toReady: true })}>
-                {game && game.endGame ? 'Về trang chủ' : 'Câu hỏi tiếp theo'}
-              </button>
-            </div>
+          </div>
+          <div className="col-12 ">
+            <button
+              className="start"
+              style={{
+                marginTop: '20px',
+                width: '30%',
+                height: '50px',
+                backgroundColor: '#9e69c8',
+              }}
+              onClick={() => this.setState({ toReady: true })}>
+              {game && game.endGame ? 'Về trang chủ' : 'Câu hỏi tiếp theo'}
+            </button>
           </div>
           <div
             className="end"
