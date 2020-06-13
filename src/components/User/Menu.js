@@ -38,7 +38,12 @@ export const Menu = React.memo(() => {
       </div>
       <ul
         className="nav-links"
-        style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+        style={{
+          listStyleType: 'none',
+          margin: '0',
+          padding: '0',
+          width: isAdmin ? '45%' : '30%',
+        }}>
         <li>
           <Link className="name-item-menu" to="/home">
             HOME

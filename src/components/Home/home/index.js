@@ -151,7 +151,7 @@ const Home = () => {
 
                         return (
                           <div className="bamboo-card ">
-                            {user.token ? (
+                            {user.info ? (
                               <div style={{ position: 'relative' }}>
                                 <div
                                   class="pretty p-icon p-toggle p-plain "
