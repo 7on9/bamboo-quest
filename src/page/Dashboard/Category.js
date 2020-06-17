@@ -58,7 +58,7 @@ export default React.memo(function Collection() {
 
   return (
     <div className="container-fluid">
-      <h1 className="h3 mb-2 text-gray-800">Collection</h1>
+      <h1 className="h3 mb-2 text-gray-800">Thể loại</h1>
       <div className="shadow mb-4">
         <div className="card-header py-3">
           <div className="container register-form">

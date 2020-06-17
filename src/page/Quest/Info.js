@@ -103,9 +103,12 @@ export default function Info() {
         <div className="info-quiz">
           <div className="row full">
             <div className="col-12 col-md-3 left-component">
-              <div onClick={handleUpdate} className="btn-update">
-                <i className="fas fa-pen" />
-              </div>
+              {String(quest.info.id_author) ===
+                String(user.info ? user.info._id : '') && (
+                <div onClick={handleUpdate} className="btn-update">
+                  <i className="fas fa-pen" />
+                </div>
+              )}
               <img
                 src={
                   quest.info.img_path

@@ -31,7 +31,12 @@ export default React.memo(function DetailQuest() {
           <div style={{ marginBottom: '15px' }} />
           <div className="form-group">
             <label>ID</label>
-            <input type="text" className="form-control" value={data._id} readOnly />
+            <input
+              type="text"
+              className="form-control"
+              value={data._id}
+              readOnly
+            />
           </div>
           <div className="form-group">
             <label>Người tạo</label>
@@ -39,7 +44,11 @@ export default React.memo(function DetailQuest() {
           </div>
           <div className="form-group">
             <label>Số câu hỏi</label>
-            <input className="form-control" value={data.questions.length} readOnly />
+            <input
+              className="form-control"
+              value={data.questions.length}
+              readOnly
+            />
           </div>
           <div className="form-group">
             <label>Tên cuộc thi</label>
@@ -75,7 +84,7 @@ export default React.memo(function DetailQuest() {
             </button>
           )}
           <button type="button" className="btn btn-danger">
-            XOÁ TÀI KHOẢN
+            XOÁ THỬ THÁCH
           </button>
         </div>
       </div>
