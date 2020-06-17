@@ -12,6 +12,7 @@
     "jquery": "^3.5.1",
     "moment": "^2.24.0",
     "multiselect-react-dropdown": "^1.4.10",
+    "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "pretty-checkbox": "^3.0.3",
     "react": "^16.13.0",
@@ -44,7 +45,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

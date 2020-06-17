@@ -7,15 +7,24 @@ import GAME_TYPES from '../../../store/socket/types'
 import { Answer } from '../../../components'
 import Helmet from 'react-helmet'
 
+const backgroundColor = ['#d03542', '#2a68c7', '#d0a036', '#498c2b']
 /*Play game*/
 class Play extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      answered: false,
+    }
+  }
+
   componentDidMount() {
     this.setState({
       time: (new Date().getTime() / 1000.0).toFixed(2),
       answered: false,
+      background: '#fff',
     })
   }
-  onAnswer = value => {
+  onAnswer = (value) => {
     if (this.state.answered) {
       return
     }
@@ -30,6 +39,7 @@ class Play extends Component {
     answer(game.idGame, game.idQuestion, ans)
     this.setState({
       answered: true,
+      background: backgroundColor[value],
     })
   }
   render() {
@@ -54,47 +64,55 @@ class Play extends Component {
     return (
       <div className="client-answer">
         <Helmet>
-          <link rel="stylesheet" type="text/css" href="/comon/css/util.css"/>
-          <link rel="stylesheet" type="text/css" href="/comon/css/main.css"/>
+          <link rel="stylesheet" type="text/css" href="/comon/css/util.css" />
+          <link rel="stylesheet" type="text/css" href="/comon/css/main.css" />
         </Helmet>
         <div style={{ width: '100%', height: '100%', background: '' }}>
-          <div style={{ width: '100%', height: '100%' }}>
-            <Answer
-              id={1}
-              value={0}
-              onAnswer={this.onAnswer}
-              label={'A'}
-              style={{ background: '#d03542', float: 'left' }}
-            />
-            <Answer
-              id={2}
-              value={1}
-              onAnswer={this.onAnswer}
-              label={'B'}
-              style={{ background: '#2a68c7', float: 'right' }}
-            />
-            <Answer
-              id={3}
-              value={2}
-              onAnswer={this.onAnswer}
-              label={'C'}
-              style={{ background: '#d0a036', float: 'left' }}
-            />
-            <Answer
-              id={4}
-              value={3}
-              onAnswer={this.onAnswer}
-              label={'D'}
-              style={{ background: '#498c2b', float: 'left' }}
-            />
-          </div>
+          {this.state.answered ? (
+            <div
+              className="wait-answer"
+              style={{ background: this.state.background }}>
+              <b>Vui lòng đợi người chơi khác ...</b>
+            </div>
+          ) : (
+            <div style={{ width: '100%', height: '100%' }}>
+              <Answer
+                id={1}
+                value={0}
+                onAnswer={this.onAnswer}
+                label={'A'}
+                style={{ background: '#d03542', float: 'left' }}
+              />
+              <Answer
+                id={2}
+                value={1}
+                onAnswer={this.onAnswer}
+                label={'B'}
+                style={{ background: '#2a68c7', float: 'right' }}
+              />
+              <Answer
+                id={3}
+                value={2}
+                onAnswer={this.onAnswer}
+                label={'C'}
+                style={{ background: '#d0a036', float: 'left' }}
+              />
+              <Answer
+                id={4}
+                value={3}
+                onAnswer={this.onAnswer}
+                label={'D'}
+                style={{ background: '#498c2b', float: 'left' }}
+              />
+            </div>
+          )}
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state,
 })
 

@@ -9,6 +9,7 @@ import { objectIdToDate } from './../../../utils/date'
 import 'pretty-checkbox'
 // import { Menu } from '../common/menu'
 import { Menu } from '../../../components'
+import '../common/style.scss'
 
 const Home = () => {
   const [heart, setHeart] = useState([])
@@ -97,6 +98,14 @@ const Home = () => {
             <div className="col-12 col-md-2" />
           </div>
           {/* search */}
+          {quest.questPublic.length === 0 && (
+            <div className="container-card " style={{ position: 'relative' }}>
+              <div className="wrapper">
+                <div className="card-loader card-loader--tabs"></div>
+              </div>
+            </div>
+          )}
+
           {quest.questPublic.map((item, index) => {
             const cat = category.categories.find(
               (itemCat) =>
@@ -151,7 +160,7 @@ const Home = () => {
 
                         return (
                           <div className="bamboo-card ">
-                            {user.token ? (
+                            {user.info ? (
                               <div style={{ position: 'relative' }}>
                                 <div
                                   class="pretty p-icon p-toggle p-plain "

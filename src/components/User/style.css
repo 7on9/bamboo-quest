@@ -1,75 +1,72 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-.menu{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 8vh;
-    background-color: #17a51e;
-    font-family: 'Poppins', sans-serif;
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-color: #17a51e;
+  font-family: 'Poppins', sans-serif;
 }
 .logoMenu {
-    color: antiquewhite;
-    letter-spacing: 5px;
-    font-size: 20px;
+  color: antiquewhite;
+  letter-spacing: 5px;
+  font-size: 20px;
 }
-.nav-links{
-    display: flex;
-    justify-content: space-around;
-    width: 30%;
-}
-
-.nav-links .name-item-menu{
-    color: antiquewhite;
-    text-decoration: none;
-    /* letter-spacing: 3px; */
-    font-weight: bold;
-    font-size: 14px;
-}
-.burger{
-    display: none;
-    cursor: pointer;
-}
-.burger div{
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    margin: 3px;
+.nav-links {
+  display: flex;
+  justify-content: space-around;
 }
 
-@media screen and (max-width:1024)
-{
-    .nav-links{
-        width: 60%;
-    }
+.nav-links .name-item-menu {
+  color: antiquewhite;
+  text-decoration: none;
+  /* letter-spacing: 3px; */
+  font-weight: bold;
+  font-size: 14px;
+}
+.burger {
+  display: none;
+  cursor: pointer;
+}
+.burger div {
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  margin: 3px;
 }
 
-@media screen and (max-width:768px)
-{
-    /* .nav-links{
+@media screen and (max-width: 1024) {
+  .nav-links {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* .nav-links{
         right: 0;
         left: 0;
         padding: 10;
         background: #17a51e;
 
     } */
-    .nav-links li{
-        opacity: 0;
-    }
-    .burger{
-        display: block;
-    }
+  .nav-links li {
+    opacity: 0;
+  }
+  .burger {
+    display: block;
+  }
 }
 .nav-active {
-    transform: translateX(0%);
+  transform: translateX(0%);
 }
 
-@keyframes navLinkFade{
-    from{
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to{
-        opacity: 1;
-        transform: translateX(0px);
-    }
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
