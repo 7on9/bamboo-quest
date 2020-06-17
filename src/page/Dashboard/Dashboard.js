@@ -1,6 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import * as authAction from '../../store/auth/action'
 import Fullscreen from './comon/Fullscreen'
 import Home from './Home'
 import User from './User'
@@ -12,6 +14,28 @@ import CreateUser from './CreateUser'
 import DetailCategory from './DetailCategory'
 
 export default function Dashboard() {
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+
+  React.useEffect(() => {
+    if (!user.info && !user.authenticated && user.isVetify) {
+      history.push(URL.AUTH)
+    } else {
+      if (
+        user.info &&
+        user.info.role.toString() !== '5eb7c67a8fd31b37bc507dbd'
+      ) {
+        history.push('/home')
+      }
+    }
+  }, [user])
+  React.useEffect(() => {
+    if (!user.info) {
+      dispatch(authAction.verify())
+    }
+  }, [])
+
   return (
     <Fullscreen>
       <Switch>
