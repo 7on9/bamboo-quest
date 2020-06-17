@@ -205,6 +205,27 @@ export const changeStatusRunning = (running) => {
     })
   }
 }
+
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await AdminService.deleteUser(id)
+      return dispatch({
+        type: ADMIN_TYPE.DELETE_USER,
+        payload: { deleteUser: true },
+      })
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_TYPE.DELETE_USER,
+        payload: {
+          deleteUser: false,
+          running: false,
+        },
+      })
+    }
+  }
+}
+
 export const createCollection = (newCategory) => {
   return async (dispatch) => {
     try {

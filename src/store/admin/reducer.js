@@ -20,6 +20,7 @@ let initialState = {
     status: false,
     info: {},
   },
+  deleteUser: false,
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -37,7 +38,7 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_TYPE.GET_COUNT_CATEGORY:
     case ADMIN_TYPE.GET_ROLE:
     case ADMIN_TYPE.CREATE_USER:
-    case EVENT.RUNNING:
+    case ADMIN_TYPE.DELETE_USER:
       state = {
         ...state,
         running: false,

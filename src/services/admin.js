@@ -46,4 +46,9 @@ export const AdminService = {
       data: { email, password, name, role },
     })
   },
+  deleteUser: (id) => {
+    return dataProvider(`/user/delete/${id}`, {
+      method: 'GET',
+    })
+  },
 }

@@ -12,6 +12,7 @@ export const Menu = React.memo(() => {
 
   React.useEffect(() => {
     dispatch(adminAction.getRole())
+    dispatch(authAction.verify())
   }, [])
 
   const handleLogout = () => {
@@ -21,8 +22,7 @@ export const Menu = React.memo(() => {
   const isAdmin = React.useCallback(() => {
     if (user.info && admin.roles.length > 0) {
       const role = admin.roles.find((item) => item._id === user.info.role)
-      console.log(role)
-      if (role.name !== 'user') {
+      if (role && role.name !== 'user') {
         return true
       }
     }

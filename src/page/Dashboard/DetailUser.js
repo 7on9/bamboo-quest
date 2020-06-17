@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { timestampConverter } from '../../utils/date'
+import { deleteUser } from '../../store/admin/action'
+import { useHistory } from 'react-router-dom'
 
 export default function Table() {
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
   const [isDanger, setIsDanger] = useState(false)
   const [statusEdit, setStatusEdit] = useState(false)
   const redux = useSelector((state) => state.admin)
+
   useEffect(() => {
     if (redux.user[redux.item]) {
       setEmail(redux.user[redux.item].email)
       setUsername(redux.user[redux.item].name)
     }
   }, [redux])
+
   const handleEdit = () => {
     setStatusEdit(true)
   }
@@ -23,6 +30,12 @@ export default function Table() {
     if (email === '' || password === '' || username === '') {
       setIsDanger(true)
     }
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteUser(redux.user[redux.item]._id))
+    alert('Bạn đã xóa thành công !')
+    history.push('/dashboard/user')
   }
 
   const onChange = (event) => {
@@ -125,7 +138,10 @@ export default function Table() {
                   CHỈNH SỬA
                 </button>
               )}
-              <button type="button" className="btn btn-danger">
+              <button
+                onClick={handleDelete}
+                type="button"
+                className="btn btn-danger">
                 XOÁ TÀI KHOẢN
               </button>
             </>
