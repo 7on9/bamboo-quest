@@ -7,7 +7,7 @@ export const getCategory = () => {
       let categories = await CategoryService.getCategories()
       return dispatch({
         type: CATEGORY_TYPE.GET,
-        payload: { categories: categories.data},
+        payload: { categories: categories.data },
       })
     } catch (error) {
       return dispatch({
@@ -15,6 +15,23 @@ export const getCategory = () => {
         payload: {
           category: null,
         },
+      })
+    }
+  }
+}
+
+export const deleteCategory = (id) => {
+  return async (dispatch) => {
+    try {
+      await CategoryService.deleteCategory(id)
+      return dispatch({
+        type: CATEGORY_TYPE.DELETE,
+        payload: {},
+      })
+    } catch (error) {
+      return dispatch({
+        type: CATEGORY_TYPE.DELETE,
+        payload: {},
       })
     }
   }

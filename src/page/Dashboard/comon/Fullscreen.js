@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import MenuDashboard from './Menu'
 import Slidebar from './Slidebar'
-export default class Fullscreen extends Component {
+import { connect } from 'react-redux'
+import * as userActions from '../../../store/auth/action'
+
+class Fullscreen extends Component {
   render() {
     return (
       <div>
@@ -70,7 +73,10 @@ export default class Fullscreen extends Component {
                       data-dismiss="modal">
                       Huỷ
                     </button>
-                    <a className="btn btn-primary" href="login.html">
+                    <a
+                      className="btn btn-primary"
+                      href="/auth"
+                      onClick={() => this.props.logout()}>
                       Đăng xuất
                     </a>
                   </div>
@@ -83,3 +89,13 @@ export default class Fullscreen extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  ...state,
+})
+
+const mapDispatchToProps = {
+  logout: userActions.logout,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Fullscreen)

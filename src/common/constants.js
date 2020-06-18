@@ -13,7 +13,7 @@ export const URL = {
   },
   AUTH: '/auth',
   DASHBOARD: {
-    COLLECTION: '/dashboard/collection'
+    COLLECTION: '/dashboard/category'
   }
 }
 

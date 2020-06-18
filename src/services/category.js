@@ -6,4 +6,9 @@ export const CategoryService = {
       method: 'GET',
     })
   },
+  deleteCategory: (id) => {
+    return dataProvider(`/category/delete/${id}`, {
+      method: 'GET',
+    })
+  },
 }

@@ -10,6 +10,7 @@ let initialState = {
 export const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case CATEGORY_TYPE.GET:
+    case CATEGORY_TYPE.DELETE:
       state = {
         ...state,
         ...action.payload,

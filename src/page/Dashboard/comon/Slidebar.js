@@ -51,6 +51,12 @@ export default class Slidebar extends Component {
             <span>Category</span>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </Link>
+        </li>
       </ul>
     )
   }

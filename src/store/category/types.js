@@ -1,5 +1,6 @@
 export const CATEGORY_TYPE = {
   GET: 'CATEGORY/GET',
+  DELETE: 'CATEGORY/DELETE',
 }
 
 export const ERROR = {

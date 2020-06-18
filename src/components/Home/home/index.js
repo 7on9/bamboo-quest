@@ -125,7 +125,7 @@ const Home = () => {
                           fontSize: '1em',
                           fontSize: '1.5em',
                         }}>
-                        {cat.description}
+                        {cat.name}
                       </b>
                     </div>
                     <div

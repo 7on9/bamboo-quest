@@ -121,23 +121,6 @@ export default function Table() {
                   * Vui lòng nhập đầy đủ thông tin{' '}
                 </p>
               )}
-              {statusEdit ? (
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  style={{ marginRight: '10px' }}
-                  onClick={handleSave}>
-                  LƯU
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ marginRight: '10px' }}
-                  onClick={handleEdit}>
-                  CHỈNH SỬA
-                </button>
-              )}
               <button
                 onClick={handleDelete}
                 type="button"
