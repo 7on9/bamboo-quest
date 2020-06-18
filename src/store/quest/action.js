@@ -83,21 +83,15 @@ export const deleteQuest = (idQuest) => {
     try {
       resetResult()
       // changeStatusRunning(false)
-      let res = await QuestService.deleteQuest(idQuest)
-      res = res.data
+      await QuestService.deleteQuest(idQuest)
       dispatch({
         type: QUEST_TYPES.DELETE,
-        payload: {
-          result: true,
-          deletedQuest: res.deletedQuest,
-        },
+        payload: {},
       })
     } catch (error) {
       dispatch({
         type: QUEST_TYPES.DELETE,
-        payload: {
-          result: false,
-        },
+        payload: {},
       })
     }
   }
@@ -292,6 +286,7 @@ export const resetQuiz = () => {
     })
   }
 }
+
 export const changeStatusRunning = (result) => {
   return (dispatch) => {
     dispatch({

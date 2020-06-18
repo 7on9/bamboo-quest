@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import { deleteQuest } from '../../store/quest/action'
 
 export default React.memo(function DetailQuest() {
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [title, settitle] = useState('')
   const [isDanger, setIsDanger] = useState(false)
   const [statusEdit, setStatusEdit] = useState(false)
   const redux = useSelector((state) => state.adminQuest)
   const data = redux.quest[redux.item]
+
   useEffect(() => {
     settitle(data.title)
   }, [redux])
@@ -18,6 +25,28 @@ export default React.memo(function DetailQuest() {
     if (title === '') {
       setIsDanger(true)
     }
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteQuest(data._id))
+    history.push('/dashboard/quest')
+  }
+
+  const confirmDelete = () => {
+    confirmAlert({
+      title: 'Xóa câu hỏi',
+      message: 'Bạn có chắc chắn muốn xóa câu hỏi này',
+      buttons: [
+        {
+          label: 'Đồng ý',
+          onClick: () => handleDelete(),
+        },
+        {
+          label: 'Không',
+          onClick: () => alert('Hủy'),
+        },
+      ],
+    })
   }
 
   const onChange = (event) => settitle(event.currentTarget.value)
@@ -66,24 +95,11 @@ export default React.memo(function DetailQuest() {
           {isDanger && (
             <p style={{ color: 'red' }}> * Vui lòng nhập đầy đủ thông tin </p>
           )}
-          {statusEdit ? (
-            <button
-              type="button"
-              className="btn btn-success"
-              style={{ marginRight: '10px' }}
-              onClick={() => handleSave()}>
-              LƯU
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="btn btn-primary"
-              style={{ marginRight: '10px' }}
-              onClick={() => handleEdit()}>
-              CHỈNH SỬA
-            </button>
-          )}
-          <button type="button" className="btn btn-danger">
+
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => confirmDelete()}>
             XOÁ THỬ THÁCH
           </button>
         </div>

@@ -3,7 +3,7 @@ import ItemTableQuest from './comon/ItemtableQuest'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllQuests, setPage, setItem } from '../../store/admin-quest/action'
 import Pagination from 'react-js-pagination'
-import {  useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 export default function Table() {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -18,6 +18,7 @@ export default function Table() {
     await dispatch(setItem(index))
     history.push('/dashboard/detaiquest')
   }
+  console.log(redux)
   return (
     <div className="container-fluid">
       {/* Page Heading */}
@@ -51,7 +52,7 @@ export default function Table() {
                   {redux.quest.map((item, index) => (
                     <ItemTableQuest
                       name={item.title}
-                      creator={item.id_author}
+                      creator={item.author}
                       countQuestion={item.questions.length}
                       id={item._id}
                       handleSetItem={() => handleSetItem(index)}

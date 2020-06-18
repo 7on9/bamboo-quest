@@ -15,6 +15,8 @@ export default React.memo(function DetailCollection() {
     dispatch(getAllCollection())
   }, [])
 
+  
+
   const handleDeleteCategory = (idCategory) => {
     const categoryDelete = [...categoryDeletes]
     categoryDelete.push(idCategory)

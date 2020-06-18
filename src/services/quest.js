@@ -54,6 +54,6 @@ export const QuestService = {
     return dataProvider('/quest/start', { method: 'POST', data: { idQuest } })
   },
   deleteQuest: (idQuest) => {
-    return dataProvider('/quest/delete', { method: 'POST', data: { idQuest } })
+    return dataProvider(`/quest/delete/${idQuest}`, { method: 'GET' })
   },
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { timestampConverter } from '../../utils/date'
 import { deleteUser } from '../../store/admin/action'
 import { useHistory } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert' // Import
 
 export default function Table() {
   const dispatch = useDispatch()
@@ -34,7 +35,6 @@ export default function Table() {
 
   const handleDelete = () => {
     dispatch(deleteUser(redux.user[redux.item]._id))
-    alert('Bạn đã xóa thành công !')
     history.push('/dashboard/user')
   }
 
@@ -51,6 +51,23 @@ export default function Table() {
         break
       default:
     }
+  }
+
+  const confirmDelete = () => {
+    confirmAlert({
+      title: 'Xóa câu hỏi',
+      message: 'Bạn có chắc chắn muốn xóa câu hỏi này',
+      buttons: [
+        {
+          label: 'Đồng ý',
+          onClick: () => handleDelete(),
+        },
+        {
+          label: 'Không',
+          onClick: () => alert('Hủy'),
+        },
+      ],
+    })
   }
 
   return (
@@ -122,7 +139,7 @@ export default function Table() {
                 </p>
               )}
               <button
-                onClick={handleDelete}
+                onClick={confirmDelete}
                 type="button"
                 className="btn btn-danger">
                 XOÁ TÀI KHOẢN

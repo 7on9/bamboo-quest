@@ -70,18 +70,18 @@ export const questReducer = (state = initialState, action) => {
         }
       }
       break
-    case QUEST_TYPES.DELETE:
-      let deletedArr = state.quests.forEach((quest) => {
-        if (quest._id !== action.payload.deletedQuest._id) {
-          return quest
-        }
-      })
-      state = {
-        ...state,
-        result: 'SUCCESS',
-        quests: [...deletedArr],
-      }
-      break
+    // case QUEST_TYPES.DELETE:
+    //   let deletedArr = state.quests.forEach((quest) => {
+    //     if (quest._id !== action.payload.deletedQuest._id) {
+    //       return quest
+    //     }
+    //   })
+    //   state = {
+    //     ...state,
+    //     result: 'SUCCESS',
+    //     quests: [...deletedArr],
+    //   }
+    //   break
     case QUEST_TYPES.SET_STATUS:
       state = {
         ...state,
@@ -97,6 +97,7 @@ export const questReducer = (state = initialState, action) => {
     case QUEST_TYPES.LIKE_PUBLIC_QUEST:
     case QUEST_TYPES.RESET:
     case QUEST_TYPES.RESET_QUIZ_PUBLIC:
+    case QUEST_TYPES.DELETE:
     case EVENT.RUNNING:
       state = {
         ...state,

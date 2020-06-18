@@ -5,6 +5,7 @@ let initialState = {
   categories: [],
   running: false,
   result: false,
+  categoriesCnt: [],
 }
 
 export const categoryReducer = (state = initialState, action) => {

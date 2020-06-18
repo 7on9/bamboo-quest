@@ -240,7 +240,7 @@ class Menu extends Component {
             <div
               className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="userDropdown">
-              <Link className="dropdown-item">
+              <Link className="dropdown-item" to="/user/info">
                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
                 Profile
               </Link>
