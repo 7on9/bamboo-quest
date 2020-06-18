@@ -13,6 +13,7 @@ import '../common/style.scss'
 
 const Home = () => {
   const [heart, setHeart] = useState([])
+  const [isGetQuiz, setIsGetQuiz] = useState(false)
   const dispatch = useDispatch()
   const history = useHistory()
   const category = useSelector((state) => state.category)
@@ -20,9 +21,16 @@ const Home = () => {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    dispatch(categoryActions.getCategory())
-    dispatch(questActions.resetQuiz())
+    dispatch(questActions.resetQuizPublic())
+    setIsGetQuiz(true)
   }, [])
+
+  useEffect(() => {
+    if (isGetQuiz) {
+      dispatch(categoryActions.getCategory())
+      dispatch(questActions.resetQuiz())
+    }
+  }, [isGetQuiz])
 
   useEffect(() => {
     if (!user.info) {
@@ -31,7 +39,7 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    if (!quest.isGetQuiz) {
+    if (isGetQuiz) {
       category.categories.map((item) => {
         dispatch(questActions.getsQuestCategory(1, item._id))
       })

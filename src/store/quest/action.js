@@ -270,6 +270,18 @@ export const resetResult = () => {
     })
   }
 }
+
+export const resetQuizPublic = () => {
+  return (dispatch) => {
+    dispatch({
+      type: QUEST_TYPES.RESET_QUIZ_PUBLIC,
+      payload: {
+        questPublic: [],
+      },
+    })
+  }
+}
+
 export const resetQuiz = () => {
   return (dispatch) => {
     dispatch({
