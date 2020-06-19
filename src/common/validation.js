@@ -71,7 +71,6 @@ export const createUserSchema = Yup.object().shape({
 })
 export const createCollectionSchema = Yup.object().shape({
   title: Yup.string().required('Bạn quên nhập tiêu đề nè !'),
-  img_path: Yup.string().required('Hãy chọn 1 hình ảnh bất kì !'),
   description: Yup.string()
     .min(2, 'Quá ngắn rồi !')
     .max(50, 'Dài dòng quá !')

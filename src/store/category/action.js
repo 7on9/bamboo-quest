@@ -20,6 +20,25 @@ export const getCategory = () => {
   }
 }
 
+export const updateCategory = (data) => {
+  return async (dispatch) => {
+    try {
+      await CategoryService.update(data)
+      return dispatch({
+        type: CATEGORY_TYPE.UPDATE,
+        payload: { update: true },
+      })
+    } catch (error) {
+      return dispatch({
+        type: CATEGORY_TYPE.UPDATE,
+        payload: {
+          update: false,
+        },
+      })
+    }
+  }
+}
+
 export const getCategoryCount = (id) => {
   return async (dispatch) => {
     try {
@@ -34,6 +53,17 @@ export const getCategoryCount = (id) => {
         payload: {},
       })
     }
+  }
+}
+
+export const setItemSelected = (id) => {
+  return async (dispatch) => {
+    return dispatch({
+      type: CATEGORY_TYPE.ITEM_SELECTED,
+      payload: {
+        itemSeleted: id,
+      },
+    })
   }
 }
 

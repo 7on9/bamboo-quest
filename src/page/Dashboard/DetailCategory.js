@@ -5,17 +5,18 @@ import { objectIdToDate } from '../../utils/date'
 import { Link } from 'react-router-dom'
 import * as categoryActions from '../../store/category/action'
 import { confirmAlert } from 'react-confirm-alert' // Import
+import { useHistory } from 'react-router-dom'
 
 export default React.memo(function DetailCollection() {
   const dispatch = useDispatch()
   const admin = useSelector((state) => state.admin)
+  const history = useHistory()
+
   const [categoryDeletes, setCategoryDeletes] = useState([])
 
   useEffect(() => {
     dispatch(getAllCollection())
   }, [])
-
-  
 
   const handleDeleteCategory = (idCategory) => {
     const categoryDelete = [...categoryDeletes]
@@ -42,6 +43,11 @@ export default React.memo(function DetailCollection() {
     })
   }
 
+  const onUpdateCategory = async (id) => {
+    await dispatch(categoryActions.setItemSelected(id))
+    history.push('/dashboard/category-update')
+  }
+
   return (
     <div className="container-fluid">
       <div className="shadow mb-4">
@@ -66,6 +72,7 @@ export default React.memo(function DetailCollection() {
                 admin={admin}
                 deleteCategory={deleteCategory}
                 categoryDeletes={categoryDeletes}
+                onUpdateCategory={onUpdateCategory}
               />
             </div>
           </div>
@@ -74,7 +81,12 @@ export default React.memo(function DetailCollection() {
     </div>
   )
 })
-function DetailTable({ admin, deleteCategory, categoryDeletes }) {
+function DetailTable({
+  admin,
+  deleteCategory,
+  categoryDeletes,
+  onUpdateCategory,
+}) {
   return (
     <table className="table table-shopping">
       <thead className>
@@ -89,7 +101,7 @@ function DetailTable({ admin, deleteCategory, categoryDeletes }) {
 
       <tbody>
         {admin && admin.allCollection ? (
-          admin.allCollection.map((item) => {
+          admin.allCollection.map((item, i) => {
             const categoryDt = categoryDeletes.find(
               (id) => id.toString() === item._id.toString()
             )
@@ -115,7 +127,8 @@ function DetailTable({ admin, deleteCategory, categoryDeletes }) {
                         <small>€</small>549
                       </td> */}
                     <td className="td-actions ">
-                      {/* <button
+                      <button
+                        onClick={() => onUpdateCategory(i)}
                         type="button"
                         rel="tooltip"
                         data-placement="left"
@@ -123,7 +136,7 @@ function DetailTable({ admin, deleteCategory, categoryDeletes }) {
                         className="btn btn-neutral"
                         data-original-title="Remove item">
                         <i className="fas fa-info-circle"></i>
-                      </button> */}
+                      </button>
                       <button
                         type="button"
                         rel="tooltip"

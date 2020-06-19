@@ -12,6 +12,8 @@ import DetailQuest from './DetailQuest'
 import Category from './Category'
 import CreateUser from './CreateUser'
 import DetailCategory from './DetailCategory'
+import UpdateCategory from './CategoryUpdate'
+
 
 export default function Dashboard() {
   const history = useHistory()
@@ -47,6 +49,7 @@ export default function Dashboard() {
         <Route path="/dashboard/detaiquest" component={DetailQuest} />
         <Route path="/dashboard/create-category" component={Category} />
         <Route path="/dashboard/category" component={DetailCategory} />
+        <Route path="/dashboard/category-update" component={UpdateCategory} />
       </Switch>
     </Fullscreen>
   )
