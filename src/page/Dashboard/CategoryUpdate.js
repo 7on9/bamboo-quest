@@ -45,7 +45,7 @@ export default React.memo(function Collection() {
         setSubmit(false)
       }
     }
-  }, [category.update])
+  }, [submit])
 
   if (category.itemSeleted === -1) {
     return <></>
@@ -66,7 +66,12 @@ export default React.memo(function Collection() {
 
   const onSubmit = (value) => {
     const { title, description } = value
-    const category = { _id: data._id, name: title, description, ...newImg }
+    const category = {
+      _id: data._id,
+      name: title,
+      description,
+      img_path: newImg.img_path ? newImg.img_path : undefined,
+    }
     dispatch(updateCategory({ category }))
     setSubmit(true)
     dispatch(changeStatusRunning(true))
